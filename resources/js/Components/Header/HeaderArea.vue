@@ -4,6 +4,7 @@ import DarkModeSwitcher from "./DarkModeSwitcher.vue";
 import DropdownMessage from "./DropdownMessage.vue";
 import DropdownNotification from "./DropdownNotification.vue";
 import DropdownUser from "./DropdownUser.vue";
+import LanguageSwitcher from "./LanguageSwitcher.vue";
 
 const { toggleSidebar } = useSidebarStore();
 const sidebarStore = useSidebarStore();
@@ -110,7 +111,7 @@ const sidebarStore = useSidebarStore();
 
                         <input
                             type="text"
-                            placeholder="جستجو..."
+                            :placeholder="$t('titles.search')"
                             class="w-full xl:w-125 bg-transparent pl-4 pr-9 focus:outline-none border-0"
                         />
                     </div>
@@ -123,6 +124,11 @@ const sidebarStore = useSidebarStore();
                         <!-- Dark Mode Toggler -->
                         <DarkModeSwitcher />
                         <!-- Dark Mode Toggler -->
+                    </li>
+
+                    <!-- Language Switcher -->
+                    <li>
+                        <LanguageSwitcher />
                     </li>
 
                     <!-- Notification Menu Area -->

@@ -21,7 +21,13 @@ export default {
 
 <template>
     <div class="w-full text-center py-3 text-sm">
-        نتایج {{ links.from }} تا {{ links.to }} از {{ links.total }} نتیجه
+        {{
+            $t("titles.table.paginationResults", {
+                start: links.from,
+                end: links.to,
+                total: links.total,
+            })
+        }}
     </div>
     <nav
         class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0"
@@ -34,7 +40,7 @@ export default {
                         ? 'text-body'
                         : 'hover:dark:border-white hover:dark:text-white hover:border-black hover:text-black',
                 ]"
-                >قبلی</component
+                >{{ $t("titles.table.paginationPrevious") }}</component
             >
         </div>
         <div class="hidden md:-mt-px md:flex">
@@ -60,7 +66,7 @@ export default {
                         ? 'text-body'
                         : 'hover:dark:border-white hover:dark:text-white hover:border-black hover:text-black',
                 ]"
-                >بعدی</component
+                >{{ $t("titles.table.paginationNext") }}</component
             >
         </div>
     </nav>

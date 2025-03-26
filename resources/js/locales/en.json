@@ -1,0 +1,24 @@
+{
+    "titles": {
+        "search": "Search",
+        "dear": "Dear",
+        "notification": "Notification",
+        "messages": "Messages",
+        "myProfile": "My Profile",
+        "settings": "Settings",
+        "signOut": "Sign Out",
+        "table": {
+            "paginationResults": "Results from {start} to {end} of {total} results",
+            "paginationPrevious": "Previous",
+            "paginationNext": "Next"
+        },
+        "back": "Back",
+        "actions": "Actions",
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "admins": "Admins",
+        "productsCategories": "Products Categories",
+        "products": "Products",
+        "orders": "Orders"
+    }
+}

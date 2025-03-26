@@ -7,7 +7,6 @@
 
 @layer base {
     body {
-        direction: rtl;
         @apply relative z-1 bg-whiten font-vazirmatn text-base font-normal text-body dark:text-bodydark dark:bg-boxdark-2;
     }
     .font-alumni {

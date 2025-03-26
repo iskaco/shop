@@ -15,30 +15,30 @@ onClickOutside(target, () => {
 
 const menuGroups = ref([
     {
-        name: "منو",
+        name: "titles.menu",
         menuItems: [
             {
-                label: "داشبورد",
+                label: "titles.dashboard",
                 route: "dashboard",
                 iconName: "md-dashboardcustomize-outlined",
             },
             {
-                label: "مدیران",
+                label: "titles.admins",
                 route: "admins",
                 iconName: "md-contacts-outlined",
             },
             {
-                label: "دسته بندی محصولات",
+                label: "titles.productsCategories",
                 route: "dashboard",
                 iconName: "md-category-outlined",
             },
             {
-                label: "محصولات",
+                label: "titles.products",
                 route: "products",
                 iconName: "md-creditcard-outlined",
             },
             {
-                label: "سفارشات",
+                label: "titles.orders",
                 route: "dashboard",
                 iconName: "md-dns-outlined",
             },
@@ -127,7 +127,7 @@ const menuGroups = ref([
                         <h3
                             class="mb-4 ml-4 text-sm font-medium text-bodydark2"
                         >
-                            {{ menuGroup.name }}
+                            {{ $t(menuGroup.name) }}
                         </h3>
 
                         <ul class="mb-6 flex flex-col gap-1.5">
