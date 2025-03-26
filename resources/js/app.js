@@ -11,6 +11,7 @@ import router from "./router";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as MdiIcons from "oh-vue-icons/icons/md";
 import Vue3Toastify, { toast } from "vue3-toastify";
+import i18n from "./i18n";
 
 const mdi = Object.values({ ...MdiIcons });
 addIcons(...mdi);
@@ -30,6 +31,7 @@ createInertiaApp({
             .use(createPinia())
             .use(router)
             .use(ZiggyVue)
+            .use(i18n)
             .use(Vue3Toastify, {
                 autoClose: 3000,
                 position: toast.POSITION.BOTTOM_LEFT,

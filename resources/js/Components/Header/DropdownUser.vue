@@ -60,7 +60,8 @@ export default {
             <span class="hidden text-right lg:block">
                 <span
                     class="block text-sm font-medium text-black dark:text-white lg:w-30"
-                    >{{ $page.props.auth.admin.first_name }} عزیز</span
+                    >{{ $t("titles.dear") }}
+                    {{ $page.props.auth.admin.first_name }}</span
                 >
                 <span class="block text-xs font-medium">{{
                     $page.props.auth.admin.username
@@ -106,7 +107,7 @@ export default {
                                 fill=""
                             />
                         </svg>
-                        نمایه من
+                        {{ $t("titles.myProfile") }}
                     </Link>
                 </li>
                 <li>
@@ -131,7 +132,7 @@ export default {
                                 fill=""
                             />
                         </svg>
-                        تنظیمات حساب کاربری
+                        {{ $t("titles.settings") }}
                     </Link>
                 </li>
             </ul>
@@ -156,7 +157,7 @@ export default {
                         fill=""
                     />
                 </svg>
-                خروج
+                {{ $t("titles.signOut") }}
             </a>
         </div>
         <!-- Dropdown End -->

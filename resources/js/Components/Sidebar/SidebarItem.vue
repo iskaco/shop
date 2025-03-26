@@ -35,7 +35,7 @@ const handleItemClick = () => {
         >
             <v-icon :name="item.iconName" scale="1.2" />
 
-            {{ item.label }}
+            {{ $t(item.label) }}
         </Link>
         <div
             v-else
