@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
                 'email' => 'admin@iskaco.ir',
                 'first_name' => 'admin',
                 'last_name' => 'admin',
-                'password' => Hash::make('iskaco@admin')
+                'password' => 'iskaco@admin',
             ]
         );
     }
