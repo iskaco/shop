@@ -1,23 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
-
 function handleImageError() {
     document.getElementById("screenshot-container")?.classList.add("!hidden");
     document.getElementById("docs-card")?.classList.add("!row-span-1");
@@ -27,7 +10,7 @@ function handleImageError() {
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head :title="$t('titles.admin.description')" />
 
     <div style="direction: ltr">
         <nav class="absolute z-30 w-full">

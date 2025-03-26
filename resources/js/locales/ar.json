@@ -1,5 +1,16 @@
 {
     "titles": {
+        "admin": {
+            "label": "میم هوم",
+            "description": "لوحة إدارة متجر ميم هوم",
+            "login": "تسجيل الدخول",
+            "username": "اسم المستخدم",
+            "password": "كلمة المرور",
+            "rememberMe": "تذكير بي",
+            "forgotPassword": "هل نسيت كلمة المرور؟",
+            "signIn": "تسجيل الدخول",
+            "signUp": "تسجيل الخروج"
+        },
         "search": "بحث...",
         "dear": "عزيزي",
         "notification": "إشعار",

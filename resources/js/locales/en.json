@@ -1,5 +1,16 @@
 {
     "titles": {
+        "admin": {
+            "label": "MeemHome",
+            "description": "MeemHome Management Panel",
+            "login": "Login",
+            "username": "Username",
+            "password": "Password",
+            "rememberMe": "Remember Me",
+            "forgotPassword": "Forgot Password?",
+            "signIn": "Sign In",
+            "signUp": "Sign Up"
+        },
         "search": "Search",
         "dear": "Dear",
         "notification": "Notification",
