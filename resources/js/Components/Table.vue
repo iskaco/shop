@@ -129,7 +129,7 @@ export default {
                 class="border-stroke dark:border-strokedark rounded bg-transparent"
                 type="search"
                 v-model="params.search"
-                placeholder="جستجو..."
+                :placeholder="$t('titles.search')"
             />
             <select
                 v-model="params.perPage"
@@ -176,7 +176,9 @@ export default {
                                 </svg>
                             </div>
                         </th>
-                        <th v-if="table.row_actions">عملیات</th>
+                        <th v-if="table.row_actions">
+                            {{ $t("titles.actions") }}
+                        </th>
                     </tr>
                 </thead>
                 <tbody
@@ -285,7 +287,7 @@ export default {
                     @click="callRequest"
                 ></Button>
                 <Button
-                    label="انصراف"
+                    :label="$t('titles.back')"
                     customClasses="bg-body"
                     @click="closeModal"
                 ></Button>
