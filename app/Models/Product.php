@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasTranslations;
     // Your model attributes and methods here
-    protected $fillable = ['name', 'description', 'price', 'stock'];
+    protected $fillable = ['name','category_id', 'description', 'price', 'stock'];
 
     public $translatable = ['name','description'];
 
@@ -21,6 +21,16 @@ class Product extends Model
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = $value * 100;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getCategoryAttribute()
+    {
+        return $this->category->name;
     }
 
 

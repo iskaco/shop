@@ -25,10 +25,12 @@ return [
     ],
     'product' => [
         'label' => 'کالا',
+        'category' => 'دسته‌بندی',
         'plural' => 'کالاها',
         'name' => 'نام',
         'description' => 'توضیحات',
         'price' => 'قیمت',
         'stock' => 'موجودی',
+        'image' => 'تصویر',
     ],
 ];

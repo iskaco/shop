@@ -25,6 +25,7 @@ return [
     ],
     'product' => [
         'label' => 'المنتج',
+        'category' => 'الفئة',
         'plural' => 'المنتجات',
         'name' => 'الاسم',
         'description' => 'الوصف',

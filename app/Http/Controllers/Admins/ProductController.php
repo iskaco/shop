@@ -11,6 +11,7 @@ use App\Actions\Products\ProductUpdate;
 use App\Http\Requests\Admins\Products\ProductDestroyRequest;
 use App\Http\Requests\Admins\Products\ProductStoreRequest;
 use App\Http\Requests\Admins\Products\ProductUpdateRequest;
+use App\Isap\Actions\ActionType;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -18,6 +19,12 @@ class ProductController extends Controller
     public function index(){
         return $this->makeInertiaTableResponse(Product::class, Product::query());
     }
+
+    public function create()
+    {
+        return $this->makeInertiaFormResponse(Product::class, [], ActionType::STORE);
+    }
+
     public function show($id){
 
     }
