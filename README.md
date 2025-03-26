@@ -1,6 +1,6 @@
-# ISAP (Iskaco Smart Admin Panel)
+# MeemHome
 
-## About ISAP
+## About MeemHome
 
 -   [Simple, fast routing engine](https://laravel.com/docs/routing).
 -   [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -71,7 +71,3 @@ parameters:
     ignoreErrors:
     excludePaths:
 ```
-
-## License
-
-The ISAP is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
