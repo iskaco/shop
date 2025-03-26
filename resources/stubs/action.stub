@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Actions\{{pluralModelName}};
+
+use App\Actions\BaseAction;
+use App\Models\{{modelName}};
+
+
+class {{modelName}}{{actionName}} extends BaseAction
+{
+    public function execute(/*array $data*/) /* return value */
+    {
+    }
+}
