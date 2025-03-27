@@ -11,6 +11,7 @@ use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
 use App\Isap\Forms\Components\TextInput;
 use App\Isap\Forms\Form;
+use App\Isap\Tables\Columns\ImageColumn;
 use App\Isap\Tables\Columns\TextColumn;
 use App\Isap\Tables\Table;
 use App\Isap\Utils\DataUtil;
@@ -31,7 +32,8 @@ class ProductResource extends BaseResource
             MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
             TextInput::make('description_en', __('resources.product.description_en')),
             TextInput::make('description_ar', __('resources.product.description_ar')),
-            TextInput::make('price', __('resources.product.price')),
+            TextInput::make('price', __('resources.product.price'))->isCurrency(),
+            TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ImageInput::make('image', __('resources.product.image')),
         ])->action(static::getAction($action_type)?->setRoute('product.'.lcfirst($action_type->value)));
     }
@@ -41,11 +43,12 @@ class ProductResource extends BaseResource
         $table = new Table(__('resources.product.plural'), Product::class);
 
         return $table->columns([
-            TextColumn::make('name', __('resources.product.name')),
-            TextColumn::make('category', __('resources.product.category')),
-            TextColumn::make('description', __('resources.product.description')),
+            TextColumn::make('name_translated', __('resources.product.name')),
+            TextColumn::make('category_name', __('resources.product.category')),
+            TextColumn::make('description_translated', __('resources.product.description')),
             TextColumn::make('price', __('resources.product.price')),
             TextColumn::make('stock', __('resources.product.stock')),
+            ImageColumn::make('image', __('resources.product.image')),
         ])->row_actions([
             ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('md-removeredeye-outlined'),
             EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
