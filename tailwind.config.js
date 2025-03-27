@@ -18,6 +18,7 @@ export default {
             fontFamily: {
                 vazirmatn: ["Vazirmatn", "sans-serif"],
                 alumni: ["Alumni Sans Pinstripe", "sans-serif"],
+                arabic: ["Tajawal", "Vazirmatn", "sans-serif"],
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             screens: {
