@@ -2,16 +2,32 @@
 
 namespace App\Models;
 
+use App\Logable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-class Product extends Model
+class Product extends Model implements HasMedia
 {
-    use HasTranslations;
-    // Your model attributes and methods here
-    protected $fillable = ['name','category_id', 'description', 'price', 'stock'];
+    use HasTranslations,InteractsWithMedia,Logable;
 
-    public $translatable = ['name','description'];
+    // Your model attributes and methods here
+    protected $fillable = ['name', 'category_id', 'description', 'price', 'stock'];
+
+    public $translatable = ['name', 'description'];
+
+    protected $appends = ['name_translated', 'description_translated', 'category_name'];
+
+    public function getNameTranslatedAttribute()
+    {
+        return $this->getTranslation('name', app()->getLocale());
+    }
+
+    public function getDescriptionTranslatedAttribute()
+    {
+        return $this->getTranslation('description', app()->getLocale());
+    }
 
     public function getPriceAttribute($value)
     {
@@ -28,10 +44,15 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getCategoryAttribute()
+    public function getCategoryNameAttribute()
     {
         return $this->category->name;
     }
 
+    public function getImageAttribute()
+    {
+        $media = $this->getFirstMedia('Products.Images');
 
+        return $media;
+    }
 }
