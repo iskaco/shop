@@ -7,8 +7,14 @@ const { locale } = useI18n();
 const isOpen = ref(false);
 
 const languages = [
-    { code: "en", name: "English", flag: "🇺🇸", dir: "ltr" },
-    { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl" },
+    {
+        code: "en",
+        name: "English",
+        flag: "🇺🇸",
+        dir: "ltr",
+        font: "Alumni Sans Pinstripe",
+    },
+    { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl", font: "Vazirmatn" },
 ];
 
 const changeLanguage = async (langCode) => {
@@ -17,7 +23,10 @@ const changeLanguage = async (langCode) => {
         // Update document direction
         document.documentElement.setAttribute("dir", selectedLang.dir);
         document.documentElement.setAttribute("lang", langCode);
-
+        document.documentElement.style.setProperty(
+            "--font-family",
+            selectedLang.font
+        );
         // Load new language messages
         await loadLanguageMessages(langCode);
 
@@ -33,7 +42,7 @@ const changeLanguage = async (langCode) => {
 <template>
     <div class="relative">
         <button
-            class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-meta-4"
+            class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium duration-300 ease-in-out bg-gray-100 dark:bg-meta-4"
             @click="isOpen = !isOpen"
         >
             <span>{{

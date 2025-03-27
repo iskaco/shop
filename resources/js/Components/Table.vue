@@ -89,7 +89,6 @@ export default {
                 {
                     onSuccess: () => {
                         this.modalShowStatus = false;
-                        toast.success("عملیات با موفقیت انجام شد.");
                     },
                 }
             );
@@ -113,7 +112,7 @@ export default {
 </script>
 
 <template>
-    <PageHeader :pageTitle="'لیست ' + table.title">
+    <PageHeader :pageTitle="$t('titles.table.list') + ' ' + table.title">
         <Button
             v-for="table_action in table.table_actions"
             :key="table_action.name"

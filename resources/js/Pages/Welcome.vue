@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import LanguageSwitcher from "@/Components/Header/LanguageSwitcher.vue";
 
 function handleImageError() {
     document.getElementById("screenshot-container")?.classList.add("!hidden");
@@ -10,9 +11,9 @@ function handleImageError() {
 </script>
 
 <template>
-    <Head :title="$t('titles.admin.description')" />
+    <Head :title="$t('titles.titles.web.description')" />
 
-    <div style="direction: ltr">
+    <div>
         <nav class="absolute z-30 w-full">
             <div class="container px-4 py-4 mx-auto">
                 <div class="flex items-center justify-between">
@@ -24,31 +25,26 @@ function handleImageError() {
                         />
                     </div>
                     <div
-                        class="items-center hidden space-x-8 text-xl font-semibold tracking-widest md:flex font-alumni"
+                        class="items-center hidden gap-x-8 text-xl rtl:text-base ltr:font-semibold ltr:tracking-widest md:flex font-alumni"
                     >
-                        <a href="#" class="text-white hover:text-gray-300"
-                            >Home</a
-                        >
-                        <a href="#" class="text-white hover:text-gray-300"
-                            >Products</a
-                        >
-                        <a href="#" class="text-white hover:text-gray-300"
-                            >Categories</a
-                        >
-                        <a href="#" class="text-white hover:text-gray-300"
-                            >Contact</a
-                        >
+                        <a href="#" class="text-white hover:text-gray-300">{{
+                            $t("titles.web.navigation.home")
+                        }}</a>
+                        <a href="#" class="text-white hover:text-gray-300">{{
+                            $t("titles.web.navigation.products")
+                        }}</a>
+                        <a href="#" class="text-white hover:text-gray-300">{{
+                            $t("titles.web.navigation.categories")
+                        }}</a>
+                        <a href="#" class="text-white hover:text-gray-300">{{
+                            $t("titles.web.navigation.contact")
+                        }}</a>
 
-                        <div class="flex items-center space-x-4">
-                            <select
-                                class="px-2 py-1 text-white bg-transparent border border-white rounded"
-                            >
-                                <option value="en">EN</option>
-                                <option value="ar">AR</option>
-                            </select>
+                        <div class="flex items-center gap-x-4">
+                            <LanguageSwitcher />
 
                             <select
-                                class="px-2 py-1 text-white bg-transparent border border-white rounded"
+                                class="py-1 border border-white rounded text-xs font-sans"
                             >
                                 <option value="usd">USD</option>
                                 <option value="rls">RLS</option>
@@ -136,19 +132,21 @@ function handleImageError() {
                     background-size: 4px 4px;
                 "
             ></div>
-            <div class="container absolute z-30 px-4 mx-auto pt-60">
+            <div class="container absolute z-20 px-4 mx-auto pt-60">
                 <div class="text-center">
-                    <h1 class="mb-4 font-bold text-7xl font-alumni">
-                        Welcome to MeemHome
+                    <h1 class="mb-4 rtl:mb-8 font-bold text-7xl font-alumni">
+                        {{ $t("titles.web.hero.title") }}
                     </h1>
                     <p class="mb-8 text-xl">
-                        Discover Amazing Products at Great Prices
+                        {{ $t("titles.web.hero.subtitle") }}
                     </p>
                     <div class="flex justify-center">
                         <div class="relative w-full max-w-xl">
                             <input
                                 type="search"
-                                placeholder="Search categories or products..."
+                                :placeholder="
+                                    $t('titles.web.hero.search.placeholder')
+                                "
                                 class="w-full px-8 py-3 text-gray-900 placeholder-gray-500 rounded-full bg-white/90 focus:outline-none focus:ring-2 focus:ring-blue-600"
                             />
                             <button
@@ -178,7 +176,7 @@ function handleImageError() {
         <section class="py-20 bg-gray-100">
             <div class="container px-4 mx-auto">
                 <h2 class="mb-16 text-6xl font-bold text-center font-alumni">
-                    Our Plans
+                    {{ $t("titles.web.plans.title") }}
                 </h2>
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
                     <div
@@ -194,19 +192,40 @@ function handleImageError() {
                             />
                         </svg>
                         <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
-                            Bronze
+                            {{ $t("titles.web.plans.bronze.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">$100</p>
-                        <p class="mb-6 text-lg text-green-600">Revenue: $55</p>
+                        <p class="mb-2 text-4xl font-bold">
+                            {{ $t("titles.web.plans.bronze.price") }}
+                        </p>
+                        <p class="mb-6 text-lg text-green-600">
+                            {{ $t("titles.web.plans.bronze.revenue") }}
+                        </p>
                         <ul class="mb-8">
-                            <li class="mb-2">✓ Basic Features</li>
-                            <li class="mb-2">✓ Email Support</li>
-                            <li class="mb-2">✓ Basic Analytics</li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t("titles.web.plans.bronze.features.basic")
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t("titles.web.plans.bronze.features.email")
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.bronze.features.analytics"
+                                    )
+                                }}
+                            </li>
                         </ul>
                         <button
                             class="w-full py-2 text-white bg-blue-600 rounded-lg"
                         >
-                            Order Now
+                            {{ $t("titles.web.plans.bronze.button") }}
                         </button>
                     </div>
 
@@ -223,19 +242,42 @@ function handleImageError() {
                             />
                         </svg>
                         <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
-                            Silver
+                            {{ $t("titles.web.plans.silver.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">$200</p>
-                        <p class="mb-6 text-lg text-green-600">Revenue: $85</p>
+                        <p class="mb-2 text-4xl font-bold">
+                            {{ $t("titles.web.plans.silver.price") }}
+                        </p>
+                        <p class="mb-6 text-lg text-green-600">
+                            {{ $t("titles.web.plans.silver.revenue") }}
+                        </p>
                         <ul class="mb-8">
-                            <li class="mb-2">✓ All Bronze Features</li>
-                            <li class="mb-2">✓ Priority Support</li>
-                            <li class="mb-2">✓ Advanced Analytics</li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t("titles.web.plans.bronze.features.basic")
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.silver.features.support"
+                                    )
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.silver.features.analytics"
+                                    )
+                                }}
+                            </li>
                         </ul>
                         <button
                             class="w-full py-2 text-white bg-blue-600 rounded-lg"
                         >
-                            Order Now
+                            {{ $t("titles.web.plans.silver.button") }}
                         </button>
                     </div>
 
@@ -252,19 +294,40 @@ function handleImageError() {
                             />
                         </svg>
                         <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
-                            Gold
+                            {{ $t("titles.web.plans.gold.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">$300</p>
-                        <p class="mb-6 text-lg text-green-600">Revenue: $115</p>
+                        <p class="mb-2 text-4xl font-bold">
+                            {{ $t("titles.web.plans.gold.price") }}
+                        </p>
+                        <p class="mb-6 text-lg text-green-600">
+                            {{ $t("titles.web.plans.gold.revenue") }}
+                        </p>
                         <ul class="mb-8">
-                            <li class="mb-2">✓ All Silver Features</li>
-                            <li class="mb-2">✓ 24/7 Support</li>
-                            <li class="mb-2">✓ Premium Analytics</li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t("titles.web.plans.gold.features.silver")
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t("titles.web.plans.gold.features.support")
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.gold.features.analytics"
+                                    )
+                                }}
+                            </li>
                         </ul>
                         <button
                             class="w-full py-2 text-white bg-blue-600 rounded-lg"
                         >
-                            Order Now
+                            {{ $t("titles.web.plans.gold.button") }}
                         </button>
                     </div>
 
@@ -281,19 +344,44 @@ function handleImageError() {
                             />
                         </svg>
                         <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
-                            Platinum
+                            {{ $t("titles.web.plans.platinum.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">$400</p>
-                        <p class="mb-6 text-lg text-green-600">Revenue: $145</p>
+                        <p class="mb-2 text-4xl font-bold">
+                            {{ $t("titles.web.plans.platinum.price") }}
+                        </p>
+                        <p class="mb-6 text-lg text-green-600">
+                            {{ $t("titles.web.plans.platinum.revenue") }}
+                        </p>
                         <ul class="mb-8">
-                            <li class="mb-2">✓ All Gold Features</li>
-                            <li class="mb-2">✓ Dedicated Support</li>
-                            <li class="mb-2">✓ Custom Analytics</li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.platinum.features.gold"
+                                    )
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.platinum.features.support"
+                                    )
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.platinum.features.analytics"
+                                    )
+                                }}
+                            </li>
                         </ul>
                         <button
                             class="w-full py-2 text-white bg-blue-600 rounded-lg"
                         >
-                            Order Now
+                            {{ $t("titles.web.plans.platinum.button") }}
                         </button>
                     </div>
 
@@ -310,19 +398,36 @@ function handleImageError() {
                             />
                         </svg>
                         <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
-                            Diamond
+                            {{ $t("titles.web.plans.diamond.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">$500</p>
-                        <p class="mb-6 text-lg text-green-600">Revenue: $200</p>
+                        <p class="mb-2 text-4xl font-bold">
+                            {{ $t("titles.web.plans.diamond.price") }}
+                        </p>
+                        <p class="mb-6 text-lg text-green-600">
+                            {{ $t("titles.web.plans.diamond.revenue") }}
+                        </p>
                         <ul class="mb-8">
-                            <li class="mb-2">✓ All Platinum Features</li>
-                            <li class="mb-2">✓ VIP Support</li>
-                            <li class="mb-2">✓ Enterprise Analytics</li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.diamond.features.platinum"
+                                    )
+                                }}
+                            </li>
+                            <li class="mb-2">
+                                ✓
+                                {{
+                                    $t(
+                                        "titles.web.plans.platinum.features.support"
+                                    )
+                                }}
+                            </li>
                         </ul>
                         <button
                             class="w-full py-2 text-white bg-blue-600 rounded-lg"
                         >
-                            Order Now
+                            {{ $t("titles.web.plans.diamond.button") }}
                         </button>
                     </div>
                 </div>
@@ -335,65 +440,74 @@ function handleImageError() {
         >
             <div class="container px-4 mx-auto">
                 <div class="grid items-center gap-8 md:grid-cols-3">
-                    <div class="text-center md:text-left">
+                    <div class="text-center md:text-left rtl:md:text-right">
                         <h2 class="mb-4 text-6xl font-bold font-alumni">
-                            MEGA SALE!
+                            {{ $t("titles.web.sale.title") }}
                         </h2>
                         <p class="mb-4 text-2xl">
-                            Up to 70% off on premium items
+                            {{ $t("titles.web.sale.subtitle") }}
                         </p>
                         <p class="text-lg opacity-90">
-                            Don't miss out on our biggest sale of the year.
-                            Limited time offers on selected premium products.
+                            {{ $t("titles.web.sale.description") }}
                         </p>
                     </div>
 
                     <div class="-mt-10 text-center">
                         <div class="p-8 rounded-lg bg-white/10">
-                            <p class="mb-4 text-lg">Sale Ends In</p>
+                            <p class="mb-4 text-lg">
+                                {{ $t("titles.web.sale.countdown.title") }}
+                            </p>
                             <div class="grid grid-cols-4 gap-4">
                                 <div class="p-3 rounded bg-white/20">
                                     <span class="block text-4xl font-bold"
                                         >02</span
                                     >
-                                    <span class="text-sm">Days</span>
+                                    <span class="text-sm">{{
+                                        $t("titles.web.sale.countdown.days")
+                                    }}</span>
                                 </div>
                                 <div class="p-3 rounded bg-white/20">
                                     <span class="block text-4xl font-bold"
                                         >14</span
                                     >
-                                    <span class="text-sm">Hours</span>
+                                    <span class="text-sm">{{
+                                        $t("titles.web.sale.countdown.hours")
+                                    }}</span>
                                 </div>
                                 <div class="p-3 rounded bg-white/20">
                                     <span class="block text-4xl font-bold"
                                         >33</span
                                     >
-                                    <span class="text-sm">Mins</span>
+                                    <span class="text-sm">{{
+                                        $t("titles.web.sale.countdown.minutes")
+                                    }}</span>
                                 </div>
                                 <div class="p-3 rounded bg-white/20">
                                     <span class="block text-4xl font-bold"
                                         >59</span
                                     >
-                                    <span class="text-sm">Secs</span>
+                                    <span class="text-sm">{{
+                                        $t("titles.web.sale.countdown.seconds")
+                                    }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="text-center md:text-right">
+                    <div class="text-center md:text-right rtl:md:text-left">
                         <p class="mb-6 text-3xl font-bold">
-                            Use Code:
-                            <span class="px-4 py-2 rounded bg-white/20"
-                                >MEGA70</span
-                            >
+                            {{ $t("titles.web.sale.code.text") }}:
+                            <span class="px-4 py-2 rounded bg-white/20">{{
+                                $t("titles.web.sale.code.value")
+                            }}</span>
                         </p>
                         <button
                             class="px-12 py-4 text-xl font-bold text-red-600 transition-colors bg-white rounded-full hover:bg-gray-100"
                         >
-                            Shop Now
+                            {{ $t("titles.web.sale.button") }}
                         </button>
                         <p class="mt-4 text-sm opacity-75">
-                            * Terms & conditions apply
+                            {{ $t("titles.web.sale.terms") }}
                         </p>
                     </div>
                 </div>
@@ -404,7 +518,7 @@ function handleImageError() {
         <section class="py-20 bg-white">
             <div class="container px-4 mx-auto">
                 <h2 class="mb-16 text-6xl font-bold text-center font-alumni">
-                    Our Trusted Brands
+                    {{ $t("titles.web.brands.title") }}
                 </h2>
                 <div class="flex items-center justify-center">
                     <div class="flex">
@@ -465,7 +579,7 @@ function handleImageError() {
                 <h2
                     class="mb-16 text-4xl font-bold text-center text-white font-alumni"
                 >
-                    Shop by Category
+                    {{ $t("titles.web.categories.title") }}
                 </h2>
                 <div
                     class="flex flex-row items-stretch justify-center max-w-2xl mx-auto min-w-md sm:flex-row sm:h-80 sm:overflow-hidden"
@@ -506,12 +620,20 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Electronics
+                                    {{
+                                        $t(
+                                            "titles.web.categories.electronics.name"
+                                        )
+                                    }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Chase your dreams
+                                    {{
+                                        $t(
+                                            "titles.web.categories.electronics.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -552,12 +674,20 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Furniture
+                                    {{
+                                        $t(
+                                            "titles.web.categories.furniture.name"
+                                        )
+                                    }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Realize your vision
+                                    {{
+                                        $t(
+                                            "titles.web.categories.furniture.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -598,12 +728,16 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Shoes
+                                    {{ $t("titles.web.categories.shoes.name") }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Discover the world
+                                    {{
+                                        $t(
+                                            "titles.web.categories.shoes.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -644,12 +778,16 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Honey
+                                    {{ $t("titles.web.categories.honey.name") }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Embrace the times
+                                    {{
+                                        $t(
+                                            "titles.web.categories.honey.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -690,12 +828,14 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Home Tools
+                                    {{ $t("titles.web.categories.home.name") }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Share your potential
+                                    {{
+                                        $t("titles.web.categories.home.tagline")
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -736,12 +876,18 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    T-Shirts
+                                    {{
+                                        $t("titles.web.categories.tshirts.name")
+                                    }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Share your potential
+                                    {{
+                                        $t(
+                                            "titles.web.categories.tshirts.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -782,12 +928,20 @@ function handleImageError() {
                                 <div
                                     class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
                                 >
-                                    Bathroom
+                                    {{
+                                        $t(
+                                            "titles.web.categories.bathroom.name"
+                                        )
+                                    }}
                                 </div>
                                 <div
                                     class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
                                 >
-                                    Share your potential
+                                    {{
+                                        $t(
+                                            "titles.web.categories.bathroom.tagline"
+                                        )
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -799,8 +953,10 @@ function handleImageError() {
         <!-- Latest Products Section -->
         <section class="py-20 bg-gray-100 font-alumni">
             <div class="container px-4 mx-auto">
-                <h2 class="mb-4 ml-10 text-4xl font-bold text-left">
-                    Electronics
+                <h2
+                    class="mb-4 ml-10 text-4xl font-bold text-left rtl:text-right"
+                >
+                    {{ $t("titles.web.products.electronics.title") }}
                 </h2>
                 <div class="flex flex-row gap-4 p-3 bg-gray-200 rounded-lg">
                     <div
@@ -812,12 +968,28 @@ function handleImageError() {
                             class="object-cover w-full h-64"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">Television</h3>
-                            <p class="mb-4 text-xl text-gray-600">$199.99</p>
+                            <h3 class="mb-2 text-3xl font-bold">
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.television.name"
+                                    )
+                                }}
+                            </h3>
+                            <p class="mb-4 text-xl text-gray-600">
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.television.price"
+                                    )
+                                }}
+                            </p>
                             <button
                                 class="w-full py-2 text-white bg-blue-600 rounded-lg"
                             >
-                                Add to Cart
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.television.button"
+                                    )
+                                }}
                             </button>
                         </div>
                     </div>
@@ -830,12 +1002,22 @@ function handleImageError() {
                             class="object-cover w-full h-64"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">Laptop</h3>
+                            <h3 class="mb-2 text-3xl font-bold">
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.laptop.name"
+                                    )
+                                }}
+                            </h3>
                             <p class="mb-4 text-xl text-gray-600">$300</p>
                             <button
                                 class="w-full py-2 text-white bg-blue-600 rounded-lg"
                             >
-                                Add to Cart
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.laptop.button"
+                                    )
+                                }}
                             </button>
                         </div>
                     </div>
@@ -848,12 +1030,22 @@ function handleImageError() {
                             class="object-cover w-full h-64"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">Smartphone</h3>
+                            <h3 class="mb-2 text-3xl font-bold">
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.smartphone.name"
+                                    )
+                                }}
+                            </h3>
                             <p class="mb-4 text-xl text-gray-600">$120</p>
                             <button
                                 class="w-full py-2 text-white bg-blue-600 rounded-lg"
                             >
-                                Add to Cart
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.smartphone.button"
+                                    )
+                                }}
                             </button>
                         </div>
                     </div>
@@ -866,12 +1058,22 @@ function handleImageError() {
                             class="object-cover w-full h-64"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">Smartwatch</h3>
+                            <h3 class="mb-2 text-3xl font-bold">
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.smartwatch.name"
+                                    )
+                                }}
+                            </h3>
                             <p class="mb-4 text-xl text-gray-600">$50.99</p>
                             <button
                                 class="w-full py-2 text-white bg-blue-600 rounded-lg"
                             >
-                                Add to Cart
+                                {{
+                                    $t(
+                                        "titles.web.products.electronics.smartwatch.button"
+                                    )
+                                }}
                             </button>
                         </div>
                     </div>
@@ -893,19 +1095,21 @@ function handleImageError() {
             <div class="container px-4 mx-auto">
                 <div class="max-w-2xl mx-auto text-center">
                     <h2 class="mb-8 text-4xl font-bold">
-                        Subscribe to Our Newsletter
+                        {{ $t("titles.web.newsletter.title") }}
                     </h2>
                     <p class="mb-8">
-                        Stay updated with our latest products and offers
+                        {{ $t("titles.web.newsletter.description") }}
                     </p>
                     <form class="flex flex-col gap-4 md:flex-row">
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            :placeholder="
+                                $t('titles.web.newsletter.placeholder')
+                            "
                             class="flex-1 px-4 py-3 text-black rounded-lg"
                         />
                         <button class="px-8 py-3 bg-blue-600 rounded-lg">
-                            Subscribe
+                            {{ $t("titles.web.newsletter.button") }}
                         </button>
                     </form>
                 </div>
@@ -917,54 +1121,73 @@ function handleImageError() {
             <div class="container px-4 mx-auto">
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
                     <div>
-                        <h4 class="mb-4 text-xl font-bold">About Us</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
-                        </p>
+                        <h4 class="mb-4 text-xl font-bold">
+                            {{ $t("titles.web.footer.about.title") }}
+                        </h4>
+                        <p>{{ $t("titles.web.footer.about.description") }}</p>
                     </div>
                     <div>
-                        <h4 class="mb-4 text-xl font-bold">Quick Links</h4>
+                        <h4 class="mb-4 text-xl font-bold">
+                            {{ $t("titles.web.footer.quick_links.title") }}
+                        </h4>
                         <ul>
                             <li class="mb-2">
-                                <a href="#" class="hover:text-blue-400">Home</a>
+                                <a href="#" class="hover:text-blue-400">{{
+                                    $t("titles.web.footer.quick_links.home")
+                                }}</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#" class="hover:text-blue-400">Shop</a>
+                                <a href="#" class="hover:text-blue-400">{{
+                                    $t("titles.web.footer.quick_links.shop")
+                                }}</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#" class="hover:text-blue-400"
-                                    >About</a
-                                >
+                                <a href="#" class="hover:text-blue-400">{{
+                                    $t("titles.web.footer.quick_links.about")
+                                }}</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#" class="hover:text-blue-400"
-                                    >Contact</a
-                                >
+                                <a href="#" class="hover:text-blue-400">{{
+                                    $t("titles.web.footer.quick_links.contact")
+                                }}</a>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="mb-4 text-xl font-bold">Contact Info</h4>
+                        <h4 class="mb-4 text-xl font-bold">
+                            {{ $t("titles.web.footer.contact.title") }}
+                        </h4>
                         <ul>
-                            <li class="mb-2">Email: info@example.com</li>
-                            <li class="mb-2">Phone: (123) 456-7890</li>
-                            <li class="mb-2">Address: 123 Street, City</li>
+                            <li class="mb-2">
+                                {{ $t("titles.web.footer.contact.email") }}
+                            </li>
+                            <li class="mb-2">
+                                {{ $t("titles.web.footer.contact.phone") }}
+                            </li>
+                            <li class="mb-2">
+                                {{ $t("titles.web.footer.contact.address") }}
+                            </li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="mb-4 text-xl font-bold">Follow Us</h4>
+                        <h4 class="mb-4 text-xl font-bold">
+                            {{ $t("titles.web.footer.social.title") }}
+                        </h4>
                         <div class="flex gap-4">
-                            <a href="#" class="hover:text-blue-400">Facebook</a>
-                            <a href="#" class="hover:text-blue-400">Twitter</a>
-                            <a href="#" class="hover:text-blue-400"
-                                >Instagram</a
-                            >
+                            <a href="#" class="hover:text-blue-400">{{
+                                $t("titles.web.footer.social.facebook")
+                            }}</a>
+                            <a href="#" class="hover:text-blue-400">{{
+                                $t("titles.web.footer.social.twitter")
+                            }}</a>
+                            <a href="#" class="hover:text-blue-400">{{
+                                $t("titles.web.footer.social.instagram")
+                            }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="pt-8 mt-12 text-center border-t border-gray-700">
-                    <p>&copy; 2024 Your Shop. All rights reserved.</p>
+                    <p>{{ $t("titles.web.footer.copyright") }}</p>
                 </div>
             </div>
         </footer>
