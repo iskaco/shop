@@ -170,7 +170,7 @@
                 },
                 "contact": {
                     "title": "Contact Info",
-                    "email": "Email: info@example.com",
+                    "email": "Email: ",
                     "phone": "Phone: (123) 456-7890",
                     "address": "Address: 123 Street, City"
                 },
