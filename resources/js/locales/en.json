@@ -1,35 +1,226 @@
 {
     "titles": {
-        "admin": {
-            "label": "MeemHome",
-            "description": "MeemHome Management Panel",
-            "login": "Login",
-            "username": "Username",
-            "password": "Password",
-            "rememberMe": "Remember Me",
-            "forgotPassword": "Forgot Password?",
-            "signIn": "Sign In",
-            "signUp": "Sign Up"
-        },
-        "search": "Search",
-        "dear": "Dear",
-        "notification": "Notification",
-        "messages": "Messages",
-        "myProfile": "My Profile",
-        "settings": "Settings",
-        "signOut": "Sign Out",
-        "table": {
-            "paginationResults": "Results from {start} to {end} of {total} results",
-            "paginationPrevious": "Previous",
-            "paginationNext": "Next"
-        },
-        "back": "Back",
-        "actions": "Actions",
-        "menu": "Menu",
-        "dashboard": "Dashboard",
-        "admins": "Admins",
-        "productsCategories": "Products Categories",
-        "products": "Products",
-        "orders": "Orders"
+        "web": {
+            "description": "MeemHome - Your One-Stop Shop",
+            "navigation": {
+                "home": "Home",
+                "products": "Products",
+                "categories": "Categories",
+                "contact": "Contact"
+            },
+            "hero": {
+                "title": "Welcome to MeemHome",
+                "subtitle": "Discover Amazing Products at Great Prices",
+                "search": {
+                    "placeholder": "Search categories or products..."
+                }
+            },
+            "plans": {
+                "title": "Our Plans",
+                "bronze": {
+                    "name": "Bronze",
+                    "price": "$100",
+                    "revenue": "Revenue: $55",
+                    "features": {
+                        "basic": "Basic Features",
+                        "email": "Email Support",
+                        "analytics": "Basic Analytics"
+                    },
+                    "button": "Order Now"
+                },
+                "silver": {
+                    "name": "Silver",
+                    "price": "$200",
+                    "revenue": "Revenue: $85",
+                    "features": {
+                        "bronze": "All Bronze Features",
+                        "support": "Priority Support",
+                        "analytics": "Advanced Analytics"
+                    },
+                    "button": "Order Now"
+                },
+                "gold": {
+                    "name": "Gold",
+                    "price": "$300",
+                    "revenue": "Revenue: $115",
+                    "features": {
+                        "silver": "All Silver Features",
+                        "support": "24/7 Support",
+                        "analytics": "Premium Analytics"
+                    },
+                    "button": "Order Now"
+                },
+                "platinum": {
+                    "name": "Platinum",
+                    "price": "$400",
+                    "revenue": "Revenue: $145",
+                    "features": {
+                        "gold": "All Gold Features",
+                        "support": "Dedicated Support",
+                        "analytics": "Custom Analytics"
+                    },
+                    "button": "Order Now"
+                },
+                "diamond": {
+                    "name": "Diamond",
+                    "price": "$500",
+                    "revenue": "Revenue: $200",
+                    "features": {
+                        "platinum": "All Platinum Features",
+                        "support": "VIP Support",
+                        "analytics": "Enterprise Analytics"
+                    },
+                    "button": "Order Now"
+                }
+            },
+            "sale": {
+                "title": "MEGA SALE!",
+                "subtitle": "Up to 70% off on premium items",
+                "description": "Don't miss out on our biggest sale of the year. Limited time offers on selected premium products.",
+                "countdown": {
+                    "title": "Sale Ends In",
+                    "days": "Days",
+                    "hours": "Hours",
+                    "minutes": "Mins",
+                    "seconds": "Secs"
+                },
+                "code": {
+                    "text": "Use Code:",
+                    "value": "MEGA70"
+                },
+                "button": "Shop Now",
+                "terms": "* Terms & conditions apply"
+            },
+            "brands": {
+                "title": "Our Trusted Brands"
+            },
+            "categories": {
+                "title": "Shop by Category",
+                "electronics": {
+                    "name": "Electronics",
+                    "tagline": "Chase your dreams"
+                },
+                "furniture": {
+                    "name": "Furniture",
+                    "tagline": "Realize your vision"
+                },
+                "shoes": {
+                    "name": "Shoes",
+                    "tagline": "Discover the world"
+                },
+                "honey": {
+                    "name": "Honey",
+                    "tagline": "Embrace the times"
+                },
+                "home": {
+                    "name": "Home Tools",
+                    "tagline": "Share your potential"
+                },
+                "tshirts": {
+                    "name": "T-Shirts",
+                    "tagline": "Share your potential"
+                },
+                "bathroom": {
+                    "name": "Bathroom",
+                    "tagline": "Share your potential"
+                }
+            },
+            "products": {
+                "electronics": {
+                    "title": "Electronics",
+                    "television": {
+                        "name": "Television",
+                        "price": "$199.99",
+                        "button": "Add to Cart"
+                    },
+                    "laptop": {
+                        "name": "Laptop",
+                        "price": "$300",
+                        "button": "Add to Cart"
+                    },
+                    "smartphone": {
+                        "name": "Smartphone",
+                        "price": "$120",
+                        "button": "Add to Cart"
+                    },
+                    "smartwatch": {
+                        "name": "Smartwatch",
+                        "price": "$50.99",
+                        "button": "Add to Cart"
+                    }
+                }
+            },
+            "newsletter": {
+                "title": "Subscribe to Our Newsletter",
+                "description": "Stay updated with our latest products and offers",
+                "placeholder": "Enter your email",
+                "button": "Subscribe"
+            },
+            "footer": {
+                "about": {
+                    "title": "About Us",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                },
+                "quick_links": {
+                    "title": "Quick Links",
+                    "home": "Home",
+                    "shop": "Shop",
+                    "about": "About",
+                    "contact": "Contact"
+                },
+                "contact": {
+                    "title": "Contact Info",
+                    "email": "Email: info@example.com",
+                    "phone": "Phone: (123) 456-7890",
+                    "address": "Address: 123 Street, City"
+                },
+                "social": {
+                    "title": "Follow Us",
+                    "facebook": "Facebook",
+                    "twitter": "Twitter",
+                    "instagram": "Instagram"
+                },
+                "copyright": "© 2024 Your Shop. All rights reserved."
+            },
+            "admin": {
+                "label": "MeemHome",
+                "description": "MeemHome Management Panel",
+                "login": "Login",
+                "username": "Username",
+                "password": "Password",
+                "rememberMe": "Remember Me",
+                "forgotPassword": "Forgot Password?",
+                "signIn": "Sign In",
+                "signUp": "Sign Up"
+            },
+            "search": "Search",
+            "dear": "Dear",
+            "notification": "Notification",
+            "messages": "Messages",
+            "myProfile": "My Profile",
+            "settings": "Settings",
+            "signOut": "Sign Out",
+            "table": {
+                "list": "List",
+                "paginationResults": "Results from {start} to {end} of {total} results",
+                "paginationPrevious": "Previous",
+                "paginationNext": "Next"
+            },
+            "form": {
+                "show": "Show ",
+                "edit": "Edit ",
+                "create": "Create ",
+                "inputPlaceholder": "Enter ",
+                "selectPlaceholder": "Select "
+            },
+            "back": "Back",
+            "actions": "Actions",
+            "menu": "Menu",
+            "dashboard": "Dashboard",
+            "admins": "Admins",
+            "productsCategories": "Products Categories",
+            "products": "Products",
+            "orders": "Orders"
+        }
     }
 }

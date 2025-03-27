@@ -106,14 +106,14 @@ export default {
     },
     computed: {
         getFormTypeTitle() {
-            if (!this.form.action) return " نمایش ";
+            if (!this.form.action) return "titles.form.show";
             switch (this.form.action.action_method) {
                 case "PUT":
-                    return " ویرایش ";
+                    return "titles.form.edit";
                 case "POST":
-                    return " ایجاد ";
+                    return "titles.form.create";
                 case "GET":
-                    return " نمایش ";
+                    return "titles.form.show";
             }
         },
     },
@@ -123,7 +123,7 @@ export default {
 <template>
     <div class="flex flex-col w-full gap-5 bg-white shadow dark:bg-boxdark">
         <div class="flex flex-col gap-9">
-            <DefaultCard :cardTitle="'فرم ' + getFormTypeTitle + form.title">
+            <DefaultCard :cardTitle="$t(getFormTypeTitle) + form.title">
                 <form action="#">
                     <div class="p-6.5">
                         <div
@@ -139,7 +139,11 @@ export default {
                                 v-model="formData[component.name]"
                                 :label="component.title"
                                 :type="getInputType(component)"
-                                :placeholder="component.title + ' را وارد کنید'"
+                                :placeholder="
+                                    $t('titles.form.inputPlaceholder') +
+                                    ' ' +
+                                    component.title
+                                "
                                 customClasses="mb-4.5"
                                 :required="component.required"
                                 :isDisabled="getEnableStatus(component)"
@@ -177,11 +181,13 @@ export default {
                                 </label>
                                 <Multiselect
                                     v-model="formData[component.name]"
-                                    :multiple="true"
+                                    :multiple="component.is_multi"
                                     :options="component.source"
                                     label="name"
                                     :placeholder="
-                                        component.title + ' را انتخاب کنید'
+                                        $t('titles.form.selectPlaceholder') +
+                                        ' ' +
+                                        component.title
                                     "
                                     :showLabels="false"
                                     :hideSelected="true"
@@ -239,7 +245,7 @@ export default {
                                 :icon="form.action.icon"
                                 @click="submitForm"
                             ></Button>
-                            <BackButton></BackButton>
+                            <BackButton :label="$t('titles.back')"></BackButton>
                         </div>
                     </div>
                 </form>

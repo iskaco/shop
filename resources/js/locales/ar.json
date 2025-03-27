@@ -1,5 +1,188 @@
 {
     "titles": {
+        "web": {
+            "description": "متجر ميم هوم للإنترنت",
+            "navigation": {
+                "home": "الرئيسية",
+                "products": "المنتجات",
+                "categories": "التصنيفات",
+                "contact": "التواصل"
+            },
+            "hero": {
+                "title": "مرحبا بك في متجر ميم هوم",
+                "subtitle": "اكتشف المنتجات المثيرة والسعر المناسب",
+                "search": {
+                    "placeholder": "ابحث عن تصنيفات أو منتجات..."
+                }
+            },
+            "plans": {
+                "title": "خططنا",
+                "bronze": {
+                    "name": "البرونزية",
+                    "price": "$100",
+                    "revenue": "الإيرادات: $55",
+                    "features": {
+                        "basic": "الميزات الأساسية",
+                        "email": "الدعم البريدي",
+                        "analytics": "التحليل الأساسي"
+                    },
+                    "button": "طلب الآن"
+                },
+                "silver": {
+                    "name": "الفضية",
+                    "price": "$200",
+                    "revenue": "الإيرادات: $85",
+                    "features": {
+                        "bronze": "جميع الميزات البرونزية",
+                        "support": "الدعم الأولوية",
+                        "analytics": "التحليل المتقدم"
+                    },
+                    "button": "طلب الآن"
+                },
+                "gold": {
+                    "name": "الذهبية",
+                    "price": "$300",
+                    "revenue": "الإيرادات: $115",
+                    "features": {
+                        "silver": "جميع الميزات الفضية",
+                        "support": "الدعم 24/7",
+                        "analytics": "التحليل المتقدم"
+                    },
+                    "button": "طلب الآن"
+                },
+                "platinum": {
+                    "name": "البلاتينية",
+                    "price": "$400",
+                    "revenue": "الإيرادات: $145",
+                    "features": {
+                        "gold": "جميع الميزات الذهبية",
+                        "support": "الدعم المخصص",
+                        "analytics": "التحليل المخصص"
+                    },
+                    "button": "طلب الآن"
+                },
+                "diamond": {
+                    "name": "الألماسية",
+                    "price": "$500",
+                    "revenue": "الإيرادات: $200",
+                    "features": {
+                        "platinum": "جميع الميزات البلاتينية",
+                        "support": "الدعم المخصص",
+                        "analytics": "التحليل المخصص"
+                    },
+                    "button": "طلب الآن"
+                }
+            },
+            "sale": {
+                "title": "MEGA SALE!",
+                "subtitle": "أصغر 70% على المنتجات الأصلية",
+                "description": "لا تفوت على أفضل عروضنا للعام. الفرصة المحدودة على المنتجات المختارة.",
+                "countdown": {
+                    "title": "ينتهي العرض في",
+                    "days": "أيام",
+                    "hours": "ساعات",
+                    "minutes": "دقائق",
+                    "seconds": "ثواني"
+                },
+                "code": {
+                    "text": "استخدم الكود:",
+                    "value": "MEGA70"
+                },
+                "button": "تسوق الآن",
+                "terms": "* الشروط والأحكام مطبقة"
+            },
+            "brands": {
+                "title": "العلامات الموثوقة بنا"
+            },
+            "categories": {
+                "title": "تسوق بالتصنيف",
+                "electronics": {
+                    "name": "الإلكترونيات",
+                    "tagline": "استمر بالحلم"
+                },
+                "furniture": {
+                    "name": "الأثاث",
+                    "tagline": "تحقق أحلامك"
+                },
+                "shoes": {
+                    "name": "الأحذية",
+                    "tagline": "اكتشف العالم"
+                },
+                "honey": {
+                    "name": "العسل",
+                    "tagline": "استعيد الأوقات"
+                },
+                "home": {
+                    "name": "الأدوات المنزلية",
+                    "tagline": "شارك إمكاناتك"
+                },
+                "tshirts": {
+                    "name": "التي شيرتات",
+                    "tagline": "شارك إمكاناتك"
+                },
+                "bathroom": {
+                    "name": "الحمام",
+                    "tagline": "شارك إمكاناتك"
+                }
+            },
+            "products": {
+                "electronics": {
+                    "title": "الإلكترونيات",
+                    "television": {
+                        "name": "التلفزيون",
+                        "price": "$199.99",
+                        "button": "إضافة إلى العربة"
+                    },
+                    "laptop": {
+                        "name": "اللابتوب",
+                        "price": "$300",
+                        "button": "إضافة إلى العربة"
+                    },
+                    "smartphone": {
+                        "name": "الهاتف الذكي",
+                        "price": "$120",
+                        "button": "إضافة إلى العربة"
+                    },
+                    "smartwatch": {
+                        "name": "الساعة الذكية",
+                        "price": "$50.99",
+                        "button": "إضافة إلى العربة"
+                    }
+                }
+            },
+            "newsletter": {
+                "title": "اشترك في جريدتنا",
+                "description": "ابق على اطلاع بأحدث المنتجات والعروض",
+                "placeholder": "أدخل بريدك الإلكتروني",
+                "button": "الاشتراك"
+            },
+            "footer": {
+                "about": {
+                    "title": "عننا",
+                    "description": "لوريم ايبسوم دولار سيت أميت كونسيكتيور أدايبا يسكينج أليايت, سيت دو أيوسمود تيمبور أنكايديديونتيور."
+                },
+                "quick_links": {
+                    "title": "الروابط السريعة",
+                    "home": "الرئيسية",
+                    "shop": "المتجر",
+                    "about": "عننا",
+                    "contact": "التواصل"
+                },
+                "contact": {
+                    "title": "معلومات التواصل",
+                    "email": "البريد الإلكتروني: info@example.com",
+                    "phone": "الهاتف: (123) 456-7890",
+                    "address": "العنوان: 123 شارع, المدينة"
+                },
+                "social": {
+                    "title": "تابعنا",
+                    "facebook": "فيسبوك",
+                    "twitter": "تويتر",
+                    "instagram": "انستجرام"
+                },
+                "copyright": "© 2024 متجرك. كل الحقوق محفوظة."
+            }
+        },
         "admin": {
             "label": "میم هوم",
             "description": "لوحة إدارة متجر ميم هوم",
@@ -19,14 +202,22 @@
         "settings": "الإعدادات",
         "signOut": "تسجيل الخروج",
         "table": {
+            "list": "قائمة",
             "paginationResults": "النتائج من {start} إلى {end} من {total} نتيجة",
             "paginationPrevious": "السابق",
             "paginationNext": "التالي"
         },
+        "form": {
+            "show": "عرض ",
+            "edit": "تعديل ",
+            "create": "إنشاء ",
+            "inputPlaceholder": "أدخل ",
+            "selectPlaceholder": "اختر "
+        },
         "back": "رجوع",
         "actions": "العمليات",
         "menu": "القائمة",
-        "dashboard": "الرئيسية",
+        "dashboard": "لوحه القيادة",
         "admins": "المديرين",
         "productsCategories": "التصنيفات",
         "products": "المنتجات",
