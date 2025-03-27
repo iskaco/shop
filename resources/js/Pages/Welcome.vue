@@ -177,9 +177,11 @@ const categories = [
                     background-size: 4px 4px;
                 "
             ></div>
-            <div class="container absolute z-20 px-4 mx-auto pt-60">
+            <div class="w-full absolute z-20 px-4 mx-auto pt-60">
                 <div class="text-center">
-                    <h1 class="mb-4 rtl:mb-8 font-bold text-7xl font-alumni">
+                    <h1
+                        class="mb-4 rtl:mb-8 font-bold lg:text-7xl md:text-5xl sm:text-3xl ltr:font-alumni rtl:font-arabic"
+                    >
                         {{ $t("titles.web.hero.title") }}
                     </h1>
                     <p class="mb-8 text-xl">
@@ -220,7 +222,9 @@ const categories = [
         <!-- Price Table Section -->
         <section class="py-20 bg-gray-100">
             <div class="container px-4 mx-auto">
-                <h2 class="mb-16 text-6xl font-bold text-center font-alumni">
+                <h2
+                    class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+                >
                     {{ $t("titles.web.plans.title") }}
                 </h2>
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
@@ -236,10 +240,12 @@ const categories = [
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                             />
                         </svg>
-                        <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
+                        <h3
+                            class="mt-20 mb-4 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.plans.bronze.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">
+                        <p class="mb-2 lg:text-3xl text-2xl font-bold">
                             {{ $t("titles.web.plans.bronze.price") }}
                         </p>
                         <p class="mb-6 text-lg text-green-600">
@@ -286,10 +292,12 @@ const categories = [
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                             />
                         </svg>
-                        <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
+                        <h3
+                            class="mt-20 mb-4 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.plans.silver.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">
+                        <p class="mb-2 lg:text-3xl text-2xl font-bold">
                             {{ $t("titles.web.plans.silver.price") }}
                         </p>
                         <p class="mb-6 text-lg text-green-600">
@@ -338,10 +346,12 @@ const categories = [
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                             />
                         </svg>
-                        <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
+                        <h3
+                            class="mt-20 mb-4 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.plans.gold.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">
+                        <p class="mb-2 lg:text-3xl text-2xl font-bold">
                             {{ $t("titles.web.plans.gold.price") }}
                         </p>
                         <p class="mb-6 text-lg text-green-600">
@@ -388,10 +398,12 @@ const categories = [
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                             />
                         </svg>
-                        <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
+                        <h3
+                            class="mt-20 mb-4 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.plans.platinum.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">
+                        <p class="mb-2 lg:text-3xl text-2xl font-bold">
                             {{ $t("titles.web.plans.platinum.price") }}
                         </p>
                         <p class="mb-6 text-lg text-green-600">
@@ -442,10 +454,12 @@ const categories = [
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                             />
                         </svg>
-                        <h3 class="mt-20 mb-4 text-4xl font-bold font-alumni">
+                        <h3
+                            class="mt-20 mb-4 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.plans.diamond.name") }}
                         </h3>
-                        <p class="mb-2 text-4xl font-bold">
+                        <p class="mb-2 lg:text-3xl text-2xl font-bold">
                             {{ $t("titles.web.plans.diamond.price") }}
                         </p>
                         <p class="mb-6 text-lg text-green-600">
@@ -481,24 +495,30 @@ const categories = [
 
         <!-- Off Section -->
         <section
-            class="relative bg-red-600 bg-[url('/images/off-section.jpg')] bg-cover bg-center text-white py-32"
+            class="relative bg-red-600 bg-[url('/images/off-section.jpg')] bg-cover bg-center text-white py-40"
         >
-            <div class="container px-4 mx-auto">
-                <div class="grid items-center gap-8 md:grid-cols-3">
-                    <div class="text-center md:text-left rtl:md:text-right">
-                        <h2 class="mb-4 text-6xl font-bold font-alumni">
+            <div class="container h-full px-4 mx-auto mt-20 md:mt-0">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between"
+                >
+                    <div
+                        class="flex-1 text-center md:text-left rtl:md:text-right mb-10 md:mb-0"
+                    >
+                        <h2
+                            class="lg:text-6xl md:text-5xl text-3xl font-bold ltr:font-alumni rtl:font-arabic"
+                        >
                             {{ $t("titles.web.sale.title") }}
                         </h2>
-                        <p class="mb-4 text-2xl">
+                        <p class="lg:text-3xl text-xl">
                             {{ $t("titles.web.sale.subtitle") }}
                         </p>
-                        <p class="text-lg opacity-90">
+                        <p class="text-base opacity-90">
                             {{ $t("titles.web.sale.description") }}
                         </p>
                     </div>
 
-                    <div class="-mt-10 text-center">
-                        <div class="p-8 rounded-lg bg-white/10">
+                    <div class="flex-1 mt-5 md:-mt-10 text-center">
+                        <div class="px-8 py-4 rounded-lg bg-white/10">
                             <p class="mb-4 text-lg">
                                 {{ $t("titles.web.sale.countdown.title") }}
                             </p>
@@ -539,10 +559,14 @@ const categories = [
                         </div>
                     </div>
 
-                    <div class="text-center md:text-right rtl:md:text-left">
-                        <p class="mb-6 text-3xl font-bold">
-                            {{ $t("titles.web.sale.code.text") }}:
-                            <span class="px-4 py-2 rounded bg-white/20">{{
+                    <div
+                        class="flex-1 text-center md:text-right rtl:md:text-left mt-10 md:mt-0"
+                    >
+                        <p
+                            class="flex flex-row md:flex-col items-center md:items-end md:justify-center gap-2 mb-6 text-3xl font-bold"
+                        >
+                            <span>{{ $t("titles.web.sale.code.text") }}</span>
+                            <span class="w-fit px-4 py-2 rounded bg-white/20">{{
                                 $t("titles.web.sale.code.value")
                             }}</span>
                         </p>
@@ -562,10 +586,12 @@ const categories = [
         <!-- Brands Section -->
         <section class="py-20 bg-white">
             <div class="container px-4 mx-auto">
-                <h2 class="mb-16 text-6xl font-bold text-center font-alumni">
+                <h2
+                    class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+                >
                     {{ $t("titles.web.brands.title") }}
                 </h2>
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center overflow-x-auto">
                     <div class="flex">
                         <!-- Brand logos - Add your actual brand images -->
                         <div
@@ -619,20 +645,22 @@ const categories = [
         </section>
 
         <!-- Categories Section -->
-        <section class="h-screen py-32 bg-gradient-to-b from-black to-gray-900">
+        <section
+            class="h-auto md:h-screen py-32 bg-gradient-to-b from-black to-gray-900"
+        >
             <div class="container flex flex-col px-4 mx-auto">
                 <h2
-                    class="mb-16 text-4xl font-bold text-center text-white font-alumni"
+                    class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center text-white ltr:font-alumni rtl:font-arabic"
                 >
                     {{ $t("titles.web.categories.title") }}
                 </h2>
                 <div
-                    class="flex flex-col md:flex-row items-stretch justify-center mx-auto min-w-md sm:flex-row sm:h-80 sm:overflow-hidden"
+                    class="flex flex-col md:flex-row items-stretch justify-center mx-auto md:min-w-md w-full md:h-80 md:overflow-hidden"
                 >
                     <div
                         v-for="cat in categories"
                         :key="cat.name"
-                        class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
+                        class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
                     >
                         <div
                             class="absolute background bg-center bg-cover bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
@@ -643,7 +671,7 @@ const categories = [
                             class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
                         ></div>
                         <div
-                            class="origin-[20px_20px] -rotate-90 group-hover:rotate-0 absolute bottom-0 z-30 flex rtl:flex-row-reverse mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
+                            class="origin-[20px_20px] md:-rotate-90 group-hover:rotate-0 absolute bottom-0 z-30 flex rtl:flex-row-reverse mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
                         >
                             <div
                                 class="flex items-center justify-center w-10 h-10 mr-1 bg-gray-900 rounded-full icon"
@@ -671,10 +699,10 @@ const categories = [
         </section>
 
         <!-- Latest Products Section -->
-        <section class="py-20 bg-gray-100 font-alumni">
+        <section class="py-20 bg-gray-100 ltr:font-alumni rtl:font-arabic">
             <div class="container px-4 mx-auto">
                 <h2
-                    class="mb-4 ml-10 text-4xl font-bold text-left rtl:text-right"
+                    class="mb-4 ml-10 lg:text-5xl md:text-5xl text-4xl font-bold text-left rtl:text-right"
                 >
                     {{ $t("titles.web.products.electronics.title") }}
                 </h2>
@@ -687,10 +715,10 @@ const categories = [
                         <img
                             src="/images/tv.jpg"
                             alt="Product 1"
-                            class="object-cover w-full h-64"
+                            class="object-cover w-full h-64 hover:rotate-2 hover:scale-110 transition-all duration-300"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">
+                            <h3 class="mb-2 text-xl md:text-2xl font-bold">
                                 {{
                                     $t(
                                         "titles.web.products.electronics.television.name"
@@ -721,10 +749,10 @@ const categories = [
                         <img
                             src="/images/laptop.jpg"
                             alt="Product 1"
-                            class="object-cover w-full h-64"
+                            class="object-cover w-full h-64 hover:rotate-2 hover:scale-110 transition-all duration-300"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">
+                            <h3 class="mb-2 text-xl md:text-2xl font-bold">
                                 {{
                                     $t(
                                         "titles.web.products.electronics.laptop.name"
@@ -749,10 +777,10 @@ const categories = [
                         <img
                             src="/images/mobile.jpg"
                             alt="Product 1"
-                            class="object-cover w-full h-64"
+                            class="object-cover w-full h-64 hover:rotate-2 hover:scale-110 transition-all duration-300"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">
+                            <h3 class="mb-2 text-xl md:text-2xl font-bold">
                                 {{
                                     $t(
                                         "titles.web.products.electronics.smartphone.name"
@@ -777,10 +805,10 @@ const categories = [
                         <img
                             src="/images/watch.jpg"
                             alt="Product 1"
-                            class="object-cover w-full h-64"
+                            class="object-cover w-full h-64 hover:rotate-2 hover:scale-110 transition-all duration-300"
                         />
                         <div class="p-6">
-                            <h3 class="mb-2 text-3xl font-bold">
+                            <h3 class="mb-2 text-xl md:text-2xl font-bold">
                                 {{
                                     $t(
                                         "titles.web.products.electronics.smartwatch.name"
