@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Http\Controllers\Controller;
-use App\Actions\Admins\AdminDestroy;
-use App\Actions\Admins\AdminIndex;
-use App\Actions\Admins\AdminLogin;
-use App\Actions\Admins\AdminShow;
 use App\Actions\Admins\AdminStore;
 use App\Actions\Admins\AdminUpdate;
-use App\Http\Requests\Admins\Admins\AdminDestroyRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admins\Admins\AdminStoreRequest;
 use App\Http\Requests\Admins\Admins\AdminUpdateRequest;
 use App\Http\Requests\Auth\AdminLoginRequest;
 use App\Isap\Actions\ActionType;
 use App\Models\Admin;
 use App\Models\Role;
-use Exception;
 use Illuminate\Support\Facades\Session;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -39,9 +31,9 @@ class AdminController extends Controller
         try {
 
             $admin = $action->execute($request->validated());
-            if ($admin)
-            {
+            if ($admin) {
                 toast_success(__('messages.admin.store.ok'));
+
                 return $this->makeInertiaTableResponse(Admin::class, Admin::query());
             }
 
@@ -50,13 +42,13 @@ class AdminController extends Controller
         }
     }
 
-    public function update(string $admin , AdminUpdateRequest $request, AdminUpdate $action)
+    public function update(string $admin, AdminUpdateRequest $request, AdminUpdate $action)
     {
         try {
             $admin = $action->execute($admin, $request->validated());
-            if($admin)
-            {
+            if ($admin) {
                 toast_success(__('messages.admin.update.ok'));
+
                 return $this->makeInertiaTableResponse(Admin::class, Admin::query());
             }
         } catch (\Throwable $th) {
@@ -68,11 +60,13 @@ class AdminController extends Controller
     public function show(string $id)
     {
         $admin = Admin::with('roles')->findOrFail($id);
-        $roles = collect($admin->roles->toArray())->map(function($role) {
+        $roles = collect($admin->roles->toArray())->map(function ($role) {
             $role['name'] = Role::find($role['id'])->translated_name;
+
             return $role;
         });
         $admin->setRelation('roles', $roles);
+
         return $this->makeInertiaFormResponse(Admin::class, $admin, ActionType::SHOW);
     }
 
@@ -80,12 +74,14 @@ class AdminController extends Controller
     {
         try {
             $admin = Admin::with('roles')->findOrFail($id);
-            $roles = collect($admin->roles->toArray())->map(function($role) {
+            $roles = collect($admin->roles->toArray())->map(function ($role) {
                 $role['name'] = Role::find($role['id'])->translated_name;
-            return $role;
-        });
-        $admin->setRelation('roles', $roles);
-        return $this->makeInertiaFormResponse(Admin::class, $admin, ActionType::UPDATE);
+
+                return $role;
+            });
+            $admin->setRelation('roles', $roles);
+
+            return $this->makeInertiaFormResponse(Admin::class, $admin, ActionType::UPDATE);
         } catch (\Throwable $th) {
             toast_error(__('messages.admin.update.error').$th->getMessage());
         }
@@ -93,15 +89,23 @@ class AdminController extends Controller
 
     public function destroy(string $id)
     {
-        $admin = Admin::findOrFail($id);
-        $admin->delete();
-        return redirect()->back();
+        try {
+            $admin = Admin::findOrFail($id);
+            $admin->delete();
+            toast_success(__('messages.admin.destroy.ok'));
+
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            toast_error(__('messages.admin.destroy.error').$th->getMessage());
+        }
+
     }
 
     public function authenticate(AdminLoginRequest $request)
     {
         $request->authenticate();
         $request->session()->regenerate();
+        toast_success(__('messages.admin.login.ok'));
 
         return redirect()->intended(route('admin.dashboard', absolute: false));
     }
@@ -111,6 +115,7 @@ class AdminController extends Controller
         auth('admin')->logout();
         Session::flush();
         Session::put('success', 'You are logout sucessfully');
+
         return redirect()->intended(route('admin.login'));
     }
 }

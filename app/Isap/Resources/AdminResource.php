@@ -27,6 +27,7 @@ class AdminResource extends BaseResource
     public static function form(ActionType $action_type)
     {
         $form = new Form(__('titles.admins'), Admin::class);
+
         return $form->components([
             TextInput::make('username', __('resources.admin.username'))->isRequired()->disabledOnEdit(),
             TextInput::make('email', __('resources.admin.email'))->isEmail(),
@@ -37,7 +38,7 @@ class AdminResource extends BaseResource
             MultiSelectInput::make('roles', __('resources.admin.roles'))->setSource((new DataUtil)->getOptionsForModel(new Role, 'id', 'name'))->isRequired(),
             ImageInput::make('profile_image', __('resources.admin.profile_image')),
             ToggleInput::make('enable', __('resources.admin.enable')),
-        ])->action(static::getAction($action_type)?->setRoute('admin.' . lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('admin.'.lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -56,7 +57,7 @@ class AdminResource extends BaseResource
             ->row_actions([
                 ShowAction::make('show', __('resources.actions.show'))->setRoute('admin.show')->setIcon('md-removeredeye-outlined'),
                 EditAction::make('edit', __('resources.actions.edit'))->setRoute('admin.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.admin.label')]))->setIcon('md-personaddalt-outlined')->setRoute('admin.create'),
