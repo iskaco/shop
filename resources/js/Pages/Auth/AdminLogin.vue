@@ -32,7 +32,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head :title="$t('titles.admin.login')" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
@@ -40,7 +40,10 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="username" value="username" />
+                <InputLabel
+                    for="username"
+                    :value="$t('titles.admin.username')"
+                />
 
                 <TextInput
                     id="username"
@@ -56,7 +59,10 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel
+                    for="password"
+                    :value="$t('titles.admin.password')"
+                />
 
                 <TextInput
                     id="password"
@@ -73,8 +79,9 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="text-sm text-gray-600 ms-2 dark:text-gray-400"
-                        >Remember me</span
+                    <span
+                        class="text-sm text-gray-600 ms-2 dark:text-gray-400"
+                        >{{ $t("titles.admin.rememberMe") }}</span
                     >
                 </label>
             </div>
@@ -85,7 +92,7 @@ const submit = () => {
                     :href="route('password.request')"
                     class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                 >
-                    Forgot your password?
+                    {{ $t("titles.admin.forgotPassword") }}
                 </Link>
 
                 <PrimaryButton
@@ -93,7 +100,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
+                    {{ $t("titles.admin.signIn") }}
                 </PrimaryButton>
             </div>
         </form>
