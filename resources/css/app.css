@@ -6,14 +6,8 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --font-family: "Alumni Sans Pinstripe", cursive;
-    }
     body {
-        @apply relative z-1 bg-whiten font-vazirmatn text-base font-normal text-body dark:text-bodydark dark:bg-boxdark-2;
-    }
-    .font-alumni {
-        font-family: var(--font-family), cursive;
+        @apply relative z-1 bg-whiten rtl:font-vazirmatn ltr:font-alumni text-base font-normal text-body dark:text-bodydark dark:bg-boxdark-2;
     }
 }
 

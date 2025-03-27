@@ -8,6 +8,51 @@ function handleImageError() {
     document.getElementById("docs-card-content")?.classList.add("!flex-row");
     document.getElementById("background")?.classList.add("!hidden");
 }
+
+const categories = [
+    {
+        name: "titles.web.categories.electronics.name",
+        image: "/images/electronics.jpg",
+        color: "meta-1",
+        icon: "md-laptop-outlined",
+    },
+    {
+        name: "titles.web.categories.furniture.name",
+        image: "/images/furniture.jpg",
+        color: "meta-2",
+        icon: "md-bed-outlined",
+    },
+    {
+        name: "titles.web.categories.shoes.name",
+        image: "/images/shoes.jpg",
+        color: "meta-3",
+        icon: "md-favoriteborder-outlined",
+    },
+    {
+        name: "titles.web.categories.honey.name",
+        image: "/images/honey.jpg",
+        color: "meta-11",
+        icon: "md-foodbank-outlined",
+    },
+    {
+        name: "titles.web.categories.bathroom.name",
+        image: "/images/bathroom.jpg",
+        color: "meta-5",
+        icon: "md-bathroom-outlined",
+    },
+    {
+        name: "titles.web.categories.tshirts.name",
+        image: "/images/tshirt.jpg",
+        color: "meta-6",
+        icon: "md-grade-outlined",
+    },
+    {
+        name: "titles.web.categories.home.name",
+        image: "/images/home.jpg",
+        color: "meta-7",
+        icon: "md-home-outlined",
+    },
+];
 </script>
 
 <template>
@@ -582,366 +627,40 @@ function handleImageError() {
                     {{ $t("titles.web.categories.title") }}
                 </h2>
                 <div
-                    class="flex flex-row items-stretch justify-center max-w-2xl mx-auto min-w-md sm:flex-row sm:h-80 sm:overflow-hidden"
+                    class="flex flex-col md:flex-row items-stretch justify-center mx-auto min-w-md sm:flex-row sm:h-80 sm:overflow-hidden"
                 >
                     <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer min-h-14 min-w-20 pane rounded-3xl"
+                        v-for="cat in categories"
+                        :key="cat.name"
+                        class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
                     >
                         <div
-                            class="absolute background bg-center bg-cover bg-red-500 bg-[url('/images/electronics.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
+                            class="absolute background bg-center bg-cover bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
+                            :class="`bg-[url('${cat.image}')] bg-${cat.color}`"
                         ></div>
                         <div
                             class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
                         ></div>
                         <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
+                            class="origin-[20px_20px] -rotate-90 group-hover:rotate-0 absolute bottom-0 z-30 flex rtl:flex-row-reverse mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
                         >
                             <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-red-500 bg-gray-900 rounded-full icon"
+                                class="flex items-center justify-center w-10 h-10 mr-1 bg-gray-900 rounded-full icon"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                    />
-                                </svg>
+                                <v-icon
+                                    :name="cat.icon"
+                                    scale="1.2"
+                                    :fill="`fill-${cat.color}`"
+                                    :class="`fill-${cat.color}`"
+                                />
                             </div>
                             <div
                                 class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
                             >
                                 <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
+                                    class="relative font-bold transition-all duration-700 ease-in-out transform [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]"
                                 >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.electronics.name"
-                                        )
-                                    }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.electronics.tagline"
-                                        )
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl"
-                    >
-                        <div
-                            class="absolute background bg-center bg-cover bg-yellow-500 bg-[url('/images/furniture.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-yellow-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.furniture.name"
-                                        )
-                                    }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.furniture.tagline"
-                                        )
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl"
-                    >
-                        <div
-                            class="absolute background bg-left bg-cover bg-green-500 bg-[url('/images/shoes.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-green-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M16 3h5m0 0v5m0-5l-6 6M8 21H3m0 0v-5m0 5l6-6"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{ $t("titles.web.categories.shoes.name") }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.shoes.tagline"
-                                        )
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl active"
-                    >
-                        <div
-                            class="absolute background bg-center bg-cover bg-blue-500 bg-[url('/images/honey.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-blue-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{ $t("titles.web.categories.honey.name") }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.honey.tagline"
-                                        )
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl"
-                    >
-                        <div
-                            class="absolute background bg-center bg-cover bg-purple-500 bg-[url('/images/home.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-purple-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12 20l9-13m0 0L12 4m0 16l-9-13"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{ $t("titles.web.categories.home.name") }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t("titles.web.categories.home.tagline")
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl"
-                    >
-                        <div
-                            class="absolute background bg-center bg-cover bg-purple-500 bg-[url('/images/tshirt.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-purple-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t("titles.web.categories.tshirts.name")
-                                    }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.tshirts.tagline"
-                                        )
-                                    }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer undefined min-h-14 min-w-20 pane rounded-3xl"
-                    >
-                        <div
-                            class="absolute background bg-right bg-cover bg-purple-500 bg-[url('/images/bathroom.jpg')] bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        ></div>
-                        <div
-                            class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 z-30 flex mb-2 ml-3 transition-all duration-700 ease-in-out label left-3 sm:mb-3 sm:ml-2"
-                        >
-                            <div
-                                class="flex items-center justify-center w-10 h-10 mr-3 text-purple-500 bg-gray-900 rounded-full icon"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M21.75 17.25h-.75V7.5a1.5 1.5 0 0 0-1.5-1.5H16.5v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75v.75h-3v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75v.75H4.5A1.5 1.5 0 0 0 3 7.5v9.75h-.75a.75.75 0 0 0 0 1.5h19.5a.75.75 0 0 0 0-1.5Z"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center leading-tight text-white whitespace-pre content"
-                            >
-                                <div
-                                    class="relative font-bold transition-all duration-700 ease-in-out transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.bathroom.name"
-                                        )
-                                    }}
-                                </div>
-                                <div
-                                    class="relative transition-all duration-700 ease-in-out delay-100 transform translate-x-8 opacity-0"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.categories.bathroom.tagline"
-                                        )
-                                    }}
+                                    {{ $t(cat.name) }}
                                 </div>
                             </div>
                         </div>
@@ -958,7 +677,9 @@ function handleImageError() {
                 >
                     {{ $t("titles.web.products.electronics.title") }}
                 </h2>
-                <div class="flex flex-row gap-4 p-3 bg-gray-200 rounded-lg">
+                <div
+                    class="flex flex-col-reverse md:flex-row gap-4 p-3 bg-gray-200 rounded-lg"
+                >
                     <div
                         class="flex-1 overflow-hidden bg-white rounded-lg shadow-lg"
                     >
@@ -1078,7 +799,7 @@ function handleImageError() {
                         </div>
                     </div>
                     <div
-                        class="overflow-hidden bg-white rounded-lg shadow-lg w-60"
+                        class="overflow-hidden bg-white rounded-lg shadow-lg lg:w-40 w-full"
                     >
                         <img
                             src="/images/electronics-adv.jpg"
