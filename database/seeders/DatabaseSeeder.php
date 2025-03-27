@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         (new AdminSeeder)?->run();
         (new RoleSeeder)?->run();
+        (new CategorySeeder)?->run();
 
     }
 }
