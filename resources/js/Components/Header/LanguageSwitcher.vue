@@ -12,9 +12,8 @@ const languages = [
         name: "English",
         flag: "🇺🇸",
         dir: "ltr",
-        font: "Alumni Sans Pinstripe",
     },
-    { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl", font: "Vazirmatn" },
+    { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl" },
 ];
 
 const changeLanguage = async (langCode) => {
@@ -23,10 +22,6 @@ const changeLanguage = async (langCode) => {
         // Update document direction
         document.documentElement.setAttribute("dir", selectedLang.dir);
         document.documentElement.setAttribute("lang", langCode);
-        document.documentElement.style.setProperty(
-            "--font-family",
-            selectedLang.font
-        );
         // Load new language messages
         await loadLanguageMessages(langCode);
 

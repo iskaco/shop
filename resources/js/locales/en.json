@@ -181,46 +181,46 @@
                     "instagram": "Instagram"
                 },
                 "copyright": "© 2024 Your Shop. All rights reserved."
-            },
-            "admin": {
-                "label": "MeemHome",
-                "description": "MeemHome Management Panel",
-                "login": "Login",
-                "username": "Username",
-                "password": "Password",
-                "rememberMe": "Remember Me",
-                "forgotPassword": "Forgot Password?",
-                "signIn": "Sign In",
-                "signUp": "Sign Up"
-            },
-            "search": "Search",
-            "dear": "Dear",
-            "notification": "Notification",
-            "messages": "Messages",
-            "myProfile": "My Profile",
-            "settings": "Settings",
-            "signOut": "Sign Out",
-            "table": {
-                "list": "List",
-                "paginationResults": "Results from {start} to {end} of {total} results",
-                "paginationPrevious": "Previous",
-                "paginationNext": "Next"
-            },
-            "form": {
-                "show": "Show ",
-                "edit": "Edit ",
-                "create": "Create ",
-                "inputPlaceholder": "Enter ",
-                "selectPlaceholder": "Select "
-            },
-            "back": "Back",
-            "actions": "Actions",
-            "menu": "Menu",
-            "dashboard": "Dashboard",
-            "admins": "Admins",
-            "productsCategories": "Products Categories",
-            "products": "Products",
-            "orders": "Orders"
-        }
+            }
+        },
+        "admin": {
+            "label": "MeemHome",
+            "description": "MeemHome Management Panel",
+            "login": "Login",
+            "username": "Username",
+            "password": "Password",
+            "rememberMe": "Remember Me",
+            "forgotPassword": "Forgot Password?",
+            "signIn": "Sign In",
+            "signUp": "Sign Up"
+        },
+        "search": "Search",
+        "dear": "Dear",
+        "notification": "Notification",
+        "messages": "Messages",
+        "myProfile": "My Profile",
+        "settings": "Settings",
+        "signOut": "Sign Out",
+        "table": {
+            "list": "List",
+            "paginationResults": "Results from {start} to {end} of {total} results",
+            "paginationPrevious": "Previous",
+            "paginationNext": "Next"
+        },
+        "form": {
+            "show": "Show ",
+            "edit": "Edit ",
+            "create": "Create ",
+            "inputPlaceholder": "Enter ",
+            "selectPlaceholder": "Select "
+        },
+        "back": "Back",
+        "actions": "Actions",
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "admins": "Admins",
+        "productsCategories": "Products Categories",
+        "products": "Products",
+        "orders": "Orders"
     }
 }

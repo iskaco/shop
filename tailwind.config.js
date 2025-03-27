@@ -17,6 +17,7 @@ export default {
         extend: {
             fontFamily: {
                 vazirmatn: ["Vazirmatn", "sans-serif"],
+                alumni: ["Alumni Sans Pinstripe", "sans-serif"],
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             screens: {
