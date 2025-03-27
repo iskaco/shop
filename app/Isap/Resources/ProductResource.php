@@ -27,9 +27,11 @@ class ProductResource extends BaseResource
         $form = new Form(__('resources.product.plural'), Product::class);
 
         return $form->components([
-            TextInput::make('name', __('resources.product.name')),
-            MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->isRequired(),
-            TextInput::make('description', __('resources.product.description')),
+            TextInput::make('name_en', __('resources.product.name_en'))->isRequired(),
+            TextInput::make('name_ar', __('resources.product.name_ar'))->isRequired(),
+            MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
+            TextInput::make('description_en', __('resources.product.description_en')),
+            TextInput::make('description_ar', __('resources.product.description_ar')),
             TextInput::make('price', __('resources.product.price')),
             ImageInput::make('image', __('resources.product.image')),
         ])->action(static::getAction($action_type)?->setRoute('product.' . lcfirst($action_type->value)));;
