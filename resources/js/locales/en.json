@@ -1,7 +1,18 @@
 {
     "titles": {
         "web": {
+            "label": "MeemHome",
             "description": "MeemHome - Your One-Stop Shop",
+            "currency": {
+                "usd": {
+                    "name": "USD",
+                    "prefix": "$"
+                },
+                "rial": {
+                    "name": "Rial",
+                    "prefix": "ریال"
+                }
+            },
             "navigation": {
                 "home": "Home",
                 "products": "Products",

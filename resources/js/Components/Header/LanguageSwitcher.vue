@@ -43,25 +43,9 @@ const changeLanguage = async (langCode) => {
             <span>{{
                 languages.find((lang) => lang.code === locale)?.flag
             }}</span>
-            <span class="hidden sm:block">{{
+            <span class="hidden md:block">{{
                 languages.find((lang) => lang.code === locale)?.name
             }}</span>
-            <svg
-                class="fill-current"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M2.5 4.5L6 8L9.5 4.5"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
         </button>
 
         <!-- Dropdown Menu -->
