@@ -10,15 +10,31 @@ use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasTranslations,InteractsWithMedia,Logable;
+    use HasTranslations, InteractsWithMedia, Logable;
 
     // Your model attributes and methods here
-    protected $fillable = ['name', 'slug', 'description', 'is_active'];
+    protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active'];
 
     public $translatable = ['name', 'description'];
+    protected $appends = ['name_translated', 'parent_name'];
+
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getNameTranslatedAttribute()
+    {
+        return $this->getTranslation('name', app()->getLocale());
+    }
+
+    public function getParentNameAttribute()
+    {
+        return $this->parent?->name;
+    }
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

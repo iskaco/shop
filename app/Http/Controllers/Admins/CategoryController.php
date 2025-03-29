@@ -15,19 +15,12 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index(){
-        
+    public function index()
+    {
+        return $this->makeInertiaTableResponse(Category::class, Category::query());
     }
-    public function show($id){
-        
-    }
-    public function store(){
-        
-    }
-    public function update($id){
-        
-    }
-    public function destroy($id){
-        
-    }
+    public function show($id) {}
+    public function store() {}
+    public function update($id) {}
+    public function destroy($id) {}
 }

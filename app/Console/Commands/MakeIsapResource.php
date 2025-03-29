@@ -151,7 +151,7 @@ class MakeIsapResource extends Command
     {
         $now = Carbon::now()->format('Y_m_d_his');
         $tableName = Str::lower($this->pluralModelName);
-        $migrationPath = database_path("migrations/{$now}-create-{$tableName}-table.php");
+        $migrationPath = database_path("migrations/{$now}_create_{$tableName}_table.php");
         $this->createFileWithParams(
             $migrationPath,
             $this->getStub('migration'),
