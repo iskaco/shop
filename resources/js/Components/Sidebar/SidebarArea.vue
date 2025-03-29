@@ -15,32 +15,83 @@ onClickOutside(target, () => {
 
 const menuGroups = ref([
     {
-        name: "titles.menu",
+        name: "titles.admin.menus.menu",
         menuItems: [
             {
                 label: "titles.dashboard",
                 route: "dashboard",
                 iconName: "md-dashboardcustomize-outlined",
             },
+        ],
+    },
+    {
+        name: "titles.admin.menus.shop",
+        menuItems: [
             {
-                label: "titles.admins",
-                route: "admins",
+                label: "titles.admin.menus.products",
+                iconName: "md-shoppingbag-outlined",
+                children: [
+                    {
+                        label: "titles.admin.menus.products",
+                        route: "dashboard",
+                    },
+                    {
+                        label: "titles.admin.menus.categories",
+                        route: "dashboard",
+                    },
+                    { label: "titles.admin.menus.brands", route: "dashboard" },
+                    {
+                        label: "titles.admin.menus.comments",
+                        route: "dashboard",
+                    },
+                ],
+            },
+            {
+                label: "titles.admin.menus.customers",
+                iconName: "md-personpin-outlined",
+                route: "dashboard",
+            },
+            {
+                label: "titles.admin.menus.orders",
+                iconName: "md-shoppingcartcheckout-outlined",
+                route: "dashboard",
+            },
+            {
+                label: "titles.admin.menus.marketing",
+                iconName: "md-discount-outlined",
+                children: [
+                    { label: "titles.admin.menus.offers", route: "dashboard" },
+                    { label: "titles.admin.menus.coupons", route: "dashboard" },
+                    { label: "titles.admin.menus.plans", route: "dashboard" },
+                ],
+            },
+        ],
+    },
+    {
+        name: "titles.admin.menus.base",
+        menuItems: [
+            {
+                label: "titles.admin.menus.settings",
+                iconName: "md-settings-outlined",
+                route: "dashboard",
+            },
+            {
+                label: "titles.admin.menus.staffs",
                 iconName: "md-contacts-outlined",
-            },
-            {
-                label: "titles.productsCategories",
-                route: "dashboard",
-                iconName: "md-category-outlined",
-            },
-            {
-                label: "titles.products",
-                route: "products",
-                iconName: "md-creditcard-outlined",
-            },
-            {
-                label: "titles.orders",
-                route: "dashboard",
-                iconName: "md-dns-outlined",
+                children: [
+                    {
+                        label: "titles.admin.menus.admins",
+                        route: "admins",
+                    },
+                    {
+                        label: "titles.admin.menus.roles",
+                        route: "dashboard",
+                    },
+                    {
+                        label: "titles.admin.menus.permissions",
+                        route: "dashboard",
+                    },
+                ],
             },
         ],
     },

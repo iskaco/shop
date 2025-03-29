@@ -40,6 +40,14 @@ Route::get('/product/{id}', function ($id) {
     ]);
 })->name('product.show');
 
+Route::get('/category/{name}/', function ($name) {
+    return Inertia::render('web/CategoryView', [
+        'title' => $name,
+        'subtitle' => request('subtitle'),
+        'banner' => request('banner'),
+    ]);
+})->name('web.category');
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/activity.php';
