@@ -7,7 +7,7 @@ import ToastNotifications from "@/Components/ToastNotifications.vue";
 <template>
     <ToastNotifications />
     <!-- ===== Page Wrapper Start ===== -->
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex h-screen overflow-hidden ltr:!font-sans">
         <!-- ===== Sidebar Start ===== -->
         <SidebarArea />
         <!-- ===== Sidebar End ===== -->

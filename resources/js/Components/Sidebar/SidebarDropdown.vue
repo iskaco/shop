@@ -30,7 +30,7 @@ const handleItemClick = (index) => {
                             childItem.label === sidebarStore.selected,
                     }"
                 >
-                    {{ childItem.label }}
+                    {{ $t(childItem.label) }}
                 </Link>
             </li>
         </template>

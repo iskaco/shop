@@ -28,6 +28,7 @@
             },
             "plans": {
                 "title": "Our Plans",
+                "button": "Order Now",
                 "bronze": {
                     "name": "Bronze",
                     "price": "$100",
@@ -36,8 +37,7 @@
                         "basic": "Basic Features",
                         "email": "Email Support",
                         "analytics": "Basic Analytics"
-                    },
-                    "button": "Order Now"
+                    }
                 },
                 "silver": {
                     "name": "Silver",
@@ -47,8 +47,7 @@
                         "bronze": "All Bronze Features",
                         "support": "Priority Support",
                         "analytics": "Advanced Analytics"
-                    },
-                    "button": "Order Now"
+                    }
                 },
                 "gold": {
                     "name": "Gold",
@@ -58,8 +57,7 @@
                         "silver": "All Silver Features",
                         "support": "24/7 Support",
                         "analytics": "Premium Analytics"
-                    },
-                    "button": "Order Now"
+                    }
                 },
                 "platinum": {
                     "name": "Platinum",
@@ -69,8 +67,7 @@
                         "gold": "All Gold Features",
                         "support": "Dedicated Support",
                         "analytics": "Custom Analytics"
-                    },
-                    "button": "Order Now"
+                    }
                 },
                 "diamond": {
                     "name": "Diamond",
@@ -80,8 +77,7 @@
                         "platinum": "All Platinum Features",
                         "support": "VIP Support",
                         "analytics": "Enterprise Analytics"
-                    },
-                    "button": "Order Now"
+                    }
                 }
             },
             "sale": {
@@ -203,7 +199,26 @@
             "rememberMe": "Remember Me",
             "forgotPassword": "Forgot Password?",
             "signIn": "Sign In",
-            "signUp": "Sign Up"
+            "signUp": "Sign Up",
+            "menus": {
+                "menu": "Dashboard Menu",
+                "shop": "Shop Menu",
+                "base": "Base Info Menu",
+                "products": "Products",
+                "categories": "Categories",
+                "brands": "Brands",
+                "comments": "Comments",
+                "customers": "Customers",
+                "orders": "Orders",
+                "marketing": "Marketing",
+                "offers": "Offres",
+                "coupons": "Coupons",
+                "plans": "Plans",
+                "settings": "Settings",
+                "staffs": "Staffs",
+                "roles": "Roles",
+                "permissions": "Permissions"
+            }
         },
         "search": "Search",
         "dear": "Dear",
