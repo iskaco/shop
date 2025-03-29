@@ -1,7 +1,18 @@
 {
     "titles": {
         "web": {
+            "label": "ميم هوم",
             "description": "متجر ميم هوم للإنترنت",
+            "currency": {
+                "usd": {
+                    "name": "دولار",
+                    "prefix": "$"
+                },
+                "rial": {
+                    "name": "ريال",
+                    "prefix": "ریال"
+                }
+            },
             "navigation": {
                 "home": "الرئيسية",
                 "products": "المنتجات",
