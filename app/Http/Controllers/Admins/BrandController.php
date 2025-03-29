@@ -15,19 +15,15 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function index(){
-        
-    }
-    public function show($id){
-        
-    }
-    public function store(){
-        
-    }
-    public function update($id){
-        
-    }
-    public function destroy($id){
-        
-    }
+    public function index() {}
+    public function show($id) {}
+    public function store() {}
+    public function update($id) {}
+    public function destroy($id) {}
+
+
+    public function create() {}
+
+
+    public function edit(string $id) {}
 }

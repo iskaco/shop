@@ -57,7 +57,6 @@ class GenerateEntityFromMigration extends Command
     {
         $migrationPath = database_path('migrations');
         $files = File::files($migrationPath);
-
         foreach ($files as $file) {
             if (Str::contains($file->getFilename(), 'create_' . Str::plural(Str::snake($entityName)) . '_table')) {
                 return $file->getPathname();
