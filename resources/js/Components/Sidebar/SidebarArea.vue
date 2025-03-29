@@ -50,6 +50,7 @@ const menuGroups = ref([
                 label: "titles.admin.menus.customers",
                 iconName: "md-personpin-outlined",
                 route: "dashboard",
+
             },
             {
                 label: "titles.admin.menus.orders",
