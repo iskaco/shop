@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
             \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
-
+            \App\Http\Middleware\SetLocale::class,
         ]);
         $middleware->alias([
             'adminauth' => AdminAuthenticated::class,
