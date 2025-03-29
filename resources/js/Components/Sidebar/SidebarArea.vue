@@ -29,7 +29,7 @@ const menuGroups = ref([
             },
             {
                 label: "titles.productsCategories",
-                route: "dashboard",
+                route: "categories",
                 iconName: "md-category-outlined",
             },
             {

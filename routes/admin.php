@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\TableController;
@@ -8,21 +9,21 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/test-admin', [AdminController::class, 'index']);
-Route::get('/admin-login', fn () => Inertia::render('Auth/AdminLogin'))->name('admin.login');
+Route::get('/admin-login', fn() => Inertia::render('Auth/AdminLogin'))->name('admin.login');
 Route::post('/admin-authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
-Route::get('/signin', fn () => Inertia::render('Auth/Login'))->name('admin.signin');
+Route::get('/signin', fn() => Inertia::render('Auth/Login'))->name('admin.signin');
 Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function () {
-    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
-    Route::get('/calendar', fn () => Inertia::render('CalendarView'))->name('calendar');
-    Route::get('/profile', fn () => Inertia::render('ProfileView'))->name('profile');
-    Route::get('/tables', fn () => Inertia::render('TablesView'))->name('tables');
-    Route::get('/settings', fn () => Inertia::render('SettingsView'))->name('settings');
-    Route::get('/alerts', fn () => Inertia::render('AlertsView'))->name('alerts');
-    Route::get('/buttons', fn () => Inertia::render('buttonsView'))->name('buttons');
-    Route::get('/form-elements', fn () => Inertia::render('Forms/FormElementsView'))->name('form.elements');
-    Route::get('/form-layouts', fn () => Inertia::render('Forms/FormLayoutView'))->name('form.layouts');
-    Route::get('/basic-chart', fn () => Inertia::render('Charts/BasicChartView'))->name('chart.basics');
-    Route::get('/signup', fn () => Inertia::render('Authentication/SignupView'))->name('signup');
+    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/calendar', fn() => Inertia::render('CalendarView'))->name('calendar');
+    Route::get('/profile', fn() => Inertia::render('ProfileView'))->name('profile');
+    Route::get('/tables', fn() => Inertia::render('TablesView'))->name('tables');
+    Route::get('/settings', fn() => Inertia::render('SettingsView'))->name('settings');
+    Route::get('/alerts', fn() => Inertia::render('AlertsView'))->name('alerts');
+    Route::get('/buttons', fn() => Inertia::render('buttonsView'))->name('buttons');
+    Route::get('/form-elements', fn() => Inertia::render('Forms/FormElementsView'))->name('form.elements');
+    Route::get('/form-layouts', fn() => Inertia::render('Forms/FormLayoutView'))->name('form.layouts');
+    Route::get('/basic-chart', fn() => Inertia::render('Charts/BasicChartView'))->name('chart.basics');
+    Route::get('/signup', fn() => Inertia::render('Authentication/SignupView'))->name('signup');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/table/media/{model}/{id}/{attribute}/{multiple}', [TableController::class, 'getMedia'])->name('table.getMedia');
     Route::get('/form/media/{model}/{id}/{attribute}/{multiple}', [FormController::class, 'getMedia'])->name('form.getMedia');
@@ -45,4 +46,12 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/edit/{id}', [AdminController::class, 'edit'])->name('product.edit');
 
+    // Category Routes
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+    Route::get('/category', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 });

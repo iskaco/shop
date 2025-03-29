@@ -35,7 +35,7 @@ class ProductResource extends BaseResource
             TextInput::make('price', __('resources.product.price'))->isCurrency(),
             TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ImageInput::make('image', __('resources.product.image')),
-        ])->action(static::getAction($action_type)?->setRoute('product.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('product.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -45,7 +45,7 @@ class ProductResource extends BaseResource
         return $table->columns([
             TextColumn::make('name_translated', __('resources.product.name')),
             TextColumn::make('category_name', __('resources.product.category')),
-            TextColumn::make('description_translated', __('resources.product.description')),
+            //TextColumn::make('description_translated', __('resources.product.description')),
             TextColumn::make('price', __('resources.product.price')),
             TextColumn::make('stock', __('resources.product.stock')),
             ImageColumn::make('image', __('resources.product.image')),

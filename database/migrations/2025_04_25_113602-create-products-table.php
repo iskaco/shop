@@ -15,10 +15,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('name', 500);
+            $table->string('slug', 200)->unique()->nullable();
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->integer('stock');
+            $table->boolean('published')->default(false);
             $table->timestamps();
+            $table->softDeletes();
+            $table->unique(['deleted_at', 'category_id', 'name'], 'name_unique');
+            $table->unique(['deleted_at', 'category_id', 'slug'], 'slug_unique');
         });
     }
 

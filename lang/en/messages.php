@@ -18,7 +18,8 @@ return [
         ],
     ],
     'product' => [
-        'destroy' => ['title' => 'Are you sure you want to delete this record?',
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
             'ok' => 'Product deleted successfully.',
             'error' => 'Error deleting product',
             'not_found' => 'Product not found',
@@ -26,6 +27,18 @@ return [
         'store' => [
             'ok' => 'Product created successfully.',
             'error' => 'Error creating product',
+        ],
+    ],
+    'category' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Category deleted successfully.',
+            'error' => 'Error deleting category',
+            'not_found' => 'Category not found',
+        ],
+        'store' => [
+            'ok' => 'Category created successfully.',
+            'error' => 'Error creating category',
         ],
     ],
 ];

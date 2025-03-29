@@ -13,4 +13,5 @@ enum ComponentType: string
     case SELECT = 'Select';
     case MULTISELECT = 'MultipleSelect';
     case TOGGLE = 'Toggle';
+    case ICON = 'IconInput';
 }

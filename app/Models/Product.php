@@ -10,14 +10,14 @@ use Spatie\Translatable\HasTranslations;
 
 class Product extends Model implements HasMedia
 {
-    use HasTranslations,InteractsWithMedia,Logable;
+    use HasTranslations, InteractsWithMedia, Logable;
 
     // Your model attributes and methods here
     protected $fillable = ['name', 'category_id', 'description', 'price', 'stock'];
 
     public $translatable = ['name', 'description'];
 
-    protected $appends = ['name_translated', 'description_translated', 'category_name'];
+    protected $appends = ['name_translated', 'category_name'];
 
     public function getNameTranslatedAttribute()
     {
@@ -46,7 +46,7 @@ class Product extends Model implements HasMedia
 
     public function getCategoryNameAttribute()
     {
-        return $this->category->name;
+        return $this->category?->name;
     }
 
     public function getImageAttribute()
