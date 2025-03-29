@@ -34,6 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); */
 });
 
+Route::get('/product/{id}', function ($id) {
+    return Inertia::render('web/ProductView', [
+        'productId' => $id,
+    ]);
+})->name('product.show');
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/activity.php';
