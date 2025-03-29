@@ -160,7 +160,7 @@ return [
     'url' => 'The :attribute field must be a valid URL.',
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
-
+    'locale' => 'The :attribute must be either "en" or "ar".',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -189,6 +189,49 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'Name',
+        'username' => 'Username',
+        'email' => 'Email',
+        'first_name' => 'First Name',
+        'last_name' => 'Last Name',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm Password',
+        'city' => 'City',
+        'state' => 'State',
+        'country' => 'Country',
+        'address' => 'Address',
+        'phone' => 'Phone',
+        'mobile' => 'Mobile',
+        'age' => 'Age',
+        'sex' => 'Sex',
+        'gender' => 'Gender',
+        'day' => 'Day',
+        'month' => 'Month',
+        'year' => 'Year',
+        'hour' => 'Hour',
+        'minute' => 'Minute',
+        'second' => 'Second',
+        'title' => 'Title',
+        'text' => 'Text',
+        'content' => 'Content',
+        'description' => 'Description',
+        'date' => 'Date',
+        'time' => 'Time',
+        'available' => 'Available',
+        'type' => 'Type',
+        'img' => 'Image',
+        'image' => 'Image',
+        'size' => 'Size',
+        'color' => 'Color',
+        'captcha' => 'Captcha',
+        'price' => 'Price',
+        'pic' => 'Image',
+        'link' => 'Link',
+        'mobile_number' => 'Mobile Number',
+        'work_number' => 'Office Number',
+        'locale' => 'Language',
+
+    ],
 
 ];

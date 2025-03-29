@@ -146,13 +146,13 @@ return [
     'url' => 'صيغة :attribute غير صالحة',
     'ulid' => 'يجب أن يكون :attribute ULID صالحًا',
     'uuid' => 'يجب أن يكون :attribute UUID صالحًا',
+    'locale' => 'يجب أن تكون قيمة :attribute إما "en" أو "ar".',
 
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'رسالة مخصصة',
         ],
     ],
-
     'attributes' => [
         'name' => 'الاسم',
         'username' => 'اسم المستخدم',
@@ -194,5 +194,6 @@ return [
         'link' => 'الرابط',
         'mobile_number' => 'رقم الجوال',
         'work_number' => 'رقم الهاتف الثابت',
+        'locale' => 'لغة',
     ],
 ];
