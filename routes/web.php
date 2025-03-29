@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admins\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Web\SettingController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,6 +17,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::post('/set-locale', [SettingController::class, 'setLocale'])->name('set-locale');
 
 /* Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

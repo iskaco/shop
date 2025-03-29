@@ -47,9 +47,10 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'flash' => fn () => [
-                'toasts'=> $request->session()->get('toasts'),
+            'flash' => fn() => [
+                'toasts' => $request->session()->get('toasts'),
             ],
+            'locale' => app()->getLocale(),
         ];
     }
 }
