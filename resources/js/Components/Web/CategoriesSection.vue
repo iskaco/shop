@@ -13,6 +13,7 @@ const categories = [
         name: "furniture",
         image: "/images/furniture.jpg",
         color: "meta-2",
+        banner: "images/furniture.jpg",
         icon: "md-bed-outlined",
     },
     {
@@ -20,6 +21,7 @@ const categories = [
         name: "shoes",
         image: "/images/shoes.jpg",
         color: "meta-3",
+        banner: "/images/shoes-hero.jpg",
         icon: "md-favoriteborder-outlined",
     },
     {
@@ -27,6 +29,7 @@ const categories = [
         name: "honey",
         image: "/images/honey.jpg",
         color: "meta-11",
+        banner: "/images/honey-hero.jpg",
         icon: "md-foodbank-outlined",
     },
     {
@@ -34,6 +37,7 @@ const categories = [
         name: "bathroom",
         image: "/images/bathroom.jpg",
         color: "meta-5",
+        banner: "/images/bathroom.jpg",
         icon: "md-bathroom-outlined",
     },
     {
@@ -41,6 +45,7 @@ const categories = [
         name: "tshirts",
         image: "/images/tshirt.jpg",
         color: "meta-6",
+        banner: "/images/tshirt-hero.jpg",
         icon: "md-grade-outlined",
     },
     {
@@ -48,6 +53,7 @@ const categories = [
         name: "home",
         image: "/images/home.jpg",
         color: "meta-7",
+        banner: "/images/home.jpg",
         icon: "md-home-outlined",
     },
 ];
@@ -71,7 +77,7 @@ const categories = [
                     :key="cat.name"
                     class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
                     @click="
-                        this.$inertia.get(
+                        this.$inertia.post(
                             this.route('web.category', cat.name),
                             {
                                 title: cat.name,

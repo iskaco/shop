@@ -33,11 +33,11 @@ const menuGroups = ref([
                 children: [
                     {
                         label: "titles.admin.menus.products",
-                        route: "dashboard",
+                        route: "products",
                     },
                     {
                         label: "titles.admin.menus.categories",
-                        route: "dashboard",
+                        route: "categories",
                     },
                     { label: "titles.admin.menus.brands", route: "dashboard" },
                     {
@@ -50,7 +50,6 @@ const menuGroups = ref([
                 label: "titles.admin.menus.customers",
                 iconName: "md-personpin-outlined",
                 route: "dashboard",
-
             },
             {
                 label: "titles.admin.menus.orders",
