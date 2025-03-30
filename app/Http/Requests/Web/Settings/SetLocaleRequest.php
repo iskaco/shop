@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Web\Settings;
 
+use App\Rules\Locale;
 use Illuminate\Foundation\Http\FormRequest;
-use Locale;
 
 class SetLocaleRequest extends FormRequest
 {
