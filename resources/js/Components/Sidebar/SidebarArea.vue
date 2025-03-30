@@ -54,7 +54,7 @@ const menuGroups = ref([
             {
                 label: "titles.admin.menus.orders",
                 iconName: "md-shoppingcartcheckout-outlined",
-                route: "dashboard",
+                route: "orders",
             },
             {
                 label: "titles.admin.menus.marketing",
