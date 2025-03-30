@@ -52,5 +52,7 @@ return [
         'image' => 'Image',
         'banner' => 'Banner',
         'is_active' => 'Status (Active/Inactive)',
+        'slug' => 'Slug',
+        'root' => 'Root',
     ],
 ];

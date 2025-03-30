@@ -14,6 +14,10 @@ class TextInput extends Component
 
     public $is_currency = false;
 
+    public $is_slug = false;
+
+    public $related_slug_field = null;
+
     public static function make($name, $title)
     {
         return new TextInput($name, $title, ComponentType::TEXT);
@@ -50,6 +54,20 @@ class TextInput extends Component
     public function isCurrency(bool $value = true)
     {
         $this->is_currency = $value;
+
+        return $this;
+    }
+
+    public function isSlug(bool $value = true)
+    {
+        $this->is_slug = $value;
+
+        return $this;
+    }
+
+    public function setRelatedSlugField(string $value)
+    {
+        $this->related_slug_field = $value;
 
         return $this;
     }
