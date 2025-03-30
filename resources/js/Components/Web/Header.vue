@@ -5,6 +5,10 @@ import CurrencySwitcher from "@/Components/Web/CurrencySwitcher.vue";
 import { onClickOutside } from "@vueuse/core";
 import { useTemplateRef, ref } from "vue";
 
+const props = defineProps({
+    menuBgColor: { type: String, default: "bg-transparent" },
+});
+
 const { toggleSidebar } = useSidebarStore();
 const sidebarStore = useSidebarStore();
 
@@ -36,7 +40,7 @@ const menuItems = ref([
 </script>
 
 <template>
-    <nav class="absolute z-30 w-full">
+    <nav class="absolute z-30 w-full" :class="menuBgColor">
         <div class="container px-4 py-4 mx-auto">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
