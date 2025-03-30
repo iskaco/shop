@@ -40,7 +40,7 @@ Route::get('/product/{id}', function ($id) {
     ]);
 })->name('product.show');
 
-Route::post('/category/{name}/', function ($name) {
+Route::get('/category/{name}/', function ($name) {
     return Inertia::render('web/CategoryView', [
         'title' => strtoupper($name),
         'subtitle' => request('subtitle'),
