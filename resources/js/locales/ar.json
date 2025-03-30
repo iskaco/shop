@@ -133,6 +133,9 @@
                 }
             },
             "products": {
+                "name": "المنتجات",
+                "title": "المنتج الأول",
+                "addtocart": "أضف إلى السلة",
                 "electronics": {
                     "title": "الإلكترونيات",
                     "television": {

@@ -133,6 +133,9 @@
                 }
             },
             "products": {
+                "name": "Products",
+                "title": "Sample Product",
+                "addtocart": "Add To Cart",
                 "electronics": {
                     "title": "Electronics",
                     "television": {
