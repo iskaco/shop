@@ -7,6 +7,7 @@ use App\Isap\Actions\CreateAction;
 use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
+use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\IconInput;
 use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
@@ -29,18 +30,39 @@ class CategoryResource extends BaseResource
         $form = new Form(__('resources.category.plural'), Category::class);
 
         return $form->components([
-            TextInput::make('name_en', __('resources.category.name_en'))->isRequired(),
-            TextInput::make('name_ar', __('resources.category.name_ar'))->isRequired(),
-            MultiSelectInput::make('parent_id', __('resources.category.parent'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti(),
-            TextInput::make('slug', __('resources.category.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
-            TextInput::make('description_en', __('resources.category.description_en')),
-            TextInput::make('description_ar', __('resources.category.description_ar')),
-            IconInput::make('icon', __('resources.category.icon')),
-            ImageInput::make('thumbnail', __('resources.category.thumbnail')),
-            ImageInput::make('image', __('resources.category.image')),
-            ImageInput::make('banner', __('resources.category.banner'))->ratio('16:9'),
+            ...parent::orderByLocale(
+                [
+                    'en' => [
+                        FormSection::make('general_en', __('resources.category.general_en'))->children(
+                            [
+                                TextInput::make('name_en', __('resources.category.name_en'))->isRequired(),
+                                TextInput::make('description_en', __('resources.category.description_en'))
+                            ]
+                        ),
+                    ],
+                    'ar' => [
+                        FormSection::make('general_ar', __('resources.category.general_ar'))->children([
+                            TextInput::make('name_ar', __('resources.category.name_ar'))->isRequired(),
+                            TextInput::make('description_ar', __('resources.category.description_ar')),
+                        ]),
+                    ]
+                ]
+            ),
+            FormSection::make('another_info', __('resources.category.another_info'))->children([
+                MultiSelectInput::make('parent_id', __('resources.category.parent'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti(),
+                TextInput::make('slug', __('resources.category.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
+                IconInput::make('icon', __('resources.category.icon')),
+
+            ]),
+            FormSection::make('images', __('resources.category.images'))->children([
+                ImageInput::make('thumbnail', __('resources.category.thumbnail')),
+                ImageInput::make('image', __('resources.category.image')),
+                ImageInput::make('banner', __('resources.category.banner'))->ratio('16:9'),
+            ]),
+
 
         ])->action(static::getAction($action_type)?->setRoute('category.' . lcfirst($action_type->value)));
+        //dd($form);
     }
 
     public static function table()

@@ -36,6 +36,9 @@ return [
         'price' => 'Price',
         'stock' => 'Stock',
         'image' => 'Image',
+        'general_en' => 'General Information (English)',
+        'general_ar' => 'General Information (Arabic)',
+        'general' => 'General Information',
     ],
     'categotry' => [
         'label' => 'Category',
@@ -54,5 +57,10 @@ return [
         'is_active' => 'Status (Active/Inactive)',
         'slug' => 'Slug',
         'root' => 'Root',
+        'general_en' => 'General Information (English)',
+        'general_ar' => 'General Information (Arabic)',
+        'general' => 'General Information',
+        'another_info' => 'Another Information',
+        'images' => 'Images',
     ],
 ];
