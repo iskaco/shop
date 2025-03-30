@@ -2,6 +2,7 @@
 import { useI18n } from "vue-i18n";
 import { loadLanguageMessages } from "@/i18n";
 import { ref } from "vue";
+import { router } from "@inertiajs/vue3";
 
 const { locale } = useI18n();
 const isOpen = ref(false);
@@ -19,6 +20,8 @@ const languages = [
 const changeLanguage = async (langCode) => {
     const selectedLang = languages.find((lang) => lang.code === langCode);
     if (selectedLang) {
+        router.post(route("set-locale"), { locale: selectedLang.code });
+
         // Update document direction
         document.documentElement.setAttribute("dir", selectedLang.dir);
         document.documentElement.setAttribute("lang", langCode);
