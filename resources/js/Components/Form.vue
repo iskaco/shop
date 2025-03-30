@@ -151,6 +151,7 @@ export default {
 
                             <IconPicker
                                 v-if="component.component_type == 'IconInput'"
+                                v-model="formData[component.name]"
                                 customClasses="mb-4.5"
                                 :isDisabled="getEnableStatus(component)"
                             ></IconPicker>

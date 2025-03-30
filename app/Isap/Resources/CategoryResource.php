@@ -31,7 +31,8 @@ class CategoryResource extends BaseResource
         return $form->components([
             TextInput::make('name_en', __('resources.category.name_en'))->isRequired(),
             TextInput::make('name_ar', __('resources.category.name_ar'))->isRequired(),
-            MultiSelectInput::make('parent_id', __('resources.category.parent'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
+            MultiSelectInput::make('parent_id', __('resources.category.parent'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti(),
+            TextInput::make('slug', __('resources.category.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
             TextInput::make('description_en', __('resources.category.description_en')),
             TextInput::make('description_ar', __('resources.category.description_ar')),
             IconInput::make('icon', __('resources.category.icon')),
@@ -48,6 +49,7 @@ class CategoryResource extends BaseResource
             ->columns([
                 TextColumn::make('name_translated', __('resources.category.name')),
                 TextColumn::make('parent_name', __('resources.category.parent')),
+                TextColumn::make('slug', __('resources.category.slug')),
                 ImageColumn::make('thumbnail', __('resources.product.image')),
                 ToggleColumn::make('is_active', __('resources.category.is_active')),
             ])
