@@ -4,6 +4,10 @@ import * as MdiIcons from "oh-vue-icons/icons/md";
 
 export default {
     props: {
+        modelValue: {
+            type: String,
+            default: "",
+        },
         customClasses: String,
         required: {
             type: Boolean,
@@ -39,6 +43,16 @@ export default {
         });
         this.icons = this.iconsList;
         this.icons = this.PaginateIcons(this.iconsPage);
+    },
+    computed: {
+        value: {
+            get() {
+                return this.modelValue;
+            },
+            set(value) {
+                this.$emit("update:modelValue", value);
+            },
+        },
     },
     methods: {
         SelectIcon(e) {

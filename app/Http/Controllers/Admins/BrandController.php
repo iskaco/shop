@@ -20,10 +20,6 @@ class BrandController extends Controller
     public function store() {}
     public function update($id) {}
     public function destroy($id) {}
-
-
     public function create() {}
-
-
     public function edit(string $id) {}
 }

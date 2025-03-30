@@ -31,7 +31,7 @@ class Category extends Model implements HasMedia
 
     public function getParentNameAttribute()
     {
-        return $this->parent?->name;
+        return $this->parent ? $this->parent?->name : __('resources.category.root');
     }
     public function parent()
     {

@@ -30,8 +30,9 @@ class GenerateEntityFromMigration extends Command
         $entityName = $this->argument('name');
         $migrationFile = $this->findMigrationFile($entityName);
 
-        if (!$migrationFile) {
+        if (! $migrationFile) {
             $this->error("Migration file for {$entityName} not found.");
+
             return Command::FAILURE;
         }
 
@@ -39,6 +40,7 @@ class GenerateEntityFromMigration extends Command
 
         if (empty($fields)) {
             $this->error("No fields found in the migration file for {$entityName}.");
+
             return Command::FAILURE;
         }
 
@@ -47,6 +49,7 @@ class GenerateEntityFromMigration extends Command
         $this->generateResource($entityName, $fields);
 
         $this->info("Code for {$entityName} generated successfully.");
+
         return Command::SUCCESS;
     }
 
@@ -58,7 +61,7 @@ class GenerateEntityFromMigration extends Command
         $migrationPath = database_path('migrations');
         $files = File::files($migrationPath);
         foreach ($files as $file) {
-            if (Str::contains($file->getFilename(), 'create_' . Str::plural(Str::snake($entityName)) . '_table')) {
+            if (Str::contains($file->getFilename(), 'create_'.Str::plural(Str::snake($entityName)).'_table')) {
                 return $file->getPathname();
             }
         }
@@ -92,7 +95,7 @@ class GenerateEntityFromMigration extends Command
     {
         $modelPath = app_path("Models/{$entityName}.php");
 
-        $fillable = array_map(fn($field) => "'{$field['name']}'", $fields);
+        $fillable = array_map(fn ($field) => "'{$field['name']}'", $fields);
         $fillableString = implode(', ', $fillable);
 
         if (File::exists($modelPath)) {
@@ -113,7 +116,7 @@ class GenerateEntityFromMigration extends Command
                 File::put($modelPath, $updatedContent);
                 $this->info("Model {$entityName} updated successfully.");
             } else {
-                $this->error("Unable to find \$fillable property in the existing model.");
+                $this->error('Unable to find $fillable property in the existing model.');
             }
         } else {
             // If the model does not exist, create it
@@ -137,6 +140,7 @@ EOT;
             $this->info("Model {$entityName} created successfully.");
         }
     }
+
     /**
      * Generate the controller file.
      */
@@ -233,26 +237,6 @@ EOT,
         }
     }
 EOT,
-            'authenticate' => <<<EOT
-    public function authenticate({$entityName}LoginRequest \$request)
-    {
-        \$request->authenticate();
-        \$request->session()->regenerate();
-        toast_success(__('messages.{$entityName}.login.ok'));
-
-        return redirect()->intended(route('admin.dashboard', absolute: false));
-    }
-EOT,
-            'logout' => <<<EOT
-    public function logout()
-    {
-        auth('admin')->logout();
-        Session::flush();
-        Session::put('success', 'You are logout successfully');
-
-        return redirect()->intended(route('admin.login'));
-    }
-EOT,
         ];
 
         if (File::exists($controllerPath)) {
@@ -260,7 +244,7 @@ EOT,
             $content = File::get($controllerPath);
 
             foreach ($templateMethods as $methodName => $methodCode) {
-                if (!Str::contains($content, "public function {$methodName}")) {
+                if (! Str::contains($content, "public function {$methodName}")) {
                     // Append the method if it doesn't exist
                     $content = preg_replace('/}\s*$/', "\n\n{$methodCode}\n}", $content);
                     $this->info("Added {$methodName} method to {$entityName}Controller.");
@@ -303,9 +287,7 @@ class {$entityName}Controller extends Controller
 
     {$templateMethods['destroy']}
 
-    {$templateMethods['authenticate']}
 
-    {$templateMethods['logout']}
 }
 EOT;
 
@@ -313,6 +295,7 @@ EOT;
             $this->info("Controller {$entityName}Controller created successfully.");
         }
     }
+
     /**
      * Generate the resource file.
      */
@@ -322,10 +305,11 @@ EOT;
 
         if (File::exists($resourcePath)) {
             $this->error("Resource {$entityName}Resource already exists.");
+
             return;
         }
 
-        $fieldsMapping = array_map(fn($field) => "'{$field['name']}' => \$this->{$field['name']}", $fields);
+        $fieldsMapping = array_map(fn ($field) => "'{$field['name']}' => \$this->{$field['name']}", $fields);
         $fieldsString = implode(",\n            ", $fieldsMapping);
 
         $template = <<<EOT
