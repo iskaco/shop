@@ -1,4 +1,5 @@
 <script>
+import FormHeader from "@/Components/FormHeader.vue";
 import DefaultCard from "@/Components/Forms/DefaultCard.vue";
 import InputGroup from "@/Components/Forms/InputGroup.vue";
 import BackButton from "@/Components/Forms/BackButton.vue";
@@ -22,6 +23,7 @@ export default {
         Multiselect,
         ImageInput,
         Button,
+        FormHeader,
     },
     props: {
         form: Object,
@@ -121,110 +123,96 @@ export default {
 </script>
 
 <template>
-    <div class="flex flex-col w-full gap-5 bg-white shadow dark:bg-boxdark">
-        <div class="flex flex-col gap-9">
-            <DefaultCard :cardTitle="$t(getFormTypeTitle) + form.title">
-                <form action="#">
-                    <div class="p-6.5">
-                        <div
-                            v-for="component in form.components"
-                            :key="component.name"
-                            class="w-full mb-4.5"
-                        >
-                            <InputGroup
-                                v-if="
-                                    component.component_type == 'TextInput' &&
-                                    getShowStatus(component)
-                                "
-                                v-model="formData[component.name]"
-                                :label="component.title"
-                                :type="getInputType(component)"
-                                :placeholder="
-                                    $t('titles.form.inputPlaceholder') +
-                                    ' ' +
-                                    component.title
-                                "
-                                customClasses="mb-4.5"
-                                :required="component.required"
-                                :isDisabled="getEnableStatus(component)"
-                            />
+    <FormHeader :formTitle="$t(getFormTypeTitle) + form.title" />
+    <div class="flex flex-col w-full gap-5">
+        <div v-for="component in form.components" :key="component.name">
+            <DefaultCard
+                v-if="component.component_type == 'FormSection'"
+                :cardTitle="component.name"
+                class="bg-white shadow dark:bg-boxdark !rounded-md"
+            >
+                <div
+                    v-for="input in component.children"
+                    :key="input.name"
+                    class="w-full border-b border-stroke dark:border-strokedark p-6"
+                >
+                    <InputGroup
+                        v-if="
+                            input.component_type == 'TextInput' &&
+                            getShowStatus(input)
+                        "
+                        v-model="formData[input.name]"
+                        :label="input.title"
+                        :type="getInputType(input)"
+                        :placeholder="
+                            $t('titles.form.inputPlaceholder') +
+                            ' ' +
+                            input.title
+                        "
+                        :required="input.required"
+                        :isDisabled="getEnableStatus(input)"
+                    />
 
-                            <IconPicker
-                                v-if="component.component_type == 'IconInput'"
-                                v-model="formData[component.name]"
-                                customClasses="mb-4.5"
-                                :isDisabled="getEnableStatus(component)"
-                            ></IconPicker>
+                    <IconPicker
+                        v-if="input.component_type == 'IconInput'"
+                        v-model="formData[input.name]"
+                        :isDisabled="getEnableStatus(input)"
+                    ></IconPicker>
 
-                            <Toggle
-                                v-if="component.component_type == 'Toggle'"
-                                v-model="formData[component.name]"
-                                :label="component.title"
-                                class="mb-4.5"
-                                :isDisabled="getEnableStatus(component)"
-                            ></Toggle>
+                    <Toggle
+                        v-if="input.component_type == 'Toggle'"
+                        v-model="formData[input.name]"
+                        :label="input.title"
+                        :isDisabled="getEnableStatus(input)"
+                    ></Toggle>
 
-                            <div
-                                v-if="
-                                    component.component_type == 'MultipleSelect'
-                                "
-                                class="mb-4.5"
+                    <div v-if="input.component_type == 'MultipleSelect'">
+                        <label class="mb-2.5 block text-black dark:text-white">
+                            {{ input.title }}
+                            <span v-if="input.required" class="text-meta-1"
+                                >*</span
                             >
-                                <label
-                                    class="mb-2.5 block text-black dark:text-white"
-                                >
-                                    {{ component.title }}
-                                    <span
-                                        v-if="component.required"
-                                        class="text-meta-1"
-                                        >*</span
-                                    >
-                                </label>
-                                <Multiselect
-                                    v-model="formData[component.name]"
-                                    :multiple="component.is_multi"
-                                    :options="component.source"
-                                    label="name"
-                                    :placeholder="
-                                        $t('titles.form.selectPlaceholder') +
-                                        ' ' +
-                                        component.title
-                                    "
-                                    :showLabels="false"
-                                    :hideSelected="true"
-                                    :disabled="getEnableStatus(component)"
-                                    class="mb-4.5"
-                                ></Multiselect>
-                            </div>
-                            <ImageInput
-                                v-if="component.component_type == 'Image'"
-                                v-model="formData[component.name]"
-                                :label="component.title"
-                                :model="form.model"
-                                :id="data.id"
-                                :attribute="component.name"
-                                :multiple="false"
-                                :isDisabled="getEnableStatus(component)"
-                            >
-                            </ImageInput>
+                        </label>
+                        <Multiselect
+                            v-model="formData[input.name]"
+                            :multiple="input.is_multi"
+                            :options="input.source"
+                            label="name"
+                            :placeholder="
+                                $t('titles.form.selectPlaceholder') +
+                                ' ' +
+                                input.title
+                            "
+                            :showLabels="false"
+                            :hideSelected="true"
+                            :disabled="getEnableStatus(input)"
+                        ></Multiselect>
+                    </div>
+                    <ImageInput
+                        v-if="input.component_type == 'Image'"
+                        v-model="formData[input.name]"
+                        :label="input.title"
+                        :model="form.model"
+                        :id="data.id"
+                        :attribute="input.name"
+                        :multiple="false"
+                        :isDisabled="getEnableStatus(input)"
+                    >
+                    </ImageInput>
 
-                            <div
-                                v-if="
-                                    formData.errors &&
-                                    formData.errors[component.name]
-                                "
-                                class="mr-3 text-xs text-meta-1"
-                                :class="{
-                                    '-mt-3':
-                                        component.component_type != 'Image',
-                                    'mt-3': component.component_type == 'Image',
-                                }"
-                            >
-                                - {{ formData.errors[component.name] }}
-                            </div>
-                        </div>
+                    <div
+                        v-if="formData.errors && formData.errors[input.name]"
+                        class="mr-3 text-xs text-meta-1"
+                        :class="{
+                            '-mt-3': input.component_type != 'Image',
+                            'mt-3': input.component_type == 'Image',
+                        }"
+                    >
+                        - {{ formData.errors[input.name] }}
+                    </div>
+                </div>
 
-                        <!-- <div class="mb-6">
+                <!-- <div class="mb-6">
                             <label
                                 class="mb-2.5 block text-black dark:text-white"
                             >
@@ -236,22 +224,98 @@ export default {
                                 class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-3 px-5 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                             ></textarea>
                         </div> -->
-                        <div class="flex justify-end gap-6 mt-10">
-                            <Button
-                                v-if="form.action"
-                                :label="form.action.title"
-                                :customClasses="
-                                    'text-white bg-' + form.action.color
-                                "
-                                :icon="form.action.icon"
-                                @click="submitForm"
-                            ></Button>
-                            <BackButton :label="$t('titles.back')"></BackButton>
-                        </div>
-                    </div>
-                </form>
             </DefaultCard>
-            <!-- Contact Form End -->
+            <div
+                v-else
+                class="w-full border-b border-stroke dark:border-strokedark p-6 border bg-white shadow-default dark:bg-boxdark"
+            >
+                <InputGroup
+                    v-if="
+                        component.component_type == 'TextInput' &&
+                        getShowStatus(component)
+                    "
+                    v-model="formData[component.name]"
+                    :label="component.title"
+                    :type="getInputType(component)"
+                    :placeholder="
+                        $t('titles.form.inputPlaceholder') +
+                        ' ' +
+                        component.title
+                    "
+                    :required="component.required"
+                    :isDisabled="getEnableStatus(component)"
+                />
+
+                <IconPicker
+                    v-if="component.component_type == 'IconInput'"
+                    v-model="formData[component.name]"
+                    :isDisabled="getEnableStatus(component)"
+                ></IconPicker>
+
+                <Toggle
+                    v-if="component.component_type == 'Toggle'"
+                    v-model="formData[component.name]"
+                    :label="component.title"
+                    :isDisabled="getEnableStatus(component)"
+                ></Toggle>
+
+                <div v-if="component.component_type == 'MultipleSelect'">
+                    <label class="mb-2.5 block text-black dark:text-white">
+                        {{ component.title }}
+                        <span v-if="component.required" class="text-meta-1"
+                            >*</span
+                        >
+                    </label>
+                    <Multiselect
+                        v-model="formData[component.name]"
+                        :multiple="component.is_multi"
+                        :options="component.source"
+                        label="name"
+                        :placeholder="
+                            $t('titles.form.selectPlaceholder') +
+                            ' ' +
+                            component.title
+                        "
+                        :showLabels="false"
+                        :hideSelected="true"
+                        :disabled="getEnableStatus(component)"
+                    ></Multiselect>
+                </div>
+                <ImageInput
+                    v-if="component.component_type == 'Image'"
+                    v-model="formData[component.name]"
+                    :label="component.title"
+                    :model="form.model"
+                    :id="data.id"
+                    :attribute="component.name"
+                    :multiple="false"
+                    :isDisabled="getEnableStatus(component)"
+                >
+                </ImageInput>
+
+                <div
+                    v-if="formData.errors && formData.errors[component.name]"
+                    class="mr-3 text-xs text-meta-1"
+                    :class="{
+                        '-mt-3': component.component_type != 'Image',
+                        'mt-3': component.component_type == 'Image',
+                    }"
+                >
+                    - {{ formData.errors[component.name] }}
+                </div>
+            </div>
+        </div>
+        <div
+            class="flex justify-end gap-6 p-6 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+        >
+            <Button
+                v-if="form.action"
+                :label="form.action.title"
+                :customClasses="'text-white bg-' + form.action.color"
+                :icon="form.action.icon"
+                @click="submitForm"
+            ></Button>
+            <BackButton :label="$t('titles.back')"></BackButton>
         </div>
     </div>
 </template>
