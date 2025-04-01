@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name', 300)->unique();
             $table->string('slug', 100)->unique();
             $table->text('description')->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->string('short_description', 2000)->nullable();
+            $table->boolean('is_active')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
             $table->softDeletes();
             $table->unique(['deleted_at', 'name']);

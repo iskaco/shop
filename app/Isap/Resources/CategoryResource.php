@@ -12,6 +12,7 @@ use App\Isap\Forms\Components\IconInput;
 use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
 use App\Isap\Forms\Components\TextInput;
+use App\Isap\Forms\Components\ToggleInput;
 use App\Isap\Forms\Form;
 use App\Isap\Tables\Columns\ImageColumn;
 use App\Isap\Tables\Columns\TextColumn;
@@ -58,6 +59,9 @@ class CategoryResource extends BaseResource
                 ImageInput::make('thumbnail', __('resources.category.thumbnail')),
                 ImageInput::make('image', __('resources.category.image')),
                 ImageInput::make('banner', __('resources.category.banner'))->ratio('16:9'),
+            ]),
+            FormSection::make('status', __('resources.category.status'))->children([
+                ToggleInput::make('is_active', __('resources.category.is_active')),
             ]),
 
 

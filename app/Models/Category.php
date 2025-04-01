@@ -13,7 +13,12 @@ class Category extends Model implements HasMedia
     use HasTranslations, InteractsWithMedia, Logable;
 
     // Your model attributes and methods here
-    protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active'];
+    protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active', 'is_featured'];
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_featured' => 'boolean',
+    ];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     public $translatable = ['name', 'description'];
     protected $appends = ['name_translated', 'parent_name'];
