@@ -20,8 +20,7 @@ return new class extends Migration
                   ->cascadeOnDelete();
                   
             $table->foreignId('product_id')
-                  ->constrained()
-                  ->nullOnDelete(); // Preserve item if product is deleted
+                  ->constrained();
             
             // Core Data (Immutable Snapshot)
             $table->integer('quantity');
