@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         (new AdminSeeder)?->run();
         (new RoleSeeder)?->run();
         (new CategorySeeder)?->run();
-
+        (new BrandSeeder)?->run();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
@@ -55,6 +56,15 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+
+    // Brand Routes
+    Route::get('/brands', [BrandController::class, 'index'])->name('brands');
+    Route::get('/brand', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/brand', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}', [BrandController::class, 'show'])->name('brand.show');
+    Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
+    Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
 
     // Order Routes
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');

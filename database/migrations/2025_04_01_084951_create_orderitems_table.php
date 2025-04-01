@@ -13,34 +13,33 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            
+
             // Foreign Keys
             $table->foreignId('order_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
-                  
+                ->constrained()
+                ->cascadeOnDelete();
+
             $table->foreignId('product_id')
-                  ->constrained()
-                  ->nullOnDelete(); // Preserve item if product is deleted
-            
+                ->constrained()
+                ->nullOnDelete(); // Preserve item if product is deleted
+
             // Core Data (Immutable Snapshot)
             $table->integer('quantity');
             $table->decimal('unit_price', 10, 2); // Price at purchase time
             $table->decimal('unit_cost', 10, 2)->nullable(); // For profit calculations
-            
+
             // Calculated Fields
             $table->decimal('subtotal', 10, 2) // (unit_price * quantity)
-                  ->virtualAs('unit_price * quantity');
-            
+                ->virtualAs('unit_price * quantity');
+
             // Metadata
             $table->json('options')->nullable(); // Size/color/customizations
             $table->timestamps();
-            
+
             // Indexes
             $table->index('order_id');
-            $table->index('product_id');
+            $table->index('product_id', 'product_id_index');
         });
-
     }
 
     /**

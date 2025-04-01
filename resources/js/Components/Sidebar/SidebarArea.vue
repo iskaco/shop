@@ -39,7 +39,7 @@ const menuGroups = ref([
                         label: "titles.admin.menus.categories",
                         route: "categories",
                     },
-                    { label: "titles.admin.menus.brands", route: "dashboard" },
+                    { label: "titles.admin.menus.brands", route: "brands" },
                     {
                         label: "titles.admin.menus.comments",
                         route: "dashboard",
@@ -112,7 +112,7 @@ const menuGroups = ref([
             class="flexitems-center justify-between gap-2 px-6 py-5.5 lg:py-5.5"
         >
             <Link :href="route('admin.dashboard')" class="flex flex-row gap-2">
-                <img src="/images/logo.png" alt="Logo" class="w-14 h-10" />
+                <img src="/images/logo.png" alt="Logo" class="h-10 w-14" />
                 <div class="flex flex-col">
                     <span class="font-black text-sky-700">
                         {{ $t("titles.admin.label") }}
@@ -171,7 +171,7 @@ const menuGroups = ref([
             <!-- Sidebar Menu -->
         </div>
         <div
-            class="flex-1 flex items-end justify-center text-xs text-gray-500 hover:animate-pulse"
+            class="flex items-end justify-center flex-1 text-xs text-gray-500 hover:animate-pulse"
         >
             Powered By Isap
         </div>
