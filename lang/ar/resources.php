@@ -39,6 +39,14 @@ return [
         'general_en' => 'المعلومات العامة (بالانجليزية)',
         'general_ar' => 'المعلومات العامة (بالعربية)',
         'general' => 'المعلومات العامة',
+        'another_info' => 'معلومات إضافية',
+        'short_description' => 'الوصف القصير',
+        'short_description_en' => 'الوصف القصير بالانجليزية',
+        'short_description_ar' => 'الوصف القصير بالعربية',
+        'brand' => 'العلامة التجارية',
+        'images' => 'الصور',
+        'is_featured' => 'مميز',
+        'is_published' => 'منشور',
     ],
     'category' => [
         'label' => 'الفئة',
@@ -62,5 +70,7 @@ return [
         'general' => 'المعلومات العامة',
         'another_info' => 'معلومات إضافية',
         'images' => 'الصور',
+        'is_featured' => 'مميز',
+        'isactive' => 'نشط',
     ],
 ];

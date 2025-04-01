@@ -12,6 +12,8 @@ class ProductController extends Controller
 {
     public function index()
     {
+        // dd(request()->cookie('locale'));
+
         return $this->makeInertiaTableResponse(Product::class, Product::query());
     }
 

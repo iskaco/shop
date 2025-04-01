@@ -13,11 +13,17 @@ class Product extends Model implements HasMedia
     use HasTranslations, InteractsWithMedia, Logable;
 
     // Your model attributes and methods here
-    protected $fillable = ['name', 'category_id', 'description', 'price', 'stock'];
+    protected $fillable = ['name', 'slug', 'category_id', 'brand_id', 'short_description', 'description', 'price', 'stock', 'is_published', 'is_featured'];
+    protected $casts = [
+        'is_published' => 'boolean',
+        'is_featured' => 'boolean',
+        'stock' => 'integer',
+    ];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    public $translatable = ['name', 'description'];
+    public $translatable = ['name', 'short_description', 'description'];
 
-    protected $appends = ['name_translated', 'category_name'];
+    protected $appends = ['name_translated', 'category_name', 'brand_name'];
 
     public function getNameTranslatedAttribute()
     {
@@ -42,6 +48,15 @@ class Product extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+    public function getBrandNameAttribute()
+    {
+        return $this->brand?->name;
     }
 
     public function getCategoryNameAttribute()
