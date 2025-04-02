@@ -23,6 +23,9 @@ class Order extends Model
         'shipping_address'
     ];
 
+    protected $appends = ['user_name'];
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -31,5 +34,9 @@ class Order extends Model
     public function items(): HasMany
     {
         return $this->HasMany(OrderItem::class);
+    }
+
+    public function getUserNameAttribute() {
+        return $this->user?->name;
     }
 }

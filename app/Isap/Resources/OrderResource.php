@@ -26,7 +26,8 @@ class OrderResource extends BaseResource
     public static function table(){
         return (new Table(__('resources.oorder.plural'), Order::class))
             ->columns([
-                TextColumn::make('user', __('resources.order.user_name')),
+                TextColumn::make('user_name', __('resources.order.user_name')),
+                TextColumn::make('status', __('resources.order.status')),
             ])
             ->row_actions([])
             ->table_actions([
