@@ -28,7 +28,6 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request, CategoryStore $action)
     {
         try {
-            dd($request->validated());
             if (! $action->execute($request->validated())) {
                 toast_error(__('messages.category.store.error'));
             } else {
@@ -47,6 +46,7 @@ class CategoryController extends Controller
     }
     public function update(CategoryUpdateRequest $request, CategoryUpdate $action, string $id)
     {
+        //dd($request->validated());
         try {
             if (! $action->execute($id, $request->validated())) {
                 toast_error(__('messages.category.update.error'));
