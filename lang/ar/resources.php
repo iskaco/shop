@@ -73,6 +73,7 @@ return [
         'images' => 'الصور',
         'is_featured' => 'مميز',
         'isactive' => 'نشط',
+        'status' => 'الحالة',
     ],
     'brand' => [
         'label' => 'العلامة التجارية',
