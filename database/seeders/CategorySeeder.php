@@ -26,6 +26,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.shoe'),
                     'ar' => __('categories.descriptions.shoe'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -37,6 +38,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.electronics'),
                     'ar' => __('categories.descriptions.electronics'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -48,6 +50,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.bathroom'),
                     'ar' => __('categories.descriptions.bathroom'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -59,6 +62,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.tshirt'),
                     'ar' => __('categories.descriptions.tshirt'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -70,6 +74,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.furniture'),
                     'ar' => __('categories.descriptions.furniture'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -81,6 +86,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.honey'),
                     'ar' => __('categories.descriptions.honey'),
                 ],
+                'is_active' => true,
             ],
             [
                 'name' => [
@@ -92,6 +98,7 @@ class CategorySeeder extends Seeder
                     'en' => __('categories.descriptions.home_tools'),
                     'ar' => __('categories.descriptions.home_tools'),
                 ],
+                'is_active' => true,
             ],
         ];
 
