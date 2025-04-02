@@ -205,7 +205,10 @@ export default {
                                 v-if="col.column_type == 'Toggle'"
                                 class="flex justify-center"
                             >
-                                <Toggle v-model="row[col.name]"></Toggle>
+                                <Toggle
+                                    v-model="row[col.name]"
+                                    :isDisabled="true"
+                                ></Toggle>
                             </div>
                             <div v-else class="whitespace-nowrap">
                                 {{ row[col.name] }}

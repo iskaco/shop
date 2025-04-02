@@ -34,14 +34,10 @@ export default {
         <label class="mb-2.5 block text-black dark:text-white">
             {{ label }}
         </label>
-        <label
-            for="toggle1"
-            class="flex cursor-pointer select-none items-center"
-        >
+        <label class="flex cursor-pointer select-none items-center">
             <div class="relative">
                 <input
                     type="checkbox"
-                    id="toggle1"
                     v-model="value"
                     class="sr-only"
                     :disabled="isDisabled"
