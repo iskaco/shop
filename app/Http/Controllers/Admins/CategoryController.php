@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, CategoryUpdate $action, string $id)
     {
         try {
-            if (! $action->execute($request->validated(), $id)) {
+            if (! $action->execute($id, $request->validated())) {
                 toast_error(__('messages.category.update.error'));
             } else {
                 toast_success(__('messages.category.update.ok'));
