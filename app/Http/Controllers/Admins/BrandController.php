@@ -15,7 +15,10 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function index() {}
+    public function index()
+    {
+        return $this->makeInertiaTableResponse(Brand::class, Brand::query());
+    }
     public function show($id) {}
     public function store() {}
     public function update($id) {}

@@ -13,7 +13,9 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         //
-        Admin::create(
+        if (Admin::where('username', 'admin')->first())
+            return;
+        Admin::firstOrCreate(
             [
                 'username' => 'admin',
                 'email' => 'admin@meemhome.com',

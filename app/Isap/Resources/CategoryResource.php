@@ -62,6 +62,7 @@ class CategoryResource extends BaseResource
             ]),
             FormSection::make('status', __('resources.category.status'))->children([
                 ToggleInput::make('is_active', __('resources.category.is_active')),
+                ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
 
@@ -73,7 +74,7 @@ class CategoryResource extends BaseResource
     {
         return (new Table(__('resources.category.plural'), Category::class))
             ->columns([
-                TextColumn::make('user', __('resources.order.name')),
+                TextColumn::make('name_translated', __('resources.category.name')),
                 TextColumn::make('parent_name', __('resources.category.parent')),
                 TextColumn::make('slug', __('resources.category.slug')),
                 ImageColumn::make('thumbnail', __('resources.product.image')),

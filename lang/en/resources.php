@@ -84,6 +84,8 @@ return [
         'description' => 'Description',
         'description_en' => 'English Description',
         'description_ar' => 'Arabic Description',
+        'short_description_en' => 'English Short Description',
+        'short_description_ar' => 'Arabic Short Description',
         'thumbnail' => 'Thumbnail',
         'image' => 'Image',
         'banner' => 'Banner',
@@ -98,6 +100,7 @@ return [
         'is_featured' => 'Featured',
         'published' => 'Published',
         'status' => 'Status',
+
     ],
     'order' => [
         'label' => 'Order',
