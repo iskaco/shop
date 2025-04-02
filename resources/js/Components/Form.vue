@@ -11,6 +11,20 @@ import { Link, useForm } from "@inertiajs/vue3";
 import ImageInput from "./Forms/ImageInput.vue";
 import Button from "./Forms/Button.vue";
 import { isObject } from "@vueuse/core";
+import vueFilePond from "vue-filepond";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js";
+import FilePondPluginImageEdit from "filepond-plugin-image-edit";
+
+import "filepond/dist/filepond.min.css";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+import "filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";
+
+const FilePond = vueFilePond(
+    FilePondPluginFileValidateType,
+    FilePondPluginImagePreview,
+    FilePondPluginImageEdit
+);
 
 export default {
     components: {
@@ -24,6 +38,7 @@ export default {
         ImageInput,
         Button,
         FormHeader,
+        FilePond,
     },
     props: {
         form: Object,
@@ -90,6 +105,11 @@ export default {
                     return true;
             }
         },
+        handleFilePondInit: function () {
+            console.log("FilePond has initialized");
+
+            this.$refs.pond.getFiles();
+        },
     },
     mounted() {
         if (isObject(this.data)) {
@@ -97,8 +117,10 @@ export default {
         } else {
             let initialData = {};
             this.form.components.forEach((input) => {
-                initialData[input.name] =
-                    input.component_type == "Toggle" ? false : null;
+                if (component.component_type != "FormSection") {
+                    initialData[input.name] =
+                        input.component_type == "Toggle" ? false : null;
+                }
             });
             this.formData = useForm(initialData);
         }
@@ -128,7 +150,7 @@ export default {
         <div v-for="component in form.components" :key="component.name">
             <DefaultCard
                 v-if="component.component_type == 'FormSection'"
-                :cardTitle="component.name"
+                :cardTitle="component.title"
                 class="bg-white shadow dark:bg-boxdark !rounded-md"
             >
                 <div
@@ -199,6 +221,19 @@ export default {
                         :isDisabled="getEnableStatus(input)"
                     >
                     </ImageInput>
+
+                    <!-- <file-pond
+                        v-if="input.component_type == 'Image'"
+                        name="test"
+                        ref="pond"
+                        class-name="my-pond"
+                        label-idle="Drop files here..."
+                        allow-multiple="true"
+                        allowImageEdit="true"
+                        accepted-file-types="image/jpeg, image/png"
+                        v-bind:files="formData[input.name]"
+                        v-on:init="handleFilePondInit"
+                    /> -->
 
                     <div
                         v-if="formData.errors && formData.errors[input.name]"
