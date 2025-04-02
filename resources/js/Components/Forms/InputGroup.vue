@@ -17,6 +17,12 @@ export default defineComponent({
             default: false,
         },
     },
+    data() {
+        return {
+            min: "0",
+            step: "1",
+        };
+    },
     computed: {
         value: {
             get() {
@@ -25,6 +31,17 @@ export default defineComponent({
             set(value) {
                 this.$emit("update:modelValue", value);
             },
+        },
+        calcMin() {
+            switch (this.type) {
+                case "number":
+                    this.min = "0";
+                    break;
+                case "currency":
+                    this.min = "0.00";
+                    this.step = "0.01";
+                    break;
+            }
         },
     },
 });
@@ -41,7 +58,10 @@ export default defineComponent({
             :placeholder="placeholder"
             v-model="value"
             :disabled="isDisabled"
+            :min="min"
+            :step="step"
             class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-3 px-5 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            @focus="this.$emit('focus', event)"
         />
     </div>
 </template>
