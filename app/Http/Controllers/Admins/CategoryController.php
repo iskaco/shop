@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
     public function edit(string $id)
     {
-        return $this->makeInertiaFormResponse(Category::class, Category::findOrFail($id), ActionType::UPDATE);
+        return $this->makeInertiaFormResponse(Category::class, Category::findOrFail($id)?->toFrontendArray(), ActionType::UPDATE);
     }
     public function update(CategoryUpdateRequest $request, CategoryUpdate $action, string $id)
     {
