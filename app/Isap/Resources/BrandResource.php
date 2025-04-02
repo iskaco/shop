@@ -51,7 +51,11 @@ class BrandResource extends BaseResource
                 ),
                 FormSection::make('another_info', __('resources.brand.another_info'))->children([
                     TextInput::make('slug', __('resources.brand.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
-                    ImageInput::make('logo', __('resources.brand.logo')),
+                ]),
+                FormSection::make('images', __('resources.brand.images'))->children([
+                    ImageInput::make('image', __('resources.brand.image')),
+                    ImageInput::make('thumbnail', __('resources.brand.thumbnail')),
+                    ImageInput::make('banner', __('resources.brand.banner')),
                 ]),
                 FormSection::make('status', __('resources.brand.status'))->children([
                     ToggleInput::make('is_active', __('resources.brand.is_active')),
@@ -63,7 +67,7 @@ class BrandResource extends BaseResource
 
     public static function table()
     {
-        $table = new Table(__('resources.product.plural'), Brand::class);
+        $table = new Table(__('resources.product.plural'), Brand::class, 'brands');
         return $table->columns([
             TextColumn::make('name_translated', __('resources.brand.name')),
             TextColumn::make('slug', __('resources.brand.slug')),

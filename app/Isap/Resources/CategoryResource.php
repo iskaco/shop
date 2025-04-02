@@ -72,7 +72,7 @@ class CategoryResource extends BaseResource
 
     public static function table()
     {
-        return (new Table(__('resources.category.plural'), Category::class))
+        return (new Table(__('resources.category.plural'), Category::class, 'categories'))
             ->columns([
                 TextColumn::make('name_translated', __('resources.category.name')),
                 TextColumn::make('parent_name', __('resources.category.parent')),

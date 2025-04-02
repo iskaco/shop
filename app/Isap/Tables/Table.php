@@ -11,7 +11,7 @@ class Table
     public $filters = [];
     public $row_actions = [];
     public $table_actions = [];
-    public function __construct(public $title='',public $model = ''){}
+    public function __construct(public $title = '', public $model = '', public $name = '') {}
     public function columns(?array $columns)
     {
         $this->columns = $columns;
