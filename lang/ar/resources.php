@@ -86,6 +86,8 @@ return [
         'shipping_address' => 'عنوان الشحن'
     ],
     'cart' => [
+        'label' => 'عربة',
+        'plural' => 'عربات',
         'user_name' => 'اسم الزبون',
     ],
 ];
