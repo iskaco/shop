@@ -1,3 +1,4 @@
+@ts-nocheck
 <script>
 import FormHeader from "@/Components/FormHeader.vue";
 import DefaultCard from "@/Components/Forms/DefaultCard.vue";
@@ -64,6 +65,8 @@ export default {
             if (component.is_password) return "password";
             if (component.is_email) return "email";
             if (component.is_url) return "url";
+            if (component.is_number) return "number";
+            if (component.is_currency) return "currency";
             return "text";
         },
         submitForm() {
@@ -109,6 +112,12 @@ export default {
             console.log("FilePond has initialized");
 
             this.$refs.pond.getFiles();
+        },
+        setSlug(slug_field, field) {
+            this.formData[slug_field] = this.makeSlug(this.formData[field]);
+        },
+        makeSlug(title) {
+            return title.toLowerCase().trim().replace(/\s+/g, "-");
         },
     },
     mounted() {
@@ -180,6 +189,11 @@ export default {
                         "
                         :required="input.required"
                         :isDisabled="getEnableStatus(input)"
+                        @focus="
+                            input.is_slug
+                                ? setSlug(input.name, input.related_slug_field)
+                                : ''
+                        "
                     />
 
                     <IconPicker
@@ -202,6 +216,7 @@ export default {
                                 >*</span
                             >
                         </label>
+
                         <Multiselect
                             v-model="formData[input.name]"
                             :multiple="input.is_multi"
@@ -230,7 +245,7 @@ export default {
                     >
                     </ImageInput>
 
-                    <div v-if="input.component_type == 'Image'">
+                    <div v-if="input.component_type == 'MultiImage'">
                         <label class="mb-2.5 block text-black dark:text-white">
                             {{ input.title }}
                             <span v-if="input.required" class="text-meta-1"
@@ -255,11 +270,7 @@ export default {
 
                     <div
                         v-if="formData.errors && formData.errors[input.name]"
-                        class="mr-3 text-xs text-meta-1"
-                        :class="{
-                            '-mt-3': input.component_type != 'Image',
-                            'mt-3': input.component_type == 'Image',
-                        }"
+                        class="mr-3 mt-3 text-xs text-meta-1"
                     >
                         - {{ formData.errors[input.name] }}
                     </div>
@@ -297,6 +308,14 @@ export default {
                     "
                     :required="component.required"
                     :isDisabled="getEnableStatus(component)"
+                    @focus="
+                        component.is_slug
+                            ? setSlug(
+                                  component.name,
+                                  component.related_slug_field
+                              )
+                            : ''
+                    "
                 />
 
                 <IconPicker
@@ -346,13 +365,28 @@ export default {
                 >
                 </ImageInput>
 
+                <div v-if="input.component_type == 'MultiImage'">
+                    <label class="mb-2.5 block text-black dark:text-white">
+                        {{ input.title }}
+                        <span v-if="input.required" class="text-meta-1">*</span>
+                    </label>
+                    <file-pond
+                        v-if="input.component_type == 'Image'"
+                        name="images"
+                        ref="pond"
+                        class-name="my-pond"
+                        :label-idle="$t('titles.form.selectOrDropImagesHere')"
+                        allow-multiple="true"
+                        allowImageEdit="true"
+                        accepted-file-types="image/jpeg, image/png"
+                        :files="formData[input.name]"
+                        :init="handleFilePondInit"
+                    />
+                </div>
+
                 <div
                     v-if="formData.errors && formData.errors[component.name]"
-                    class="mr-3 text-xs text-meta-1"
-                    :class="{
-                        '-mt-3': component.component_type != 'Image',
-                        'mt-3': component.component_type == 'Image',
-                    }"
+                    class="mr-3 mt-3 text-xs text-meta-1"
                 >
                     - {{ formData.errors[component.name] }}
                 </div>
