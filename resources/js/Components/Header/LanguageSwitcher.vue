@@ -3,9 +3,11 @@ import { useI18n } from "vue-i18n";
 import { loadLanguageMessages } from "@/i18n";
 import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
+import { onClickOutside } from "@vueuse/core";
 
 const { locale } = useI18n();
 const isOpen = ref(false);
+const target = ref(null);
 
 const languages = [
     {
@@ -16,6 +18,10 @@ const languages = [
     },
     { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl" },
 ];
+
+onClickOutside(target, () => {
+    isOpen.value = false;
+});
 
 const changeLanguage = async (langCode) => {
     const selectedLang = languages.find((lang) => lang.code === langCode);
@@ -54,6 +60,7 @@ const changeLanguage = async (langCode) => {
         <!-- Dropdown Menu -->
         <div
             v-if="isOpen"
+            ref="target"
             class="absolute right-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
         >
             <button

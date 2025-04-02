@@ -109,8 +109,6 @@ export default {
             }
         },
         handleFilePondInit: function () {
-            console.log("FilePond has initialized");
-
             this.$refs.pond.getFiles();
         },
         setSlug(slug_field, field) {
@@ -241,6 +239,7 @@ export default {
                         :id="data.id"
                         :attribute="input.name"
                         :multiple="false"
+                        :ratio="input.ratio"
                         :isDisabled="getEnableStatus(input)"
                     >
                     </ImageInput>
@@ -361,6 +360,7 @@ export default {
                     :id="data.id"
                     :attribute="component.name"
                     :multiple="false"
+                    :ratio="component.ratio"
                     :isDisabled="getEnableStatus(component)"
                 >
                 </ImageInput>

@@ -21,6 +21,10 @@ export default {
         id: Number,
         attribute: String,
         multiple: Boolean,
+        ratio: {
+            type: Number,
+            default: 1,
+        },
     },
     data() {
         return {
@@ -105,7 +109,7 @@ export default {
 <template>
     <Modal :show="modalShowStatus" @close="closeModal">
         <div class="flex flex-col gap-5">
-            <VueCropper ref="cropper" :aspect-ratio="1 / 1" :src="imgSrc">
+            <VueCropper ref="cropper" :aspect-ratio="ratio" :src="imgSrc">
             </VueCropper>
             <div class="flex flex-row gap-3 justify-center mb-5">
                 <Button
