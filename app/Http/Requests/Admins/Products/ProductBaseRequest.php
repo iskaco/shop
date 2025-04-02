@@ -54,13 +54,12 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
         ]);
 
         $validator->validate();
-
         $this->merge([
             'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
             'description' => ['en' => $this->description_en, 'ar' => $this->description_ar],
             'short_description' => ['en' => $this->short_description_en, 'ar' => $this->short_description_ar],
-            'category_id' => $this->category ? $this->category_id['id'] : null,
-            'brand_id' => $this->brand ? $this->brand_id['id'] : null,
+            'category_id' => $this->category_id ? $this->category_id['id'] : null,
+            'brand_id' => $this->brand_id ? $this->brand_id['id'] : null,
         ]);
     }
 }

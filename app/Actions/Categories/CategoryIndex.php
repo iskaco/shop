@@ -8,7 +8,5 @@ use App\Models\Category;
 
 class CategoryIndex extends BaseAction
 {
-    public function execute(/*array $data*/) /* return value */
-    {
-    }
+    public function execute() /* return value */ {}
 }

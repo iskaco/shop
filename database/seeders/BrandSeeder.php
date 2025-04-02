@@ -26,6 +26,7 @@ class BrandSeeder extends Seeder
                 'en' => __('brands.descriptions.nike'),
                 'ar' => __('brands.descriptions.nike'),
             ],
+            'is_active' => true,
         ]);
         Brand::firstOrCreate([
             'name' => [
@@ -37,6 +38,7 @@ class BrandSeeder extends Seeder
                 'en' => __('brands.descriptions.adidas'),
                 'ar' => __('brands.descriptions.adidas'),
             ],
+            'is_active' => true,
         ]);
         Brand::firstOrCreate([
             'name' => [
@@ -48,6 +50,7 @@ class BrandSeeder extends Seeder
                 'en' => __('brands.descriptions.puma'),
                 'ar' => __('brands.descriptions.puma'),
             ],
+            'is_active' => true,
         ]);
         Brand::firstOrCreate([
             'name' => [
@@ -59,6 +62,7 @@ class BrandSeeder extends Seeder
                 'en' => __('brands.descriptions.reebok'),
                 'ar' => __('brands.descriptions.reebok'),
             ],
+            'is_active' => true,
         ]);
         Brand::firstOrCreate([
             'name' => [
@@ -70,6 +74,7 @@ class BrandSeeder extends Seeder
                 'en' => __('brands.descriptions.under_armour'),
                 'ar' => __('brands.descriptions.under_armour'),
             ],
+            'is_active' => true,
         ]);
     }
 }

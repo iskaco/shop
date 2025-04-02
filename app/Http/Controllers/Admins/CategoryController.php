@@ -41,6 +41,24 @@ class CategoryController extends Controller
         }
     }
 
-    public function update($id) {}
+    public function edit(string $id)
+    {
+        return $this->makeInertiaFormResponse(Category::class, Category::findOrFail($id), ActionType::UPDATE);
+    }
+    public function update(CategoryUpdateRequest $request, CategoryUpdate $action, string $id)
+    {
+        try {
+            if (! $action->execute($request->validated(), $id)) {
+                toast_error(__('messages.category.update.error'));
+            } else {
+                toast_success(__('messages.category.update.ok'));
+            }
+
+            return $this->makeInertiaTableResponse(Category::class, Category::query());
+        } catch (\Throwable $th) {
+            toast_error(__('messages.category.update.error') . $th->getMessage());
+        }
+    }
+
     public function destroy($id) {}
 }
