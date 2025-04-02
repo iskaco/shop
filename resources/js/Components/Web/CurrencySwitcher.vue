@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 const isOpen = ref(false);
+const target = ref(null);
 
 const currencies = [
     {
@@ -17,6 +19,10 @@ const currencies = [
         prefix: "titles.web.currency.rial.prefix",
     },
 ];
+
+onClickOutside(target, () => {
+    isOpen.value = false;
+});
 
 const selectedCurrency = ref(currencies[0]);
 
@@ -39,6 +45,7 @@ const changeCurrency = (currency) => {
         <!-- Dropdown Menu -->
         <div
             v-if="isOpen"
+            ref="target"
             class="absolute right-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
         >
             <button
