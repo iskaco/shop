@@ -20,7 +20,20 @@ class BrandController extends Controller
         return $this->makeInertiaTableResponse(Brand::class, Brand::query());
     }
     public function show($id) {}
-    public function store() {}
+    public function store(BrandStoreRequest $request, BrandStore $action)
+    {
+        try {
+            if (! $action->execute($request->validated())) {
+                toast_error(__('messages.brand.store.error'));
+            } else {
+                toast_success(__('messages.brand.store.ok'));
+            }
+
+            return $this->makeInertiaTableResponse(Brand::class, Brand::query());
+        } catch (\Throwable $th) {
+            toast_error(__('messages.brand.store.error') . $th->getMessage());
+        }
+    }
     public function update($id) {}
     public function destroy($id) {}
     public function create() {}

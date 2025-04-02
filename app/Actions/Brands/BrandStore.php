@@ -4,11 +4,24 @@ namespace App\Actions\Brands;
 
 use App\Actions\BaseAction;
 use App\Models\Brand;
-
+use Illuminate\Support\Facades\DB;
 
 class BrandStore extends BaseAction
 {
-    public function execute(/*array $data*/) /* return value */
+    public function execute($data): Brand
     {
+        DB::beginTransaction();
+        $brand = Brand::create($data);
+        if ($data['image']) {
+            $brand->addMedia($data['image'])->toMediaCollection('Brands.Images');
+        }
+        if ($data['thumbnail']) {
+            $brand->addMedia($data['thumbnail'])->toMediaCollection('Brands.Thumbnails');
+        }
+        if ($data['banner']) {
+            $brand->addMedia($data['banner'])->toMediaCollection('Brands.Banners');
+        }
+        DB::commit();
+        return $brand;
     }
 }

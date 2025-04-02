@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Logable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Product extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia, Logable;
+    use HasFactory, HasTranslations, InteractsWithMedia, Logable;
 
     // Your model attributes and methods here
     protected $fillable = ['name', 'slug', 'category_id', 'brand_id', 'short_description', 'description', 'price', 'stock', 'is_published', 'is_featured'];
