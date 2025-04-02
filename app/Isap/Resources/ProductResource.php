@@ -74,7 +74,7 @@ class ProductResource extends BaseResource
 
     public static function table()
     {
-        $table = new Table(__('resources.product.plural'), Product::class);
+        $table = new Table(__('resources.product.plural'), Product::class, 'products');
 
         return $table->columns([
             TextColumn::make('name_translated', __('resources.product.name')),

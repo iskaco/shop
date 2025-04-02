@@ -11,6 +11,7 @@ use App\Actions\Brands\BrandUpdate;
 use App\Http\Requests\Admins\Brands\BrandDestroyRequest;
 use App\Http\Requests\Admins\Brands\BrandStoreRequest;
 use App\Http\Requests\Admins\Brands\BrandUpdateRequest;
+use App\Isap\Actions\ActionType;
 use App\Models\Brand;
 
 class BrandController extends Controller
@@ -20,6 +21,10 @@ class BrandController extends Controller
         return $this->makeInertiaTableResponse(Brand::class, Brand::query());
     }
     public function show($id) {}
+    public function create()
+    {
+        return $this->makeInertiaFormResponse(Brand::class, [], ActionType::STORE);
+    }
     public function store(BrandStoreRequest $request, BrandStore $action)
     {
         try {
@@ -36,6 +41,5 @@ class BrandController extends Controller
     }
     public function update($id) {}
     public function destroy($id) {}
-    public function create() {}
     public function edit(string $id) {}
 }
