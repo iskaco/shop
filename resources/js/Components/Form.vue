@@ -117,7 +117,7 @@ export default {
         } else {
             let initialData = {};
             this.form.components.forEach((input) => {
-                if (component.component_type != "FormSection") {
+                if (input.component_type != "FormSection") {
                     initialData[input.name] =
                         input.component_type == "Toggle" ? false : null;
                 }
