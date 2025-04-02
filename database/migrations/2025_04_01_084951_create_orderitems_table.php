@@ -34,6 +34,7 @@ return new class extends Migration
             // Metadata
             $table->json('options')->nullable(); // Size/color/customizations
             $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index('order_id');
