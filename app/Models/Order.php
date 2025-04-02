@@ -6,10 +6,11 @@ use App\Logable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use Logable;
+    use Logable, SoftDeletes;
 
     protected $fillable = [
         'user_id',

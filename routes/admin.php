@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\Admins\CartController;
 use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
@@ -64,4 +65,13 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
     Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+
+    // Order Routes
+    Route::get('/carts', [CartController::class, 'index'])->name('carts');
+    Route::get('/cart', [CartController::class, 'create'])->name('cart.create');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart/{id}', [CartController::class, 'show'])->name('cart.show');
+    Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/cart/edit/{id}', [CartController::class, 'edit'])->name('cart.edit');
 });
