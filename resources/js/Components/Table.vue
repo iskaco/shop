@@ -100,10 +100,14 @@ export default {
                 // pickBy by default remove null members from object
                 let params = pickBy(this.params);
 
-                this.$inertia.get(this.route("admin.admins"), params, {
-                    replace: true,
-                    preserveState: true,
-                });
+                this.$inertia.get(
+                    this.route("admin." + this.table.name),
+                    params,
+                    {
+                        replace: true,
+                        preserveState: true,
+                    }
+                );
             }, 500),
             deep: true,
         },

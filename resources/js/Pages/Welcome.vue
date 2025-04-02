@@ -8,7 +8,7 @@ import CategoriesSection from "@/Components/Web/CategoriesSection.vue";
 </script>
 
 <template>
-    <Head :title="$t('titles.titles.web.description')" />
+    <Head :title="$t('titles.web.description')" />
     <WebLayout>
         <div>
             <HeroSection
