@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Traits\TranslatableTrait;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, Logable;
+    use HasFactory, HasTranslations, TranslatableTrait, InteractsWithMedia, Logable;
 
-    // Your model attributes and methods here
     protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active', 'is_featured'];
     protected $casts = [
         'is_active' => 'boolean',
@@ -21,9 +21,8 @@ class Category extends Model implements HasMedia
     ];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    public $translatable = ['name', 'description'];
+    protected $translatable = ['name', 'description'];
     protected $appends = ['name_translated', 'parent_name'];
-
 
     public function products()
     {
@@ -39,6 +38,7 @@ class Category extends Model implements HasMedia
     {
         return $this->parent ? $this->parent?->name : __('resources.category.root');
     }
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
