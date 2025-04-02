@@ -115,6 +115,8 @@ return [
         'shipping_address' => 'Shipping Address',
     ],
     'cart' => [
+        'label' => 'Cart',
+        'plural' => 'Carts',
         'user_name' => 'User Name'
     ],
 ];

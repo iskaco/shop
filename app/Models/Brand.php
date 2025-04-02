@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Logable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Brand extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia, Logable;
+    use HasFactory, HasTranslations, InteractsWithMedia, Logable;
 
     protected $fillable = ['name', 'slug', 'description', 'short_description', 'is_active', 'is_featured'];
     protected $casts = [
