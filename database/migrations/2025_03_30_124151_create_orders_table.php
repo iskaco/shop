@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->text('shipping_address');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
