@@ -73,4 +73,16 @@ return [
         'is_featured' => 'مميز',
         'isactive' => 'نشط',
     ],
+    'order' => [
+        'label' => 'طلب',
+        'plural' => 'طلبات',
+        'status' => 'الحالة',
+        'subtotal' => 'المجموع الجزئي',
+        'tax_amount' => 'مبلغ الضریبة',
+        'discount_amount' => 'مبلغ التخفیض',
+        'shipping_cost' => 'تكلفة الشحن',
+        'total' => 'المجموع الكلي',
+        'payment_method' => 'طريقة الدفع',
+        'shipping_address' => 'عنوان الشحن'
+    ],
 ];

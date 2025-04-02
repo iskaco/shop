@@ -99,4 +99,16 @@ return [
         'published' => 'Published',
         'status' => 'Status',
     ],
+    'order' => [
+        'label' => 'Order',
+        'plural' => 'Orders',
+        'status' => 'Status',
+        'subtotal' => 'Subtotal',
+        'tax_amount' => 'Tax Amount',
+        'discount_amount' => 'Discount Amount',
+        'shipping_cost' => 'Shipping Cost',
+        'total' => 'Total',
+        'payment_method' => 'Payment Method',
+        'shipping_address' => 'Shipping Address',
+    ],
 ];
