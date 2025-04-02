@@ -48,6 +48,7 @@ return [
         'is_featured' => 'مميز',
         'is_published' => 'منشور',
         'slug' => 'الرابط الثابت',
+        'status' => 'الحالة',
     ],
     'category' => [
         'label' => 'الفئة',
