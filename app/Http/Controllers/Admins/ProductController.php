@@ -24,7 +24,11 @@ class ProductController extends Controller
         return $this->makeInertiaFormResponse(Product::class, [], ActionType::STORE);
     }
 
-    public function show($id) {}
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return $this->makeInertiaFormResponse(Product::class, $product->toFrontendArray(), ActionType::SHOW);
+    }
 
     public function store(ProductStoreRequest $request, ProductStore $action)
     {
