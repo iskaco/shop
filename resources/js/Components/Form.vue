@@ -117,7 +117,14 @@ export default {
         } else {
             let initialData = {};
             this.form.components.forEach((input) => {
-                if (input.component_type != "FormSection") {
+                if (input.component_type == "FormSection") {
+                    input.children.forEach((childInput) => {
+                        initialData[childInput.name] =
+                            childInput.component_type == "Toggle"
+                                ? false
+                                : null;
+                    });
+                } else {
                     initialData[input.name] =
                         input.component_type == "Toggle" ? false : null;
                 }
@@ -210,6 +217,7 @@ export default {
                             :disabled="getEnableStatus(input)"
                         ></Multiselect>
                     </div>
+
                     <ImageInput
                         v-if="input.component_type == 'Image'"
                         v-model="formData[input.name]"
@@ -222,18 +230,28 @@ export default {
                     >
                     </ImageInput>
 
-                    <!-- <file-pond
-                        v-if="input.component_type == 'Image'"
-                        name="test"
-                        ref="pond"
-                        class-name="my-pond"
-                        label-idle="Drop files here..."
-                        allow-multiple="true"
-                        allowImageEdit="true"
-                        accepted-file-types="image/jpeg, image/png"
-                        v-bind:files="formData[input.name]"
-                        v-on:init="handleFilePondInit"
-                    /> -->
+                    <div v-if="input.component_type == 'Image'">
+                        <label class="mb-2.5 block text-black dark:text-white">
+                            {{ input.title }}
+                            <span v-if="input.required" class="text-meta-1"
+                                >*</span
+                            >
+                        </label>
+                        <file-pond
+                            v-if="input.component_type == 'Image'"
+                            name="images"
+                            ref="pond"
+                            class-name="my-pond"
+                            :label-idle="
+                                $t('titles.form.selectOrDropImagesHere')
+                            "
+                            allow-multiple="true"
+                            allowImageEdit="true"
+                            accepted-file-types="image/jpeg, image/png"
+                            :files="formData[input.name]"
+                            :init="handleFilePondInit"
+                        />
+                    </div>
 
                     <div
                         v-if="formData.errors && formData.errors[input.name]"

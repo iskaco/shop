@@ -109,12 +109,12 @@ export default {
             </VueCropper>
             <div class="flex flex-row gap-3 justify-center mb-5">
                 <Button
-                    label="انتخاب"
+                    :label="$t('titles.form.select')"
                     customClasses="bg-meta-11"
                     @click="cropImage"
                 ></Button>
                 <Button
-                    label="انصراف"
+                    :label="$t('titles.form.cancel')"
                     customClasses="bg-body"
                     @click="closeModal"
                 ></Button>
