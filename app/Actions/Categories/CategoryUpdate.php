@@ -4,12 +4,13 @@ namespace App\Actions\Categories;
 
 use App\Actions\BaseAction;
 use App\Models\Category;
-
+use Illuminate\Support\Facades\DB;
 
 class CategoryUpdate extends BaseAction
 {
     public function execute(string $id, $data) /* return value */
     {
+        DB::beginTransaction();
         $category = Category::findOrFail($id);
         $category->update($data);
         if ($data['image']) {
@@ -24,6 +25,7 @@ class CategoryUpdate extends BaseAction
             $category->clearMediaCollection('Categories.Banners');
             $category->addMedia($data['banner'])->toMediaCollection('Categories.Banners');
         }
+        DB::commit();
         return $category;
     }
 }
