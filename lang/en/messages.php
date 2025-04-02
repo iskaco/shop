@@ -28,6 +28,10 @@ return [
             'ok' => 'Product created successfully.',
             'error' => 'Error creating product',
         ],
+        'update' => [
+            'ok' => 'Product updated successfully.',
+            'error' => 'Error updating product',
+        ],
     ],
     'category' => [
         'destroy' => [
@@ -39,6 +43,26 @@ return [
         'store' => [
             'ok' => 'Category created successfully.',
             'error' => 'Error creating category',
+        ],
+        'update' => [
+            'ok' => 'Category updated successfully.',
+            'error' => 'Error updating category',
+        ],
+    ],
+    'brand' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Brand deleted successfully.',
+            'error' => 'Error deleting brand',
+            'not_found' => 'Brand not found',
+        ],
+        'store' => [
+            'ok' => 'Brand created successfully.',
+            'error' => 'Error creating brand',
+        ],
+        'update' => [
+            'ok' => 'Brand updated successfully.',
+            'error' => 'Error updating brand',
         ],
     ],
 ];
