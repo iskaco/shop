@@ -1,5 +1,5 @@
 <script setup>
-import { router } from "@inertiajs/vue3";
+import { router, Link } from "@inertiajs/vue3";
 const categories = [
     {
         title: "titles.web.categories.electronics.name",
@@ -78,7 +78,7 @@ const categories = [
                     :key="cat.name"
                     class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
                     @click="
-                        router.get(this.route('web.category', cat.name), {
+                        router.get(route('web.category', cat.name), {
                             title: cat.name,
                             subtitle: cat.description,
                             banner: cat.banner,
