@@ -102,6 +102,8 @@ return [
         'images' => 'الصور',
         'status' => 'الحالة',
 
+    ],
+
     'order' => [
         'label' => 'طلب',
         'plural' => 'طلبات',
