@@ -274,3 +274,10 @@ input[type="search"]::-webkit-search-cancel-button {
 [x-cloak] {
     display: none !important;
 }
+
+.my-pond {
+    @apply w-full md:w-1/2;
+}
+.filepond--credits {
+    @apply hidden;
+}

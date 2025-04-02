@@ -242,7 +242,10 @@
             "edit": "تعديل ",
             "create": "إنشاء ",
             "inputPlaceholder": "أدخل ",
-            "selectPlaceholder": "اختر "
+            "selectPlaceholder": "اختر ",
+            "select": "اختيار",
+            "cancel": "إلغاء",
+            "selectOrDropImagesHere": "اختر أو اسحب الصور هنا"
         },
         "back": "رجوع",
         "actions": "العمليات",

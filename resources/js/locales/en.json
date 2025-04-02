@@ -242,7 +242,10 @@
             "edit": "Edit ",
             "create": "Create ",
             "inputPlaceholder": "Enter ",
-            "selectPlaceholder": "Select "
+            "selectPlaceholder": "Select ",
+            "select": "Select",
+            "cancel": "Cancel",
+            "selectOrDropImagesHere": "Select or drop images here"
         },
         "back": "Back",
         "actions": "Actions",
