@@ -11,7 +11,6 @@ class ProductStore extends BaseAction
     public function execute($data): Product
     {
         DB::beginTransaction();
-        dd($data);
         $product = Product::create($data);
         if ($data['image']) {
             $product->addMedia($data['image'])->toMediaCollection('Products.Images');

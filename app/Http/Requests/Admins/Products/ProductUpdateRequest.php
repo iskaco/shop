@@ -11,11 +11,4 @@ class ProductUpdateRequest extends AdminsAuthRequest
     {
         $this->action = 'products.update';
     }
-
-    public function rules(): array
-    {
-        return [
-
-        ];
-    }
 }

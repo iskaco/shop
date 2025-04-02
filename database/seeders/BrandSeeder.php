@@ -14,6 +14,8 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         //
+        if (Brand::count() > 0)
+            return;
         Brand::firstOrCreate([
             'name' => [
                 'en' => 'Nike',

@@ -55,6 +55,7 @@ class ProductResource extends BaseResource
                 ]
             ),
             FormSection::make('another_info', __('resources.product.another_info'))->children([
+                TextInput::make('slug', __('resources.product.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
                 MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
                 MultiSelectInput::make('brand_id', __('resources.product.brand'))->setSource((new DataUtil)->getOptionsForModel(new Brand, 'id', 'name'))->setIsNotMulti()->isRequired(),
                 TextInput::make('price', __('resources.product.price'))->isCurrency(),

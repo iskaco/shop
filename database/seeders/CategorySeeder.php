@@ -13,6 +13,8 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        if (Category::count() > 0)
+            return;
         $categories = [
             [
                 'name' => [
@@ -94,7 +96,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::firstOrCreate($category);
         }
     }
 }

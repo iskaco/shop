@@ -32,13 +32,16 @@ class ProductController extends Controller
             } else {
                 toast_success(__('messages.product.store.ok'));
             }
-
             return $this->makeInertiaTableResponse(Product::class, Product::query());
-
         } catch (\Throwable $th) {
-            toast_error(__('messages.product.store.error'));
+            toast_error(__('messages.product.store.error') . $th->getMessage());
+            //dd($th->getMessage());
         }
+    }
 
+    public function edit(string $id)
+    {
+        return $this->makeInertiaFormResponse(Product::class, Product::findOrFail($id), ActionType::UPDATE);
     }
 
     public function update($id) {}

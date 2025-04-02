@@ -47,6 +47,7 @@ return [
         'images' => 'الصور',
         'is_featured' => 'مميز',
         'is_published' => 'منشور',
+        'slug' => 'الرابط الثابت',
     ],
     'category' => [
         'label' => 'الفئة',

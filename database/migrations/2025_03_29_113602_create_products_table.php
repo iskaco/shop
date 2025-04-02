@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unique(['deleted_at', 'category_id', 'name'], 'name_unique');
-            $table->unique(['deleted_at', 'category_id', 'slug'], 'slug_unique');
+            $table->unique(['deleted_at', 'slug'], 'slug_unique');
         });
     }
 
