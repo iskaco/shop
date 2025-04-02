@@ -39,7 +39,23 @@ class BrandController extends Controller
             toast_error(__('messages.brand.store.error') . $th->getMessage());
         }
     }
-    public function update($id) {}
+    public function edit(string $id)
+    {
+        return $this->makeInertiaFormResponse(Brand::class, Brand::findOrFail($id)?->toFrontendArray(), ActionType::UPDATE);
+    }
+    public function update(BrandUpdateRequest $request, BrandUpdate $action, string $id)
+    {
+        try {
+            if (! $action->execute($id, $request->validated())) {
+                toast_error(__('messages.brand.update.error'));
+            } else {
+                toast_success(__('messages.brand.update.ok'));
+            }
+
+            return $this->makeInertiaTableResponse(Brand::class, Brand::query());
+        } catch (\Throwable $th) {
+            toast_error(__('messages.brand.update.error') . $th->getMessage());
+        }
+    }
     public function destroy($id) {}
-    public function edit(string $id) {}
 }

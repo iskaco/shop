@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Actions\Products\ProductStore;
+use App\Actions\Products\ProductUpdate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admins\Products\ProductStoreRequest;
+use App\Http\Requests\Admins\Products\ProductUpdateRequest;
 use App\Isap\Actions\ActionType;
 use App\Models\Product;
 
@@ -42,10 +44,23 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        return $this->makeInertiaFormResponse(Product::class, Product::findOrFail($id), ActionType::UPDATE);
+        return $this->makeInertiaFormResponse(Product::class, Product::findOrFail($id)->toFrontendArray(), ActionType::UPDATE);
     }
 
-    public function update($id) {}
+    public function update(ProductUpdateRequest $request, ProductUpdate $action, string $id)
+    {
+        try {
+            if (! $action->execute($id, $request->validated())) {
+                toast_error(__('messages.product.update.error'));
+            } else {
+                toast_success(__('messages.product.update.ok'));
+            }
+            return $this->makeInertiaTableResponse(Product::class, Product::query());
+        } catch (\Throwable $th) {
+            toast_error(__('messages.product.update.error') . $th->getMessage());
+        }
+    }
+
 
     public function destroy($id) {}
 }
