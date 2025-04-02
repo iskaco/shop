@@ -85,4 +85,7 @@ return [
         'payment_method' => 'طريقة الدفع',
         'shipping_address' => 'عنوان الشحن'
     ],
+    'cart' => [
+        'user_name' => 'اسم الزبون',
+    ],
 ];

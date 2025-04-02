@@ -111,4 +111,7 @@ return [
         'payment_method' => 'Payment Method',
         'shipping_address' => 'Shipping Address',
     ],
+    'cart' => [
+        'user_name' => 'User Name'
+    ],
 ];

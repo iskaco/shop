@@ -26,7 +26,6 @@ class CartResource extends BaseResource
         return (new Table(__('resources.oorder.plural'), Cart::class))
             ->columns([
                 TextColumn::make('user_name', __('resources.cart.user_name')),
-                TextColumn::make('status', __('resources.cart.status')),
             ])
             ->row_actions([
                 DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
