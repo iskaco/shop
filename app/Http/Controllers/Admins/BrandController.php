@@ -20,7 +20,11 @@ class BrandController extends Controller
     {
         return $this->makeInertiaTableResponse(Brand::class, Brand::query());
     }
-    public function show($id) {}
+    public function show($id)
+    {
+        $brand = Brand::findOrFail($id);
+        return $this->makeInertiaFormResponse(Brand::class, $brand->toFrontendArray(), ActionType::SHOW);
+    }
     public function create()
     {
         return $this->makeInertiaFormResponse(Brand::class, [], ActionType::STORE);

@@ -20,7 +20,11 @@ class CategoryController extends Controller
     {
         return $this->makeInertiaTableResponse(Category::class, Category::query());
     }
-    public function show($id) {}
+    public function show($id)
+    {
+        $category = Category::findOrFail($id);
+        return $this->makeInertiaFormResponse(Category::class, $category->toFrontendArray(), ActionType::SHOW);
+    }
     public function create()
     {
         return $this->makeInertiaFormResponse(Category::class, [], ActionType::STORE);
