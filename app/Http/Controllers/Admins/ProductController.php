@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request, ProductStore $action)
     {
+        //dd($request->all());
         try {
             if (! $action->execute($request->validated())) {
                 toast_error(__('messages.product.store.error'));
