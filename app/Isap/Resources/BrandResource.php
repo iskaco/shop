@@ -36,6 +36,7 @@ class BrandResource extends BaseResource
                                 [
                                     TextInput::make('name_en', __('resources.brand.name_en'))->isRequired(),
                                     TextInput::make('description_en', __('resources.brand.description_en')),
+                                    TextInput::make('short_description_en', __('resources.brand.short_description_en')),
                                 ]
                             ),
                         ],
@@ -44,6 +45,7 @@ class BrandResource extends BaseResource
                                 [
                                     TextInput::make('name_ar', __('resources.brand.name_ar'))->isRequired(),
                                     TextInput::make('description_ar', __('resources.brand.description_ar')),
+                                    TextInput::make('short_description_ar', __('resources.brand.short_description_ar')),
                                 ]
                             ),
                         ]

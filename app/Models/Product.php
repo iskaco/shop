@@ -68,7 +68,7 @@ class Product extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        $media = $this->getFirstMedia('Products.Images');
+        $media = $this->getFirstMedia('Product.Images');
 
         return $media;
     }

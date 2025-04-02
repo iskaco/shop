@@ -27,5 +27,26 @@ class Brand extends Model implements HasMedia
         return $this->getTranslation('name', app()->getLocale());
     }
 
+    public function getImageAttribute()
+    {
+        $media = $this->getFirstMedia('Brand.Images');
+
+        return $media;
+    }
+
+    public function getThumbnailAttribute()
+    {
+        $media = $this->getFirstMedia('Brand.Thumbnails');
+
+        return $media;
+    }
+
+    public function getBannerAttribute()
+    {
+        $media = $this->getFirstMedia('Brand.Banners');
+
+        return $media;
+    }
+
     // Your model attributes and methods here
 }

@@ -43,4 +43,25 @@ class Category extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
+
+    public function getImageAttribute()
+    {
+        $media = $this->getFirstMedia('Category.Images');
+
+        return $media;
+    }
+
+    public function getThumbnailAttribute()
+    {
+        $media = $this->getFirstMedia('Category.Thumbnails');
+
+        return $media;
+    }
+
+    public function getBannerAttribute()
+    {
+        $media = $this->getFirstMedia('Category.Banners');
+
+        return $media;
+    }
 }

@@ -77,7 +77,7 @@ class CategoryResource extends BaseResource
                 TextColumn::make('name_translated', __('resources.category.name')),
                 TextColumn::make('parent_name', __('resources.category.parent')),
                 TextColumn::make('slug', __('resources.category.slug')),
-                ImageColumn::make('thumbnail', __('resources.product.image')),
+                ImageColumn::make('thumbnail', __('resources.category.thumbnail')),
                 ToggleColumn::make('is_active', __('resources.category.is_active')),
             ])
             ->row_actions([

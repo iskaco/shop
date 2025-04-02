@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admins\Brands;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
 
 class BrandBaseRequest extends AdminsAuthRequest
 {
@@ -38,7 +40,8 @@ class BrandBaseRequest extends AdminsAuthRequest
             'short_description_en' => $this->short_description_en,
             'short_description_ar' => $this->short_description_ar,
         ];
-        $this->validate($data, [
+
+        $validator = Validator::make($data,  [
             'name_en' => ['required', 'string', 'max:255'],
             'name_ar' => ['required', 'string', 'max:255'],
             'description_en' => ['nullable', 'string'],
@@ -46,6 +49,10 @@ class BrandBaseRequest extends AdminsAuthRequest
             'short_description_en' => ['nullable', 'string'],
             'short_description_ar' => ['nullable', 'string'],
         ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
         $this->merge([
             'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
             'description' => ['en' => $this->description_en, 'ar' => $this->description_ar],

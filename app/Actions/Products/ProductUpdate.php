@@ -14,8 +14,8 @@ class ProductUpdate extends BaseAction
         $product = Product::findOrFail($id);
         $product->update($data);
         if ($data['image']) {
-            $product->clearMediaCollection('Products.Images');
-            $product->addMedia($data['image'])->toMediaCollection('Products.Images');
+            $product->clearMediaCollection('Product.Images');
+            $product->addMedia($data['image'])->toMediaCollection('Product.Images');
         }
         DB::commit();
         return $product;
