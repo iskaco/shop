@@ -13,7 +13,7 @@ class ProductUpdate extends BaseAction
         DB::beginTransaction();
         $product = Product::findOrFail($id);
         $product->update($data);
-        if ($data['image']) {
+        if (isset($data['image'])) {
             $product->clearMediaCollection('Product.Images');
             $product->addMedia($data['image'])->toMediaCollection('Product.Images');
         }

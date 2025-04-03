@@ -12,15 +12,15 @@ class BrandUpdate extends BaseAction
     {
         DB::beginTransaction();
         $brand = Brand::findOrFail($id);
-        if ($data['image']) {
+        if (isset($data['image'])) {
             $brand->clearMediaCollection('Brands.Images');
             $brand->addMedia($data['image'])->toMediaCollection('Brands.Images');
         }
-        if ($data['thumbnail']) {
+        if (isset($data['thumbnail'])) {
             $brand->clearMediaCollection('Brands.Thumbnails');
             $brand->addMedia($data['thumbnail'])->toMediaCollection('Brands.Thumbnails');
         }
-        if ($data['banner']) {
+        if (isset($data['banner'])) {
             $brand->clearMediaCollection('Brands.Banners');
             $brand->addMedia($data['banner'])->toMediaCollection('Brands.Banners');
         }
