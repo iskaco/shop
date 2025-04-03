@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
@@ -18,13 +19,14 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $category = Category::exists() ? Category::inRandomOrder()->first(): Category::factory();
         $name = $this->faker->unique()->words(
             $this->faker->numberBetween(1, 4),
             true
         );
 
         return [
-            'category_id' => Category::factory(),
+            'category_id' => $category->id,
             'brand_id' => $this->faker->optional(70, null)->randomElement(Brand::pluck('id')->toArray()),
             'name' => $name,
             'slug' => Str::slug($name),
