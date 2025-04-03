@@ -39,6 +39,9 @@ return [
             'ok' => 'Category deleted successfully.',
             'error' => 'Error deleting category',
             'not_found' => 'Category not found',
+            'has_product' => 'Cannot delete category with existing products',
+            'has_children' => 'Cannot delete category with subcategories'
+
         ],
         'store' => [
             'ok' => 'Category created successfully.',

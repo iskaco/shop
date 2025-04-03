@@ -13,15 +13,15 @@ class CategoryUpdate extends BaseAction
         DB::beginTransaction();
         $category = Category::findOrFail($id);
         $category->update($data);
-        if ($data['image']) {
+        if (isset($data['image'])) {
             $category->clearMediaCollection('Categories.Images');
             $category->addMedia($data['image'])->toMediaCollection('Categories.Images');
         }
-        if ($data['thumbnail']) {
+        if (isset($data['thumbnail'])) {
             $category->clearMediaCollection('Categories.Thumbnails');
             $category->addMedia($data['thumbnail'])->toMediaCollection('Categories.Thumbnails');
         }
-        if ($data['banner']) {
+        if (isset($data['banner'])) {
             $category->clearMediaCollection('Categories.Banners');
             $category->addMedia($data['banner'])->toMediaCollection('Categories.Banners');
         }
