@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,7 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::exists() ? User::inRandomOrder()->first() : User::factory();
         $subtotal = $this->faker->randomFloat(2, 50, 1000);
         $taxRate = 0.1; // 10% tax
         $taxAmount = round($subtotal * $taxRate, 2);
@@ -26,7 +28,7 @@ class OrderFactory extends Factory
         $total = $subtotal + $taxAmount + $shippingCost - $discountAmount;
 
         return [
-            'user_id' => User::exists() ? User::inRandomOrder()->id : User::factory(),
+            'user_id' => $user->id,
             'status' => $this->faker->randomElement(Order::STATUSES),
             'subtotal' => $subtotal,
             'tax_amount' => $taxAmount,
@@ -63,6 +65,16 @@ class OrderFactory extends Factory
         return $this->state([
             'shipping_cost' => 0,
         ]);
+    }
+
+    public function withItems($count = 3)
+    {
+        return $this->afterCreating(function ($order) use ($count) {
+            OrderItem::factory()
+                ->count($count)
+                ->for($order)
+                ->create();
+        });
     }
 
 }
