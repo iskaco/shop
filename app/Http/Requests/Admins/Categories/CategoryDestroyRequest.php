@@ -11,11 +11,4 @@ class CategoryDestroyRequest extends AdminsAuthRequest
     {
         $this->action = 'categories.destroy';
     }
-
-    public function rules(): array
-    {
-        return [
-
-        ];
-    }
 }

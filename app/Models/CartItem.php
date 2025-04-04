@@ -12,8 +12,9 @@ class CartItem extends Model
     use HasFactory, Logable;
 
     protected $fillable = [ 
-        'user_id',
-        'session_id',
+        'cart_id',
+        'product_id',
+        'quantity',
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];

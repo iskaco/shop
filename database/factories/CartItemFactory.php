@@ -18,9 +18,11 @@ class CartItemFactory extends Factory
      */
     public function definition()
     {
+        $cart = Cart::exists() ? Cart::inRandomOrder()->first() : Cart::factory();
+        $product = Product::exists() ? Product::inRandomOrder()->first() : Product::factory();
         return [
-            'cart_id' => Cart::factory(),
-            'product_id' => Product::factory(),
+            'cart_id' => $cart->id,
+            'product_id' => $product->id,
             'quantity' => $this->faker->numberBetween(1, 5),
         ];
     }
@@ -52,5 +54,4 @@ class CartItemFactory extends Factory
             $cartItem->product()->update($productData);
         });
     }
-
 }

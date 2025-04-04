@@ -50,7 +50,6 @@ class CategoryController extends Controller
     }
     public function update(CategoryUpdateRequest $request, CategoryUpdate $action, string $id)
     {
-        //dd($request->validated());
         try {
             if (! $action->execute($id, $request->validated())) {
                 toast_error(__('messages.category.update.error'));
@@ -64,5 +63,13 @@ class CategoryController extends Controller
         }
     }
 
-    public function destroy($id) {}
+    public function destroy(CategoryDestroyRequest $request, CategoryDestroy $action, string $id)
+    {
+        $error_message = $action->execute($id);
+        if (!$error_message)
+            toast_success(__('messages.category.destroy.ok'));
+        else
+            toast_error($error_message);
+        return $this->makeInertiaTableResponse(Category::class, Category::query());
+    }
 }

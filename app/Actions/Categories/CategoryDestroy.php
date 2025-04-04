@@ -8,7 +8,14 @@ use App\Models\Category;
 
 class CategoryDestroy extends BaseAction
 {
-    public function execute(/*array $data*/) /* return value */
+    public function execute(string $id)
     {
+        $category = Category::find($id);
+        if ($category->products()->exists())
+            return __('messages.category.destroy.has_product');
+        if ($category->children()->exists())
+            return __('messages.category.destroy.has_children');
+        $category->delete();
+        return null;
     }
 }
