@@ -119,25 +119,18 @@ export default {
         },
     },
     mounted() {
-        if (isObject(this.data)) {
-            this.formData = useForm(this.data);
-        } else {
-            let initialData = {};
-            this.form.components.forEach((input) => {
-                if (input.component_type == "FormSection") {
-                    input.children.forEach((childInput) => {
-                        initialData[childInput.name] =
-                            childInput.component_type == "Toggle"
-                                ? false
-                                : null;
-                    });
-                } else {
-                    initialData[input.name] =
-                        input.component_type == "Toggle" ? false : null;
-                }
-            });
-            this.formData = useForm(initialData);
-        }
+        let initialData = {};
+        this.form.components.forEach((input) => {
+            if (input.component_type == "FormSection") {
+                input.children.forEach((childInput) => {
+                    initialData[childInput.name] =
+                        this.data[childInput.name] ?? null;
+                });
+            } else {
+                initialData[input.name] = this.data[input.name] ?? null;
+            }
+        });
+        this.formData = useForm(initialData);
 
         /* if (!this.form.action || this.form.action.action_method == "GET")
             this.isDisabled = true; */
@@ -214,7 +207,6 @@ export default {
                                 >*</span
                             >
                         </label>
-
                         <Multiselect
                             v-model="formData[input.name]"
                             :multiple="input.is_multi"
