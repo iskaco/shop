@@ -109,7 +109,12 @@ export default {
 <template>
     <Modal :show="modalShowStatus" @close="closeModal">
         <div class="flex flex-col gap-5">
-            <VueCropper ref="cropper" :aspect-ratio="ratio" :src="imgSrc">
+            <VueCropper
+                ref="cropper"
+                :aspect-ratio="ratio"
+                :src="imgSrc"
+                class="h-[calc(100vh-200px)]"
+            >
             </VueCropper>
             <div class="flex flex-row gap-3 justify-center mb-5">
                 <Button
