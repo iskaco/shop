@@ -59,17 +59,21 @@ class CategoryController extends Controller
 
             return $this->makeInertiaTableResponse(Category::class, Category::query());
         } catch (\Throwable $th) {
-            toast_error(__('messages.category.update.error') . $th->getMessage());
+            toast_error(__('messages.category.update.error'));
         }
     }
 
     public function destroy(CategoryDestroyRequest $request, CategoryDestroy $action, string $id)
     {
-        $error_message = $action->execute($id);
-        if (!$error_message)
-            toast_success(__('messages.category.destroy.ok'));
-        else
-            toast_error($error_message);
-        return $this->makeInertiaTableResponse(Category::class, Category::query());
+        try {
+            $error_message = $action->execute($id);
+            if (!$error_message)
+                toast_success(__('messages.category.destroy.ok'));
+            else
+                toast_error($error_message);
+            return $this->makeInertiaTableResponse(Category::class, Category::query());
+        } catch (\Throwable $th) {
+            toast_error(__('messages.category.destroy.error'));
+        }
     }
 }

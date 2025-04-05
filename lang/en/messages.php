@@ -23,6 +23,7 @@ return [
             'ok' => 'Product deleted successfully.',
             'error' => 'Error deleting product',
             'not_found' => 'Product not found',
+            'has_order' => 'Cannot delete product with existing orders',
         ],
         'store' => [
             'ok' => 'Product created successfully.',
@@ -58,6 +59,8 @@ return [
             'ok' => 'Brand deleted successfully.',
             'error' => 'Error deleting brand',
             'not_found' => 'Brand not found',
+            'has_product' => 'Cannot delete brand with existing products',
+
         ],
         'store' => [
             'ok' => 'Brand created successfully.',

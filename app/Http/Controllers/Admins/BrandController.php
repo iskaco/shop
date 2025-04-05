@@ -61,5 +61,16 @@ class BrandController extends Controller
             toast_error(__('messages.brand.update.error') . $th->getMessage());
         }
     }
-    public function destroy($id) {}
+    public function destroy(BrandDestroyRequest $request, BrandDestroy $action, $id)
+    {
+        try {
+            $error_message = $action->execute($id);
+            if (!$error_message)
+                toast_success(__('messages.brand.destroy.ok'));
+            else
+                toast_error($error_message);
+        } catch (\Throwable $th) {
+            toast_error(__('messages.brand.destroy.error'));
+        }
+    }
 }

@@ -14,8 +14,6 @@ class BrandDestroyRequest extends AdminsAuthRequest
 
     public function rules(): array
     {
-        return [
-
-        ];
+        return [];
     }
 }
