@@ -77,8 +77,11 @@ export default {
                     );
                     break;
                 case "PUT":
-                    this.formData.put(
-                        route("admin." + this.form.action.route, [this.data.id])
+                    this.formData.post(
+                        route("admin." + this.form.action.route, [
+                            this.data.id,
+                        ]),
+                        { forceFormData: true }
                     );
                     break;
             }
@@ -130,6 +133,8 @@ export default {
                 initialData[input.name] = this.data[input.name] ?? null;
             }
         });
+        if (this.form.action?.action_method == "PUT")
+            initialData["_method"] = "put";
         this.formData = useForm(initialData);
 
         /* if (!this.form.action || this.form.action.action_method == "GET")
