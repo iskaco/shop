@@ -13,10 +13,10 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
         return [
             'name' => ['required', 'array', Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at')->where('category_id', $this->category_id);
-            })->ignore($this->product)],
+            })->ignore($this->id)],
             'slug' => ['required', 'string', Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at');
-            })->ignore($this->product)],
+            })->ignore($this->id)],
             'category_id' => ['required', 'numeric', Rule::exists('categories', 'id')->where(function ($query) {
                 $query->where('is_active', 1);
             })],

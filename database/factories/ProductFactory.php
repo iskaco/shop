@@ -4,8 +4,11 @@ namespace Database\Factories;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Spatie\Image\Image as SpatieImage;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -19,7 +22,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $category = Category::exists() ? Category::inRandomOrder()->first(): Category::factory();
+        $category = Category::exists() ? Category::inRandomOrder()->first() : Category::factory();
         $name = $this->faker->unique()->words(
             $this->faker->numberBetween(1, 4),
             true
@@ -40,6 +43,28 @@ class ProductFactory extends Factory
             'updated_at' => $this->faker->dateTimeBetween('-6 months', 'now'),
         ];
     }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Product $product) {
+            try {
+                $product->addMediaFromBase64(
+                    base64_encode(
+                        (string) SpatieImage::load('public/images/products/default.jpg')
+                            ->width(800)
+                            ->height(600)
+                    )
+                )
+                    ->usingFileName(Str::random(20) . '.jpg')
+                    ->toMediaCollection('Product.Images');
+            } catch (\Exception $e) {
+                // Handle the exception (e.g., log the error)
+                report($e); // Or any other error handling
+            }
+        });
+    }
+
+
 
     // حالت‌های خاص (State)
     public function published()
