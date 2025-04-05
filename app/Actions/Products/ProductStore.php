@@ -13,7 +13,7 @@ class ProductStore extends BaseAction
         DB::beginTransaction();
         $product = Product::create($data);
         if (isset($data['image'])) {
-            $product->addMedia($data['image'])->toMediaCollection('Product.Images');
+            $product->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Product.Images');
         }
         DB::commit();
 
