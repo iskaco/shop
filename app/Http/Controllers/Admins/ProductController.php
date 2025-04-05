@@ -42,6 +42,7 @@ class ProductController extends Controller
                 return $this->makeInertiaTableResponse(Product::class, Product::query());
             }
         } catch (\Throwable $th) {
+            //dd($th);
             toast_error(__('messages.product.store.error') . $th->getMessage());
         }
     }
