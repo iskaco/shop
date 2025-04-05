@@ -10,6 +10,7 @@ class CategoryDestroy extends BaseAction
 {
     public function execute(string $id)
     {
+
         $category = Category::find($id);
         if ($category->products()->exists())
             return __('messages.category.destroy.has_product');

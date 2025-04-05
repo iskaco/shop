@@ -6,13 +6,14 @@ use App\Logable;
 use App\Traits\TranslatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, Logable, TranslatableTrait;
+    use HasFactory, HasTranslations, InteractsWithMedia, Logable, TranslatableTrait, SoftDeletes;
 
     // Your model attributes and methods here
     protected $fillable = ['name', 'slug', 'category_id', 'brand_id', 'short_description', 'description', 'price', 'stock', 'is_published', 'is_featured'];
@@ -55,6 +56,11 @@ class Product extends Model implements HasMedia
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
     public function getBrandNameAttribute()
     {

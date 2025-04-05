@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Traits\TranslatableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations, TranslatableTrait, InteractsWithMedia, Logable;
+    use HasFactory, HasTranslations, TranslatableTrait, InteractsWithMedia, Logable, SoftDeletes;
 
     protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active', 'is_featured'];
     protected $casts = [

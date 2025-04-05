@@ -14,8 +14,6 @@ class ProductDestroyRequest extends AdminsAuthRequest
 
     public function rules(): array
     {
-        return [
-
-        ];
+        return [];
     }
 }

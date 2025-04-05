@@ -6,13 +6,14 @@ use App\Logable;
 use App\Traits\TranslatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 class Brand extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations, InteractsWithMedia, Logable, TranslatableTrait;
+    use HasFactory, HasTranslations, InteractsWithMedia, Logable, TranslatableTrait, SoftDeletes;
 
     protected $fillable = ['name', 'slug', 'description', 'short_description', 'is_active', 'is_featured'];
     protected $casts = [
@@ -46,6 +47,11 @@ class Brand extends Model implements HasMedia
         $media = $this->getFirstMedia('Brand.Banners');
 
         return $media;
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 
     // Your model attributes and methods here
