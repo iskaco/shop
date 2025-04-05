@@ -218,61 +218,60 @@ export default {
                                 {{ row[col.name] }}
                             </div>
                         </td>
-                        <td
-                            v-if="table.row_actions"
-                            class="flex flex-row gap-2 justify-center p-3"
-                        >
-                            <div
-                                v-for="action in table.row_actions"
-                                :key="action.name"
-                            >
-                                <Link
-                                    v-if="!action.has_confirmation"
-                                    :href="
-                                        route('admin.' + action.route, {
-                                            id: row.id,
-                                        })
-                                    "
-                                    :title="action.title"
-                                    class="p-1 rounded cursor-pointer"
+                        <td v-if="table.row_actions" class="p-3">
+                            <div class="flex flex-row gap-2 justify-center">
+                                <div
+                                    v-for="action in table.row_actions"
+                                    :key="action.name"
                                 >
-                                    <v-icon
-                                        v-if="action.icon"
-                                        :name="action.icon"
-                                        :scale="1.2"
-                                        :fill="'fill-' + action.color"
-                                        :class="'fill-' + action.color"
-                                    />
-                                    <span v-if="action.has_label">{{
-                                        action.title
-                                    }}</span>
-                                </Link>
-                                <button
-                                    v-else
-                                    @click="
-                                        action.has_confirmation
-                                            ? openModal(
-                                                  row.id,
-                                                  action.title,
-                                                  action.confirmation_message,
-                                                  action.color,
-                                                  action.confirmation_route,
-                                                  action.action_type
-                                              )
-                                            : $event.preventDefault()
-                                    "
-                                >
-                                    <v-icon
-                                        v-if="action.icon"
-                                        :name="action.icon"
-                                        :scale="1.2"
-                                        :fill="'fill-' + action.color"
-                                        :class="'fill-' + action.color"
-                                    />
-                                    <span v-if="action.has_label">{{
-                                        action.title
-                                    }}</span>
-                                </button>
+                                    <Link
+                                        v-if="!action.has_confirmation"
+                                        :href="
+                                            route('admin.' + action.route, {
+                                                id: row.id,
+                                            })
+                                        "
+                                        :title="action.title"
+                                        class="p-1 rounded cursor-pointer"
+                                    >
+                                        <v-icon
+                                            v-if="action.icon"
+                                            :name="action.icon"
+                                            :scale="1.2"
+                                            :fill="'fill-' + action.color"
+                                            :class="'fill-' + action.color"
+                                        />
+                                        <span v-if="action.has_label">{{
+                                            action.title
+                                        }}</span>
+                                    </Link>
+                                    <button
+                                        v-else
+                                        @click="
+                                            action.has_confirmation
+                                                ? openModal(
+                                                      row.id,
+                                                      action.title,
+                                                      action.confirmation_message,
+                                                      action.color,
+                                                      action.confirmation_route,
+                                                      action.action_type
+                                                  )
+                                                : $event.preventDefault()
+                                        "
+                                    >
+                                        <v-icon
+                                            v-if="action.icon"
+                                            :name="action.icon"
+                                            :scale="1.2"
+                                            :fill="'fill-' + action.color"
+                                            :class="'fill-' + action.color"
+                                        />
+                                        <span v-if="action.has_label">{{
+                                            action.title
+                                        }}</span>
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>

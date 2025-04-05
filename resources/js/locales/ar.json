@@ -246,7 +246,10 @@
             "selectPlaceholder": "اختر ",
             "select": "اختيار",
             "cancel": "إلغاء",
-            "selectOrDropImagesHere": "اختر أو اسحب الصور هنا"
+            "selectOrDropImagesHere": "اختر أو اسحب الصور هنا",
+            "iconInputPlaceHolder": "أدخل جزءًا من اسم الأيقونة",
+            "imageRemove": "إزالة الصورة",
+            "selectOneImage": "يرجى اختيار صورة واحدة"
         },
         "back": "رجوع",
         "actions": "العمليات",

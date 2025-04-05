@@ -56,7 +56,7 @@ export default {
             const file = e.target.files[0];
 
             if (file.type.indexOf("image/") === -1) {
-                alert("لطفا یک تصویر انتخاب کنید");
+                alert($t("titles.form.selectOneImage"));
                 return;
             }
 
@@ -163,7 +163,7 @@ export default {
             class="absolute flex place-content-center cursor-pointer bg-opacity-85 mx-3 py-1 text-xs text-red-900 inset-x-0 bottom-2 rounded-full bg-meta-1 hover:bg-opacity-100"
             @click="croppedSrc = null"
         >
-            حذف تصویر
+            {{ $t("titles.form.imageRemove") }}
         </span>
     </div>
 </template>

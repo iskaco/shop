@@ -246,7 +246,10 @@
             "selectPlaceholder": "Select ",
             "select": "Select",
             "cancel": "Cancel",
-            "selectOrDropImagesHere": "Select or drop images here"
+            "selectOrDropImagesHere": "Select or drop images here",
+            "iconInputPlaceHolder": "Enter part of the icon name",
+            "imageRemove": "Remove Image",
+            "selectOneImage": "Please Select One Image"
         },
         "back": "Back",
         "actions": "Actions",
