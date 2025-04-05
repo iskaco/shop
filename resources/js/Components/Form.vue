@@ -207,6 +207,7 @@ export default {
                                 >*</span
                             >
                         </label>
+
                         <Multiselect
                             v-model="formData[input.name]"
                             :multiple="input.is_multi"
