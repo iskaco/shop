@@ -30,6 +30,11 @@ class Category extends Model implements HasMedia
         return $this->hasMany(Product::class);
     }
 
+    public function getProductsCountAttribute()
+    {
+        return $this->products()->count();
+    }
+
     public function getNameTranslatedAttribute()
     {
         return $this->getTranslation('name', app()->getLocale());
