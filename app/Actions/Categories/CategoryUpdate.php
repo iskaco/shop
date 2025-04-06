@@ -14,16 +14,16 @@ class CategoryUpdate extends BaseAction
         $category = Category::findOrFail($id);
         $category->update($data);
         if (isset($data['image'])) {
-            $category->clearMediaCollection('Categories.Images');
-            $category->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Categories.Images');
+            $category->clearMediaCollection('Category.Images');
+            $category->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Category.Images');
         }
         if (isset($data['thumbnail'])) {
-            $category->clearMediaCollection('Categories.Thumbnails');
-            $category->addMedia($data['thumbnail'])->preservingOriginal()->toMediaCollection('Categories.Thumbnails');
+            $category->clearMediaCollection('Category.Thumbnails');
+            $category->addMedia($data['thumbnail'])->preservingOriginal()->toMediaCollection('Category.Thumbnails');
         }
         if (isset($data['banner'])) {
-            $category->clearMediaCollection('Categories.Banners');
-            $category->addMedia($data['banner'])->preservingOriginal()->toMediaCollection('Categories.Banners');
+            $category->clearMediaCollection('Category.Banners');
+            $category->addMedia($data['banner'])->preservingOriginal()->toMediaCollection('Category.Banners');
         }
         DB::commit();
         return $category;
