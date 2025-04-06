@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('test_resource', [AdminController::class, 'index']);
-Route::get('/', [HomeController::class , 'home'])->name('home');function () {
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 
 Route::post('/set-locale', [SettingController::class, 'setLocale'])->name('set-locale');
@@ -22,7 +22,7 @@ Route::prefix('shop')->name('shop.')->group(function () {
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
     //======================== Categories
-    Route::get('/category/{slug}',[CategoryController::class, 'show'])->name('category.show');
+    Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
 
     //======================== Brands
