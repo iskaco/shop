@@ -15,15 +15,15 @@ class CategoryUpdate extends BaseAction
         $category->update($data);
         if (isset($data['image'])) {
             $category->clearMediaCollection('Categories.Images');
-            $category->addMedia($data['image'])->toMediaCollection('Categories.Images');
+            $category->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Categories.Images');
         }
         if (isset($data['thumbnail'])) {
             $category->clearMediaCollection('Categories.Thumbnails');
-            $category->addMedia($data['thumbnail'])->toMediaCollection('Categories.Thumbnails');
+            $category->addMedia($data['thumbnail'])->preservingOriginal()->toMediaCollection('Categories.Thumbnails');
         }
         if (isset($data['banner'])) {
             $category->clearMediaCollection('Categories.Banners');
-            $category->addMedia($data['banner'])->toMediaCollection('Categories.Banners');
+            $category->addMedia($data['banner'])->preservingOriginal()->toMediaCollection('Categories.Banners');
         }
         DB::commit();
         return $category;

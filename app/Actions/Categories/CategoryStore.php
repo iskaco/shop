@@ -13,13 +13,13 @@ class CategoryStore extends BaseAction
         DB::beginTransaction();
         $category = Category::create($data);
         if (isset($data['image'])) {
-            $category->addMedia($data['image'])->toMediaCollection('Category.Images');
+            $category->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Category.Images');
         }
         if (isset($data['banner'])) {
-            $category->addMedia($data['banner'])->toMediaCollection('Category.Banners');
+            $category->addMedia($data['banner'])->preservingOriginal()->toMediaCollection('Category.Banners');
         }
         if (isset($data['thumbnail'])) {
-            $category->addMedia($data['thumbnail'])->toMediaCollection('Category.Thumbnails');
+            $category->addMedia($data['thumbnail'])->preservingOriginal()->toMediaCollection('Category.Thumbnails');
         }
         DB::commit();
         return $category;
