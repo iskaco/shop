@@ -1,6 +1,9 @@
 <script setup>
 import { router, Link } from "@inertiajs/vue3";
-const categories = [
+
+const props = defineProps(["categories"]);
+
+const cats = [
     {
         title: "titles.web.categories.electronics.name",
         name: "electronics",
@@ -19,7 +22,7 @@ const categories = [
     },
     {
         title: "titles.web.categories.shoes.name",
-        name: "shoes",
+        name: "shoe",
         image: "/images/shoes.jpg",
         color: "meta-3",
         banner: "/images/shoes-hero.jpg",
@@ -43,7 +46,7 @@ const categories = [
     },
     {
         title: "titles.web.categories.tshirts.name",
-        name: "tshirts",
+        name: "t-shirt",
         image: "/images/tshirt.jpg",
         color: "meta-6",
         banner: "/images/tshirt-hero.jpg",
@@ -51,14 +54,32 @@ const categories = [
     },
     {
         title: "titles.web.categories.home.name",
-        name: "home",
+        name: "home-tools",
         image: "/images/home.jpg",
         color: "meta-7",
         banner: "/images/home-hero.jpg",
         icon: "md-home-outlined",
     },
 ];
+
+const getColor = function (name) {
+    const category = cats.find((cat) => cat.name === name);
+    return category ? `bg-${category.color}` : null;
+};
+const getBgImage = function (name) {
+    const category = cats.find((cat) => cat.name === name);
+    return category ? `background-image: url(${category.image})` : null;
+};
+const getIcon = function (name) {
+    const category = cats.find((cat) => cat.name === name);
+    return category ? category.icon : null;
+};
+const getIconColor = function (name) {
+    const category = cats.find((cat) => cat.name === name);
+    return category ? `fill-${category.color}` : null;
+};
 </script>
+<!-- End of Selection -->
 <template>
     <section
         class="h-auto md:h-screen py-32 bg-gradient-to-b from-black to-gray-900"
@@ -74,21 +95,15 @@ const categories = [
             >
                 <!-- here must change onClick to Link component -->
                 <div
-                    v-for="cat in categories"
+                    v-for="cat in props.categories.data"
                     :key="cat.name"
                     class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
-                    @click="
-                        router.get(route('web.category', cat.name), {
-                            title: cat.name,
-                            subtitle: cat.description,
-                            banner: cat.banner,
-                        })
-                    "
+                    @click="router.get(cat.links.self)"
                 >
                     <div
                         class="absolute background bg-center bg-cover bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
-                        :class="`bg-${cat.color}`"
-                        :style="`background-image: url(${cat.image})`"
+                        :class="getColor(cat.slug)"
+                        :style="getBgImage(cat.slug)"
                     ></div>
                     <div
                         class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
@@ -100,10 +115,10 @@ const categories = [
                             class="flex items-center justify-center w-10 h-10 mr-1 bg-gray-900 rounded-full icon"
                         >
                             <v-icon
-                                :name="cat.icon"
+                                :name="getIcon(cat.slug)"
                                 scale="1.2"
-                                :fill="`fill-${cat.color}`"
-                                :class="`fill-${cat.color}`"
+                                :fill="getIconColor(cat.slug)"
+                                :class="getIconColor(cat.slug)"
                             />
                         </div>
                         <div
@@ -112,7 +127,7 @@ const categories = [
                             <div
                                 class="relative font-bold transition-all duration-700 ease-in-out transform [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]"
                             >
-                                {{ $t(cat.title) }}
+                                {{ cat.name }}
                             </div>
                         </div>
                     </div>
