@@ -13,13 +13,13 @@ class BrandStore extends BaseAction
         DB::beginTransaction();
         $brand = Brand::create($data);
         if (isset($data['image'])) {
-            $brand->addMedia($data['image'])->toMediaCollection('Brands.Images');
+            $brand->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Brands.Images');
         }
         if (isset($data['thumbnail'])) {
-            $brand->addMedia($data['thumbnail'])->toMediaCollection('Brands.Thumbnails');
+            $brand->addMedia($data['thumbnail'])->preservingOriginal()->toMediaCollection('Brands.Thumbnails');
         }
         if (isset($data['banner'])) {
-            $brand->addMedia($data['banner'])->toMediaCollection('Brands.Banners');
+            $brand->addMedia($data['banner'])->preservingOriginal()->toMediaCollection('Brands.Banners');
         }
         DB::commit();
         return $brand;
