@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+const props = defineProps(["product"]);
+</script>
 <template>
     <div
         style="direction: ltr"
@@ -15,13 +17,13 @@
             />
             <span
                 class="absolute top-0 ltr:left-0 rtl:right-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white"
-                >39% OFF</span
+                >{{ Math.floor(Math.random() * 100) }}% OFF</span
             >
             <span
                 class="absolute flex gap-1 justify-center items-center bottom-0 ltr:right-0 rtl:left-0 m-2 rounded-full bg-meta-6 px-2 text-center text-sm font-medium text-white"
             >
                 <v-icon name="md-star-outlined" scale=".8"></v-icon>
-                <span class="">5.0</span>
+                <span class="">{{ Math.floor(Math.random() * 5) }}</span>
             </span>
         </a>
         <div class="mt-4 px-5 pb-5">
@@ -29,17 +31,17 @@
                 <h5
                     class="text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:font-alumni ltr:text-2xl ltr:font-bold"
                 >
-                    {{ $t("titles.web.products.title") }}
+                    {{ props.product.name }}
                 </h5>
             </a>
             <div class="mt-2 mb-5">
                 <p class="flex ltr:flex-row-reverse items-end gap-2">
                     <span
                         class="text-2xl font-bold text-slate-900 ltr:text-right"
-                        >$449</span
+                        >{{ props.product.price }}$</span
                     >
                     <span class="text-sm text-meta-1 line-through font-semibold"
-                        >$699</span
+                        >{{ Math.floor(Math.random() * 200) }}$</span
                     >
                 </p>
             </div>

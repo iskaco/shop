@@ -1,5 +1,7 @@
 <script setup>
 import ProductCard from "./ProductCard.vue";
+
+const props = defineProps(["products"]);
 </script>
 <template>
     <section class="flex flex-col items-center my-20">
@@ -9,18 +11,11 @@ import ProductCard from "./ProductCard.vue";
             {{ $t("titles.web.products.name") }}
         </h2>
         <div class="w-fit grid md:grid-cols-4 gap-5">
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
+            <ProductCard
+                v-for="product in props.products.data"
+                :key="product.slug"
+                :product="product"
+            ></ProductCard>
         </div>
     </section>
 </template>
