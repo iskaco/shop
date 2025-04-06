@@ -5,6 +5,8 @@ import PriceTable from "@/Components/Web/PriceTable.vue";
 import HeroSection from "@/Components/Web/HeroSection.vue";
 import BrandSection from "@/Components/Web/BrandSection.vue";
 import CategoriesSection from "@/Components/Web/CategoriesSection.vue";
+
+const props = defineProps(["categories"]);
 </script>
 
 <template>
@@ -124,7 +126,7 @@ import CategoriesSection from "@/Components/Web/CategoriesSection.vue";
             <BrandSection />
 
             <!-- Categories Section -->
-            <CategoriesSection />
+            <CategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
             <section class="py-20 bg-gray-100 ltr:font-alumni rtl:font-arabic">
