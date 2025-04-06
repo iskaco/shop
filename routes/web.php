@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
-use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\SettingController;
@@ -26,8 +26,6 @@ Route::prefix('shop')->name('shop.')->group(function () {
 
 
     //======================== Brands
-
-
 
 });
 /* Route::get('/product/{id}', function ($id) {
