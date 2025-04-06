@@ -1,18 +1,28 @@
 <script setup>
 const props = defineProps(["product"]);
+
+const getImage = function () {
+    let params = {};
+    params["model"] = props.product.image.model_type;
+    params["id"] = props.product.image.model_id;
+    params["attribute"] = "image";
+    params["multiple"] = false;
+
+    return route("admin.table.getMedia", params);
+};
 </script>
 <template>
     <div
         style="direction: ltr"
-        class="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:font-arabic"
+        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:font-arabic"
     >
         <a
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
             href="#"
         >
             <img
-                class="object-cover"
-                src="/images/laptop.jpg"
+                class="w-full object-cover"
+                :src="getImage()"
                 alt="product image"
             />
             <span
