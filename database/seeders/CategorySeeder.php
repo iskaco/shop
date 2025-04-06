@@ -27,6 +27,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.shoe'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -39,6 +40,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.electronics'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -51,6 +53,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.bathroom'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -63,6 +66,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.tshirt'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -75,6 +79,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.furniture'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -87,6 +92,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.honey'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
             [
                 'name' => [
@@ -99,6 +105,7 @@ class CategorySeeder extends Seeder
                     'ar' => __('categories.descriptions.home_tools'),
                 ],
                 'is_active' => true,
+                'is_featured' => true,
             ],
         ];
 
