@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Actions\Categories\FeaturedCategoryIndex;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
@@ -14,14 +18,16 @@ class CategoryController extends Controller
     {
         $categories = $action->execute();
         return inertia('web/Category/FeaturedCategories', [
-            'categories' => $categories,
+            'categories' => CategoryResource::collection($categories),
         ]);
     }
 
     public function show($slug)
     {
-        return inertia('web/Category/Show', [
-            'category' => $slug,
+        $category = Category::where('slug', $slug)->firstOrFail();
+        return Inertia::render('web/CategoryView', [
+            'category' => CategoryResource::make($category),
+            'products' => ProductResource::collection($category?->products),
         ]);
     }
 }

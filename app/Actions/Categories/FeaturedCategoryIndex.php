@@ -10,7 +10,7 @@ class FeaturedCategoryIndex extends BaseAction
 {
     public function execute() /* return value */
     {
-        $categories = Category::where('featured', true)->get();
+        $categories = Category::where('is_featured', true)->get();
         return $categories;
     }
 }
