@@ -1,8 +1,10 @@
+@ts-nocheck
 <script>
-import VueCropper from "vue-cropperjs";
-import "cropperjs/dist/cropper.css";
-import Modal from "../Modal.vue";
 import Button from "./Button.vue";
+import Modal from "../Modal.vue";
+import VueCropper from "vue-cropperjs";
+
+import "cropperjs/dist/cropper.css";
 
 export default {
     props: {
@@ -50,6 +52,18 @@ export default {
                     this.attribute,
                     this.multiple,
                 ]);
+
+                fetch(this.croppedSrc)
+                    .then((response) => response.blob())
+                    .then((blob) => {
+                        const file = new File([blob], "cropped-image.png", {
+                            type: blob.type,
+                        });
+                        this.value = file;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching the image:", error);
+                    });
             }
         },
         setImage(e) {
