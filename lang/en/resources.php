@@ -23,6 +23,25 @@ return [
         'profile_image' => 'Profile Image',
         'enable' => 'Status (Active/Inactive)',
     ],
+    'media' => [
+        'label' => 'Media',
+        'plural' => 'Media',
+        'model_type' => 'Model Type',
+        'model_id' => 'Model ID',
+        'collection_name' => 'Collection Name',
+        'name' => 'Name',
+        'file_name' => 'File Name',
+        'mime_type' => 'Mime Type',
+        'disk' => 'Disk',
+        'size' => 'Size',
+        'manipulations' => 'Manipulations',
+        'custom_properties' => 'Custom Properties',
+        'responsive_images' => 'Responsive Images',
+        'order_column' => 'Order Column',
+        'generated_conversions' => 'Generated Conversions',
+        'responsive_images' => 'Responsive Images',
+        'info' => 'Info',
+    ],
     'product' => [
         'label' => 'Product',
         'category' => 'Category',
@@ -50,7 +69,7 @@ return [
         'status' => 'Status',
 
     ],
-    'categotry' => [
+    'category' => [
         'label' => 'Category',
         'plural' => 'Categories',
         'name' => 'Name',
