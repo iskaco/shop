@@ -1,3 +1,4 @@
+@ts-nocheck
 <script>
 export default {
     props: {
@@ -17,6 +18,9 @@ export default {
                 this.$emit("update:modelValue", value);
             },
         },
+    },
+    mounted() {
+        this.value = this.modelValue ? true : false;
     },
 };
 </script>
