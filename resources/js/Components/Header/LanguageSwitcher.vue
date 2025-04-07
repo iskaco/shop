@@ -1,8 +1,8 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { loadLanguageMessages } from "@/i18n";
-import { ref } from "vue";
-import { router } from "@inertiajs/vue3";
+import { onMounted, ref } from "vue";
+import { router, usePage } from "@inertiajs/vue3";
 import { onClickOutside } from "@vueuse/core";
 
 const { locale } = useI18n();
@@ -41,6 +41,10 @@ const changeLanguage = async (langCode) => {
         isOpen.value = false;
     }
 };
+
+onMounted(() => {
+    changeLanguage(usePage().props.locale);
+});
 </script>
 
 <template>
@@ -75,13 +79,3 @@ const changeLanguage = async (langCode) => {
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            isOpen: false,
-        };
-    },
-};
-</script>

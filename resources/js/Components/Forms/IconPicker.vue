@@ -4,6 +4,7 @@ import * as MdiIcons from "oh-vue-icons/icons/md";
 
 export default {
     props: {
+        label: String,
         modelValue: {
             type: String,
             default: "",
@@ -70,7 +71,7 @@ export default {
 <template>
     <div class="flex flex-col relative" :class="customClasses">
         <label class="mb-2.5 block text-black dark:text-white">
-            آیکن
+            {{ label }}
             <span v-if="required" class="text-meta-1">*</span>
         </label>
         <input
