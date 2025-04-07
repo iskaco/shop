@@ -67,6 +67,7 @@ return [
         'is_featured' => 'Featured',
         'is_published' => 'Published',
         'status' => 'Status',
+        'slug' => 'Slug',
 
     ],
     'category' => [
@@ -136,6 +137,6 @@ return [
     'cart' => [
         'label' => 'Cart',
         'plural' => 'Carts',
-        'user_name' => 'User Name'
+        'user_name' => 'User Name',
     ],
 ];
