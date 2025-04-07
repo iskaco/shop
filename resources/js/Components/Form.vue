@@ -195,6 +195,7 @@ export default {
                     <IconPicker
                         v-if="input.component_type == 'IconInput'"
                         v-model="formData[input.name]"
+                        :label="input.title"
                         :isDisabled="getEnableStatus(input)"
                     ></IconPicker>
 

@@ -3,6 +3,7 @@
 import Button from "./Button.vue";
 import Modal from "../Modal.vue";
 import VueCropper from "vue-cropperjs";
+import { useTimestamp } from "@vueuse/core";
 
 import "cropperjs/dist/cropper.css";
 
@@ -56,9 +57,15 @@ export default {
                 fetch(this.croppedSrc)
                     .then((response) => response.blob())
                     .then((blob) => {
-                        const file = new File([blob], "cropped-image.png", {
-                            type: blob.type,
-                        });
+                        const file = new File(
+                            [blob],
+                            `${this.id}-${this.model.split("\\")[2]}-${
+                                useTimestamp().value
+                            }.png`,
+                            {
+                                type: blob.type,
+                            }
+                        );
                         this.value = file;
                     })
                     .catch((error) => {
@@ -94,9 +101,15 @@ export default {
 
             this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
                 if (blob) {
-                    const file = new File([blob], "cropped-image.png", {
-                        type: "image/png",
-                    });
+                    const file = new File(
+                        [blob],
+                        `${this.id}-${this.model.split("\\")[2]}-${
+                            useTimestamp().value
+                        }.png`,
+                        {
+                            type: "image/png",
+                        }
+                    );
 
                     this.value = file;
                 }
@@ -153,7 +166,8 @@ export default {
             <span v-if="required" class="text-meta-1">*</span>
         </label>
         <label
-            class="relative w-60 h-60 overflow-hidden rounded-xl bg-gray-2 border dark:border-form-strokedark dark:bg-form-input cursor-pointer"
+            class="relative w-60 overflow-hidden rounded-xl bg-gray-2 border dark:border-form-strokedark dark:bg-form-input cursor-pointer"
+            :class="croppedSrc ? `aspect-[${ratio}]` : 'h-60'"
         >
             <div
                 class="w-full h-full grid place-content-center"
