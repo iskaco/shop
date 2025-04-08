@@ -22,6 +22,7 @@ Route::prefix('shop')->name('shop.')->group(function () {
 
     // ======================== Categories
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 
     // ======================== Brands
 
@@ -41,6 +42,6 @@ Route::get('/category/{name}/', function ($name) {
 })->name('web.category');
 */
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/activity.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+require __DIR__ . '/activity.php';

@@ -19,9 +19,9 @@ class CategoryResource extends JsonResource
             'slug' => $this?->slug,
             'description' => $this?->description,
             'short_description' => $this?->short_description,
-            'image' => $this?->image,
-            'thumbnail' => $this?->thumbnail,
-            'banner' => $this?->banner,
+            'image' => $this?->image?->uuid,
+            'thumbnail' => $this?->thumbnail?->uuid,
+            'banner' => $this?->banner?->uuid,
             'products_count' => $this?->products_count,
             //'products' => ProductResource::collection($this?->products),
             'links' => [
