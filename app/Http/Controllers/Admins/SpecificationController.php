@@ -15,19 +15,12 @@ use App\Models\Specification;
 
 class SpecificationController extends Controller
 {
-    public function index(){
-        
+    public function index()
+    {
+        return $this->makeInertiaTableResponse(Specification::class, Specification::query());
     }
-    public function show($id){
-        
-    }
-    public function store(){
-        
-    }
-    public function update($id){
-        
-    }
-    public function destroy($id){
-        
-    }
+    public function show($id) {}
+    public function store() {}
+    public function update($id) {}
+    public function destroy($id) {}
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\ProductController;
+use App\Http\Controllers\Admins\SpecificationController;
 use App\Http\Controllers\Admins\TableController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -66,6 +67,9 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
     Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
     Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+
+    // Specification Routes
+    Route::get('/specifications', [SpecificationController::class, 'index'])->name('specifications');
 
     // Order Routes
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');

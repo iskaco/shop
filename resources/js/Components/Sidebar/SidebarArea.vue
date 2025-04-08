@@ -41,6 +41,10 @@ const menuGroups = ref([
                     },
                     { label: "titles.admin.menus.brands", route: "brands" },
                     {
+                        label: "titles.admin.menus.specifications",
+                        route: "specifications",
+                    },
+                    {
                         label: "titles.admin.menus.comments",
                         route: "dashboard",
                     },
