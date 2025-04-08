@@ -8,5 +8,8 @@ use App\Models\Category;
 
 class CategoryIndex extends BaseAction
 {
-    public function execute() /* return value */ {}
+    public function execute() /* return value */
+    {
+        return Category::all();
+    }
 }

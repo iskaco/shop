@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Actions\Categories\CategoryIndex;
 use App\Actions\Categories\FeaturedCategoryIndex;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
@@ -13,7 +14,13 @@ use Inertia\Inertia;
 class CategoryController extends Controller
 {
     //
-    public function index() {}
+    public function index(CategoryIndex $action)
+    {
+        $categories = $action->execute();
+        return inertia('web/CategoriesView', [
+            'categories' => CategoryResource::collection($categories),
+        ]);
+    }
     public function featuredCategories(FeaturedCategoryIndex $action)
     {
         $categories = $action->execute();
