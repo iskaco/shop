@@ -37,9 +37,8 @@ const cats = [
     },
 ];
 
-const getBanner = function (name) {
-    const category = cats.find((cat) => cat.name === name);
-    return category ? category.banner : null;
+const getImage = function (image) {
+    if (image) return route("shop.media", image);
 };
 </script>
 
@@ -49,7 +48,7 @@ const getBanner = function (name) {
         <HeroSection
             :title="props.category.data.name"
             :subtitle="props.category.data.description"
-            :banner="getBanner(props.category.data.slug)"
+            :banner="getImage(props.category.data.banner)"
         />
         <div class="container">
             <ProductsSection :products="props.products"></ProductsSection>

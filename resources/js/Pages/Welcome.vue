@@ -3,8 +3,8 @@ import { Head, Link } from "@inertiajs/vue3";
 import WebLayout from "@/Layouts/WebLayout.vue";
 import PriceTable from "@/Components/Web/PriceTable.vue";
 import HeroSection from "@/Components/Web/HeroSection.vue";
-import BrandSection from "@/Components/Web/BrandSection.vue";
-import CategoriesSection from "@/Components/Web/CategoriesSection.vue";
+import CategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
+import BrandSectionVue from "@/Components/Web/BrandSection.vue";
 
 const props = defineProps(["categories"]);
 </script>
