@@ -2,13 +2,7 @@
 const props = defineProps(["product"]);
 
 const getImage = function () {
-    let params = {};
-    params["model"] = props.product.image.model_type;
-    params["id"] = props.product.image.model_id;
-    params["attribute"] = "image";
-    params["multiple"] = false;
-
-    return route("admin.table.getMedia", params);
+    return route("shop.media", props.product.image);
 };
 </script>
 <template>

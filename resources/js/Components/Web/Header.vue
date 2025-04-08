@@ -4,6 +4,7 @@ import LanguageSwitcher from "@/Components/Header/LanguageSwitcher.vue";
 import CurrencySwitcher from "@/Components/Web/CurrencySwitcher.vue";
 import { onClickOutside } from "@vueuse/core";
 import { useTemplateRef, ref } from "vue";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     menuBgColor: { type: String, default: "bg-transparent" },
@@ -28,7 +29,7 @@ const menuItems = ref([
     },
     {
         label: "titles.web.navigation.categories",
-        route: "/",
+        route: route("shop.category.index"),
         iconName: "md-category-outlined",
     },
     {
@@ -53,12 +54,12 @@ const menuItems = ref([
                 <div
                     class="items-center hidden gap-x-8 text-xl rtl:text-base ltr:font-semibold ltr:tracking-widest md:flex font-alumni"
                 >
-                    <a
+                    <Link
                         v-for="menu in menuItems"
                         :key="menu.label"
                         :href="menu.route"
                         class="text-white hover:text-gray-300"
-                        >{{ $t(menu.label) }}</a
+                        >{{ $t(menu.label) }}</Link
                     >
 
                     <div class="flex items-center gap-x-4">

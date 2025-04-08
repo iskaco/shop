@@ -3,7 +3,7 @@ const props = defineProps({ title: String, subtitle: String, banner: String });
 </script>
 <template>
     <section
-        class="relative bg-center text-white min-h-screen"
+        class="relative bg-center text-white min-h-screen bg-cover"
         :style="`background-image: url(${props.banner})`"
     >
         <div
