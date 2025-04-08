@@ -122,6 +122,20 @@ return [
         'status' => 'Status',
 
     ],
+    'specification' => [
+        'label' => 'Specification',
+        'plural' => 'Specifications',
+        'name' => 'Name',
+        'name_en' => 'English Name',
+        'name_ar' => 'Arabic Name',
+        'input_type' => 'Input Type',
+        'possible_values' => 'Possible Values',
+        'category_id' => 'Category ID',
+        'general_en' => 'General Information (English)',
+        'general_ar' => 'General Information (Arabic)',
+        'general' => 'General Information',
+        'another_info' => 'Another Information',
+    ],
     'order' => [
         'label' => 'Order',
         'plural' => 'Orders',
