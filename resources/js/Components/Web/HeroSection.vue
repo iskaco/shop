@@ -19,7 +19,7 @@ const props = defineProps({ title: String, subtitle: String, banner: String });
         <div class="w-full absolute z-20 px-4 mx-auto pt-60">
             <div class="text-center">
                 <h1
-                    class="mb-4 rtl:mb-8 font-bold lg:text-7xl md:text-5xl text-3xl ltr:font-alumni rtl:font-arabic"
+                    class="mb-4 rtl:mb-8 rtl:font-medium ltr:font-bold lg:text-7xl md:text-5xl text-3xl ltr:tracking-wide"
                 >
                     {{ props.title }}
                 </h1>
@@ -36,7 +36,7 @@ const props = defineProps({ title: String, subtitle: String, banner: String });
                             class="w-full px-8 py-3 text-gray-900 placeholder-gray-500 rounded-full bg-white/90 focus:outline-none focus:ring-2 focus:ring-blue-600"
                         />
                         <button
-                            class="absolute -translate-y-1/2 right-3 top-1/2"
+                            class="absolute -translate-y-1/2 rtl:right-3 ltr:left-3 top-1/2"
                         >
                             <v-icon
                                 name="md-search-outlined"

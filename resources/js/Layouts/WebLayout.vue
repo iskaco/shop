@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
     <ToastNotifications />
     <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden font-vazirmatn"
     >
         <Header :menuBgColor="menuBgColor" />
         <main>

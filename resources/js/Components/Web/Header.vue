@@ -52,7 +52,7 @@ const menuItems = ref([
                     />
                 </div>
                 <div
-                    class="items-center hidden gap-x-8 text-xl rtl:text-base ltr:font-semibold ltr:tracking-widest md:flex font-alumni"
+                    class="items-center hidden gap-x-8 text-xl rtl:text-base ltr:font-semibold ltr:tracking-widest md:flex"
                 >
                     <Link
                         v-for="menu in menuItems"

@@ -222,7 +222,8 @@
                 "admins": "Admins",
                 "staffs": "Staffs",
                 "roles": "Roles",
-                "permissions": "Permissions"
+                "permissions": "Permissions",
+                "specifications": "Specifications"
             }
         },
         "search": "Search",

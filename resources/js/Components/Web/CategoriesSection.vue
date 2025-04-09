@@ -8,7 +8,7 @@ const props = defineProps(["categories"]);
 <template>
     <section class="flex flex-col items-center my-20 md:px-20 px-10">
         <h2
-            class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+            class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
         >
             {{ $t("titles.web.navigation.categories") }}
         </h2>

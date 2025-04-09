@@ -2,7 +2,7 @@
     <section class="py-20 bg-white">
         <div class="container px-4 mx-auto">
             <h2
-                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
             >
                 {{ $t("titles.web.brands.title") }}
             </h2>

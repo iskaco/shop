@@ -222,7 +222,8 @@
                 "admins": "المديرين",
                 "staffs": "الموظفين",
                 "roles": "الأدوار",
-                "permissions": "الأذونات"
+                "permissions": "الأذونات",
+                "specifications": "المواصفات"
             }
         },
         "search": "بحث...",

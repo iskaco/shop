@@ -56,18 +56,22 @@ export default {
 
                 fetch(this.croppedSrc)
                     .then((response) => response.blob())
-                    .then((blob) => {
-                        const file = new File(
-                            [blob],
-                            `${this.id}-${this.model.split("\\")[2]}-${
-                                useTimestamp().value
-                            }.png`,
-                            {
-                                type: blob.type,
-                            }
-                        );
-                        this.value = file;
-                    })
+                    .then(
+                        (blob) => {
+                            const file = new File(
+                                [blob],
+                                `${this.id}-${this.model.split("\\")[2]}-${
+                                    useTimestamp().value
+                                }.jpg`,
+                                {
+                                    type: "image/jpeg",
+                                }
+                            );
+                            this.value = file;
+                        },
+                        "image/jpeg",
+                        0.7
+                    )
                     .catch((error) => {
                         console.error("Error fetching the image:", error);
                     });
@@ -97,23 +101,29 @@ export default {
             }
         },
         cropImage() {
-            this.croppedSrc = this.$refs.cropper.getCroppedCanvas().toDataURL();
+            this.croppedSrc = this.$refs.cropper
+                .getCroppedCanvas()
+                .toDataURL("image/jpg");
 
-            this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
-                if (blob) {
-                    const file = new File(
-                        [blob],
-                        `${this.id}-${this.model.split("\\")[2]}-${
-                            useTimestamp().value
-                        }.png`,
-                        {
-                            type: "image/png",
-                        }
-                    );
-
-                    this.value = file;
-                }
-            });
+            this.$refs.cropper.getCroppedCanvas().toBlob(
+                (blob) => {
+                    if (blob) {
+                        const file = new File(
+                            [blob],
+                            `${this.id}-${this.model.split("\\")[2]}-${
+                                useTimestamp().value
+                            }.jpg`,
+                            {
+                                type: "image/jpeg",
+                                lastModified: Date.now(),
+                            }
+                        );
+                        this.value = file;
+                    }
+                },
+                "image/jpeg",
+                0.7
+            );
 
             this.modalShowStatus = false;
         },
