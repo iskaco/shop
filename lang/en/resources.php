@@ -8,6 +8,7 @@ return [
         'store' => 'Save',
         'create' => 'Create :label',
         'update' => 'Update',
+        'product' => 'Product :label',
     ],
     'admin' => [
         'label' => 'Admin',
@@ -135,6 +136,8 @@ return [
         'general_ar' => 'General Information (Arabic)',
         'general' => 'General Information',
         'another_info' => 'Another Information',
+        'category' => 'Category',
+
     ],
     'order' => [
         'label' => 'Order',

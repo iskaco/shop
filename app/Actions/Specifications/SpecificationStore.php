@@ -8,7 +8,10 @@ use App\Models\Specification;
 
 class SpecificationStore extends BaseAction
 {
-    public function execute(/*array $data*/) /* return value */
+    public function execute(array $data) /* return value */
     {
+        $specification = Specification::create($data);
+
+        return $specification;
     }
 }
