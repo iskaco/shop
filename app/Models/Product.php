@@ -78,4 +78,10 @@ class Product extends Model implements HasMedia
 
         return $media;
     }
+
+    public function specifications()
+    {
+        return $this->belongsToMany(Specification::class, 'product_specifications')
+            ->withPivot('value');
+    }
 }

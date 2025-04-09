@@ -71,4 +71,22 @@ return [
             'error' => 'Error updating brand',
         ],
     ],
+    'specification' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Specification deleted successfully.',
+            'error' => 'Error deleting specification',
+            'not_found' => 'Specification not found',
+            'has_product' => 'Cannot delete specification with existing products',
+
+        ],
+        'store' => [
+            'ok' => 'Specification created successfully.',
+            'error' => 'Error creating specification',
+        ],
+        'update' => [
+            'ok' => 'Specification updated successfully.',
+            'error' => 'Error updating specification',
+        ],
+    ],
 ];

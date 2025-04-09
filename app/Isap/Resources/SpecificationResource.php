@@ -3,6 +3,10 @@
 namespace App\Isap\Resources;
 
 use App\Isap\Actions\ActionType;
+use App\Isap\Actions\CreateAction;
+use App\Isap\Actions\DeleteAction;
+use App\Isap\Actions\EditAction;
+use App\Isap\Actions\ShowAction;
 use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\MultiSelectInput;
 use App\Isap\Forms\Components\TextInput;
@@ -51,10 +55,16 @@ class SpecificationResource extends BaseResource
     {
         $table = new Table(__('resources.specification.plural'), Specification::class);
         return $table->columns([
-            TextColumn::make('name', __('resources.specification.name')),
-            TextColumn::make('category_id', __('resources.specification.category_id')),
+            TextColumn::make('name_translated', __('resources.specification.name')),
+            TextColumn::make('category_name', __('resources.specification.category')),
             TextColumn::make('input_type', __('resources.specification.input_type')),
             //TextColumn::make('possible_values', __('resources.specification.possible_values')),
+        ])->row_actions([
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('specification.show')->setIcon('md-removeredeye-outlined'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('specification.edit')->setIcon('md-modeedit-outlined'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('specification.destroy')->setConfirmationMessage(__('messages.specification.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+        ])->table_actions([
+            CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.specification.label')]))->setRoute('specification.create')->setIcon('md-add'),
         ]);
     }
 }

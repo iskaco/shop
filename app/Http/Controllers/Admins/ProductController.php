@@ -11,6 +11,7 @@ use App\Http\Requests\Admins\Products\ProductStoreRequest;
 use App\Http\Requests\Admins\Products\ProductUpdateRequest;
 use App\Isap\Actions\ActionType;
 use App\Models\Product;
+use App\Models\ProductSpecification;
 
 class ProductController extends Controller
 {
@@ -79,5 +80,12 @@ class ProductController extends Controller
             toast_error(__('messages.product.destroy.error'));
         }
         return $this->makeInertiaTableResponse(Product::class, Product::query());
+    }
+
+    public function specifications($id)
+    {
+        $specification = Product::findOrFail($id)?->specifications;
+        dd($specification);
+        //return $this->makeInertiaFormResponse(ProductSpecification::class, $specification->toFrontendArray(), ActionType::UPDATE);
     }
 }

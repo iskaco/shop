@@ -8,6 +8,8 @@ return [
         'store' => 'حفظ',
         'create' => 'إنشاء :label',
         'update' => 'تحديث',
+        'product' => 'منتج :label',
+
     ],
     'admin' => [
         'label' => 'المسؤول',
@@ -136,6 +138,7 @@ return [
         'general_ar' => 'المعلومات العامة (بالعربية)',
         'general' => 'المعلومات العامة',
         'another_info' => 'معلومات إضافية',
+        'category' => 'الفئة',
     ],
 
     'order' => [

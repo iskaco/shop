@@ -49,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/specifications/{id}', [ProductController::class, 'specifications'])->name('product.specifications');
 
     // Category Routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
@@ -70,6 +71,12 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
 
     // Specification Routes
     Route::get('/specifications', [SpecificationController::class, 'index'])->name('specifications');
+    Route::get('/specification', [SpecificationController::class, 'create'])->name('specification.create');
+    Route::post('/specification', [SpecificationController::class, 'store'])->name('specification.store');
+    Route::get('/specification/{id}', [SpecificationController::class, 'show'])->name('specification.show');
+    Route::put('/specification/{id}', [SpecificationController::class, 'update'])->name('specification.update');
+    Route::delete('/specification/{id}', [SpecificationController::class, 'destroy'])->name('specification.destroy');
+    Route::get('/specification/edit/{id}', [SpecificationController::class, 'edit'])->name('specification.edit');
 
     // Order Routes
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');

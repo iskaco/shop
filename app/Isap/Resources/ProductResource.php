@@ -7,6 +7,7 @@ use App\Isap\Actions\CreateAction;
 use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
+use App\Isap\Actions\SpecificationAction;
 use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
@@ -87,6 +88,7 @@ class ProductResource extends BaseResource
             ToggleColumn::make('is_published', __('resources.product.is_published')),
             ToggleColumn::make('is_featured', __('resources.product.is_featured')),
         ])->row_actions([
+            SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
             ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('md-removeredeye-outlined'),
             EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
             DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
