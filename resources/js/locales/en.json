@@ -19,6 +19,16 @@
                 "categories": "Categories",
                 "contact": "Contact"
             },
+            "cart": {
+                "title": "Cart",
+                "product": "Product",
+                "quantity": "Quantity",
+                "price": "Price",
+                "total": "Total",
+                "grandTotal": "Grand Total",
+                "checkout": "Checkout",
+                "remove": "Remove"
+            },
             "hero": {
                 "title": "Welcome to MeemHome",
                 "subtitle": "Discover Amazing Products at Great Prices",
