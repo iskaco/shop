@@ -84,8 +84,27 @@ class ProductController extends Controller
 
     public function specifications($id)
     {
-        $specification = Product::findOrFail($id)?->specifications;
-        dd($specification);
-        //return $this->makeInertiaFormResponse(ProductSpecification::class, $specification->toFrontendArray(), ActionType::UPDATE);
+        $product = Product::findOrFail($id);
+        $specification = $product?->specifications;
+        $category = $product?->category;
+        $category_sepecification = $category?->specifications;
+        $components_array = $this->createComponentArrayOfSpecifications($category_sepecification);
+        return $this->InertiaResponse($this->createDynamicResourceForm($components_array, ActionType::UPDATE, __('resources.product.specifications', ['label' => $product?->name]), 'product.specification.update'), $specification);
+    }
+
+    public function updateSpecifications() {}
+
+    private function createComponentArrayOfSpecifications($specifications): array
+    {
+        $specification = [];
+        foreach ($specifications as $spec) {
+            $specification[] = [
+                'name' => $spec->getTranslation('name', 'en'),
+                'title' => $spec->name,
+                'input_type' => $spec->input_type,
+                'src' => $spec->possible_values,
+            ];
+        }
+        return $specification;
     }
 }

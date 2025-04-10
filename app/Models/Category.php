@@ -75,4 +75,9 @@ class Category extends Model implements HasMedia
 
         return $media;
     }
+
+    public function specifications()
+    {
+        return $this->hasMany(Specification::class);
+    }
 }
