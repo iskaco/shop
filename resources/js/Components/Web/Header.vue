@@ -34,8 +34,13 @@ const menuItems = ref([
     },
     {
         label: "titles.web.navigation.contact",
-        route: "/",
+        route: route("shop.contactus.show"),
         iconName: "md-contact-outlined",
+    },
+    {
+        label: "titles.web.navigation.about",
+        route: route("shop.aboutus.show"),
+        iconName: "md-info-outlined",
     },
 ]);
 </script>
