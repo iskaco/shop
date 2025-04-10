@@ -9,6 +9,7 @@ use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SpecificationController;
 use App\Http\Controllers\Admins\TableController;
+use App\Http\Controllers\Admins\TaxController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -88,7 +89,7 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
 
-    // Order Routes
+    // Cart Routes
     Route::get('/carts', [CartController::class, 'index'])->name('carts');
     Route::get('/cart', [CartController::class, 'create'])->name('cart.create');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
@@ -96,4 +97,13 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::get('/cart/edit/{id}', [CartController::class, 'edit'])->name('cart.edit');
+
+    // Tax Routes
+    Route::get('/taxes', [TaxController::class, 'index'])->name('taxes');
+    Route::get('/tax', [TaxController::class, 'create'])->name('tax.create');
+    Route::post('/tax', [TaxController::class, 'store'])->name('tax.store');
+    Route::get('/tax/{id}', [TaxController::class, 'show'])->name('tax.show');
+    Route::put('/tax/{id}', [TaxController::class, 'update'])->name('tax.update');
+    Route::delete('/tax/{id}', [TaxController::class, 'destroy'])->name('tax.destroy');
+    Route::get('/tax/edit/{id}', [TaxController::class, 'edit'])->name('tax.edit');
 });

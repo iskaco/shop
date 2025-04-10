@@ -1,44 +1,16 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
-
 import { ref } from "vue";
 
-// Sample product data - replace with actual data from your backend
-const product = ref({
-    name: "Sample Product Name",
-    englishName: "Sample Product English Name",
-    category: "Electronics",
-    brand: "Sample Brand",
-    mainImage: "/images/electronics.jpg",
-    gallery: [
-        "/images/electronics.jpg",
-        "/images/tv.jpg",
-        "/images/mobile.jpg",
-        "/images/watch.jpg",
-    ],
-    features: [
-        "Feature 1 description",
-        "Feature 2 description",
-        "Feature 3 description",
-    ],
-    price: "1,999,000",
-    seller: "Official Store",
-    description: "Detailed product description...",
-    specifications: [
-        {
-            title: "Physical Specifications",
-            items: [
-                { name: "Weight", value: "200g" },
-                { name: "Dimensions", value: "15 x 7 x 0.8 cm" },
-            ],
-        },
-        // Add more specification groups as needed
-    ],
-});
+const props = defineProps(["product"]);
+
+const getImage = function (image) {
+    return route("shop.media", image);
+};
 </script>
 <template>
-    <WebLayout menuBgColor="bg-[url(/images/menubg.jpg)] bg-center">
-        <div class="container mx-auto px-4 py-8 mt-28">
+    <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
+        <div class="container mx-auto md:px-20 px-10 mt-40 mb-20">
             <!-- Product Details Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Product Images -->
@@ -47,20 +19,20 @@ const product = ref({
                         class="aspect-square bg-gray-100 rounded-lg overflow-hidden"
                     >
                         <img
-                            :src="product.mainImage"
-                            :alt="product.name"
+                            :src="getImage(props.product.data.image)"
+                            :alt="props.product.data.name"
                             class="w-full h-full object-cover"
                         />
                     </div>
                     <div class="grid grid-cols-4 gap-4">
                         <div
-                            v-for="(image, index) in product.gallery"
+                            v-for="(image, index) in props.product.data.gallery"
                             :key="index"
                             class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer"
                         >
                             <img
                                 :src="image"
-                                :alt="product.name"
+                                :alt="props.product.data.name"
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -71,9 +43,11 @@ const product = ref({
                 <div class="space-y-6">
                     <div>
                         <h1 class="text-2xl font-bold mb-2">
-                            {{ product.name }}
+                            {{ props.product.data.name }}
                         </h1>
-                        <p class="text-gray-600">{{ product.englishName }}</p>
+                        <p class="text-gray-600">
+                            {{ props.product.data.englishName }}
+                        </p>
                     </div>
 
                     <div class="border-t border-b py-4">
@@ -81,13 +55,13 @@ const product = ref({
                             <span class="text-gray-600"
                                 >{{ $t("category") }}:</span
                             >
-                            <span>{{ product.category }}</span>
+                            <span>{{ props.product.data.category }}</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-gray-600"
                                 >{{ $t("brand") }}:</span
                             >
-                            <span>{{ product.brand }}</span>
+                            <span>{{ props.product.data.brand }}</span>
                         </div>
                     </div>
 
@@ -98,7 +72,8 @@ const product = ref({
                             class="list-disc list-inside space-y-1 text-gray-600"
                         >
                             <li
-                                v-for="(feature, index) in product.features"
+                                v-for="(feature, index) in props.product
+                                    .features"
                                 :key="index"
                             >
                                 {{ feature }}
@@ -113,7 +88,8 @@ const product = ref({
                                 >{{ $t("price") }}:</span
                             >
                             <div class="text-xl font-bold">
-                                {{ product.price }} {{ $t("currency") }}
+                                {{ props.product.data.price }}
+                                {{ $t("currency") }}
                             </div>
                         </div>
                         <button
@@ -140,7 +116,7 @@ const product = ref({
                                     d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                                 />
                             </svg>
-                            <span>{{ product.seller }}</span>
+                            <span>{{ props.product.data.seller }}</span>
                         </div>
                     </div>
                 </div>
@@ -151,7 +127,7 @@ const product = ref({
                 <h2 class="text-xl font-bold mb-4">{{ $t("description") }}</h2>
                 <div
                     class="prose max-w-none"
-                    v-html="product.description"
+                    v-html="props.product.data.description"
                 ></div>
             </div>
 
@@ -162,7 +138,8 @@ const product = ref({
                 </h2>
                 <div class="border rounded-lg">
                     <div
-                        v-for="(group, index) in product.specifications"
+                        v-for="(group, index) in props.product.data
+                            .specifications"
                         :key="index"
                         class="border-b last:border-b-0"
                     >
