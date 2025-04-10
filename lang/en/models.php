@@ -17,5 +17,6 @@ return [
     'App\Models\Payment' => 'Payment',
     'App\Models\Shipping' => 'Shipping',
     'App\Models\Review' => 'Review',
+    'App\Models\Specification' => 'Specification',
 
 ];
