@@ -23,10 +23,11 @@ onClickOutside(target, () => {
     isOpen.value = false;
 });
 
-const changeLanguage = async (langCode) => {
+const changeLanguage = async (langCode, needSet = true) => {
     const selectedLang = languages.find((lang) => lang.code === langCode);
     if (selectedLang) {
-        router.post(route("set-locale"), { locale: selectedLang.code });
+        if (needSet)
+            router.post(route("set-locale"), { locale: selectedLang.code });
 
         // Update document direction
         document.documentElement.setAttribute("dir", selectedLang.dir);
@@ -43,7 +44,7 @@ const changeLanguage = async (langCode) => {
 };
 
 onMounted(() => {
-    changeLanguage(usePage().props.locale);
+    changeLanguage(usePage().props.locale, false);
 });
 </script>
 
