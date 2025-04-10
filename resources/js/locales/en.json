@@ -17,7 +17,18 @@
                 "home": "Home",
                 "products": "Products",
                 "categories": "Categories",
-                "contact": "Contact"
+                "contact": "Contact Us",
+                "about": "About Us"
+            },
+            "cart": {
+                "title": "Cart",
+                "product": "Product",
+                "quantity": "Quantity",
+                "price": "Price",
+                "total": "Total",
+                "grandTotal": "Grand Total",
+                "checkout": "Checkout",
+                "remove": "Remove"
             },
             "hero": {
                 "title": "Welcome to MeemHome",
@@ -160,6 +171,29 @@
                     }
                 }
             },
+            "aboutUs": {
+                "welcome": "Welcome to our online shop!🛒",
+                "mission": "We are thrilled to offer you a diverse selection of products tailored to meet your every need. Our mission is to provide high-quality items at competitive prices, ensuring a seamless shopping experience for all our valued customers.🌟",
+                "trends": "Whether you're looking for the latest trends or timeless classics, we've got you covered! Thank you for choosing us, and happy shopping! 🎉",
+                "features": {
+                    "wideRange": "🛍️ Wide Range of Products",
+                    "fastShipping": "🚚 Fast and Reliable Shipping",
+                    "securePayment": "💳 Secure Payment Options",
+                    "easyReturns": "🔄 Easy Returns and Exchanges",
+                    "customerSupport": "⭐ Customer Support Available 24/7"
+                }
+            },
+            "contactUs": {
+                "title": "Contact Methods",
+                "email": "Email: info@meemhome.com",
+                "phone": "Phone: (123) 456-7890",
+                "address": "Address: 123 Street, City",
+                "follow": "Follow Us",
+                "nameInput": "Name",
+                "emailInput": "Email",
+                "messageInput": "Message",
+                "submit": "Send Message"
+            },
             "newsletter": {
                 "title": "Subscribe to Our Newsletter",
                 "description": "Stay updated with our latest products and offers",
@@ -222,7 +256,8 @@
                 "admins": "Admins",
                 "staffs": "Staffs",
                 "roles": "Roles",
-                "permissions": "Permissions"
+                "permissions": "Permissions",
+                "specifications": "Specifications"
             }
         },
         "search": "Search",

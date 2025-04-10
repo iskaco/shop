@@ -33,7 +33,7 @@ const props = defineProps(["categories"]);
                             class="flex-1 text-center md:text-left rtl:md:text-right mb-10 md:mb-0"
                         >
                             <h2
-                                class="lg:text-6xl md:text-5xl text-3xl font-bold ltr:font-alumni rtl:font-arabic"
+                                class="lg:text-6xl md:text-5xl text-3xl font-bold"
                             >
                                 {{ $t("titles.web.sale.title") }}
                             </h2>
@@ -129,7 +129,7 @@ const props = defineProps(["categories"]);
             <CategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
-            <section class="py-20 bg-gray-100 ltr:font-alumni rtl:font-arabic">
+            <section class="py-20 bg-gray-100">
                 <div class="container px-4 mx-auto">
                     <h2
                         class="mb-4 ml-10 lg:text-5xl md:text-5xl text-4xl font-bold text-left rtl:text-right"

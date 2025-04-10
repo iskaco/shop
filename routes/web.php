@@ -24,8 +24,19 @@ Route::prefix('shop')->name('shop.')->group(function () {
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 
-    // ======================== Brands
 
+    // ======================== TEMPORARY ROUTES
+    Route::get('/cart', function () {
+        return Inertia::render('web/CartView');
+    })->name('cart.show');
+
+    Route::get('/contactus', function () {
+        return Inertia::render('web/ContactUsView');
+    })->name('contactus.show');
+
+    Route::get('/aboutus', function () {
+        return Inertia::render('web/AboutUsView');
+    })->name('aboutus.show');
 });
 /* Route::get('/product/{id}', function ($id) {
         return Inertia::render('web/ProductView', [

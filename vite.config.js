@@ -22,6 +22,7 @@ export default defineConfig({
         noExternal: ["oh-vue-icons"],
     },
     optimizeDeps: {
+        include: ["leaflet"],
         exclude: ["oh-vue-icons/icons"],
     },
 });

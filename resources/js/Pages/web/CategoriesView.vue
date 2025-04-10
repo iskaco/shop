@@ -9,12 +9,10 @@ const props = defineProps(["categories"]);
 
 <template>
     <Head :title="$t('titles.titles.web.description')" />
-    <WebLayout>
-        <HeroSection
-            :title="$t('titles.web.hero.title')"
-            :subtitle="$t('titles.web.hero.subtitle')"
-            banner="/images/main-hero.jpg"
-        />
-        <CategoriesSection :categories="props.categories"></CategoriesSection>
+    <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
+        <CategoriesSection
+            :categories="props.categories"
+            class="mt-40"
+        ></CategoriesSection>
     </WebLayout>
 </template>

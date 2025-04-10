@@ -6,7 +6,7 @@ const props = defineProps(["products"]);
 <template>
     <section class="flex flex-col items-center my-20 px-20">
         <h2
-            class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+            class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
         >
             {{ $t("titles.web.products.name") }}
         </h2>
