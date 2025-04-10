@@ -17,5 +17,6 @@ return [
     'App\Models\Payment' => 'الدفع',
     'App\Models\Shipping' => 'الشحن',
     'App\Models\Review' => 'المراجعة',
+    'App\Models\Specification' => 'المواصفة',
 
 ];

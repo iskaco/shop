@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Isap\Actions\ActionType;
+use App\Isap\Resources\DynamicResource;
 use App\Isap\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,12 @@ trait InertiaResponse
     public function makeInertiaFormResponse($model, $data, ActionType $action_type)
     {
         $model_resource = $this->getModelResource($model);
-        return Inertia('FormView', ['form' => $model_resource::form($action_type), 'data' => $data]);
+        return $this->InertiaResponse($model_resource::form($action_type), $data);
+    }
+
+    public function InertiaResponse($model_form, $data)
+    {
+        return Inertia('FormView', ['form' => $model_form, 'data' => $data]);
     }
 
     public function makeInertiaErrorResponse($error)
@@ -67,5 +73,10 @@ trait InertiaResponse
             return $resource_path;
         }
         return false;
+    }
+
+    public function createDynamicResourceForm(array $components, ActionType $action_type, $form_title, $route)
+    {
+        return DynamicResource::createForm($components, $action_type, $form_title, $route);
     }
 }

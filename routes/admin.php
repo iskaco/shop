@@ -50,6 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('/product/specifications/{id}', [ProductController::class, 'specifications'])->name('product.specifications');
+    Route::put('/product/specifications/{id}', [ProductController::class, 'updateSpecifications'])->name('product.specifications.update');
 
     // Category Routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
