@@ -7,7 +7,7 @@ import { useTemplateRef, ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
-    menuBgColor: { type: String, default: "bg-transparent" },
+    menuBg: { type: String, default: "bg-transparent" },
 });
 
 const { toggleSidebar } = useSidebarStore();
@@ -41,7 +41,7 @@ const menuItems = ref([
 </script>
 
 <template>
-    <nav class="absolute z-30 w-full" :class="menuBgColor">
+    <nav class="absolute z-30 w-full" :class="menuBg">
         <div class="container px-4 py-4 mx-auto">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
@@ -52,13 +52,13 @@ const menuItems = ref([
                     />
                 </div>
                 <div
-                    class="items-center hidden gap-x-8 text-xl rtl:text-base ltr:font-semibold ltr:tracking-widest md:flex font-alumni"
+                    class="items-center hidden gap-x-8 ltr:font-semibold md:flex"
                 >
                     <Link
                         v-for="menu in menuItems"
                         :key="menu.label"
                         :href="menu.route"
-                        class="text-white hover:text-gray-300"
+                        class="text-white hover:text-gray-300 ltr:tracking-widest"
                         >{{ $t(menu.label) }}</Link
                     >
 
@@ -67,7 +67,10 @@ const menuItems = ref([
 
                         <CurrencySwitcher />
 
-                        <a href="#" class="text-white hover:text-gray-300">
+                        <a
+                            :href="route('shop.cart.show')"
+                            class="text-white hover:text-gray-300"
+                        >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
                         </a>
 

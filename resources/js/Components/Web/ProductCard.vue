@@ -8,7 +8,7 @@ const getImage = function () {
 <template>
     <div
         style="direction: ltr"
-        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:font-arabic"
+        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:"
     >
         <a
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
@@ -33,7 +33,7 @@ const getImage = function () {
         <div class="mt-4 px-5 pb-5">
             <a href="/product/1">
                 <h5
-                    class="text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:font-alumni ltr:text-2xl ltr:font-bold"
+                    class="text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:text-2xl ltr:font-bold"
                 >
                     {{ props.product.name }}
                 </h5>

@@ -19,6 +19,16 @@
                 "categories": "التصنيفات",
                 "contact": "التواصل"
             },
+            "cart": {
+                "title": "عربة التسوق",
+                "product": "المنتج",
+                "quantity": "الكمية",
+                "price": "السعر",
+                "total": "الإجمالي",
+                "grandTotal": "الإجمالي الكلي",
+                "checkout": "الدفع",
+                "remove": "إزالة"
+            },
             "hero": {
                 "title": "مرحبا بك في متجر ميم هوم",
                 "subtitle": "اكتشف المنتجات المثيرة والسعر المناسب",
@@ -222,7 +232,8 @@
                 "admins": "المديرين",
                 "staffs": "الموظفين",
                 "roles": "الأدوار",
-                "permissions": "الأذونات"
+                "permissions": "الأذونات",
+                "specifications": "المواصفات"
             }
         },
         "search": "بحث...",

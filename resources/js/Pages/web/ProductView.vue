@@ -37,7 +37,7 @@ const product = ref({
 });
 </script>
 <template>
-    <WebLayout menuBgColor="bg-gradient-to-br from-cyan-900 to-sky-900">
+    <WebLayout menuBgColor="bg-[url(/images/menubg.jpg)] bg-center">
         <div class="container mx-auto px-4 py-8 mt-28">
             <!-- Product Details Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

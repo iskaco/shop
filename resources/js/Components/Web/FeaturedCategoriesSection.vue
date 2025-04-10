@@ -86,7 +86,7 @@ const getIconColor = function (name) {
     >
         <div class="container flex flex-col px-4 mx-auto">
             <h2
-                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center text-white ltr:font-alumni rtl:font-arabic"
+                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center text-white"
             >
                 {{ $t("titles.web.categories.title") }}
             </h2>

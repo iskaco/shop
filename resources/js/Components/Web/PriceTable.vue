@@ -66,7 +66,7 @@ const plans = [
     <section class="py-20 bg-gray-100">
         <div class="container px-4 mx-auto">
             <h2
-                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center ltr:font-alumni rtl:font-arabic"
+                class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
             >
                 {{ $t("titles.web.plans.title") }}
             </h2>
@@ -78,13 +78,13 @@ const plans = [
                     :style="`border-color: ${plan.bgColor}`"
                 >
                     <p
-                        class="absolute rotate-6 opacity-50 -top-3 -right-1 mb-2 text-7xl font-bold"
+                        class="absolute rotate-6 opacity-50 -top-1 -right-1 mb-2 text-7xl font-bold"
                         :style="`color: ${plan.bgColor}`"
                     >
                         {{ $t(plan.price) }}
                     </p>
                     <h3
-                        class="mt-2 mb-10 rotate-6 -mx-10 py-7 lg:text-3xl text-2xl font-bold ltr:font-alumni rtl:font-arabic z-20"
+                        class="mt-2 mb-10 rotate-6 -mx-10 py-7 lg:text-3xl text-2xl font-bold z-20"
                         :style="`color: ${plan.textColor}; background-color: ${plan.bgColor}`"
                     >
                         {{ $t(plan.name) }}

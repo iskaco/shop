@@ -10,7 +10,7 @@ const getImage = function () {
 <template>
     <div
         style="direction: ltr"
-        class="relative p-3 flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:font-arabic"
+        class="relative p-3 flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:"
     >
         <Link
             class="relative flex h-60 overflow-hidden rounded-xl"

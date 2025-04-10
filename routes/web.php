@@ -23,6 +23,9 @@ Route::prefix('shop')->name('shop.')->group(function () {
     // ======================== Categories
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/cart', function () {
+        return Inertia::render('web/CartView');
+    })->name('cart.show');
 
     // ======================== Brands
 
