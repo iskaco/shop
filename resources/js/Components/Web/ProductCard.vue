@@ -12,7 +12,7 @@ const getImage = function () {
     >
         <a
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-            href="#"
+            :href="route('shop.product.show', [props.product.slug])"
         >
             <img
                 class="w-full object-cover"

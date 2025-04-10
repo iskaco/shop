@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import WebLayout from "@/Layouts/WebLayout.vue";
 import PriceTable from "@/Components/Web/PriceTable.vue";
 import HeroSection from "@/Components/Web/HeroSection.vue";
-import CategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
+import FeaturedCategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
 import BrandSectionVue from "@/Components/Web/BrandSection.vue";
 
 const props = defineProps(["categories"]);
@@ -126,7 +126,7 @@ const props = defineProps(["categories"]);
             <BrandSection />
 
             <!-- Categories Section -->
-            <CategoriesSection :categories="props.categories" />
+            <FeaturedCategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
             <section class="py-20 bg-gray-100">

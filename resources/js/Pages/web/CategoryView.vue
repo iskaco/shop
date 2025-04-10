@@ -6,37 +6,6 @@ import WebLayout from "@/Layouts/WebLayout.vue";
 
 const props = defineProps(["category", "products"]);
 
-const cats = [
-    {
-        name: "electronics",
-        banner: "/images/electronics-hero.jpg",
-    },
-    {
-        name: "furniture",
-        banner: "/images/furniture-hero.jpg",
-    },
-    {
-        name: "shoe",
-        banner: "/images/shoes-hero.jpg",
-    },
-    {
-        name: "honey",
-        banner: "/images/honey-hero.jpg",
-    },
-    {
-        name: "bathroom",
-        banner: "/images/bathroom-hero.jpg",
-    },
-    {
-        name: "t-shirt",
-        banner: "/images/tshirt-hero.jpg",
-    },
-    {
-        name: "home-tools",
-        banner: "/images/home-hero.jpg",
-    },
-];
-
 const getImage = function (image) {
     if (image) return route("shop.media", image);
 };
@@ -44,7 +13,7 @@ const getImage = function (image) {
 
 <template>
     <Head :title="$t('titles.titles.web.description')" />
-    <WebLayout>
+    <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
         <HeroSection
             :title="props.category.data.name"
             :subtitle="props.category.data.description"
