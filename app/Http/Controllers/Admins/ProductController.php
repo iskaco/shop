@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Actions\Products\ProductDestroy;
+use App\Actions\Products\ProductSpecificationsUpdate;
 use App\Actions\Products\ProductStore;
 use App\Actions\Products\ProductUpdate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admins\Products\ProductDestroyRequest;
+use App\Http\Requests\Admins\Products\ProductSpecificationsUpdateRequest;
 use App\Http\Requests\Admins\Products\ProductStoreRequest;
 use App\Http\Requests\Admins\Products\ProductUpdateRequest;
 use App\Isap\Actions\ActionType;
 use App\Models\Product;
 use App\Models\ProductSpecification;
+use stdClass;
 
 class ProductController extends Controller
 {
@@ -60,7 +63,7 @@ class ProductController extends Controller
                 toast_error(__('messages.product.update.error'));
             } else {
                 toast_success(__('messages.product.update.ok'));
-                return $this->makeInertiaTableResponse(Product::class, Product::query());
+                return  $this->makeInertiaTableResponse(Product::class, Product::query());
             }
         } catch (\Throwable $th) {
             toast_error(__('messages.product.update.error') . $th->getMessage());
@@ -85,21 +88,40 @@ class ProductController extends Controller
     public function specifications($id)
     {
         $product = Product::findOrFail($id);
-        $specification = $product?->specifications;
+        $specification = $this->createDataForSpecifiactionForm($product);
         $category = $product?->category;
         $category_sepecification = $category?->specifications;
         $components_array = $this->createComponentArrayOfSpecifications($category_sepecification);
-        return $this->InertiaResponse($this->createDynamicResourceForm($components_array, ActionType::UPDATE, __('resources.product.specifications', ['label' => $product?->name]), 'product.specification.update'), $specification);
+        //dd($specification);
+        return $this->InertiaResponse($this->createDynamicResourceForm($components_array, ActionType::UPDATE, __('resources.product.specifications', ['label' => $product?->name]), 'product.specifications.update'), $specification);
     }
 
-    public function updateSpecifications() {}
+    public function updateSpecifications(ProductSpecificationsUpdateRequest $request, ProductSpecificationsUpdate $action, $id)
+    {
+        $action->execute($request->validated(), $id);
+        toast_success(__('messages.product.specification.update.ok'));
+    }
+
+    private function createDataForSpecifiactionForm(Product $product)
+    {
+        //$specification_list = [];
+        //$specification_list[] = ['id' => $product->id];
+        // Loop through the product's specifications and format them
+        $specification_list = new stdClass();
+        $specification_list->id = $product->id;
+        foreach ($product?->specifications as $specification) {
+            $specification_list->{$specification?->id} = $specification?->pivot?->value;
+            //$specification_list[] = $temp;
+        }
+        return $specification_list;
+    }
 
     private function createComponentArrayOfSpecifications($specifications): array
     {
         $specification = [];
         foreach ($specifications as $spec) {
             $specification[] = [
-                'name' => $spec->getTranslation('name', 'en'),
+                'name' => $spec->id,
                 'title' => $spec->name,
                 'input_type' => $spec->input_type,
                 'src' => $spec->possible_values,

@@ -33,6 +33,12 @@ return [
             'ok' => 'Product updated successfully.',
             'error' => 'Error updating product',
         ],
+        'specification' => [
+            'update' => [
+                'ok' => 'Product specifications updated successfully.',
+                'error' => 'Error updating product specifications',
+            ],
+        ]
     ],
     'category' => [
         'destroy' => [

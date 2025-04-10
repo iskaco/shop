@@ -69,7 +69,7 @@ return [
         'is_published' => 'منشور',
         'slug' => 'الرابط الثابت',
         'status' => 'الحالة',
-        'specifications' => ':lable المواصفات',
+        'specifications' => ':label المواصفات',
     ],
     'category' => [
         'label' => 'الفئة',
