@@ -69,7 +69,7 @@ return [
         'is_published' => 'Published',
         'status' => 'Status',
         'slug' => 'Slug',
-        'specifications' => ':lable Specifications'
+        'specifications' => ':label Specifications'
 
     ],
     'category' => [
