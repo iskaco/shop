@@ -5,70 +5,49 @@ const props = defineProps(["categories"]);
 
 const cats = [
     {
-        title: "titles.web.categories.electronics.name",
         name: "electronics",
-        image: "/images/electronics.jpg",
         color: "meta-1",
-        banner: "/images/electronics-hero.jpg",
         icon: "md-laptop-outlined",
     },
     {
-        title: "titles.web.categories.furniture.name",
         name: "furniture",
-        image: "/images/furniture.jpg",
         color: "meta-2",
-        banner: "/images/furniture-hero.jpg",
         icon: "md-bed-outlined",
     },
     {
-        title: "titles.web.categories.shoes.name",
         name: "shoe",
-        image: "/images/shoes.jpg",
         color: "meta-3",
-        banner: "/images/shoes-hero.jpg",
         icon: "md-favoriteborder-outlined",
     },
     {
-        title: "titles.web.categories.honey.name",
         name: "honey",
-        image: "/images/honey.jpg",
         color: "meta-11",
-        banner: "/images/honey-hero.jpg",
         icon: "md-foodbank-outlined",
     },
     {
-        title: "titles.web.categories.bathroom.name",
         name: "bathroom",
-        image: "/images/bathroom.jpg",
         color: "meta-5",
-        banner: "/images/bathroom-hero.jpg",
         icon: "md-bathroom-outlined",
     },
     {
-        title: "titles.web.categories.tshirts.name",
         name: "t-shirt",
-        image: "/images/tshirt.jpg",
         color: "meta-6",
-        banner: "/images/tshirt-hero.jpg",
         icon: "md-grade-outlined",
     },
     {
-        title: "titles.web.categories.home.name",
         name: "home-tools",
-        image: "/images/home.jpg",
         color: "meta-7",
-        banner: "/images/home-hero.jpg",
         icon: "md-home-outlined",
     },
 ];
 
+const getImage = function (image) {
+    if (image) return route("shop.media", image);
+};
+
 const getColor = function (name) {
     const category = cats.find((cat) => cat.name === name);
     return category ? `bg-${category.color}` : null;
-};
-const getBgImage = function (name) {
-    const category = cats.find((cat) => cat.name === name);
-    return category ? `background-image: url(${category.image})` : null;
 };
 const getIcon = function (name) {
     const category = cats.find((cat) => cat.name === name);
@@ -97,13 +76,13 @@ const getIconColor = function (name) {
                 <div
                     v-for="cat in props.categories.data"
                     :key="cat.name"
-                    class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-48 pane rounded-3xl"
+                    class="group relative m-2 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer h-32 md:h-auto md:min-h-14 md:min-w-20 md:hover:min-w-80 pane rounded-3xl"
                     @click="router.get(cat.links.self)"
                 >
                     <div
                         class="absolute background bg-center bg-cover bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
                         :class="getColor(cat.slug)"
-                        :style="getBgImage(cat.slug)"
+                        :style="`background-image: url(${getImage(cat.image)})`"
                     ></div>
                     <div
                         class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"
