@@ -17,6 +17,16 @@ return [
             'error' => 'Error logging in',
         ],
     ],
+    'customer' => [
+        'store' => [
+            'ok' => 'Your account has been created successfully. Welcome!',
+            'error' => 'There was an error creating your account. Please try again.',
+        ],
+        'login' => [
+            'ok' => 'Login successful. Welcome back!',
+            'error' => 'Error logging in. Please check your credentials and try again.',
+        ],
+    ],
     'product' => [
         'destroy' => [
             'title' => 'Are you sure you want to delete this record?',
@@ -38,7 +48,7 @@ return [
                 'ok' => 'Product specifications updated successfully.',
                 'error' => 'Error updating product specifications',
             ],
-        ]
+        ],
     ],
     'category' => [
         'destroy' => [
@@ -47,7 +57,7 @@ return [
             'error' => 'Error deleting category',
             'not_found' => 'Category not found',
             'has_product' => 'Cannot delete category with existing products',
-            'has_children' => 'Cannot delete category with subcategories'
+            'has_children' => 'Cannot delete category with subcategories',
 
         ],
         'store' => [
