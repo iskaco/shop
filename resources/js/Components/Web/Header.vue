@@ -4,11 +4,14 @@ import LanguageSwitcher from "@/Components/Header/LanguageSwitcher.vue";
 import CurrencySwitcher from "@/Components/Web/CurrencySwitcher.vue";
 import { onClickOutside } from "@vueuse/core";
 import { useTemplateRef, ref } from "vue";
+import { useCartStore } from "@/Composables/useCart.js";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     menuBg: { type: String, default: "bg-transparent" },
 });
+
+const { cartItemCount } = useCartStore();
 
 const { toggleSidebar } = useSidebarStore();
 const sidebarStore = useSidebarStore();
@@ -74,9 +77,14 @@ const menuItems = ref([
 
                         <Link
                             :href="route('shop.cart.show')"
-                            class="text-white hover:text-gray-300"
+                            class="relative text-white hover:text-gray-300"
                         >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
+                            <span
+                                v-if="cartItemCount"
+                                class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
+                                >{{ cartItemCount }}</span
+                            >
                         </Link>
 
                         <Link href="#" class="text-white hover:text-gray-300">

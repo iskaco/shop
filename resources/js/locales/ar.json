@@ -40,7 +40,9 @@
                 "total": "الإجمالي",
                 "grandTotal": "الإجمالي الكلي",
                 "checkout": "الدفع",
-                "remove": "إزالة"
+                "remove": "إزالة",
+                "successfullyAddToCart": "تمت إضافة العنصر إلى عربة التسوق بنجاح",
+                "goToCart": "اذهب إلى عربة التسوق"
             },
             "hero": {
                 "title": "مرحبا بك في متجر ميم هوم",
@@ -159,6 +161,7 @@
                 "name": "المنتجات",
                 "title": "المنتج الأول",
                 "addtocart": "أضف إلى السلة",
+                "isInCart": "في السلة",
                 "electronics": {
                     "title": "الإلكترونيات",
                     "television": {
