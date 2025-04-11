@@ -20,6 +20,16 @@
                 "contact": "Contact Us",
                 "about": "About Us"
             },
+            "form": {
+                "register": "Register",
+                "username": "Username",
+                "password": "Password",
+                "confirmPassword": "Confirm Password",
+                "rememberMe": "Remember Me",
+                "forgotPassword": "Forgot Password?",
+                "login": "Login",
+                "haveAccount": "Do you have an account?"
+            },
             "cart": {
                 "title": "Cart",
                 "product": "Product",

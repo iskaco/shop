@@ -83,7 +83,10 @@ const menuItems = ref([
                             <v-icon name="md-favoriteborder-outlined"></v-icon>
                         </a>
 
-                        <a href="#" class="text-white hover:text-gray-300">
+                        <a
+                            :href="route('signup.show')"
+                            class="text-white hover:text-gray-300"
+                        >
                             <v-icon name="md-personoutline-outlined"></v-icon>
                         </a>
                     </div>

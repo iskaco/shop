@@ -38,6 +38,10 @@ Route::prefix('shop')->name('shop.')->group(function () {
         return Inertia::render('web/AboutUsView');
     })->name('aboutus.show');
 });
+
+Route::get('/signup', function () {
+    return Inertia::render('web/SignupView');
+})->name('signup.show');
 /* Route::get('/product/{id}', function ($id) {
         return Inertia::render('web/ProductView', [
             'productId' => $id,
