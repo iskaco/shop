@@ -17,14 +17,14 @@ const getImage = function (image) {
 
 const CheckoutCart = function () {
     let cartItems = [];
-    let cartItem = {};
     cart.forEach((element) => {
+        let cartItem = {};
         cartItem["product_id"] = element.id;
         cartItem["quantity"] = element.quantity;
         cartItems.push(cartItem);
     });
 
-    let form = useForm(cartItems);
+    let form = useForm({ items: cartItems });
     form.post(route("cart_items.store"));
 };
 </script>
