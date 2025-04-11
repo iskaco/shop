@@ -15,7 +15,7 @@ class CustomerController extends Controller
     //
     public function signin()
     {
-        // return Inertia::render('web/SigninView');
+        return Inertia::render('web/SigninView');
     }
 
     public function signup()

@@ -2,14 +2,10 @@
 import { Link, useForm } from "@inertiajs/vue3";
 import LanguageSwitcher from "@/Components/Header/LanguageSwitcher.vue";
 
-const form = useForm({
-    login_id: null,
-    password: null,
-    password_confirmation: null,
-});
+const form = useForm({ login_id: null, password: null });
 
 const SubmitForm = function () {
-    form.post(route("customer.store"));
+    form.post(route("shop.authenticatte"));
 };
 </script>
 <template>
@@ -25,10 +21,10 @@ const SubmitForm = function () {
             </Link>
 
             <h2 class="text-2xl font-bold text-center">
-                {{ $t("titles.web.form.register") }}
+                {{ $t("titles.web.form.login") }}
                 <LanguageSwitcher class="hidden"></LanguageSwitcher>
             </h2>
-            <form>
+            <form @submit.prevent="handleSubmit">
                 <div class="mb-4">
                     <label for="username" class="block text-sm font-medium">{{
                         $t("titles.web.form.username")
@@ -38,11 +34,6 @@ const SubmitForm = function () {
                         v-model="form.login_id"
                         class="mt-1 block w-full p-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
                     />
-                    <span
-                        v-if="form.errors.login_id"
-                        class="text-red-500 text-sm"
-                        >{{ form.errors.login_id }}</span
-                    >
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium">{{
@@ -53,42 +44,36 @@ const SubmitForm = function () {
                         v-model="form.password"
                         class="mt-1 block w-full p-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
                     />
-                    <span
-                        v-if="form.errors.password"
-                        class="text-red-500 text-sm"
-                        >{{ form.errors.password }}</span
-                    >
                 </div>
-                <div class="mb-4">
-                    <label
-                        for="confirmPassword"
-                        class="block text-sm font-medium"
-                        >{{ $t("titles.web.form.confirmPassword") }}</label
-                    >
-                    <input
-                        type="password"
-                        v-model="form.password_confirmation"
-                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-                    />
-                    <span
-                        v-if="form.errors.password_confirmation"
-                        class="text-red-500 text-sm"
-                        >{{ form.errors.password_confirmation }}</span
-                    >
+                <div class="flex justify-between">
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" id="rememberMe" class="mr-2" />
+                        <label for="rememberMe" class="text-sm">{{
+                            $t("titles.web.form.rememberMe")
+                        }}</label>
+                    </div>
+                    <div class="flex justify-between mb-4">
+                        <Link
+                            href="#"
+                            class="text-sm text-blue-600 hover:underline"
+                            >{{ $t("titles.web.form.forgotPassword") }}</Link
+                        >
+                    </div>
                 </div>
                 <button
                     type="submit"
+                    @click="SubmitForm()"
                     class="w-full py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 >
-                    {{ $t("titles.web.form.register") }}
+                    {{ $t("titles.web.form.continue") }}
                 </button>
             </form>
             <p class="mt-4 text-center text-sm">
-                {{ $t("titles.web.form.haveAccount") }}
+                {{ $t("titles.web.form.haveNotAccount") }}
                 <Link
-                    :href="route('shop.signin')"
+                    :href="route('shop.signup')"
                     class="text-blue-600 hover:underline"
-                    >{{ $t("titles.web.form.login") }}</Link
+                    >{{ $t("titles.web.form.register") }}</Link
                 >
             </p>
         </div>

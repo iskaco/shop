@@ -28,7 +28,9 @@
                 "rememberMe": "Remember Me",
                 "forgotPassword": "Forgot Password?",
                 "login": "Login",
-                "haveAccount": "Do you have an account?"
+                "haveAccount": "Do you have an account?",
+                "continue": "Continue",
+                "haveNotAccount": "Don't have an account?"
             },
             "cart": {
                 "title": "Cart",
