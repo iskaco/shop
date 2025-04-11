@@ -22,7 +22,7 @@
             },
             "form": {
                 "register": "Register",
-                "username": "Username",
+                "username": "Mobile / Email",
                 "password": "Password",
                 "confirmPassword": "Confirm Password",
                 "rememberMe": "Remember Me",
