@@ -11,6 +11,7 @@ use App\Http\Requests\Admins\CartItems\CartItemStoreRequest;
 use App\Http\Requests\Auth\CustomerLoginRequest;
 use App\Http\Requests\Web\Customers\CustomerStoreRequest;
 use App\Http\Requests\Web\Customers\CustomerUpdateRequest;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CustomerController extends Controller
@@ -66,17 +67,20 @@ class CustomerController extends Controller
     {
         try {
             // code...
-
+            // dd($request->validated());
+            DB::beginTransaction();
             $cart = $cartStoreAction->execute();
             $cart_items = $request->validated();
-            foreach ($cart_items as $cart_item) {
-                $temp_array = $cart_item;
-                array_push($temp_array, ['card_id' => $cart?->id]);
-                $cartItemStoreAction($temp_array);
+            // dd($cart_items);
+            foreach ($cart_items['items'] as $cart_item) {
+                $cartItemStoreAction->execute(['cart_id' => $cart?->id, 'product_id' => $cart_item['product_id'], 'quantity' => $cart_item['quantity']]);
             }
+            DB::commit();
             toast_success(__('messages.cart.checkout.ok'));
-        } catch (\Throwable $th) {
 
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
         }
     }
 }

@@ -22,7 +22,7 @@ class CustomerAuthenticated
         if (! $request->inertia() && ($request->ajax() || $request->wantsJson())) {
             return response('Unauthorized.', 401);
         } else {
-            return redirect()->route('customer.login');
+            return redirect()->route('shop.signin');
         }
     }
 }

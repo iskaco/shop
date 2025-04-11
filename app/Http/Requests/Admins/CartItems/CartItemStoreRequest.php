@@ -13,10 +13,9 @@ class CartItemStoreRequest extends AdminsAuthRequest
 
     public function rules(): array
     {
-        dd($this->all());
 
         return [
-
+            'items' => ['array', 'required'],
         ];
     }
 }
