@@ -31,6 +31,11 @@ class CustomerController extends Controller
         return Inertia::render('web/SignupView');
     }
 
+    public function profile()
+    {
+        return Inertia::render('web/ProfileView');
+    }
+
     public function authenticate(CustomerLoginRequest $request)
     {
         try {
@@ -41,7 +46,6 @@ class CustomerController extends Controller
         } catch (\Throwable $th) {
             toast_error(__('messages.customer.login.error'));
         }
-
     }
 
     public function store(CustomerStoreRequest $request, CustomerStore $action)
@@ -61,10 +65,8 @@ class CustomerController extends Controller
         try {
             $action->execute($request->validated());
             toast_success(__('messages.customer.update.ok'));
-
         } catch (\Throwable $th) {
         }
-
     }
 
     public function storeCartItems(CartItemStoreRequest $request, CartStore $cartStoreAction, CartItemStore $cartItemStoreAction)
@@ -81,7 +83,6 @@ class CustomerController extends Controller
             }
             DB::commit();
             toast_success(__('messages.cart.checkout.ok'));
-
         } catch (\Throwable $th) {
             DB::rollBack();
             // dd($th);

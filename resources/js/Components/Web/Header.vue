@@ -5,7 +5,7 @@ import CurrencySwitcher from "@/Components/Web/CurrencySwitcher.vue";
 import { onClickOutside } from "@vueuse/core";
 import { useTemplateRef, ref } from "vue";
 import { useCartStore } from "@/Composables/useCart.js";
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 
 const props = defineProps({
     menuBg: { type: String, default: "bg-transparent" },
@@ -81,7 +81,7 @@ const menuItems = ref([
                         >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
                             <span
-                                v-if="cart"
+                                v-if="cart.length"
                                 class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
                                 >{{ cart.length }}</span
                             >
@@ -92,10 +92,22 @@ const menuItems = ref([
                         </Link>
 
                         <Link
-                            :href="route('shop.signin')"
+                            :href="
+                                usePage().props.auth.customer
+                                    ? route('shop.customer.profile')
+                                    : route('shop.signin')
+                            "
                             class="text-white hover:text-gray-300"
                         >
-                            <v-icon name="md-personoutline-outlined"></v-icon>
+                            <img
+                                v-if="usePage().props.auth.customer"
+                                class="w-6 h-6 rounded-full outline outline-meta-6"
+                                src="/images/person.jpeg"
+                            />
+                            <v-icon
+                                v-else
+                                name="md-personoutline-outlined"
+                            ></v-icon>
                         </Link>
                     </div>
                 </div>
