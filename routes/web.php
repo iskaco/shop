@@ -19,7 +19,9 @@ Route::prefix('shop')->name('shop.')->group(function () {
     // ========================= Customers
     Route::get('/signin', [CustomerController::class, 'signin'])->name('signin');
     Route::get('/signup', [CustomerController::class, 'signup'])->name('signup');
+    Route::post('/authenticate', [CustomerController::class, 'authenticate'])->name('authenticate');
     Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
+
     Route::middleware(['customerauth'])->group(function () {
         Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
     });
