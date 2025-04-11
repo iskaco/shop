@@ -113,13 +113,19 @@ class CustomerController extends Controller
                     'quantity' => $cart_item['quantity'],
                     'unit_price' => Product::findOrFail($cart_item['product_id'])?->price,
                     'unit_cost' => Product::findOrFail($cart_item['product_id'])?->price,
-                    'options' => '',
+                    'options' => '{}',
                 ]);
             }
             DB::commit();
+            toast_success(__('messages.order.store.ok'));
+
+            return redirect()->route('shop.customer.profile');
+
         } catch (\Throwable $th) {
             // throw $th;
             DB::rollBack();
+            dd($th);
+            toast_error(__('messages.order.store.error'));
         }
     }
 
