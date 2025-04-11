@@ -8,7 +8,7 @@ import DashboardView from "@/Pages/Dashboard.vue";
 import FormElementsView from "@/Pages/Forms/FormElementsView.vue";
 import FormLayoutView from "@/Pages/Forms/FormLayoutView.vue";
 import SettingsView from "@/Pages/SettingsView.vue";
-import ProfileView from "@/Pages/ProfileView.vue";
+import ProfileView from "@/Pages/web/ProfileView.vue";
 import TablesView from "@/Pages/TablesView.vue";
 import AlertsView from "@/Pages/UiElements/AlertsView.vue";
 import ButtonsView from "@/Pages/UiElements/ButtonsView.vue";
