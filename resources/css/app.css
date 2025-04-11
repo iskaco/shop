@@ -284,3 +284,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .multiselect__single {
     @apply text-black bg-white dark:text-white dark:bg-form-input !mb-0;
 }
+.multiselect {
+    @apply ltr:!text-left rtl:!text-right;
+}

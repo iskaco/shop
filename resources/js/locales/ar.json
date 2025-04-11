@@ -257,7 +257,8 @@
                 "staffs": "الموظفين",
                 "roles": "الأدوار",
                 "permissions": "الأذونات",
-                "specifications": "المواصفات"
+                "specifications": "المواصفات",
+                "taxes": "الضرائب"
             }
         },
         "search": "بحث...",

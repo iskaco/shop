@@ -12,7 +12,7 @@ const getImage = function (image) {
 </script>
 
 <template>
-    <Head :title="$t('titles.titles.web.description')" />
+    <Head :title="$t('titles.web.description')" />
     <WebLayout>
         <HeroSection
             :title="props.category.data.name"

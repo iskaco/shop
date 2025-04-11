@@ -257,7 +257,8 @@
                 "staffs": "Staffs",
                 "roles": "Roles",
                 "permissions": "Permissions",
-                "specifications": "Specifications"
+                "specifications": "Specifications",
+                "taxes": "Taxes"
             }
         },
         "search": "Search",
