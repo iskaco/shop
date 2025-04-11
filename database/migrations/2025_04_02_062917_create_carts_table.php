@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained(); // Null for guests
+            $table->foreignId('customer_id')->nullable()->constrained(); // Null for guests
             $table->string('session_id')->nullable(); // For guest carts
             $table->timestamps();
             $table->softDeletes();
