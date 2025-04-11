@@ -13,7 +13,7 @@ const getImage = function (image) {
 
 <template>
     <Head :title="$t('titles.titles.web.description')" />
-    <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
+    <WebLayout>
         <HeroSection
             :title="props.category.data.name"
             :subtitle="props.category.data.description"

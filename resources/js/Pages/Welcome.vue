@@ -21,6 +21,9 @@ const props = defineProps(["categories"]);
             <!-- Price Table Section -->
             <PriceTable />
 
+            <!-- Categories Section -->
+            <FeaturedCategoriesSection :categories="props.categories" />
+
             <!-- Off Section -->
             <section
                 class="relative bg-red-600 bg-[url('/images/off-section.jpg')] bg-cover bg-center text-white py-40"
@@ -124,9 +127,6 @@ const props = defineProps(["categories"]);
 
             <!-- Brands Section -->
             <BrandSection />
-
-            <!-- Categories Section -->
-            <FeaturedCategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
             <section class="py-20 bg-gray-100">
