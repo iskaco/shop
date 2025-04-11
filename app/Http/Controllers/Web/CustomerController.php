@@ -66,6 +66,7 @@ class CustomerController extends Controller
     {
         try {
             // code...
+
             $cart = $cartStoreAction->execute();
             $cart_items = $request->validated();
             foreach ($cart_items as $cart_item) {

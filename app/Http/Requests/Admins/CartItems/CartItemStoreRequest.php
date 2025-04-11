@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admins\CartItems;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
-use Illuminate\Validation\Rule;
 
 class CartItemStoreRequest extends AdminsAuthRequest
 {
@@ -14,6 +13,8 @@ class CartItemStoreRequest extends AdminsAuthRequest
 
     public function rules(): array
     {
+        dd($this->all());
+
         return [
 
         ];
