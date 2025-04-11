@@ -28,7 +28,7 @@ class OrderFactory extends Factory
         $total = $subtotal + $taxAmount + $shippingCost - $discountAmount;
 
         return [
-            'user_id' => $user->id,
+            'customer_id' => $user->id,
             'status' => $this->faker->randomElement(Order::STATUSES),
             'subtotal' => $subtotal,
             'tax_amount' => $taxAmount,
@@ -39,7 +39,7 @@ class OrderFactory extends Factory
                 'credit_card',
                 'paypal',
                 'bank_transfer',
-                'cash_on_delivery'
+                'cash_on_delivery',
             ]),
             'shipping_address' => $this->faker->address,
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
@@ -47,12 +47,13 @@ class OrderFactory extends Factory
 
         ];
     }
+
     public function withDiscount(float $amount)
     {
         return $this->state(function (array $attributes) use ($amount) {
-            $newTotal = $attributes['subtotal'] + $attributes['tax_amount'] 
+            $newTotal = $attributes['subtotal'] + $attributes['tax_amount']
                       + $attributes['shipping_cost'] - $amount;
-            
+
             return [
                 'discount_amount' => $amount,
                 'total' => max(0, $newTotal), // Ensure total doesn't go negative
@@ -76,5 +77,4 @@ class OrderFactory extends Factory
                 ->create();
         });
     }
-
 }
