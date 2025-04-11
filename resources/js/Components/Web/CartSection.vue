@@ -1,5 +1,6 @@
 <script setup>
 import { useCartStore } from "@/Composables/useCart.js";
+import { useForm } from "@inertiajs/vue3";
 
 const {
     cart,
@@ -12,6 +13,19 @@ const {
 
 const getImage = function (image) {
     return route("shop.media", image);
+};
+
+const CheckoutCart = function () {
+    let cartItems = [];
+    let cartItem = {};
+    cart.forEach((element) => {
+        cartItem["product_id"] = element.id;
+        cartItem["quantity"] = element.quantity;
+        cartItems.push(cartItem);
+    });
+
+    let form = useForm(cartItems);
+    form.post(route("cart_items.store"));
 };
 </script>
 <template>
@@ -121,7 +135,10 @@ const getImage = function (image) {
                         {{ $t("titles.web.cart.grandTotal") }}:
                         {{ cartTotal }}
                     </div>
-                    <button class="px-4 py-2 bg-blue-600 text-white rounded">
+                    <button
+                        @click="CheckoutCart()"
+                        class="px-4 py-2 bg-blue-600 text-white rounded"
+                    >
                         {{ $t("titles.web.cart.checkout") }}
                     </button>
                 </div>
