@@ -23,6 +23,7 @@ export const useCartStore = defineStore("cart", {
         },
         removeFromCart(productId) {
             this.cart = this.cart.filter((item) => item.id !== productId);
+
             this.saveCart();
         },
         updateQuantity(productId, newQuantity) {

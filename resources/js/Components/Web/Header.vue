@@ -11,7 +11,7 @@ const props = defineProps({
     menuBg: { type: String, default: "bg-transparent" },
 });
 
-const { cartItemCount } = useCartStore();
+const { cart } = useCartStore();
 
 const { toggleSidebar } = useSidebarStore();
 const sidebarStore = useSidebarStore();
@@ -81,9 +81,9 @@ const menuItems = ref([
                         >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
                             <span
-                                v-if="cartItemCount"
+                                v-if="cart"
                                 class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
-                                >{{ cartItemCount }}</span
+                                >{{ cart.length }}</span
                             >
                         </Link>
 
