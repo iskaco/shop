@@ -11,11 +11,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Customer extends User implements HasMedia
 {
     use InteractsWithMedia, Logable;
+
     protected $fillable = ['email', 'password', 'mobile', 'enable', 'address', 'city', 'country', 'postal_code'];
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
     protected $casts = [
         'enable' => 'boolean',
     ];
@@ -26,4 +29,11 @@ class Customer extends User implements HasMedia
         $this->attributes['password'] = Hash::make($value);
     }
     // Your model attributes and methods here
+
+    public function getProfileImageAttribute()
+    {
+        $media = $this->getFirstMedia('Customer.Profile');
+
+        return $media;
+    }
 }

@@ -9,7 +9,7 @@ const form = useForm({
 });
 
 const SubmitForm = function () {
-    form.post(route("customer.store"));
+    form.post(route("shop.customer.store"));
 };
 </script>
 <template>
@@ -28,7 +28,7 @@ const SubmitForm = function () {
                 {{ $t("titles.web.form.register") }}
                 <LanguageSwitcher class="hidden"></LanguageSwitcher>
             </h2>
-            <form>
+            <div>
                 <div class="mb-4">
                     <label for="username" class="block text-sm font-medium">{{
                         $t("titles.web.form.username")
@@ -77,12 +77,12 @@ const SubmitForm = function () {
                     >
                 </div>
                 <button
-                    type="submit"
+                    @click="SubmitForm()"
                     class="w-full py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 >
                     {{ $t("titles.web.form.register") }}
                 </button>
-            </form>
+            </div>
             <p class="mt-4 text-center text-sm">
                 {{ $t("titles.web.form.haveAccount") }}
                 <Link

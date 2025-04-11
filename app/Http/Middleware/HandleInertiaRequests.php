@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\AdminResource;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -41,9 +43,9 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
-                'customer' => auth('customer')?->user(),
+                'customer' => auth('customer')?->user(), // CustomerResource::make(auth('customer')?->user()),
                 'activities' => $activites,
-                ...($request->user('admin') ? ['admin' => auth('admin')?->user()] : []),
+                ...($request->user('admin') ? ['admin' => auth('admin')?->user()/* AdminResource::make(auth('admin')?->user()) */] : []),
             ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
