@@ -24,6 +24,8 @@ Route::prefix('shop')->name('shop.')->group(function () {
 
     Route::middleware(['customerauth'])->group(function () {
         Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+        Route::post('/cart-items/store', [CustomerController::class, 'storeCartItems'])->name('cart_items.store');
+
     });
     // ======================== Products
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
@@ -63,6 +65,6 @@ Route::get('/category/{name}/', function ($name) {
 })->name('web.category');
 */
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
-require __DIR__ . '/activity.php';
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/activity.php';
