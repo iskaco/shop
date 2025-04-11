@@ -5,7 +5,7 @@ import LanguageSwitcher from "@/Components/Header/LanguageSwitcher.vue";
 const form = useForm({ login_id: null, password: null });
 
 const SubmitForm = function () {
-    form.post(route("shop.authenticatte"));
+    form.post(route("shop.authenticate"));
 };
 </script>
 <template>
@@ -24,7 +24,7 @@ const SubmitForm = function () {
                 {{ $t("titles.web.form.login") }}
                 <LanguageSwitcher class="hidden"></LanguageSwitcher>
             </h2>
-            <form @submit.prevent="handleSubmit">
+            <div>
                 <div class="mb-4">
                     <label for="username" class="block text-sm font-medium">{{
                         $t("titles.web.form.username")
@@ -61,13 +61,12 @@ const SubmitForm = function () {
                     </div>
                 </div>
                 <button
-                    type="submit"
                     @click="SubmitForm()"
                     class="w-full py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 >
                     {{ $t("titles.web.form.continue") }}
                 </button>
-            </form>
+            </div>
             <p class="mt-4 text-center text-sm">
                 {{ $t("titles.web.form.haveNotAccount") }}
                 <Link

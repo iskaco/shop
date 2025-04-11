@@ -25,10 +25,15 @@ class CustomerController extends Controller
 
     public function authenticate(CustomerLoginRequest $request)
     {
-        $request->authenticate();
-        toast_success(__('messages.customer.login.ok'));
+        try {
+            $request->authenticate();
+            toast_success(__('messages.customer.login.ok'));
 
-        return redirect()->back();
+            return redirect()->route('home');
+        } catch (\Throwable $th) {
+            toast_error(__('messages.customer.login.error'));
+        }
+
     }
 
     public function store(CustomerStoreRequest $request, CustomerStore $action)
@@ -37,7 +42,7 @@ class CustomerController extends Controller
             $action->execute($request->validated());
             toast_success(__('messages.customer.store.ok'));
 
-            return redirect()->back();
+            return redirect()->route('shop.signin');
         } catch (\Throwable $th) {
             toast_error(__('messages.customer.store.error'));
         }
