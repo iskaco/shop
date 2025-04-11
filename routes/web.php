@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admins\AdminController;
 use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\CustomerController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\SettingController;
@@ -14,6 +15,14 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/set-locale', [SettingController::class, 'setLocale'])->name('set-locale');
 
 Route::prefix('shop')->name('shop.')->group(function () {
+
+    // ========================= Customers
+    Route::get('/signin', [CustomerController::class, 'signin'])->name('signin');
+    Route::get('/signup', [CustomerController::class, 'signup'])->name('signup');
+    Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::middleware(['customerauth'])->group(function () {
+        Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+    });
     // ======================== Products
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
@@ -23,7 +32,6 @@ Route::prefix('shop')->name('shop.')->group(function () {
     // ======================== Categories
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-
 
     // ======================== TEMPORARY ROUTES
     Route::get('/cart', function () {
@@ -53,6 +61,6 @@ Route::get('/category/{name}/', function ($name) {
 })->name('web.category');
 */
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
-require __DIR__ . '/activity.php';
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/activity.php';
