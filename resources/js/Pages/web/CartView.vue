@@ -2,8 +2,6 @@
 import { Head } from "@inertiajs/vue3";
 import WebLayout from "@/Layouts/WebLayout.vue";
 import CartSection from "@/Components/Web/CartSection.vue";
-
-const props = defineProps(["orders"]);
 </script>
 
 <template>

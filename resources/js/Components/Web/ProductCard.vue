@@ -1,8 +1,55 @@
 <script setup>
+import { toast } from "vue3-toastify";
+import { useI18n } from "vue-i18n";
+import { Link } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+import { useCartStore } from "@/Composables/useCart.js";
+
 const props = defineProps(["product"]);
+
+const { t, locale } = useI18n();
 
 const getImage = function () {
     return route("shop.media", props.product.image);
+};
+
+const { addToCart, cart } = useCartStore();
+
+const isInCart = computed(() => {
+    return cart.some((item) => item.id === props.product.id);
+});
+
+const AddToCart = function (product) {
+    toast.success(
+        `
+        <div class='!whitespace-normal'>
+            <div class='text-center pb-2 border-b border-meta-3 text-meta-3 font-semibold'>${t(
+                "titles.web.cart.successfullyAddToCart"
+            )}</div>
+            <div class='flex flex-row ltr:flex-row-reverse items-center h-28'>
+                <img src="${getImage()}" class='w-24 h-24 object-cover m-2 rounded' />
+                <div class='flex flex-col justify-around h-full'>
+                    <h5 class='text-lg font-bold text-black ltr:text-left trl:text-right'>${
+                        props.product.name
+                    }</h5>
+                    <span class='text-base text-gray-500'>${
+                        props.product.price
+                    }$</span>
+                </div>
+            </div>
+                <button @click='' class='w-full rounded bg-meta-3 text-white mt-4 py-2 z-999999'>${t(
+                    "titles.web.cart.goToCart"
+                )}
+                </button>
+        </div>
+    `,
+        {
+            dangerouslyHTMLString: true,
+            autoClose: false,
+            position: "bottom-center",
+        }
+    );
 };
 </script>
 <template>
@@ -49,13 +96,17 @@ const getImage = function () {
                     >
                 </p>
             </div>
-            <a
-                href="#"
+            <button
+                @click="addToCart(props.product)"
                 class="flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
             >
                 <v-icon name="md-shoppingcart-outlined"></v-icon>
-                {{ $t("titles.web.products.addtocart") }}
-            </a>
+                {{
+                    isInCart
+                        ? $t("titles.web.products.isInCart")
+                        : $t("titles.web.products.addtocart")
+                }}
+            </button>
         </div>
     </div>
 </template>
