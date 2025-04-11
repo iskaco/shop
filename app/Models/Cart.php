@@ -12,8 +12,8 @@ class Cart extends Model
 {
     use HasFactory, Logable;
 
-    protected $fillable = [ 
-        'user_id',
+    protected $fillable = [
+        'customer_id',
         'session_id',
     ];
 
@@ -21,8 +21,8 @@ class Cart extends Model
 
     protected $appends = ['user_name'];
 
-
-    public function user(): BelongsTo{
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -31,7 +31,8 @@ class Cart extends Model
         return $this->hasMany(CartItem::class);
     }
 
-    public function getUserNameAttribute() {
+    public function getUserNameAttribute()
+    {
         return $this->user?->name ?? $this->session_id;
     }
 }

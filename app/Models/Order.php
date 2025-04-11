@@ -14,8 +14,9 @@ class Order extends Model
     use HasFactory, Logable, SoftDeletes;
 
     public const STATUSES = ['pending', 'paid', 'shipped', 'cancelled'];
+
     protected $fillable = [
-        'user_id',
+        'customer_id',
         'status',
         'subtotal',
         'tax_amount',
@@ -23,11 +24,10 @@ class Order extends Model
         'shipping_cost',
         'total',
         'payment_method',
-        'shipping_address'
+        'shipping_address',
     ];
 
     protected $appends = ['user_name'];
-
 
     public function user(): BelongsTo
     {
@@ -39,7 +39,8 @@ class Order extends Model
         return $this->HasMany(OrderItem::class);
     }
 
-    public function getUserNameAttribute() {
+    public function getUserNameAttribute()
+    {
         return $this->user?->name;
     }
 }

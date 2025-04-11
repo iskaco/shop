@@ -6,6 +6,7 @@ use App\Models\CartItem;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cart>
  */
@@ -20,9 +21,9 @@ class CartFactory extends Factory
     {
         // 70% chance to have a user, 30% guest cart
         $hasUser = $this->faker->boolean(70);
-        
+
         return [
-            'user_id' => $hasUser ? User::factory() : null,
+            'customer_id' => $hasUser ? User::factory() : null,
             'session_id' => $hasUser ? null : Str::random(40),
             'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
@@ -33,7 +34,7 @@ class CartFactory extends Factory
     public function forUser($userId)
     {
         return $this->state([
-            'user_id' => $userId,
+            'customer_id' => $userId,
             'session_id' => null,
         ]);
     }
@@ -41,7 +42,7 @@ class CartFactory extends Factory
     public function forGuest()
     {
         return $this->state([
-            'user_id' => null,
+            'customer_id' => null,
             'session_id' => Str::random(40),
         ]);
     }
@@ -49,7 +50,7 @@ class CartFactory extends Factory
     public function withSession($sessionId)
     {
         return $this->state([
-            'user_id' => null,
+            'customer_id' => null,
             'session_id' => $sessionId,
         ]);
     }
@@ -63,5 +64,4 @@ class CartFactory extends Factory
                 ->create();
         });
     }
-
 }
