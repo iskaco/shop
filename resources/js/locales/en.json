@@ -40,7 +40,9 @@
                 "total": "Total",
                 "grandTotal": "Grand Total",
                 "checkout": "Checkout",
-                "remove": "Remove"
+                "remove": "Remove",
+                "successfullyAddToCart": "Item successfully added to cart",
+                "goToCart": "Go to Cart"
             },
             "hero": {
                 "title": "Welcome to MeemHome",
@@ -159,6 +161,7 @@
                 "name": "Products",
                 "title": "Sample Product",
                 "addtocart": "Add To Cart",
+                "isInCart": "In The Cart",
                 "electronics": {
                     "title": "Electronics",
                     "television": {

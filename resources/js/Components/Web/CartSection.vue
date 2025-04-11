@@ -1,5 +1,18 @@
 <script setup>
-import CartSection from "@/Components/Web/CartSection.vue";
+import { useCartStore } from "@/Composables/useCart.js";
+
+const {
+    cart,
+    removeFromCart,
+    updateQuantity,
+    cartTotal,
+    cartItemCount,
+    clearCart,
+} = useCartStore();
+
+const getImage = function (image) {
+    return route("shop.media", image);
+};
 </script>
 <template>
     <section class="py-20 bg-white md:px-20 px-10">
@@ -46,60 +59,12 @@ import CartSection from "@/Components/Web/CartSection.vue";
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
+                            <tr v-for="item in cart" :key="item.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <img
-                                            src="https://via.placeholder.com/64"
-                                            alt="Test Product"
-                                            class="h-16 w-16 object-cover rounded"
-                                        />
-                                        <div class="ml-4">
-                                            <div
-                                                class="text-sm font-medium text-gray-900"
-                                            >
-                                                Test Product
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                This is a test product
-                                                description.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <input
-                                        type="number"
-                                        class="w-16 border border-gray-300 rounded"
-                                    />
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                >
-                                    $10.00
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                >
-                                    $10.00
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                                >
-                                    <button
-                                        @click="removeItem(0)"
-                                        class="text-red-600 hover:text-red-900"
-                                    >
-                                        {{ $t("titles.web.cart.remove") }}
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr v-for="item in orders" :key="item.id">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <img
-                                            :src="item.image"
-                                            alt=""
+                                            :src="getImage(item.image)"
+                                            :alt="item.name"
                                             class="h-16 w-16 object-cover rounded"
                                         />
                                         <div class="ml-4">
@@ -117,25 +82,31 @@ import CartSection from "@/Components/Web/CartSection.vue";
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <input
                                         type="number"
-                                        v-model="item.quantity"
                                         class="w-16 border border-gray-300 rounded"
+                                        :value="item.quantity ?? 1"
+                                        @input="
+                                            updateQuantity(
+                                                item.id,
+                                                $event.target.value
+                                            )
+                                        "
                                     />
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                 >
-                                    {{ item.price | currency }}
+                                    {{ item.price }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                 >
-                                    {{ item.total | currency }}
+                                    {{ (item.quantity ?? 1) * item.price }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                                 >
                                     <button
-                                        @click="removeItem(item.id)"
+                                        @click="removeFromCart(item.id)"
                                         class="text-red-600 hover:text-red-900"
                                     >
                                         {{ $t("titles.web.cart.remove") }}
@@ -148,7 +119,7 @@ import CartSection from "@/Components/Web/CartSection.vue";
                 <div class="mt-4 flex justify-between">
                     <div class="text-lg font-bold">
                         {{ $t("titles.web.cart.grandTotal") }}:
-                        {{ grandTotal | currency }}
+                        {{ cartTotal }}
                     </div>
                     <button class="px-4 py-2 bg-blue-600 text-white rounded">
                         {{ $t("titles.web.cart.checkout") }}
