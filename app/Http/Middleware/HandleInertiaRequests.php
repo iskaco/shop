@@ -36,18 +36,20 @@ class HandleInertiaRequests extends Middleware
                 ->where('activity.is_menu', true)
                 ->where('activity.is_active', true);
         }
+
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
-                'admin' => auth('admin')?->user(),
+                'customer' => auth('customer')?->user(),
                 'activities' => $activites,
+                ...($request->user('admin') ? ['admin' => auth('admin')?->user()] : []),
             ],
-            'ziggy' => fn() => [
+            'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'flash' => fn() => [
+            'flash' => fn () => [
                 'toasts' => $request->session()->get('toasts'),
             ],
             'locale' => app()->getLocale(),

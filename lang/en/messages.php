@@ -22,6 +22,10 @@ return [
             'ok' => 'Your account has been created successfully. Welcome!',
             'error' => 'There was an error creating your account. Please try again.',
         ],
+        'update' => [
+            'ok' => 'Your account has been updated successfully.',
+            'error' => 'There was an error updating your account. Please try again.',
+        ],
         'login' => [
             'ok' => 'Login successful. Welcome back!',
             'error' => 'Error logging in. Please check your credentials and try again.',
