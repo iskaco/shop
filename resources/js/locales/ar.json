@@ -20,6 +20,16 @@
                 "contact": "التواصل",
                 "about": "معلومات عنا"
             },
+            "form": {
+                "register": "تسجيل",
+                "username": "اسم المستخدم",
+                "password": "كلمة المرور",
+                "confirmPassword": "تأكيد كلمة المرور",
+                "rememberMe": "تذكرني",
+                "forgotPassword": "هل نسيت كلمة المرور؟",
+                "login": "تسجيل الدخول",
+                "haveAccount": "هل لديك حساب؟"
+            },
             "cart": {
                 "title": "عربة التسوق",
                 "product": "المنتج",
@@ -257,7 +267,8 @@
                 "staffs": "الموظفين",
                 "roles": "الأدوار",
                 "permissions": "الأذونات",
-                "specifications": "المواصفات"
+                "specifications": "المواصفات",
+                "taxes": "الضرائب"
             }
         },
         "search": "بحث...",

@@ -16,7 +16,7 @@
     @inertiaHead
 </head>
 
-<body class="rtl:font-arabic ltr:font-alumni antialiased">
+<body class="font-vazirmatn antialiased">
     @inertia
 </body>
 
