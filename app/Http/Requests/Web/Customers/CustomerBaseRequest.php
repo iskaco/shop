@@ -14,10 +14,12 @@ class CustomerBaseRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            'name' => ['required', 'string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
-            'email' => ['required', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
-            'mobile' => ['required', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'name' => ['string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'email' => ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'mobile' => ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            // 'required' => ['required_without:mobile', 'required_without:email'],
             'password' => ['required', 'string', 'min:8'],
             'address' => ['nullable', 'string', 'max:500'],
             'city' => ['nullable', 'string', 'max:100'],
@@ -26,5 +28,6 @@ class CustomerBaseRequest extends FormRequest
             'enable' => ['boolean'],
             'profile_image' => ['nullable', 'mimes:jpg,png,jpeg', 'image', 'max:2024'],
         ];
+
     }
 }
