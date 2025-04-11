@@ -31,6 +31,12 @@ return [
             'error' => 'Error logging in. Please check your credentials and try again.',
         ],
     ],
+    'cart' => [
+        'checkout' => [
+            'ok' => 'Checkout completed successfully. Thank you for your purchase!',
+            'error' => 'There was an error during checkout. Please try again.',
+        ],
+    ],
     'product' => [
         'destroy' => [
             'title' => 'Are you sure you want to delete this record?',

@@ -25,7 +25,7 @@ const CheckoutCart = function () {
     });
 
     let form = useForm({ items: cartItems });
-    form.post(route("cart_items.store"));
+    form.post(route("shop.cart_items.store"));
 };
 </script>
 <template>
