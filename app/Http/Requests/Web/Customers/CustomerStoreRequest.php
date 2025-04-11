@@ -29,9 +29,10 @@ class CustomerStoreRequest extends CustomerBaseRequest
         if ($this->login_id) {
             if (filter_var($this->login_id, FILTER_VALIDATE_EMAIL)) {
                 $this->merge(['email' => $this->login_id]);
-            } else {
+            } elseif (preg_match('/^[0-9]{10,15}$/', $this->login_id)) {
                 $this->merge(['mobile' => $this->login_id]);
             }
+
         }
     }
 }

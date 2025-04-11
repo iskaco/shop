@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admins;
 
-use App\Http\Requests\GeneralRequests;
 use App\Models\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,8 +18,12 @@ class AdminsAuthRequest extends FormRequest
             if ($admin_user->roles->first()?->hasPermissionTo($this->action)) // $admin_user->can($this->action))
                 return true;
             return false;*/
-            //TODO add authorise
-            return true;
+            // TODO add authorise
+            if (auth('admin')->check()) {
+                return true;
+            }
+
+            return false;
         } catch (\Throwable $th) {
             return false;
         }
