@@ -69,7 +69,7 @@ return [
         'is_published' => 'Published',
         'status' => 'Status',
         'slug' => 'Slug',
-        'specifications' => ':label Specifications'
+        'specifications' => ':label Specifications',
 
     ],
     'category' => [
@@ -151,6 +151,7 @@ return [
         'total' => 'Total',
         'payment_method' => 'Payment Method',
         'shipping_address' => 'Shipping Address',
+        'customer' => 'Customer',
     ],
     'cart' => [
         'label' => 'Cart',

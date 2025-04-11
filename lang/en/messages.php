@@ -37,6 +37,12 @@ return [
             'error' => 'There was an error during checkout. Please try again.',
         ],
     ],
+    'order' => [
+        'store' => [
+            'ok' => 'Your order has been placed successfully. Thank you for your purchase!',
+            'error' => 'There was an error placing your order. Please try again.',
+        ],
+    ],
     'product' => [
         'destroy' => [
             'title' => 'Are you sure you want to delete this record?',

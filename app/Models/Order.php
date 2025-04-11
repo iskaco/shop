@@ -27,11 +27,11 @@ class Order extends Model
         'shipping_address',
     ];
 
-    protected $appends = ['user_name'];
+    protected $appends = ['customer_name'];
 
-    public function user(): BelongsTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function items(): HasMany
@@ -39,8 +39,8 @@ class Order extends Model
         return $this->HasMany(OrderItem::class);
     }
 
-    public function getUserNameAttribute()
+    public function getCustomerNameAttribute()
     {
-        return $this->user?->name;
+        return $this->customer?->name ?? ($this->customer?->email ?? $this->customer?->mobile);
     }
 }

@@ -152,7 +152,8 @@ return [
         'shipping_cost' => 'تكلفة الشحن',
         'total' => 'المجموع الكلي',
         'payment_method' => 'طريقة الدفع',
-        'shipping_address' => 'عنوان الشحن'
+        'shipping_address' => 'عنوان الشحن',
+        'customer' => 'العميل',
     ],
     'cart' => [
         'label' => 'عربة',

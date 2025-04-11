@@ -24,7 +24,8 @@ Route::prefix('shop')->name('shop.')->group(function () {
 
     Route::middleware(['customerauth'])->group(function () {
         Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
-        Route::post('/cart-items/store', [CustomerController::class, 'storeCartItems'])->name('cart_items.store');
+        Route::post('/cart-items/store', [CustomerController::class, 'storeCartItems'])->name('cart_items.store'); // ToDo
+        Route::post('/order/store', [CustomerController::class, 'storeOrder'])->name('order.store');
         Route::get('/profile', [CustomerController::class, 'profile'])->name('customer.profile');
 
     });
