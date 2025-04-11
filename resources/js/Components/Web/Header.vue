@@ -72,23 +72,23 @@ const menuItems = ref([
 
                         <CurrencySwitcher />
 
-                        <a
+                        <Link
                             :href="route('shop.cart.show')"
                             class="text-white hover:text-gray-300"
                         >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
-                        </a>
+                        </Link>
 
-                        <a href="#" class="text-white hover:text-gray-300">
+                        <Link href="#" class="text-white hover:text-gray-300">
                             <v-icon name="md-favoriteborder-outlined"></v-icon>
-                        </a>
+                        </Link>
 
-                        <a
-                            :href="route('signup.show')"
+                        <Link
+                            :href="route('shop.signin')"
                             class="text-white hover:text-gray-300"
                         >
                             <v-icon name="md-personoutline-outlined"></v-icon>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div class="flex flex-row-reverse gap-2 md:hidden">

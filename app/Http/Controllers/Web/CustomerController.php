@@ -8,7 +8,10 @@ use Inertia\Inertia;
 class CustomerController extends Controller
 {
     //
-    public function signin() {}
+    public function signin()
+    {
+        return Inertia::render('web/SigninView');
+    }
 
     public function signup()
     {

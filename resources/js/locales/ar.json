@@ -28,7 +28,9 @@
                 "rememberMe": "تذكرني",
                 "forgotPassword": "هل نسيت كلمة المرور؟",
                 "login": "تسجيل الدخول",
-                "haveAccount": "هل لديك حساب؟"
+                "haveAccount": "هل لديك حساب؟",
+                "continue": "استمرار",
+                "haveNotAccount": "ليس لديك حساب؟"
             },
             "cart": {
                 "title": "عربة التسوق",
