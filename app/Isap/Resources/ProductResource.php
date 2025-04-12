@@ -52,7 +52,7 @@ class ProductResource extends BaseResource
                             ]
                         ),
 
-                    ]
+                    ],
                 ]
             ),
             FormSection::make('another_info', __('resources.product.another_info'))->children([
@@ -60,6 +60,7 @@ class ProductResource extends BaseResource
                 MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
                 MultiSelectInput::make('brand_id', __('resources.product.brand'))->setSource((new DataUtil)->getOptionsForModel(new Brand, 'id', 'name'))->setIsNotMulti()->isRequired(),
                 TextInput::make('price', __('resources.product.price'))->isCurrency(),
+                TextInput::make('cost', __('resources.product.cost'))->isCurrency(),
                 TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ]),
             FormSection::make('images', __('resources.product.images'))->children([
@@ -70,7 +71,7 @@ class ProductResource extends BaseResource
                 ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('product.' . lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('product.'.lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -83,6 +84,7 @@ class ProductResource extends BaseResource
             TextColumn::make('brand_name', __('resources.product.brand')),
             // TextColumn::make('description_translated', __('resources.product.description')),
             TextColumn::make('price', __('resources.product.price')),
+            TextColumn::make('cost', __('resources.product.cost')),
             TextColumn::make('stock', __('resources.product.stock')),
             ImageColumn::make('image', __('resources.product.image')),
             ToggleColumn::make('is_published', __('resources.product.is_published')),

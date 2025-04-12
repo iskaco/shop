@@ -55,6 +55,7 @@ return [
         'description_en' => 'English Description',
         'description_ar' => 'Arabic Description',
         'price' => 'Price',
+        'cost' => 'Cost',
         'stock' => 'Stock',
         'image' => 'Image',
         'general_en' => 'General Information (English)',
