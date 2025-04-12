@@ -29,8 +29,8 @@ const CheckoutCart = function () {
 };
 </script>
 <template>
-    <section class="py-20 bg-white md:px-20 px-10">
-        <div class="container px-4 mx-auto">
+    <section class="py-20 bg-white md:px-20 px-5">
+        <div class="px-4 mx-auto">
             <h2
                 class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
             >

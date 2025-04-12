@@ -53,11 +53,13 @@ const menuItems = ref([
         <div class="container px-4 py-4 mx-auto">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <img
-                        src="/images/logo.png"
-                        alt="Logo"
-                        class="w-auto h-20"
-                    />
+                    <Link :href="route('home')">
+                        <img
+                            src="/images/logo.png"
+                            alt="Logo"
+                            class="w-auto h-20"
+                        />
+                    </Link>
                 </div>
                 <div
                     class="items-center hidden gap-x-8 ltr:font-semibold md:flex"
@@ -111,14 +113,46 @@ const menuItems = ref([
                         </Link>
                     </div>
                 </div>
-                <div class="flex flex-row-reverse gap-2 md:hidden">
+                <div class="flex flex-row-reverse gap-4 md:hidden">
                     <button class="text-white" @click="toggleSidebar">
                         <v-icon name="md-menu-outlined"></v-icon>
                     </button>
+                    <div class="flex gap-4">
+                        <Link
+                            :href="route('shop.cart.show')"
+                            class="relative text-white hover:text-gray-300"
+                        >
+                            <v-icon name="md-shoppingcart-outlined"></v-icon>
+                            <span
+                                v-if="cart.length"
+                                class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
+                                >{{ cart.length }}</span
+                            >
+                        </Link>
 
-                    <LanguageSwitcher />
+                        <Link href="#" class="text-white hover:text-gray-300">
+                            <v-icon name="md-favoriteborder-outlined"></v-icon>
+                        </Link>
 
-                    <CurrencySwitcher />
+                        <Link
+                            :href="
+                                usePage().props.auth.customer
+                                    ? route('shop.customer.profile')
+                                    : route('shop.signin')
+                            "
+                            class="text-white hover:text-gray-300"
+                        >
+                            <img
+                                v-if="usePage().props.auth.customer"
+                                class="w-6 h-6 rounded-full outline outline-meta-6"
+                                src="/images/person.jpeg"
+                            />
+                            <v-icon
+                                v-else
+                                name="md-personoutline-outlined"
+                            ></v-icon>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,10 +193,16 @@ const menuItems = ref([
         <!-- SIDEBAR HEADER -->
 
         <div
-            class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar"
+            class="flex-1 flex flex-col justify-between pb-5 overflow-y-auto duration-300 ease-linear no-scrollbar"
         >
+            <div
+                class="flex justify-between mx-4 px-2 bg-boxdark py-2 rounded-md"
+            >
+                <LanguageSwitcher />
+                <CurrencySwitcher />
+            </div>
             <!-- Sidebar Menu -->
-            <nav class="px-4 py-4 lg:px-6">
+            <nav class="flex-1 px-4 py-4 lg:px-6">
                 <div>
                     <a
                         v-for="menu in menuItems"
@@ -175,6 +215,7 @@ const menuItems = ref([
                     </a>
                 </div>
             </nav>
+
             <!-- Sidebar Menu -->
         </div>
     </aside>

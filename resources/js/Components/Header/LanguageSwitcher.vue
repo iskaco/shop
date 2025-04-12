@@ -57,7 +57,7 @@ onMounted(() => {
             <span>{{
                 languages.find((lang) => lang.code === locale)?.flag
             }}</span>
-            <span class="hidden md:block">{{
+            <span>{{
                 languages.find((lang) => lang.code === locale)?.name
             }}</span>
         </button>
@@ -66,7 +66,7 @@ onMounted(() => {
         <div
             v-if="isOpen"
             ref="target"
-            class="absolute right-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
+            class="absolute right-0 ltr:left-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
         >
             <button
                 v-for="lang in languages"
