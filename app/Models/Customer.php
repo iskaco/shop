@@ -36,4 +36,9 @@ class Customer extends User implements HasMedia
 
         return $media;
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

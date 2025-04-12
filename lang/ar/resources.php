@@ -9,6 +9,7 @@ return [
         'create' => 'إنشاء :label',
         'update' => 'تحديث',
         'product' => 'منتج :label',
+        'order_items' => 'عناصر الطلب',
 
     ],
     'admin' => [
@@ -154,10 +155,22 @@ return [
         'payment_method' => 'طريقة الدفع',
         'shipping_address' => 'عنوان الشحن',
         'customer' => 'العميل',
+        'billing_address' => 'عنوان الفاتورة',
     ],
     'cart' => [
         'label' => 'عربة',
         'plural' => 'عربات',
         'user_name' => 'اسم الزبون',
+    ],
+    'order_item' => [
+        'label' => 'عنصر الطلب',
+        'plural' => 'عناصر الطلب',
+        'product_name' => 'اسم المنتج',
+        'quantity' => 'الكمية',
+        'price' => 'السعر',
+        'total' => 'المجموع',
+        'status' => 'الحالة',
+        'created_at' => 'تاريخ الإنشاء',
+        'updated_at' => 'تاريخ التحديث',
     ],
 ];

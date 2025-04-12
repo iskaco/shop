@@ -9,6 +9,7 @@ return [
         'create' => 'Create :label',
         'update' => 'Update',
         'product' => 'Product :label',
+        'order_items' => 'Order Items',
     ],
     'admin' => [
         'label' => 'Admin',
@@ -152,10 +153,22 @@ return [
         'payment_method' => 'Payment Method',
         'shipping_address' => 'Shipping Address',
         'customer' => 'Customer',
+        'billing_address' => 'Billing Address',
     ],
     'cart' => [
         'label' => 'Cart',
         'plural' => 'Carts',
         'user_name' => 'User Name',
+    ],
+    'order_item' => [
+        'label' => 'Order Item',
+        'plural' => 'Order Items',
+        'product_name' => 'Product Name',
+        'quantity' => 'Quantity',
+        'price' => 'Price',
+        'total' => 'Total',
+        'status' => 'Status',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
     ],
 ];
