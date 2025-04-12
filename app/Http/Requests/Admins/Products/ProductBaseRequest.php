@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Admins\Products;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 abstract class ProductBaseRequest extends AdminsAuthRequest
 {
@@ -27,6 +27,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'short_description' => ['array'],
             'stock' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
+            'cost' => ['required', 'numeric', 'min:0'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'is_published' => ['boolean'],
             'is_featured' => ['boolean'],
