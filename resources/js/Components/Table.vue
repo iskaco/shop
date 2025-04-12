@@ -46,8 +46,6 @@ export default {
             this.modalShowStatus = false;
         },
         openModal(id, title, message, color, route, method) {
-            console.log(method);
-
             this.selectedItemId = id;
             this.modalBodyMessage = message;
             this.modalButtonLabel = title;

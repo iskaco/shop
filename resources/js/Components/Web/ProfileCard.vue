@@ -1,14 +1,23 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+import { useCartStore } from "@/Composables/useCart.js";
+import { onMounted } from "vue";
 
-const getImage = function () {
+const props = defineProps(["customer"]);
+const { clearCart } = useCartStore();
+
+const getImage = function (image) {
+    if (image) return route("shop.media", image);
     return false;
-    //return route("shop.media", null);
 };
 
 const setDefaultImage = function (event) {
     event.target.src = "/images/person.jpeg";
 };
+
+onMounted(() => {
+    if (usePage().props.flash.toasts) clearCart();
+});
 </script>
 <template>
     <div
@@ -66,7 +75,7 @@ const setDefaultImage = function (event) {
             >
                 <div class="relative drop-shadow-2">
                     <img
-                        :src="getImage()"
+                        :src="getImage(props.customer.profile_image)"
                         @error="setDefaultImage($event)"
                         class="h-40 w-40 rounded-full object-cover object-center -mt-1"
                         alt="profile"
@@ -137,126 +146,102 @@ const setDefaultImage = function (event) {
                     </Link>
                 </div>
 
-                <div class="mx-auto max-w-180">
+                <div class="mx-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Order ID
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Order Date
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Order Status
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                >
+                                    Payment Method
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                >
+                                    Total
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Order Image
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Actions
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                            <tr v-for="order in props.customer.orders[0]">
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
                                     #12345
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
                                     2023-10-01
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    Shipped
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
+                                    {{ order.status }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <img
-                                        src="/images/order1.jpg"
-                                        alt="Order Image"
-                                        class="h-10 w-10 object-cover"
-                                    />
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
+                                    {{ order.payment_method }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button
-                                        class="text-blue-600 hover:underline"
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
+                                    {{ order.total }}
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
+                                    <div class="flex -space-x-6 justify-center">
+                                        <img
+                                            v-for="item in order.items"
+                                            :key="item.product.id"
+                                            :src="getImage(item.product.image)"
+                                            alt="Order Image"
+                                            class="h-10 w-10 object-cover inline-block rounded-full"
+                                        />
+                                    </div>
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-center"
+                                >
+                                    <div
+                                        class="flex gap-2 w-full justify-center"
                                     >
-                                        View
-                                    </button>
-                                    <button
-                                        class="text-red-600 hover:underline"
-                                    >
-                                        Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    #12346
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    2023-10-02
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    Pending
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <img
-                                        src="/images/order2.jpg"
-                                        alt="Order Image"
-                                        class="h-10 w-10 object-cover"
-                                    />
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button
-                                        class="text-blue-600 hover:underline"
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        class="text-red-600 hover:underline"
-                                    >
-                                        Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    #12347
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    2023-10-03
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    Delivered
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <img
-                                        src="/images/elec2.jpg"
-                                        alt="Order Image"
-                                        class="h-10 w-10 object-cover"
-                                    />
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button
-                                        class="text-blue-600 hover:underline"
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        class="text-red-600 hover:underline"
-                                    >
-                                        Cancel
-                                    </button>
+                                        <v-icon
+                                            name="md-removeredeye-outlined"
+                                            class="fill-meta-5 cursor-pointer"
+                                        ></v-icon>
+                                        <v-icon
+                                            name="md-deleteforever-outlined"
+                                            class="fill-meta-1 cursor-pointer"
+                                        ></v-icon>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
