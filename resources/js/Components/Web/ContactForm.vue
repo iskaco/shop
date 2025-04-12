@@ -8,9 +8,6 @@ const form = ref({
 });
 
 const submitForm = () => {
-    // Handle form submission logic here
-    console.log("Form submitted:", form.value);
-    // Reset form after submission
     form.value = { name: "", email: "", message: "" };
 };
 </script>

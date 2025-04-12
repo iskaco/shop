@@ -31,7 +31,6 @@ onMounted(() => {
     map.value = leaflet
         .map(mapContainer.value)
         .setView(props.center, props.zoom);
-    console.log(map);
 
     // Add tile layer
     leaflet
