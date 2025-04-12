@@ -3,15 +3,9 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use App\Actions\Orders\OrderDestroy;
-use App\Actions\Orders\OrderIndex;
-use App\Actions\Orders\OrderShow;
-use App\Actions\Orders\OrderStore;
-use App\Actions\Orders\OrderUpdate;
-use App\Http\Requests\Admins\Orders\OrderDestroyRequest;
-use App\Http\Requests\Admins\Orders\OrderStoreRequest;
-use App\Http\Requests\Admins\Orders\OrderUpdateRequest;
+use App\Isap\Actions\ActionType;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderController extends Controller
 {
@@ -22,21 +16,20 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        
+        $order = Order::findOrFail($id);
+
+        return $this->makeInertiaFormResponse(Order::class, $order, ActionType::SHOW);
     }
 
-    public function store()
-    {
-        
-    }
+    public function store() {}
 
-    public function update($id)
+    public function update($id) {}
+
+    public function destroy($id) {}
+
+    public function orderItems($id)
     {
-        
-    }
-    
-    public function destroy($id)
-    {
-        
+        return $this->makeInertiaTableResponse(OrderItem::class, OrderItem::where('order_id', $id));
+
     }
 }

@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderItem extends Model
 {
     use HasFactory, Logable;
+
     protected $fillable = [
         'order_id',
         'product_id',
         'quantity',
         'unit_price',
         'unit_cost',
-        'options'
+        'options',
     ];
+
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    protected $appends = ['product_name'];
 
     public function order(): BelongsTo
     {
@@ -28,5 +32,10 @@ class OrderItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class)->withTrashed();
+    }
+
+    public function getProductNameAttribute()
+    {
+        return $this->product?->name;
     }
 }

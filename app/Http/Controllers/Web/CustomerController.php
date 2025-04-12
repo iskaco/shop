@@ -14,6 +14,7 @@ use App\Http\Requests\Auth\CustomerLoginRequest;
 use App\Http\Requests\Web\Customers\CustomerStoreRequest;
 use App\Http\Requests\Web\Customers\CustomerUpdateRequest;
 use App\Http\Requests\Web\Orders\OrderStoreRequest;
+use App\Http\Resources\CustomerResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -33,7 +34,8 @@ class CustomerController extends Controller
 
     public function profile()
     {
-        return Inertia::render('web/ProfileView');
+
+        return Inertia::render('web/ProfileView', ['customer' => new CustomerResource(auth('customer')?->user())]);
     }
 
     public function authenticate(CustomerLoginRequest $request)
