@@ -4,7 +4,7 @@ const props = defineProps({ title: String, subtitle: String, banner: String });
 <template>
     <section
         class="relative bg-center text-white min-h-screen bg-cover"
-        :style="`background-image: url(${props.banner})`"
+        :style="props.banner ? `background-image: url(${props.banner})` : ''"
     >
         <div
             class="absolute inset-0 z-10 bg-black/60"
