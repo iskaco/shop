@@ -19,8 +19,6 @@ const getImage = function (image) {
             :subtitle="props.category.data.description"
             :banner="getImage(props.category.data.banner)"
         />
-        <div class="container">
-            <ProductsSection :products="props.products"></ProductsSection>
-        </div>
+        <ProductsSection :products="props.products"></ProductsSection>
     </WebLayout>
 </template>

@@ -8,9 +8,7 @@ export const useSidebarStore = defineStore("sidebar", () => {
     const page = useStorage("page", ref("Dashboard"));
 
     function toggleSidebar() {
-        console.log(isSidebarOpen.value);
         isSidebarOpen.value = !isSidebarOpen.value;
-        console.log(isSidebarOpen.value);
     }
 
     return { isSidebarOpen, toggleSidebar, selected, page };
