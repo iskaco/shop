@@ -13,11 +13,15 @@ const languages = [
     {
         code: "en",
         name: "English",
-        flag: "🇺🇸",
+        flag: "co-us",
         dir: "ltr",
     },
-    { code: "ar", name: "العربية", flag: "🇱🇧", dir: "rtl" },
+    { code: "ar", name: "العربية", flag: "co-lb", dir: "rtl" },
 ];
+
+const GetCurLang = function () {
+    return languages.find((lang) => lang.code === locale.value);
+};
 
 onClickOutside(target, () => {
     isOpen.value = false;
@@ -54,12 +58,10 @@ onMounted(() => {
             class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium duration-300 ease-in-out bg-gray-100 dark:bg-meta-4"
             @click="isOpen = !isOpen"
         >
-            <span>{{
-                languages.find((lang) => lang.code === locale)?.flag
-            }}</span>
-            <span>{{
-                languages.find((lang) => lang.code === locale)?.name
-            }}</span>
+            <span
+                ><v-icon :name="GetCurLang().flag" :scale="1.4"></v-icon
+            ></span>
+            <span>{{ GetCurLang().name }}</span>
         </button>
 
         <!-- Dropdown Menu -->
@@ -71,10 +73,10 @@ onMounted(() => {
             <button
                 v-for="lang in languages"
                 :key="lang.code"
-                class="flex w-full items-center gap-2 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-meta-4"
+                class="flex w-full items-center gap-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-meta-4"
                 @click="changeLanguage(lang.code)"
             >
-                <span>{{ lang.flag }}</span>
+                <span><v-icon :name="lang.flag" :scale="1.4"></v-icon></span>
                 <span>{{ lang.name }}</span>
             </button>
         </div>

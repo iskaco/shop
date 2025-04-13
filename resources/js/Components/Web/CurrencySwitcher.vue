@@ -9,16 +9,20 @@ const currencies = [
     {
         code: "usd",
         name: "titles.web.currency.usd.name",
-        flag: "🇺🇸",
+        flag: "co-us",
         prefix: "titles.web.currency.usd.prefix",
     },
     {
         code: "rls",
         name: "titles.web.currency.rial.name",
-        flag: "🇱🇧",
+        flag: "co-lb",
         prefix: "titles.web.currency.rial.prefix",
     },
 ];
+
+const GetCurLang = function () {
+    return languages.find((lang) => lang.code === locale.value);
+};
 
 onClickOutside(target, () => {
     isOpen.value = false;
@@ -38,7 +42,9 @@ const changeCurrency = (currency) => {
             class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium duration-300 ease-in-out bg-gray-100 dark:bg-meta-4"
             @click="isOpen = !isOpen"
         >
-            <span>{{ selectedCurrency.flag }}</span>
+            <span
+                ><v-icon :name="selectedCurrency.flag" :scale="1.4"></v-icon
+            ></span>
             <span>{{ $t(selectedCurrency.name) }}</span>
         </button>
 
@@ -54,7 +60,9 @@ const changeCurrency = (currency) => {
                 class="flex w-full items-center gap-2 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-meta-4"
                 @click="changeCurrency(currency)"
             >
-                <span>{{ currency.flag }}</span>
+                <span
+                    ><v-icon :name="currency.flag" :scale="1.4"></v-icon
+                ></span>
                 <span>{{ $t(currency.name) }}</span>
             </button>
         </div>
