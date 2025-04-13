@@ -62,6 +62,8 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 
+    Route::get('/category/products/{id}', [CategoryController::class, 'products'])->name('category.products');
+
     // Brand Routes
     Route::get('/brands', [BrandController::class, 'index'])->name('brands');
     Route::get('/brand', [BrandController::class, 'create'])->name('brand.create');

@@ -84,6 +84,9 @@ return [
             'ok' => 'Category updated successfully.',
             'error' => 'Error updating category',
         ],
+        'products' => [
+            'error' => 'Error retrieving products. Please try again later.',
+        ],
     ],
     'brand' => [
         'destroy' => [
