@@ -162,6 +162,7 @@
                 "title": "Sample Product",
                 "addtocart": "Add To Cart",
                 "isInCart": "In The Cart",
+                "specifications": "Specifications",
                 "electronics": {
                     "title": "Electronics",
                     "television": {

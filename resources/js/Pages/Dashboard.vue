@@ -1,10 +1,10 @@
 <script setup>
 import DataStatsOne from "@/Components/DataStats/DataStatsOne.vue";
-import ChartOne from "@/Components/Charts/ChartOne.vue";
-import ChartThree from "@/Components/Charts/ChartThree.vue";
-import ChartTwo from "@/Components/Charts/ChartTwo.vue";
-import ChatCard from "@/Components/ChatCard.vue";
-import MapOne from "@/Components/Maps/MapOne.vue";
+//import ChartOne from "@/Components/Charts/ChartOne.vue";
+//import ChartThree from "@/Components/Charts/ChartThree.vue";
+//import ChartTwo from "@/Components/Charts/ChartTwo.vue";
+//import ChatCard from "@/Components/ChatCard.vue";
+//import MapOne from "@/Components/Maps/MapOne.vue";
 import TableOne from "@/Components/Tables/TableOne.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 </script>
@@ -21,19 +21,19 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
             class="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5"
         >
             <!-- ====== Chart One Start -->
-            <ChartOne />
+            <!-- <ChartOne /> -->
             <!-- ====== Chart One End -->
 
             <!-- ====== Chart Two Start -->
-            <ChartTwo />
+            <!-- <ChartTwo /> -->
             <!-- ====== Chart Two End -->
 
             <!-- ====== Chart Three Start -->
-            <ChartThree />
+            <!-- <ChartThree /> -->
             <!-- ====== Chart Three End -->
 
             <!-- ====== Map One Start -->
-            <MapOne />
+            <!-- <MapOne /> -->
             <!-- ====== Map One End -->
 
             <!-- ====== Table One Start -->

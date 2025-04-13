@@ -57,7 +57,7 @@ const AddToCart = function (product) {
         style="direction: ltr"
         class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:"
     >
-        <a
+        <Link
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
             :href="route('shop.product.show', [props.product.slug])"
         >
@@ -76,15 +76,15 @@ const AddToCart = function (product) {
                 <v-icon name="md-star-outlined" scale=".8"></v-icon>
                 <span class="">{{ Math.floor(Math.random() * 5) }}</span>
             </span>
-        </a>
+        </Link>
         <div class="mt-4 px-5 pb-5">
-            <a href="/product/1">
+            <Link :href="route('shop.product.show', [props.product.slug])">
                 <h5
                     class="text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:text-2xl ltr:font-bold"
                 >
                     {{ props.product.name }}
                 </h5>
-            </a>
+            </Link>
             <div class="mt-2 mb-5">
                 <p class="flex ltr:flex-row-reverse items-end gap-2">
                     <span
