@@ -93,9 +93,15 @@ const getImage = function (image) {
                             </div>
                         </div>
                         <button
-                            class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+                            @click="addToCart(props.product)"
+                            class="w-full flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                         >
-                            {{ $t("addToCart") }}
+                            <v-icon name="md-shoppingcart-outlined"></v-icon>
+                            {{
+                                isInCart
+                                    ? $t("titles.web.products.isInCart")
+                                    : $t("titles.web.products.addtocart")
+                            }}
                         </button>
                     </div>
 
@@ -134,29 +140,22 @@ const getImage = function (image) {
             <!-- Specifications Section -->
             <div class="mt-12">
                 <h2 class="text-xl font-bold mb-4">
-                    {{ $t("specifications") }}
+                    {{ $t("titles.web.products.specifications") }}
                 </h2>
-                <div class="border rounded-lg">
-                    <div
-                        v-for="(group, index) in props.product.data
-                            .specifications"
-                        :key="index"
-                        class="border-b last:border-b-0"
+                <div class="border rounded-lg grid grid-cols-5 p-5 bg-white">
+                    <template
+                        v-for="spec in props.product.data.specifications"
+                        :key="spec.id"
                     >
-                        <div class="bg-gray-50 px-4 py-2 font-bold">
-                            {{ group.title }}
+                        <div class="text-body border-b py-3">
+                            {{ spec.name_translated }}
                         </div>
-                        <div class="divide-y">
-                            <div
-                                v-for="(spec, specIndex) in group.items"
-                                :key="specIndex"
-                                class="grid grid-cols-3 px-4 py-3"
-                            >
-                                <div class="text-gray-600">{{ spec.name }}</div>
-                                <div class="col-span-2">{{ spec.value }}</div>
-                            </div>
+                        <div
+                            class="col-span-4 text-boxdark-2 font-medium border-b py-3"
+                        >
+                            {{ spec.pivot.value }}
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>
