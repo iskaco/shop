@@ -9,11 +9,12 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import { createPinia } from "pinia";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as MdiIcons from "oh-vue-icons/icons/md";
+import { CoLb, CoUs } from "oh-vue-icons/icons/co";
 import Vue3Toastify, { toast } from "vue3-toastify";
 import i18n from "./i18n";
 
 const mdi = Object.values({ ...MdiIcons });
-addIcons(...mdi);
+addIcons(...mdi, CoLb, CoUs);
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
