@@ -42,7 +42,7 @@ const cats = [
 ];
 
 const getImage = function (image) {
-    if (image) return route("shop.media", image);
+    if (image) return `background-image: url(${route("shop.media", image)})`;
 };
 
 const getColor = function (name) {
@@ -82,7 +82,7 @@ const getIconColor = function (name) {
                     <div
                         class="absolute background bg-center bg-cover bg-no-repeat duration-700 ease-in-out inset-0 scale-105 transition-all z-10"
                         :class="getColor(cat.slug)"
-                        :style="`background-image: url(${getImage(cat.image)})`"
+                        :style="getImage(cat.image)"
                     ></div>
                     <div
                         class="absolute inset-x-0 bottom-0 z-20 transition-all duration-700 ease-in-out transform translate-y-1/2 shadow opacity-0 bg-gradient-to-b from-transparent h-1/2 to-black"

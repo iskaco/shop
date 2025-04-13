@@ -7,7 +7,6 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createApp, h } from "vue";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import { createPinia } from "pinia";
-import router from "./router";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as MdiIcons from "oh-vue-icons/icons/md";
 import Vue3Toastify, { toast } from "vue3-toastify";
@@ -29,7 +28,6 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(createPinia())
-            .use(router)
             .use(ZiggyVue)
             .use(i18n)
             .use(Vue3Toastify, {
