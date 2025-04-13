@@ -163,6 +163,13 @@
                 "addtocart": "أضف إلى السلة",
                 "isInCart": "في السلة",
                 "specifications": "المواصفات",
+                "category": "فئة",
+                "brand": "علامة تجارية",
+                "price": "السعر",
+                "currency": "ریال",
+                "description": "الوصف",
+                "seller": "البائع",
+                "features": "الميزات",
                 "electronics": {
                     "title": "الإلكترونيات",
                     "television": {

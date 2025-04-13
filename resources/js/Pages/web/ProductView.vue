@@ -10,7 +10,7 @@ const getImage = function (image) {
 </script>
 <template>
     <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
-        <div class="container mx-auto md:px-20 px-10 mt-40 mb-20">
+        <div class="mx-auto md:px-20 px-10 mt-40 mb-20">
             <!-- Product Details Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Product Images -->
@@ -42,32 +42,38 @@ const getImage = function (image) {
                 <!-- Product Info -->
                 <div class="space-y-6">
                     <div>
-                        <h1 class="text-2xl font-bold mb-2">
+                        <h1 class="text-2xl font-bold mb-2 text-boxdark-2">
                             {{ props.product.data.name }}
                         </h1>
-                        <p class="text-gray-600">
-                            {{ props.product.data.englishName }}
+                        <p class="text-body">
+                            {{ props.product.data.short_description }}
                         </p>
                     </div>
 
-                    <div class="border-t border-b py-4">
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-gray-600"
-                                >{{ $t("category") }}:</span
+                            <span class="text-body"
+                                >{{ $t("titles.web.products.category") }}:</span
                             >
-                            <span>{{ props.product.data.category }}</span>
+                            <span class="text-boxdark-2 font-medium">{{
+                                props.product.data.category
+                            }}</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="text-gray-600"
-                                >{{ $t("brand") }}:</span
+                            <span class="text-body"
+                                >{{ $t("titles.web.products.brand") }}:</span
                             >
-                            <span>{{ props.product.data.brand }}</span>
+                            <span class="text-boxdark-2 font-medium">{{
+                                props.product.data.brand
+                            }}</span>
                         </div>
                     </div>
 
                     <!-- Features -->
-                    <div class="space-y-2">
-                        <h3 class="font-bold">{{ $t("features") }}:</h3>
+                    <div v-if="props.product.features" class="space-y-2">
+                        <h3 class="font-bold">
+                            {{ $t("titles.web.products.features") }}:
+                        </h3>
                         <ul
                             class="list-disc list-inside space-y-1 text-gray-600"
                         >
@@ -82,14 +88,14 @@ const getImage = function (image) {
                     </div>
 
                     <!-- Price & Add to Cart -->
-                    <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="bg-gray-50 p-4 rounded-lg border">
                         <div class="flex justify-between items-center mb-4">
                             <span class="text-gray-600"
-                                >{{ $t("price") }}:</span
+                                >{{ $t("titles.web.products.price") }}:</span
                             >
                             <div class="text-xl font-bold">
                                 {{ props.product.data.price }}
-                                {{ $t("currency") }}
+                                {{ $t("titles.web.products.currency") }}
                             </div>
                         </div>
                         <button
@@ -106,8 +112,13 @@ const getImage = function (image) {
                     </div>
 
                     <!-- Seller Info -->
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="font-bold mb-2">{{ $t("seller") }}</h3>
+                    <div
+                        v-if="props.product.data.seller"
+                        class="bg-gray-50 p-4 rounded-lg"
+                    >
+                        <h3 class="font-bold mb-2">
+                            {{ $t("titles.web.products.seller") }}
+                        </h3>
                         <div class="flex items-center gap-2 text-gray-600">
                             <svg
                                 class="w-5 h-5"
@@ -130,7 +141,9 @@ const getImage = function (image) {
 
             <!-- Description Section -->
             <div class="mt-12">
-                <h2 class="text-xl font-bold mb-4">{{ $t("description") }}</h2>
+                <h2 class="text-xl font-bold mb-4">
+                    {{ $t("titles.web.products.description") }}
+                </h2>
                 <div
                     class="prose max-w-none"
                     v-html="props.product.data.description"
@@ -138,11 +151,11 @@ const getImage = function (image) {
             </div>
 
             <!-- Specifications Section -->
-            <div class="mt-12">
+            <div v-if="props.product.data.specifications.length" class="mt-12">
                 <h2 class="text-xl font-bold mb-4">
                     {{ $t("titles.web.products.specifications") }}
                 </h2>
-                <div class="border rounded-lg grid grid-cols-5 p-5 bg-white">
+                <div class="border rounded-lg grid grid-cols-5 p-5 bg-gray-50">
                     <template
                         v-for="spec in props.product.data.specifications"
                         :key="spec.id"

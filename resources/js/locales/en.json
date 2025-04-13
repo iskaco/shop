@@ -163,6 +163,13 @@
                 "addtocart": "Add To Cart",
                 "isInCart": "In The Cart",
                 "specifications": "Specifications",
+                "category": "Category",
+                "brand": "Brand",
+                "price": "Price",
+                "currency": "$",
+                "description": "Description",
+                "seller": "Seller",
+                "features": "Features",
                 "electronics": {
                     "title": "Electronics",
                     "television": {

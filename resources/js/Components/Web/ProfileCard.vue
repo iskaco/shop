@@ -77,7 +77,7 @@ onMounted(() => {
                     <img
                         :src="getImage(props.customer.profile_image)"
                         @error="setDefaultImage($event)"
-                        class="h-40 w-40 rounded-full object-cover object-center -mt-1"
+                        class="w-30 h-30 md:h-40 md:w-40 rounded-full object-cover object-center -mt-1"
                         alt="profile"
                     />
                     <label
