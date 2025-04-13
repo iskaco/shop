@@ -7,6 +7,7 @@ use App\Isap\Actions\CreateAction;
 use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
+use App\Isap\Actions\ShowProducts;
 use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\IconInput;
 use App\Isap\Forms\Components\ImageInput;
@@ -20,7 +21,6 @@ use App\Isap\Tables\Columns\ToggleColumn;
 use App\Isap\Tables\Table;
 use App\Isap\Utils\DataUtil;
 use App\Models\Category;
-
 
 class CategoryResource extends BaseResource
 {
@@ -37,7 +37,7 @@ class CategoryResource extends BaseResource
                         FormSection::make('general_en', __('resources.category.general_en'))->children(
                             [
                                 TextInput::make('name_en', __('resources.category.name_en'))->isRequired(),
-                                TextInput::make('description_en', __('resources.category.description_en'))
+                                TextInput::make('description_en', __('resources.category.description_en')),
                             ]
                         ),
                     ],
@@ -46,7 +46,7 @@ class CategoryResource extends BaseResource
                             TextInput::make('name_ar', __('resources.category.name_ar'))->isRequired(),
                             TextInput::make('description_ar', __('resources.category.description_ar')),
                         ]),
-                    ]
+                    ],
                 ]
             ),
             FormSection::make('another_info', __('resources.category.another_info'))->children([
@@ -65,9 +65,8 @@ class CategoryResource extends BaseResource
                 ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
-
-        ])->action(static::getAction($action_type)?->setRoute('category.' . lcfirst($action_type->value)));
-        //dd($form);
+        ])->action(static::getAction($action_type)?->setRoute('category.'.lcfirst($action_type->value)));
+        // dd($form);
     }
 
     public static function table()
@@ -81,6 +80,7 @@ class CategoryResource extends BaseResource
                 ToggleColumn::make('is_active', __('resources.category.is_active')),
             ])
             ->row_actions([
+                ShowProducts::make('show_products', __('resources.actions.show_category_products'))->setRoute('category.products')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
                 ShowAction::make('show', __('resources.actions.show'))->setRoute('category.show')->setIcon('md-removeredeye-outlined'),
                 EditAction::make('edit', __('resources.actions.edit'))->setRoute('category.edit')->setIcon('md-modeedit-outlined'),
                 DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),

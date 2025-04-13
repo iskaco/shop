@@ -3,27 +3,36 @@
 namespace App\Models;
 
 use App\Logable;
+use App\Models\Scopes\ActiveScope;
+use App\Traits\TranslatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use App\Traits\TranslatableTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations, TranslatableTrait, InteractsWithMedia, Logable, SoftDeletes;
+    use HasFactory, HasTranslations, InteractsWithMedia, Logable, SoftDeletes, TranslatableTrait;
 
     protected $fillable = ['name', 'parent_id', 'slug', 'icon', 'description', 'is_active', 'is_featured'];
+
     protected $casts = [
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
     ];
+
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $translatable = ['name', 'description'];
+
     protected $appends = ['name_translated', 'parent_name'];
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new ActiveScope);
+    }
 
     public function products()
     {

@@ -10,6 +10,7 @@ return [
         'update' => 'Update',
         'product' => 'Product :label',
         'order_items' => 'Order Items',
+        'show_category_products' => ':label Products',
     ],
     'admin' => [
         'label' => 'Admin',
