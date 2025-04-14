@@ -23,6 +23,9 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'brand_id' => ['required', 'numeric', Rule::exists('brands', 'id')->where(function ($query) {
                 $query->where('is_active', 1);
             })],
+            'vendor_id' => ['required', 'numeric', Rule::exists('vendors', 'id')->where(function ($query) {
+                $query->where('is_active', 1);
+            })],
             'description' => ['array'],
             'short_description' => ['array'],
             'stock' => ['required', 'numeric', 'min:0'],

@@ -18,7 +18,6 @@ use App\Isap\Tables\Columns\ToggleColumn;
 use App\Isap\Tables\Table;
 use App\Models\Brand;
 
-
 class BrandResource extends BaseResource
 {
     protected static ?string $model = Brand::class;
@@ -48,7 +47,7 @@ class BrandResource extends BaseResource
                                     TextInput::make('short_description_ar', __('resources.brand.short_description_ar')),
                                 ]
                             ),
-                        ]
+                        ],
                     ]
                 ),
                 FormSection::make('another_info', __('resources.brand.another_info'))->children([
@@ -57,19 +56,20 @@ class BrandResource extends BaseResource
                 FormSection::make('images', __('resources.brand.images'))->children([
                     ImageInput::make('image', __('resources.brand.image')),
                     ImageInput::make('thumbnail', __('resources.brand.thumbnail')),
-                    ImageInput::make('banner', __('resources.brand.banner')),
+                    ImageInput::make('banner', __('resources.brand.banner'))->ratio(16 / 9),
                 ]),
                 FormSection::make('status', __('resources.brand.status'))->children([
                     ToggleInput::make('is_active', __('resources.brand.is_active')),
                     ToggleInput::make('is_featured', __('resources.brand.is_featured')),
                 ]),
             ]
-        )->action(static::getAction($action_type)?->setRoute('brand.' . lcfirst($action_type->value)));
+        )->action(static::getAction($action_type)?->setRoute('brand.'.lcfirst($action_type->value)));
     }
 
     public static function table()
     {
         $table = new Table(__('resources.product.plural'), Brand::class, 'brands');
+
         return $table->columns([
             TextColumn::make('name_translated', __('resources.brand.name')),
             TextColumn::make('slug', __('resources.brand.slug')),
