@@ -169,6 +169,9 @@ const props = defineProps(["categories"]);
                 </div>
             </section>
 
+            <!-- Brands Section -->
+            <BrandSection />
+
             <!-- Off Section -->
             <section
                 class="relative bg-red-600 bg-[url('/images/off-section.jpg')] bg-cover bg-center text-white py-40"
@@ -269,9 +272,6 @@ const props = defineProps(["categories"]);
                     </div>
                 </div>
             </section>
-
-            <!-- Brands Section -->
-            <!-- <BrandSection /> -->
 
             <!-- Price Table Section -->
             <PriceTable />

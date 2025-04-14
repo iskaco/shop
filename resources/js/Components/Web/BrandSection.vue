@@ -1,61 +1,46 @@
+<script setup>
+import InfiniteScrollSection from "@/Components/Web/InfiniteScrollSection.vue";
+
+const items = [
+    {
+        id: 1,
+        image: "https://simpleicons.org/icons/samsung.svg",
+    },
+    {
+        id: 2,
+        image: "https://simpleicons.org/icons/acer.svg",
+    },
+    {
+        id: 3,
+        image: "https://simpleicons.org/icons/nokia.svg",
+    },
+    {
+        id: 4,
+        image: "https://simpleicons.org/icons/grab.svg",
+    },
+    {
+        id: 5,
+        image: "https://simpleicons.org/icons/ferrarinv.svg",
+    },
+    {
+        id: 6,
+        image: "https://simpleicons.org/icons/egnyte.svg",
+    },
+    {
+        id: 7,
+        image: "https://simpleicons.org/icons/puma.svg",
+    },
+];
+</script>
 <template>
-    <section class="py-20 bg-white">
+    <section class="bg-boxdark">
         <div class="container px-4 mx-auto">
-            <h2
+            <!-- <h2
                 class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
             >
                 {{ $t("titles.web.brands.title") }}
-            </h2>
-            <div class="flex items-center justify-center overflow-x-auto">
-                <div class="flex">
-                    <!-- Brand logos - Add your actual brand images -->
-                    <div
-                        class="flex items-center justify-center w-48 h-32 mx-8 transition-all duration-300 grayscale hover:grayscale-0"
-                    >
-                        <img
-                            src="/images/brand1.png"
-                            alt="Brand 1"
-                            class="max-h-full"
-                        />
-                    </div>
-                    <div
-                        class="flex items-center justify-center w-48 h-32 mx-8 transition-all duration-300 grayscale hover:grayscale-0"
-                    >
-                        <img
-                            src="/images/brand2.png"
-                            alt="Brand 2"
-                            class="max-h-full"
-                        />
-                    </div>
-                    <div
-                        class="flex items-center justify-center w-48 h-32 mx-8 transition-all duration-300 grayscale hover:grayscale-0"
-                    >
-                        <img
-                            src="/images/brand3.png"
-                            alt="Brand 3"
-                            class="max-h-full"
-                        />
-                    </div>
-                    <div
-                        class="flex items-center justify-center w-48 h-32 mx-8 transition-all duration-300 grayscale hover:grayscale-0"
-                    >
-                        <img
-                            src="/images/brand4.png"
-                            alt="Brand 4"
-                            class="max-h-full"
-                        />
-                    </div>
-                    <div
-                        class="flex items-center justify-center w-48 h-32 mx-8 transition-all duration-300 grayscale hover:grayscale-0"
-                    >
-                        <img
-                            src="/images/brand5.png"
-                            alt="Brand 5"
-                            class="max-h-full"
-                        />
-                    </div>
-                </div>
-            </div>
+            </h2> -->
+            <InfiniteScrollSection :items="items"></InfiniteScrollSection>
         </div>
     </section>
 </template>
