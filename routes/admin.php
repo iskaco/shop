@@ -6,6 +6,7 @@ use App\Http\Controllers\Admins\CartController;
 use App\Http\Controllers\Admins\CategoryController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
+use App\Http\Controllers\Admins\OrderItemController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SpecificationController;
 use App\Http\Controllers\Admins\TableController;
@@ -91,6 +92,9 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
     Route::get('/order-items/{id}', [OrderController::class, 'orderItems'])->name('order.order_items');
+
+    // OrderItem Routes
+    Route::get('/order_item/{id}', [OrderItemController::class, 'show'])->name('order_item.show');
 
     // Cart Routes
     Route::get('/carts', [CartController::class, 'index'])->name('carts');
