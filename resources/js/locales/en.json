@@ -288,7 +288,8 @@
                 "roles": "Roles",
                 "permissions": "Permissions",
                 "specifications": "Specifications",
-                "taxes": "Taxes"
+                "taxes": "Taxes",
+                "vendors": "Vendors"
             }
         },
         "search": "Search",

@@ -55,7 +55,7 @@ const AddToCart = function (product) {
 <template>
     <div
         style="direction: ltr"
-        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md ltr:"
+        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
     >
         <Link
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
