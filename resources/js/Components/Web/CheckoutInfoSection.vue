@@ -1,7 +1,30 @@
 <script setup>
 import BackButton from "../Forms/BackButton.vue";
+import { useCartStore } from "@/Composables/useCart.js";
+import { onMounted, reactive, ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
+
+const { cart } = useCartStore();
 
 const props = defineProps(["address"]);
+const newAddress = ref("");
+const form = useForm({ items: [], selectedAddress: "" });
+
+const CheckoutCart = function () {
+    form.post(route("shop.order.store"));
+};
+
+onMounted(() => {
+    let cartItems = [];
+    cart.forEach((element) => {
+        let cartItem = {};
+        cartItem["product_id"] = element.id;
+        cartItem["quantity"] = element.quantity;
+        cartItems.push(cartItem);
+    });
+
+    form.items = cartItems;
+});
 </script>
 <template>
     <section class="px-10 md:px-20 py-16">
@@ -11,7 +34,7 @@ const props = defineProps(["address"]);
             >
                 {{ $t("titles.web.cart.orderInfoTitle") }}
             </h2>
-            <label class="cursor-pointer">
+            <label v-if="props.address" class="cursor-pointer">
                 <div
                     class="flex divide-x rtl:divide-x-reverse border rounded-xl bg-gray-50"
                 >
@@ -19,8 +42,8 @@ const props = defineProps(["address"]);
                         <input
                             type="radio"
                             name="address"
-                            value="default"
-                            checked
+                            :value="props.address"
+                            v-model="form.selectedAddress"
                         />
                     </div>
                     <div
@@ -40,7 +63,11 @@ const props = defineProps(["address"]);
                     class="flex divide-x rtl:divide-x-reverse border rounded-xl bg-gray-50"
                 >
                     <div class="w-14 h-28 grid place-content-center">
-                        <input type="radio" name="address" value="new" />
+                        <input
+                            type="radio"
+                            v-model="form.selectedAddress"
+                            :value="newAddress"
+                        />
                     </div>
                     <div
                         class="flex-1 flex flex-col md:flex-row gap-x-5 justify-center md:items-center px-5"
@@ -52,6 +79,9 @@ const props = defineProps(["address"]);
                             <input
                                 class="w-full rounded-md border-stroke"
                                 type="text"
+                                v-model="newAddress"
+                                @focus="form.selectedAddress = newAddress"
+                                @input="form.selectedAddress = newAddress"
                             />
                             <p
                                 class="text-meta-1 text-xs font-normal mt-1 mx-2"

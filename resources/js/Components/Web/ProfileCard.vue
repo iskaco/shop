@@ -188,7 +188,7 @@ onMounted(() => {
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="order in props.customer.orders[0]">
+                            <tr v-for="order in props.customer.orders">
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
@@ -202,24 +202,24 @@ onMounted(() => {
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
-                                    {{ order.status }}
+                                    {{ order[0].status }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
-                                    {{ order.payment_method }}
+                                    {{ order[0].payment_method }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
-                                    {{ order.total }}
+                                    {{ order[0].total }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
                                     <div class="flex -space-x-6 justify-center">
                                         <img
-                                            v-for="item in order.items"
+                                            v-for="item in order[0].items"
                                             :key="item.product.id"
                                             :src="getImage(item.product.image)"
                                             alt="Order Image"
