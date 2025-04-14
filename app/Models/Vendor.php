@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Logable;
+use App\Models\Scopes\ActiveScope;
 use App\Traits\TranslatableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,17 +21,27 @@ class Vendor extends Model implements HasMedia
         'slug',
         'address',
         'is_active',
+        'description',
+        'short_description',
+        'address',
+        'is_featured',
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    public $translatable = ['name'];
+    public $translatable = ['name', 'description', 'short_description'];
 
     protected $appends = ['name_translated'];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'is_featured' => 'boolean',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new ActiveScope);
+    }
 
     public function getNameTranslatedAttribute()
     {
@@ -56,5 +67,10 @@ class Vendor extends Model implements HasMedia
         $media = $this->getFirstMedia('Vendor.Banners');
 
         return $media;
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

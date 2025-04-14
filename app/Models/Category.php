@@ -25,7 +25,7 @@ class Category extends Model implements HasMedia
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    protected $translatable = ['name', 'description'];
+    public $translatable = ['name', 'short_description', 'description'];
 
     protected $appends = ['name_translated', 'parent_name'];
 

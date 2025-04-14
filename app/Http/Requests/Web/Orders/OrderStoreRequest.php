@@ -24,6 +24,7 @@ class OrderStoreRequest extends FormRequest
         return [
             //
             'items' => ['array', 'required'],
+            'address' => ['string', 'required', 'max:500'],
         ];
     }
 }

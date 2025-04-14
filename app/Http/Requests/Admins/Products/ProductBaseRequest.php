@@ -64,6 +64,8 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'short_description' => ['en' => $this->short_description_en, 'ar' => $this->short_description_ar],
             'category_id' => $this->category_id ? $this->category_id['id'] : null,
             'brand_id' => $this->brand_id ? $this->brand_id['id'] : null,
+            'vendor_id' => $this->vendor_id ? $this->vendor_id['id'] : null,
+
         ]);
     }
 }

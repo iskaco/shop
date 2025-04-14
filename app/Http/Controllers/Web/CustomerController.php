@@ -91,6 +91,11 @@ class CustomerController extends Controller
         }
     }
 
+    public function cartInfo()
+    {
+        return Inertia::render('web/CheckoutInfoView', ['address' => auth('customer')?->user()?->address ?? null]);
+    }
+
     public function storeOrder(OrderStoreRequest $request, OrderStore $orderStoreAction, OrderItemStore $orderItemStoreAction)
     {
         try {
@@ -106,7 +111,7 @@ class CustomerController extends Controller
                 'shipping_cost' => 0,
                 'total' => $total,
                 'payment_method' => 'cash',
-                'shipping_address' => 'Street:  Borj Hammoud, Nahr City:   Beirut State/province/area:    Lebanon Phone number:  +961-1-248181 Country calling code:  +961 Country:  Lebanon',
+                'shipping_address' => $items['address'], // 'Street:  Borj Hammoud, Nahr City:   Beirut State/province/area:    Lebanon Phone number:  +961-1-248181 Country calling code:  +961 Country:  Lebanon',
             ]);
             foreach ($items['items'] as $cart_item) {
                 $orderItemStoreAction->execute([

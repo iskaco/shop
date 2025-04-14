@@ -26,6 +26,8 @@ Route::prefix('shop')->name('shop.')->group(function () {
         Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
         Route::post('/cart-items/store', [CustomerController::class, 'storeCartItems'])->name('cart_items.store'); // ToDo
         Route::post('/order/store', [CustomerController::class, 'storeOrder'])->name('order.store');
+        Route::get('/cart-info', [CustomerController::class, 'cartInfo'])->name('cart.info');
+
         Route::get('/profile', [CustomerController::class, 'profile'])->name('customer.profile');
     });
     // ======================== Products
@@ -42,10 +44,6 @@ Route::prefix('shop')->name('shop.')->group(function () {
     Route::get('/cart', function () {
         return Inertia::render('web/CartView');
     })->name('cart.show');
-
-    Route::get('/cart-info', function () {
-        return Inertia::render('web/CheckoutInfoView');
-    })->name('cart.info');
 
     Route::get('/contactus', function () {
         return Inertia::render('web/ContactUsView');
@@ -71,6 +69,6 @@ Route::get('/category/{name}/', function ($name) {
 })->name('web.category');
 */
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
-require __DIR__ . '/activity.php';
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/activity.php';
