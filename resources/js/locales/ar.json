@@ -288,7 +288,8 @@
                 "roles": "الأدوار",
                 "permissions": "الأذونات",
                 "specifications": "المواصفات",
-                "taxes": "الضرائب"
+                "taxes": "الضرائب",
+                "vendors": "الموردين"
             }
         },
         "search": "بحث...",

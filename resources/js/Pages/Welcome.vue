@@ -6,8 +6,9 @@ import HeroSection from "@/Components/Web/HeroSection.vue";
 import FeaturedCategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
 import BrandSection from "@/Components/Web/BrandSection.vue";
 import FeaturesSection from "@/Components/Web/FeaturesSection.vue";
+import RandomProductsSection from "@/Components/Web/RandomProductsSection.vue";
 
-const props = defineProps(["categories"]);
+const props = defineProps(["categories", "random_products"]);
 </script>
 
 <template>
@@ -26,148 +27,7 @@ const props = defineProps(["categories"]);
             <FeaturedCategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
-            <section class="py-20 bg-gray-100">
-                <div class="container px-4 mx-auto">
-                    <h2
-                        class="mb-4 ml-10 lg:text-5xl md:text-5xl text-4xl font-bold text-left rtl:text-right"
-                    >
-                        {{ $t("titles.web.products.electronics.title") }}
-                    </h2>
-                    <div
-                        class="flex flex-col-reverse md:flex-row gap-4 p-3 bg-gray-200 rounded-lg"
-                    >
-                        <div
-                            class="flex-1 overflow-hidden bg-white rounded-lg shadow-lg"
-                        >
-                            <img
-                                src="/images/tv.jpg"
-                                alt="Product 1"
-                                class="object-cover w-full h-64 hover:scale-110 transition-all duration-300"
-                            />
-                            <div class="p-6">
-                                <h3 class="mb-2 text-xl md:text-2xl font-bold">
-                                    <Link href="/product/1">
-                                        {{
-                                            $t(
-                                                "titles.web.products.electronics.television.name"
-                                            )
-                                        }}
-                                    </Link>
-                                </h3>
-                                <p class="mb-4 text-xl text-gray-600">
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.television.price"
-                                        )
-                                    }}
-                                </p>
-                                <button
-                                    class="w-full py-2 text-white bg-blue-600 rounded-lg"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.television.button"
-                                        )
-                                    }}
-                                </button>
-                            </div>
-                        </div>
-                        <div
-                            class="flex-1 overflow-hidden bg-white rounded-lg shadow-lg"
-                        >
-                            <img
-                                src="/images/laptop.jpg"
-                                alt="Product 1"
-                                class="object-cover w-full h-64 hover:scale-110 transition-all duration-300"
-                            />
-                            <div class="p-6">
-                                <h3 class="mb-2 text-xl md:text-2xl font-bold">
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.laptop.name"
-                                        )
-                                    }}
-                                </h3>
-                                <p class="mb-4 text-xl text-gray-600">$300</p>
-                                <button
-                                    class="w-full py-2 text-white bg-blue-600 rounded-lg"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.laptop.button"
-                                        )
-                                    }}
-                                </button>
-                            </div>
-                        </div>
-                        <div
-                            class="flex-1 overflow-hidden bg-white rounded-lg shadow-lg"
-                        >
-                            <img
-                                src="/images/mobile.jpg"
-                                alt="Product 1"
-                                class="object-cover w-full h-64 hover:scale-110 transition-all duration-300"
-                            />
-                            <div class="p-6">
-                                <h3 class="mb-2 text-xl md:text-2xl font-bold">
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.smartphone.name"
-                                        )
-                                    }}
-                                </h3>
-                                <p class="mb-4 text-xl text-gray-600">$120</p>
-                                <button
-                                    class="w-full py-2 text-white bg-blue-600 rounded-lg"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.smartphone.button"
-                                        )
-                                    }}
-                                </button>
-                            </div>
-                        </div>
-                        <div
-                            class="flex-1 md:hidden xl:block overflow-hidden bg-white rounded-lg shadow-lg"
-                        >
-                            <img
-                                src="/images/watch.jpg"
-                                alt="Product 1"
-                                class="object-cover w-full h-64 hover:scale-110 transition-all duration-300"
-                            />
-                            <div class="p-6">
-                                <h3 class="mb-2 text-xl md:text-2xl font-bold">
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.smartwatch.name"
-                                        )
-                                    }}
-                                </h3>
-                                <p class="mb-4 text-xl text-gray-600">$50.99</p>
-                                <button
-                                    class="w-full py-2 text-white bg-blue-600 rounded-lg"
-                                >
-                                    {{
-                                        $t(
-                                            "titles.web.products.electronics.smartwatch.button"
-                                        )
-                                    }}
-                                </button>
-                            </div>
-                        </div>
-                        <div
-                            class="overflow-hidden bg-white rounded-lg shadow-lg lg:w-40 w-full"
-                        >
-                            <img
-                                src="/images/electronics-adv.jpg"
-                                alt="Product 1"
-                                class="object-cover h-full"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <RandomProductsSection :products="props.random_products" />
 
             <!-- Brands Section -->
             <BrandSection />
