@@ -96,6 +96,7 @@ const AddToCart = function (product) {
                     >
                 </p>
             </div>
+
             <button
                 @click="addToCart(props.product)"
                 class="flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
