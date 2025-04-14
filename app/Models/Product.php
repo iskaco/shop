@@ -16,7 +16,7 @@ class Product extends Model implements HasMedia
     use HasFactory, HasTranslations, InteractsWithMedia, Logable, SoftDeletes, TranslatableTrait;
 
     // Your model attributes and methods here
-    protected $fillable = ['name', 'slug', 'category_id', 'brand_id', 'short_description', 'description', 'price', 'cost', 'stock', 'is_published', 'is_featured'];
+    protected $fillable = ['name', 'slug', 'category_id', 'brand_id', 'vendor_id', 'short_description', 'description', 'price', 'cost', 'stock', 'is_published', 'is_featured'];
 
     protected $casts = [
         'is_published' => 'boolean',
@@ -28,7 +28,7 @@ class Product extends Model implements HasMedia
 
     public $translatable = ['name', 'short_description', 'description'];
 
-    protected $appends = ['name_translated', 'category_name', 'brand_name'];
+    protected $appends = ['name_translated', 'category_name', 'brand_name', 'vendor_name'];
 
     public function getNameTranslatedAttribute()
     {
@@ -70,6 +70,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Brand::class);
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
     public function order_items()
     {
         return $this->hasMany(OrderItem::class);
@@ -78,6 +83,11 @@ class Product extends Model implements HasMedia
     public function getBrandNameAttribute()
     {
         return $this->brand?->name;
+    }
+
+    public function getVendorNameAttribute()
+    {
+        return $this->vendor?->name;
     }
 
     public function getCategoryNameAttribute()

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SpecificationController;
 use App\Http\Controllers\Admins\TableController;
 use App\Http\Controllers\Admins\TaxController;
+use App\Http\Controllers\Admins\VendorController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -113,4 +114,13 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/tax/{id}', [TaxController::class, 'update'])->name('tax.update');
     Route::delete('/tax/{id}', [TaxController::class, 'destroy'])->name('tax.destroy');
     Route::get('/tax/edit/{id}', [TaxController::class, 'edit'])->name('tax.edit');
+
+    // Vendor Routes
+    Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
+    Route::get('/vendor', [VendorController::class, 'create'])->name('vendor.create');
+    Route::post('/vendor', [VendorController::class, 'store'])->name('vendor.store');
+    Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show');
+    Route::put('/vendor/{id}', [VendorController::class, 'update'])->name('vendor.update');
+    Route::delete('/vendor/{id}', [VendorController::class, 'destroy'])->name('vendor.destroy');
+    Route::get('/vendor/edit/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
 });

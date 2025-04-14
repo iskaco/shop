@@ -124,4 +124,21 @@ return [
             'error' => 'Error updating specification',
         ],
     ],
+    'vendor' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Vendor deleted successfully.',
+            'error' => 'Error deleting vendor',
+            'not_found' => 'Vendor not found',
+            'has_product' => 'Cannot delete vendor with existing products',
+        ],
+        'store' => [
+            'ok' => 'Vendor created successfully.',
+            'error' => 'Error creating vendor',
+        ],
+        'update' => [
+            'ok' => 'Vendor updated successfully.',
+            'error' => 'Error updating vendor',
+        ],
+    ],
 ];

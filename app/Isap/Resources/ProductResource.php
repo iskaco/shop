@@ -22,6 +22,7 @@ use App\Isap\Utils\DataUtil;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Vendor;
 
 class ProductResource extends BaseResource
 {
@@ -57,8 +58,9 @@ class ProductResource extends BaseResource
             ),
             FormSection::make('another_info', __('resources.product.another_info'))->children([
                 TextInput::make('slug', __('resources.product.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
-                MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name'))->setIsNotMulti()->isRequired(),
+                MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name', ['is_active' => 1]))->setIsNotMulti()->isRequired(),
                 MultiSelectInput::make('brand_id', __('resources.product.brand'))->setSource((new DataUtil)->getOptionsForModel(new Brand, 'id', 'name'))->setIsNotMulti()->isRequired(),
+                MultiSelectInput::make('vendor_id', __('resources.product.vendor'))->setSource((new DataUtil)->getOptionsForModel(new Vendor, 'id', 'name'))->setIsNotMulti(),
                 TextInput::make('price', __('resources.product.price'))->isCurrency(),
                 TextInput::make('cost', __('resources.product.cost'))->isCurrency(),
                 TextInput::make('stock', __('resources.product.stock'))->isNumber(),
@@ -82,6 +84,7 @@ class ProductResource extends BaseResource
             TextColumn::make('name_translated', __('resources.product.name')),
             TextColumn::make('category_name', __('resources.product.category')),
             TextColumn::make('brand_name', __('resources.product.brand')),
+            TextColumn::make('vendor_name', __('resources.product.vendor')),
             // TextColumn::make('description_translated', __('resources.product.description')),
             TextColumn::make('price', __('resources.product.price')),
             TextColumn::make('cost', __('resources.product.cost')),
