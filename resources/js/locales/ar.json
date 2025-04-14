@@ -42,7 +42,14 @@
                 "checkout": "الدفع",
                 "remove": "إزالة",
                 "successfullyAddToCart": "تمت إضافة العنصر إلى عربة التسوق بنجاح",
-                "goToCart": "اذهب إلى عربة التسوق"
+                "goToCart": "اذهب إلى عربة التسوق",
+                "next": "تابع إلى الدفع",
+                "profileAddress": "عنوان الملف الشخصي:",
+                "newAddress": "عنوان جديد:",
+                "orderAdditionalInfo": "معلومات إضافية للطلب:",
+                "back": "رجوع",
+                "newAddressPlaceHolder": "إذا كنت تريد إرسال إلى عنوان غير العنوان الافتراضي، أدخله هنا.",
+                "orderInfoTitle": "معلومات إضافية للطلب"
             },
             "hero": {
                 "title": "مرحبا بك في متجر ميم هوم",

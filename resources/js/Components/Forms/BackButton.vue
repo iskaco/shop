@@ -5,7 +5,7 @@ export default {
         customClasses: String,
         label: {
             type: String,
-            default: "بازگشت",
+            default: "Back",
         },
         icon: {
             type: String,
