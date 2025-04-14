@@ -1,6 +1,6 @@
 <script setup>
 import { useCartStore } from "@/Composables/useCart.js";
-import { useForm } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 
 const {
     cart,
@@ -135,12 +135,12 @@ const CheckoutCart = function () {
                         {{ $t("titles.web.cart.grandTotal") }}:
                         {{ cartTotal }}
                     </div>
-                    <button
-                        @click="CheckoutCart()"
+                    <Link
+                        :href="route('shop.cart.info')"
                         class="px-4 py-2 bg-blue-600 text-white rounded"
                     >
-                        {{ $t("titles.web.cart.checkout") }}
-                    </button>
+                        {{ $t("titles.web.cart.next") }}
+                    </Link>
                 </div>
             </div>
         </div>

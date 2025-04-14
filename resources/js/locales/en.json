@@ -42,7 +42,14 @@
                 "checkout": "Checkout",
                 "remove": "Remove",
                 "successfullyAddToCart": "Item successfully added to cart",
-                "goToCart": "Go to Cart"
+                "goToCart": "Go to Cart",
+                "next": "Continue to Checkout",
+                "profileAddress": "Profile Address:",
+                "newAddress": "New Address:",
+                "orderAdditionalInfo": "Additional Information for the Order:",
+                "back": "Back",
+                "newAddressPlaceHolder": "If you want to send to an address other than the default address, enter it here.",
+                "orderInfoTitle": "Order Additional Info"
             },
             "hero": {
                 "title": "Welcome to MeemHome",
