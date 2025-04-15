@@ -4,6 +4,7 @@ use App\Http\Controllers\Admins\AdminController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\CartController;
 use App\Http\Controllers\Admins\CategoryController;
+use App\Http\Controllers\Admins\CustomerController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\OrderItemController;
@@ -123,4 +124,8 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/vendor/{id}', [VendorController::class, 'update'])->name('vendor.update');
     Route::delete('/vendor/{id}', [VendorController::class, 'destroy'])->name('vendor.destroy');
     Route::get('/vendor/edit/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
+
+    // Customer Routes
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+    Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
 });

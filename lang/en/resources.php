@@ -206,4 +206,20 @@ return [
         'is_featured' => 'Featured',
 
     ],
+    'customer' => [
+        'label' => 'Customer',
+        'plural' => 'Customers',
+        'name' => 'Name',
+        'email' => 'Email',
+        'mobile' => 'Mobile Number',
+        'address' => 'Address',
+        'city' => 'City',
+        'country' => 'Country',
+        'postal_code' => 'Postal Code',
+        'status' => 'Status',
+        'profile_image' => 'Profile Image',
+        'enable' => 'Status (Active/Inactive)',
+        'image' => 'Image',
+        'images' => 'Images',
+    ],
 ];
