@@ -54,7 +54,7 @@ const menuGroups = ref([
             {
                 label: "titles.admin.menus.customers",
                 iconName: "md-personpin-outlined",
-                route: "dashboard",
+                route: "customers",
             },
             {
                 label: "titles.admin.menus.orders",
