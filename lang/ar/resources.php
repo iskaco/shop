@@ -11,6 +11,7 @@ return [
         'product' => 'منتج :label',
         'order_items' => 'عناصر الطلب',
         'show_category_products' => ':label منتجات',
+        'show_orders' => 'الطلبات',
 
     ],
     'admin' => [

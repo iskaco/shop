@@ -128,4 +128,5 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     // Customer Routes
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
+    Route::get('/customer/orders/{id}', [CustomerController::class, 'orders'])->name('customer.orders');
 });

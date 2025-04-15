@@ -61,6 +61,7 @@ class CustomerResource extends BaseResource
             ToggleColumn::make('enable', __('resources.customer.enable')),
         ])->row_actions([
             // SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
+            ShowAction::make('showProduct', __('resources.actions.show_orders'))->setRoute('customer.orders')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
             ShowAction::make('show', __('resources.actions.show'))->setRoute('customer.show')->setIcon('md-removeredeye-outlined'),
             // EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
             // DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
