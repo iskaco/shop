@@ -22,8 +22,8 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false);
             $table->timestamps();
             $table->softDeletes();
-            $table->unique(['deleted_at', 'name'], 'name_unique');
-            $table->unique(['deleted_at', 'slug'], 'slug_unique');
+            $table->unique(['deleted_at', 'name'], 'vendor_name_unique');
+            $table->unique(['deleted_at', 'slug'], 'vendor_slug_unique');
         });
     }
 
