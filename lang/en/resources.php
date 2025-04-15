@@ -11,6 +11,7 @@ return [
         'product' => 'Product :label',
         'order_items' => 'Order Items',
         'show_category_products' => ':label Products',
+        'show_orders' => 'Orders',
     ],
     'admin' => [
         'label' => 'Admin',
