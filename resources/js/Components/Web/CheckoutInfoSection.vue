@@ -8,7 +8,7 @@ const { cart } = useCartStore();
 
 const props = defineProps(["address"]);
 const newAddress = ref("");
-const form = useForm({ items: [], selectedAddress: "" });
+const form = useForm({ items: [], address: "" });
 
 const CheckoutCart = function () {
     form.post(route("shop.order.store"));
@@ -43,7 +43,7 @@ onMounted(() => {
                             type="radio"
                             name="address"
                             :value="props.address"
-                            v-model="form.selectedAddress"
+                            v-model="form.address"
                         />
                     </div>
                     <div
@@ -65,7 +65,7 @@ onMounted(() => {
                     <div class="w-14 h-28 grid place-content-center">
                         <input
                             type="radio"
-                            v-model="form.selectedAddress"
+                            v-model="form.address"
                             :value="newAddress"
                         />
                     </div>
@@ -80,8 +80,8 @@ onMounted(() => {
                                 class="w-full rounded-md border-stroke"
                                 type="text"
                                 v-model="newAddress"
-                                @focus="form.selectedAddress = newAddress"
-                                @input="form.selectedAddress = newAddress"
+                                @focus="form.address = newAddress"
+                                @input="form.address = newAddress"
                             />
                             <p
                                 class="text-meta-1 text-xs font-normal mt-1 mx-2"
