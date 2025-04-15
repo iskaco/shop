@@ -14,19 +14,6 @@ const {
 const getImage = function (image) {
     return route("shop.media", image);
 };
-
-const CheckoutCart = function () {
-    let cartItems = [];
-    cart.forEach((element) => {
-        let cartItem = {};
-        cartItem["product_id"] = element.id;
-        cartItem["quantity"] = element.quantity;
-        cartItems.push(cartItem);
-    });
-
-    let form = useForm({ items: cartItems });
-    form.post(route("shop.order.store"));
-};
 </script>
 <template>
     <section class="py-20 bg-white md:px-20 px-5">
