@@ -16,6 +16,7 @@ import vueFilePond from "vue-filepond";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js";
 import FilePondPluginImageEdit from "filepond-plugin-image-edit";
+import GalleryInput from "./Forms/GalleryInput.vue";
 
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
@@ -40,6 +41,7 @@ export default {
         Button,
         FormHeader,
         FilePond,
+        GalleryInput,
     },
     props: {
         form: Object,
@@ -136,7 +138,6 @@ export default {
         if (this.form.action?.action_method == "PUT")
             initialData["_method"] = "put";
         this.formData = useForm(initialData);
-
         /* if (!this.form.action || this.form.action.action_method == "GET")
             this.isDisabled = true; */
     },
@@ -243,28 +244,17 @@ export default {
                     >
                     </ImageInput>
 
-                    <div v-if="input.component_type == 'MultiImage'">
-                        <label class="mb-2.5 block text-black dark:text-white">
-                            {{ input.title }}
-                            <span v-if="input.required" class="text-meta-1"
-                                >*</span
-                            >
-                        </label>
-                        <file-pond
-                            v-if="input.component_type == 'Image'"
-                            name="images"
-                            ref="pond"
-                            class-name="my-pond"
-                            :label-idle="
-                                $t('titles.form.selectOrDropImagesHere')
-                            "
-                            allow-multiple="true"
-                            allowImageEdit="true"
-                            accepted-file-types="image/jpeg, image/png"
-                            :files="formData[input.name]"
-                            :init="handleFilePondInit"
-                        />
-                    </div>
+                    <GalleryInput
+                        v-if="input.component_type == 'Gallery'"
+                        v-model="formData[input.name]"
+                        :label="input.title"
+                        :id="data.id"
+                        :model="form.model"
+                        :attribute="input.name"
+                        :multiple="false"
+                        :ratio="input.ratio"
+                        :isDisabled="getEnableStatus(input)"
+                    ></GalleryInput>
 
                     <div
                         v-if="formData.errors && formData.errors[input.name]"
