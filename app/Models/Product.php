@@ -102,6 +102,11 @@ class Product extends Model implements HasMedia
         return $media;
     }
 
+    public function getGalleryAttribute()
+    {
+        return $this->getMedia('Product.Galleries');
+    }
+
     public function specifications()
     {
         return $this->belongsToMany(Specification::class, 'product_specifications')

@@ -39,9 +39,11 @@ class CategoryController extends Controller
                 toast_error(__('messages.category.store.error'));
             } else {
                 toast_success(__('messages.category.store.ok'));
+
+                // return $this->makeInertiaTableResponse(Category::class, Category::query());
+                return redirect()->route('admin.categories');
             }
 
-            return $this->makeInertiaTableResponse(Category::class, Category::query());
         } catch (\Throwable $th) {
             toast_error(__('messages.category.store.error'));
         }
@@ -59,9 +61,11 @@ class CategoryController extends Controller
                 toast_error(__('messages.category.update.error'));
             } else {
                 toast_success(__('messages.category.update.ok'));
+
+                return redirect()->route('admin.categories');
+                // return $this->makeInertiaTableResponse(Category::class, Category::query());
             }
 
-            return $this->makeInertiaTableResponse(Category::class, Category::query());
         } catch (\Throwable $th) {
             toast_error(__('messages.category.update.error'));
         }

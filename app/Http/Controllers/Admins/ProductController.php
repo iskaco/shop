@@ -13,7 +13,6 @@ use App\Http\Requests\Admins\Products\ProductStoreRequest;
 use App\Http\Requests\Admins\Products\ProductUpdateRequest;
 use App\Isap\Actions\ActionType;
 use App\Models\Product;
-use App\Models\ProductSpecification;
 use stdClass;
 
 class ProductController extends Controller
@@ -33,6 +32,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+
         return $this->makeInertiaFormResponse(Product::class, $product->toFrontendArray(), ActionType::SHOW);
     }
 
@@ -43,11 +43,14 @@ class ProductController extends Controller
                 toast_error(__('messages.product.store.error'));
             } else {
                 toast_success(__('messages.product.store.ok'));
-                return $this->makeInertiaTableResponse(Product::class, Product::query());
+
+                return redirect()->route('admin.products');
             }
+
+            // return $this->makeInertiaTableResponse(Product::class, Product::query());
         } catch (\Throwable $th) {
-            //dd($th);
-            toast_error(__('messages.product.store.error') . $th->getMessage());
+            // dd($th);
+            toast_error(__('messages.product.store.error').$th->getMessage());
         }
     }
 
@@ -63,25 +66,29 @@ class ProductController extends Controller
                 toast_error(__('messages.product.update.error'));
             } else {
                 toast_success(__('messages.product.update.ok'));
-                return  $this->makeInertiaTableResponse(Product::class, Product::query());
+
+                return redirect()->route('admin.products');
             }
+
+            // return $this->makeInertiaTableResponse(Product::class, Product::query());
         } catch (\Throwable $th) {
-            toast_error(__('messages.product.update.error') . $th->getMessage());
+            toast_error(__('messages.product.update.error').$th->getMessage());
         }
     }
-
 
     public function destroy(ProductDestroyRequest $request, ProductDestroy $action, $id)
     {
         try {
             $error_message = $action->execute($id);
-            if (!$error_message)
+            if (! $error_message) {
                 toast_success(__('messages.product.destroy.ok'));
-            else
+            } else {
                 toast_error($error_message);
+            }
         } catch (\Throwable $th) {
             toast_error(__('messages.product.destroy.error'));
         }
+
         return $this->makeInertiaTableResponse(Product::class, Product::query());
     }
 
@@ -92,7 +99,8 @@ class ProductController extends Controller
         $category = $product?->category;
         $category_sepecification = $category?->specifications;
         $components_array = $this->createComponentArrayOfSpecifications($category_sepecification);
-        //dd($specification);
+
+        // dd($specification);
         return $this->InertiaResponse($this->createDynamicResourceForm($components_array, ActionType::UPDATE, __('resources.product.specifications', ['label' => $product?->name]), 'product.specifications.update'), $specification);
     }
 
@@ -104,15 +112,16 @@ class ProductController extends Controller
 
     private function createDataForSpecifiactionForm(Product $product)
     {
-        //$specification_list = [];
-        //$specification_list[] = ['id' => $product->id];
+        // $specification_list = [];
+        // $specification_list[] = ['id' => $product->id];
         // Loop through the product's specifications and format them
-        $specification_list = new stdClass();
+        $specification_list = new stdClass;
         $specification_list->id = $product->id;
         foreach ($product?->specifications as $specification) {
             $specification_list->{$specification?->id} = $specification?->pivot?->value;
-            //$specification_list[] = $temp;
+            // $specification_list[] = $temp;
         }
+
         return $specification_list;
     }
 
@@ -127,6 +136,7 @@ class ProductController extends Controller
                 'src' => $spec->possible_values,
             ];
         }
+
         return $specification;
     }
 }

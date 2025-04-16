@@ -8,6 +8,7 @@ enum ComponentType: string
     case RICHTEXT = 'RichText';
     case FILE = 'File';
     case IMAGE = 'Image';
+    case GALLERY = 'Gallery';
     case DATE = 'Date';
     case DATETIME = 'DateTime';
     case SELECT = 'Select';
