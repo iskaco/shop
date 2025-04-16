@@ -197,7 +197,7 @@ onMounted(() => {
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"
                                 >
-                                    2023-10-01
+                                    {{ order[0].created_at }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-center"

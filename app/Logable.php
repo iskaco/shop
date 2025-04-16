@@ -10,10 +10,12 @@ trait Logable
 {
     //
     use LogsActivity;
+
     public function getActivitylogOptions(): LogOptions
     {
-        $user = auth('admin')->check() ? auth('admin')->user() : (auth('web')->check() ? auth('web')->user() : (auth('sanctum')->check() ? auth('sanctum')->user() : null));
+        $user = auth('admin')->check() ? auth('admin')->user() : (auth('customer')->check() ?? null);
         CauserResolver::setCauser($user);
+
         return LogOptions::defaults()->logAll();
     }
 }
