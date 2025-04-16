@@ -32,6 +32,7 @@ Route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/cart-info', [CustomerController::class, 'cartInfo'])->name('cart.info');
 
         Route::get('/profile', [CustomerController::class, 'profile'])->name('customer.profile');
+        Route::get('/signout', [CustomerController::class, 'logout'])->name('signout');
     });
     // ======================== Products
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
