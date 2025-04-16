@@ -25,6 +25,7 @@ class OrderResource extends JsonResource
                 'payment_method' => $this?->payment_method,
                 'shipping_address' => $this?->shipping_address,
                 'items' => OrderItemResource::collection($this?->items),
+                'created_at' => $this?->created_at?->format('Y-m-d H:i:s'),
             ],
         ];
     }
