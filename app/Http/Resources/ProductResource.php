@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'short_description' => $this?->short_description,
             'slug' => $this?->slug,
             'image' => $this?->image?->uuid,
+            'gallery' => MediaResource::collection($this?->gallery),
             'price' => $this?->price,
             'cost' => $this?->cost,
             'stock' => $this?->stock,

@@ -16,6 +16,11 @@ class ProductStore extends BaseAction
         if (isset($data['image'])) {
             $product->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Product.Images');
         }
+        if (isset($data['gallery'])) {
+            foreach ($data['gallery'] as $image) {
+                $product->addMedia($image)->preservingOriginal()->toMediaCollection('Product.Galleries');
+            }
+        }
         DB::commit();
 
         return $product;

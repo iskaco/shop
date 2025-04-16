@@ -34,7 +34,8 @@ class AdminController extends Controller
             if ($admin) {
                 toast_success(__('messages.admin.store.ok'));
 
-                return $this->makeInertiaTableResponse(Admin::class, Admin::query());
+                return redirect()->route('admin.admins');
+                // return $this->makeInertiaTableResponse(Admin::class, Admin::query());
             }
 
         } catch (\Throwable $th) {
@@ -49,7 +50,9 @@ class AdminController extends Controller
             if ($admin) {
                 toast_success(__('messages.admin.update.ok'));
 
-                return $this->makeInertiaTableResponse(Admin::class, Admin::query());
+                return redirect()->route('admin.brands');
+
+                //                return $this->makeInertiaTableResponse(Admin::class, Admin::query());
             }
         } catch (\Throwable $th) {
             toast_error(__('messages.admin.update.error').$th->getMessage());

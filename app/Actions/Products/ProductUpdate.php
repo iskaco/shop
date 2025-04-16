@@ -17,7 +17,14 @@ class ProductUpdate extends BaseAction
             $product->clearMediaCollection('Product.Images');
             $product->addMedia($data['image'])->preservingOriginal()->toMediaCollection('Product.Images');
         }
+        if (isset($data['gallery'])) {
+            $product->clearMediaCollection('Product.Galleries');
+            foreach ($data['gallery'] as $image) {
+                $product->addMedia($image)->preservingOriginal()->toMediaCollection('Product.Galleries');
+            }
+        }
         DB::commit();
+
         return $product;
     }
 }
