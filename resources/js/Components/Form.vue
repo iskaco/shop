@@ -138,7 +138,6 @@ export default {
         if (this.form.action?.action_method == "PUT")
             initialData["_method"] = "put";
         this.formData = useForm(initialData);
-
         /* if (!this.form.action || this.form.action.action_method == "GET")
             this.isDisabled = true; */
     },
@@ -246,7 +245,7 @@ export default {
                     </ImageInput>
 
                     <GalleryInput
-                        v-if="input.component_type == 'GalleryImage'"
+                        v-if="input.component_type == 'Gallery'"
                         v-model="formData[input.name]"
                         :label="input.title"
                         :id="data.id"

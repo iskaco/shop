@@ -9,7 +9,7 @@ import "cropperjs/dist/cropper.css";
 
 export default {
     props: {
-        modelValue: File,
+        modelValue: [],
         label: String,
         customClasses: String,
         required: {
@@ -137,7 +137,7 @@ export default {
     computed: {
         value: {
             get() {
-                return this.modelValue;
+                return this.modelValue ?? [];
             },
             set(value) {
                 this.$emit("update:modelValue", value);
@@ -145,7 +145,7 @@ export default {
         },
     },
     mounted() {
-        this.value = [];
+        this.value = this.modelValue ?? [];
     },
 };
 </script>
