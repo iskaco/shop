@@ -77,7 +77,6 @@ export default {
             this.$refs.cropper.getCroppedCanvas().toBlob(
                 (blob) => {
                     const croppedImageUrl = URL.createObjectURL(blob);
-
                     const file = new File(
                         [blob],
                         `${this.id}-${this.model.split("\\")[2]}-${
@@ -89,16 +88,24 @@ export default {
                         }
                     );
 
-                    this.value.push(file);
+                    // Create new array references to trigger reactivity
+                    const newGallery = [
+                        ...this.gallery,
+                        {
+                            url: croppedImageUrl,
+                            blob: blob,
+                            file: file,
+                        },
+                    ];
 
-                    // Add to gallery array
-                    this.gallery.push({
-                        url: croppedImageUrl,
-                        blob: blob,
-                        file: file,
-                    });
+                    const currentValue = Array.isArray(this.value)
+                        ? this.value
+                        : [];
+                    const newValue = [...currentValue, file];
 
-                    // Reset for next image
+                    this.gallery = newGallery;
+                    this.value = newValue; // This will trigger the computed setter
+
                     this.resetCropper();
                 },
                 "image/jpeg",
@@ -109,12 +116,20 @@ export default {
         },
 
         removeImage(index) {
-            // Revoke the object URL to free memory
-            URL.revokeObjectURL(this.gallery[index].url);
+            // Create new arrays without the item
+            const newGallery = [...this.gallery];
+            const newValue = [...this.value];
 
-            // Remove from array
-            this.gallery.splice(index, 1);
-            this.value.splice(index, 1);
+            // Revoke the object URL to free memory
+            URL.revokeObjectURL(newGallery[index].url);
+
+            // Remove from arrays
+            newGallery.splice(index, 1);
+            newValue.splice(index, 1);
+
+            // Assign new arrays to trigger reactivity
+            this.gallery = newGallery;
+            this.value = newValue; // This will trigger the computed setter
         },
 
         resetCropper() {
@@ -132,20 +147,33 @@ export default {
             this.gallery.forEach((image) => {
                 URL.revokeObjectURL(image.url);
             });
+            this.gallery = [];
         },
     },
     computed: {
         value: {
             get() {
-                return this.modelValue ?? [];
+                return this.modelValue;
             },
             set(value) {
+                console.log(value);
+
                 this.$emit("update:modelValue", value);
             },
         },
     },
     mounted() {
-        this.value = this.modelValue ?? [];
+        this.gallery = this.modelValue
+            ? [
+                  ...this.modelValue.map((file) => ({
+                      file,
+                      url: URL.createObjectURL(file),
+                      blob: file,
+                  })),
+              ]
+            : [];
+
+        this.value = this.modelValue ? [...this.modelValue] : [];
     },
 };
 </script>
