@@ -140,6 +140,7 @@ onMounted(() => {
                         Orders
                     </Link>
                     <Link
+                        :href="route('shop.signout')"
                         class="flex-1 border-r border-stroke px-4 text-meta-1 font-light"
                     >
                         Sign Out
