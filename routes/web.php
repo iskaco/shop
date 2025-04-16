@@ -19,6 +19,9 @@ Route::prefix('shop')->name('shop.')->group(function () {
     // ========================= Customers
     Route::get('/signin', [CustomerController::class, 'signin'])->name('signin');
     Route::get('/signup', [CustomerController::class, 'signup'])->name('signup');
+    Route::get('/signout', function () {
+        auth('customer')->logout();
+    })->name('signout');
     Route::post('/authenticate', [CustomerController::class, 'authenticate'])->name('authenticate');
     Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
 
@@ -69,6 +72,6 @@ Route::get('/category/{name}/', function ($name) {
 })->name('web.category');
 */
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/activity.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+require __DIR__ . '/activity.php';

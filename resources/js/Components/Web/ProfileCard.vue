@@ -1,10 +1,7 @@
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
-import { useCartStore } from "@/Composables/useCart.js";
-import { onMounted } from "vue";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps(["customer"]);
-const { clearCart } = useCartStore();
 
 const getImage = function (image) {
     if (image) return route("shop.media", image);
@@ -14,14 +11,10 @@ const getImage = function (image) {
 const setDefaultImage = function (event) {
     event.target.src = "/images/person.jpeg";
 };
-
-onMounted(() => {
-    if (usePage().props.flash.toasts) clearCart();
-});
 </script>
 <template>
     <div
-        class="overflow-hidden rounded-sm bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+        class="overflow-hidden rounded-sm bg-white dark:border-strokedark dark:bg-boxdark"
     >
         <div class="relative z-20 h-35 md:h-65">
             <img
@@ -140,112 +133,11 @@ onMounted(() => {
                         Orders
                     </Link>
                     <Link
+                        :href="route('shop.signout')"
                         class="flex-1 border-r border-stroke px-4 text-meta-1 font-light"
                     >
                         Sign Out
                     </Link>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Order ID
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Order Date
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Order Status
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Payment Method
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Total
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Order Image
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="order in props.customer.orders">
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    #12345
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    2023-10-01
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    {{ order[0].status }}
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    {{ order[0].payment_method }}
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    {{ order[0].total }}
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    <div class="flex -space-x-6 justify-center">
-                                        <img
-                                            v-for="item in order[0].items"
-                                            :key="item.product.id"
-                                            :src="getImage(item.product.image)"
-                                            alt="Order Image"
-                                            class="h-10 w-10 object-cover inline-block rounded-full"
-                                        />
-                                    </div>
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-center"
-                                >
-                                    <div
-                                        class="flex gap-2 w-full justify-center"
-                                    >
-                                        <v-icon
-                                            name="md-removeredeye-outlined"
-                                            class="fill-meta-5 cursor-pointer"
-                                        ></v-icon>
-                                        <v-icon
-                                            name="md-deleteforever-outlined"
-                                            class="fill-meta-1 cursor-pointer"
-                                        ></v-icon>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
