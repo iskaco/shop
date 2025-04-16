@@ -75,6 +75,7 @@ return [
         'status' => 'الحالة',
         'specifications' => ':label المواصفات',
         'vendor' => 'البائع',
+        'gallery' => 'المعرض',
     ],
     'category' => [
         'label' => 'الفئة',

@@ -75,6 +75,7 @@ return [
         'slug' => 'Slug',
         'specifications' => ':label Specifications',
         'vendor' => 'Vendor',
+        'gallery' => 'Gallery',
 
     ],
     'category' => [

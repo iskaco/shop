@@ -38,9 +38,9 @@ class VendorController extends Controller
                 toast_error(__('messages.vendor.store.error'));
             } else {
                 toast_success(__('messages.vendor.store.ok'));
-            }
 
-            return redirect()->route('admin.vendors');
+                return redirect()->route('admin.vendors');
+            }
 
         } catch (\Throwable $th) {
             toast_error(__('messages.vendor.store.error'));
@@ -59,9 +59,10 @@ class VendorController extends Controller
                 toast_error(__('messages.vendor.update.error'));
             } else {
                 toast_success(__('messages.vendor.update.ok'));
+
+                return redirect()->route('admin.vendors');
             }
 
-            return $this->makeInertiaTableResponse(Vendor::class, Vendor::query());
         } catch (\Throwable $th) {
             toast_error(__('messages.vendor.update.error').$th->getMessage());
         }

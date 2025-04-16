@@ -9,6 +9,7 @@ use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
 use App\Isap\Actions\SpecificationAction;
 use App\Isap\Forms\Components\FormSection;
+use App\Isap\Forms\Components\GalleryInput;
 use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
 use App\Isap\Forms\Components\TextInput;
@@ -67,6 +68,8 @@ class ProductResource extends BaseResource
             ]),
             FormSection::make('images', __('resources.product.images'))->children([
                 ImageInput::make('image', __('resources.product.image')),
+                GalleryInput::make('gallery', __('resources.product.gallery')),
+
             ]),
             FormSection::make('status', __('resources.product.status'))->children([
                 ToggleInput::make('is_published', __('resources.product.is_published')),
