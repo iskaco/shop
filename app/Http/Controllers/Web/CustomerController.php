@@ -17,6 +17,7 @@ use App\Http\Requests\Web\Orders\OrderStoreRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class CustomerController extends Controller
@@ -144,5 +145,14 @@ class CustomerController extends Controller
         }
 
         return $total;
+    }
+
+    public function logout()
+    {
+        auth('customer')->logout();
+        Session::flush();
+        Session::put('success', 'You are logout sucessfully');
+
+        return redirect()->intended(route('home'));
     }
 }
