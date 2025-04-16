@@ -213,7 +213,16 @@ export default {
                                 ></Toggle>
                             </div>
                             <div v-else class="whitespace-nowrap">
-                                {{ row[col.name] }}
+                                <span
+                                    :title="row[col.name]"
+                                    class="truncate"
+                                    style="
+                                        max-width: 150px;
+                                        display: inline-block;
+                                    "
+                                >
+                                    {{ row[col.name] }}
+                                </span>
                             </div>
                         </td>
                         <td v-if="table.row_actions" class="p-3">
