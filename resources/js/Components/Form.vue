@@ -251,7 +251,7 @@ export default {
                         :id="data.id"
                         :model="form.model"
                         :attribute="input.name"
-                        :multiple="false"
+                        :multiple="true"
                         :ratio="input.ratio"
                         :isDisabled="getEnableStatus(input)"
                     ></GalleryInput>

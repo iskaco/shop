@@ -70,7 +70,63 @@ export default {
                 alert("FileReader API is not supported in your browser");
             }
         },
+        getImage() {
+            if (this.id) {
+                const images_route = this.route("admin.form.getMedia", [
+                    this.model,
+                    this.id,
+                    this.attribute,
+                    this.multiple,
+                ]);
 
+                fetch(images_route)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        Object.keys(data).forEach((uuid) => {
+                            const image = this.loadImage(uuid);
+
+                            fetch(image)
+                                .then((response) => response.blob())
+                                .then((blob) => {
+                                    const croppedImageUrl =
+                                        URL.createObjectURL(blob);
+                                    const file = new File(
+                                        [blob],
+                                        `${this.id}-${
+                                            this.model.split("\\")[2]
+                                        }-${useTimestamp().value}.jpg`,
+                                        {
+                                            type: "image/jpeg",
+                                            lastModified: Date.now(),
+                                        }
+                                    );
+
+                                    const newGallery = [
+                                        ...this.gallery,
+                                        {
+                                            url: croppedImageUrl,
+                                            blob: blob,
+                                            file: file,
+                                        },
+                                    ];
+
+                                    const currentValue = Array.isArray(
+                                        this.value
+                                    )
+                                        ? this.value
+                                        : [];
+                                    const newValue = [...currentValue, file];
+
+                                    this.gallery = newGallery;
+                                    this.value = newValue;
+                                });
+                        });
+                    });
+            }
+        },
+        loadImage(uuid) {
+            if (uuid) return route("shop.media", uuid);
+        },
         cropImage() {
             if (!this.$refs.cropper) return;
 
@@ -88,7 +144,6 @@ export default {
                         }
                     );
 
-                    // Create new array references to trigger reactivity
                     const newGallery = [
                         ...this.gallery,
                         {
@@ -156,13 +211,13 @@ export default {
                 return this.modelValue;
             },
             set(value) {
-                console.log(value);
-
                 this.$emit("update:modelValue", value);
             },
         },
     },
     mounted() {
+        this.getImage();
+
         this.gallery = this.modelValue
             ? [
                   ...this.modelValue.map((file) => ({
