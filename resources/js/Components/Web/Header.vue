@@ -26,11 +26,6 @@ const menuItems = ref([
         iconName: "md-home-outlined",
     },
     {
-        label: "titles.web.navigation.products",
-        route: "/",
-        iconName: "md-shoppingcart-outlined",
-    },
-    {
         label: "titles.web.navigation.categories",
         route: route("shop.category.index"),
         iconName: "md-category-outlined",
@@ -49,6 +44,83 @@ const menuItems = ref([
 </script>
 
 <template>
+    <div class="bg-gray-50 px-5 py-2 md:px-30 md:py-14">
+        <div class="flex flex-col space-y-5">
+            <div class="flex flex-row justify-between">
+                <div>
+                    <Link :href="route('home')">
+                        <img
+                            src="/images/logo.png"
+                            alt="Logo"
+                            class="w-auto h-24"
+                        />
+                    </Link>
+                </div>
+                <div
+                    class="items-center hidden gap-x-8 ltr:font-semibold md:flex"
+                >
+                    <Link
+                        v-for="menu in menuItems"
+                        :key="menu.label"
+                        :href="menu.route"
+                        class="text-cyan-500 hover:text-cyan-600 ltr:tracking-widest"
+                        >{{ $t(menu.label) }}</Link
+                    >
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <LanguageSwitcher />
+
+                    <CurrencySwitcher />
+                </div>
+            </div>
+            <div class="w-full flex flex-row justify-between">
+                <div class="flex-1 flex border-cyan-500 border-4">
+                    <input
+                        type="text"
+                        placeholder="Search Meem Or Type"
+                        class="flex-1 border-0"
+                    />
+                    <button class="bg-cyan-500 px-10 text-white">SEARCH</button>
+                </div>
+                <div>
+                    <Link
+                        :href="route('shop.cart.show')"
+                        class="relative text-white hover:text-gray-300"
+                    >
+                        <v-icon name="md-shoppingcart-outlined"></v-icon>
+                        <span
+                            v-if="cart.length"
+                            class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
+                            >{{ cart.length }}</span
+                        >
+                    </Link>
+
+                    <Link href="#" class="text-white hover:text-gray-300">
+                        <v-icon name="md-favoriteborder-outlined"></v-icon>
+                    </Link>
+
+                    <Link
+                        :href="
+                            usePage().props.auth.customer
+                                ? route('shop.customer.profile')
+                                : route('shop.signin')
+                        "
+                        class="text-white hover:text-gray-300"
+                    >
+                        <img
+                            v-if="usePage().props.auth.customer"
+                            class="w-6 h-6 rounded-full outline outline-meta-6"
+                            src="/images/person.jpeg"
+                        />
+                        <v-icon
+                            v-else
+                            name="md-personoutline-outlined"
+                        ></v-icon>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="absolute z-30 w-full" :class="menuBg">
         <div class="container px-4 py-4 mx-auto">
             <div class="flex items-center justify-between">
