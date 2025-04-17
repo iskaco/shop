@@ -140,6 +140,7 @@ const updateCustomer = function () {
                     id="mobile"
                     v-model="form.mobile"
                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
+                    :disabled="props.customer.login_type == 'mobile'"
                 />
                 <div
                     v-if="form.errors.mobile"
@@ -161,6 +162,7 @@ const updateCustomer = function () {
                     id="email"
                     v-model="form.email"
                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
+                    :disabled="props.customer.login_type == 'email'"
                 />
                 <div v-if="form.errors.email" class="mt-1 text-sm text-red-500">
                     {{ form.errors.email }}
