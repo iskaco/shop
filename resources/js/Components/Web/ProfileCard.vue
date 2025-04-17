@@ -23,7 +23,7 @@ const form = useForm({
 });
 
 const updateCustomer = function () {
-    form.post(route("shop.customer.update"));
+    form.put(route("shop.customer.update"));
 };
 </script>
 <template>

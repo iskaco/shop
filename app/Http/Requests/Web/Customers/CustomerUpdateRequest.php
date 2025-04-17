@@ -16,17 +16,20 @@ class CustomerUpdateRequest extends CustomerBaseRequest
 
         return [
             'name' => ['string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
-            'email' => ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
-            'mobile' => ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
-            // 'required' => ['required_without:mobile', 'required_without:email'],
-            // 'password' => ['required', 'string', 'min:8'],
+            'email' => auth('customer')?->user()?->login_type === 'mobile' ? [] : ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'mobile' => auth('customer')?->user()?->login_type === 'email' ? [] : ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
             'address' => ['nullable', 'string', 'max:500'],
             'city' => ['nullable', 'string', 'max:100'],
             'country' => ['nullable', 'string', 'max:100'],
             'postal_code' => ['nullable', 'string', 'max:20'],
-            // 'enable' => ['boolean'],
-            // 'profile_image' => ['nullable', 'mimes:jpg,png,jpeg', 'image', 'max:2024'],
         ];
 
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'id' => auth('customer')?->user()?->id,
+        ]);
     }
 }

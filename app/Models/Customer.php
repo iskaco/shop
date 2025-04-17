@@ -12,7 +12,7 @@ class Customer extends User implements HasMedia
 {
     use InteractsWithMedia, Logable;
 
-    protected $fillable = ['name', 'email', 'password', 'mobile', 'enable', 'address', 'city', 'country', 'postal_code'];
+    protected $fillable = ['name', 'login_type', 'email', 'password', 'mobile', 'enable', 'address', 'city', 'country', 'postal_code'];
 
     protected $hidden = [
         'password',

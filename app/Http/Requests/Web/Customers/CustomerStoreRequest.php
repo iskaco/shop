@@ -21,6 +21,7 @@ class CustomerStoreRequest extends FormRequest
 
         return [
             'name' => ['string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')],
+            'login_type' => ['string', Rule::in(['mobile', 'email'])],
             'email' => ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')],
             'mobile' => ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')],
             // 'required' => ['required_without:mobile', 'required_without:email'],
@@ -43,9 +44,14 @@ class CustomerStoreRequest extends FormRequest
 
         if ($this->login_id) {
             if (filter_var($this->login_id, FILTER_VALIDATE_EMAIL)) {
-                $this->merge(['email' => $this->login_id]);
+                $this->merge([
+                    'login_type' => 'email',
+                    'email' => $this->login_id]);
+
             } elseif (preg_match('/^[0-9]{10,15}$/', $this->login_id)) {
-                $this->merge(['mobile' => $this->login_id]);
+                $this->merge([
+                    'login_type' => 'mobile',
+                    'mobile' => $this->login_id]);
             }
 
         }

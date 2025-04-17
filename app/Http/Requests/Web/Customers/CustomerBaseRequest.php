@@ -8,7 +8,7 @@ class CustomerBaseRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        if (auth('customer')?->user()?->id === $this->id) {
+        if (auth('customer')?->check()) {
             return true;
         }
 

@@ -9,6 +9,8 @@ class CustomerUpdate extends BaseAction
 {
     public function execute(array $data, string $id) /* return value */
     {
-        return Customer::update($data);
+        $customer = Customer::findOrFail($id);
+
+        return $customer->update($data);
     }
 }
