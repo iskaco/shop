@@ -103,7 +103,12 @@ class CustomerController extends Controller
 
     public function cartInfo()
     {
-        return Inertia::render('web/CheckoutInfoView', ['address' => auth('customer')?->user()?->address ?? null]);
+        $customer = auth('customer')?->user();
+        $country = $customer?->country ? $customer?->country.', ' : '';
+        $city = $customer?->city ? $customer?->city.', ' : '';
+        $address = $country.$city.$customer?->address;
+
+        return Inertia::render('web/CheckoutInfoView', ['address' => $address ?? null]);
     }
 
     public function storeOrder(OrderStoreRequest $request, OrderStore $orderStoreAction, OrderItemStore $orderItemStoreAction)
