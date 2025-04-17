@@ -12,7 +12,7 @@ const {
 } = useCartStore();
 
 const getImage = function (image) {
-    return route("shop.media", image);
+    if (image) return route("shop.media", image);
 };
 </script>
 <template>
