@@ -125,7 +125,7 @@ export default {
             }
         },
         loadImage(uuid) {
-            if (uuid) return route("shop.media", uuid);
+            if (uuid) return route("admin.media", uuid);
         },
         cropImage() {
             if (!this.$refs.cropper) return;
@@ -242,7 +242,7 @@ export default {
                 class="h-[calc(100vh-200px)]"
             >
             </VueCropper>
-            <div class="flex flex-row gap-3 justify-center mb-5">
+            <div class="flex flex-row justify-center gap-3 mb-5">
                 <Button
                     :label="$t('titles.form.select')"
                     customClasses="bg-meta-11"
@@ -257,7 +257,7 @@ export default {
         </div>
     </Modal>
     <div
-        class="relative w-fit flex flex-col justify-center items-center"
+        class="relative flex flex-col items-center justify-center w-fit"
         :class="customClasses"
     >
         <label class="mb-2.5 block text-black dark:text-white">
@@ -265,11 +265,11 @@ export default {
             <span v-if="required" class="text-meta-1">*</span>
         </label>
         <label
-            class="relative w-60 overflow-hidden rounded-xl bg-gray-2 border dark:border-form-strokedark dark:bg-form-input cursor-pointer"
+            class="relative overflow-hidden border cursor-pointer w-60 rounded-xl bg-gray-2 dark:border-form-strokedark dark:bg-form-input"
             :class="croppedSrc ? `aspect-[${ratio}]` : 'h-60'"
         >
             <div
-                class="w-full h-full grid place-content-center"
+                class="grid w-full h-full place-content-center"
                 v-if="!croppedSrc"
             >
                 <v-icon name="md-image-outlined" :scale="2" />
@@ -283,7 +283,7 @@ export default {
                 />
             </div>
             <input
-                class="absolute -bottom-10 hidden"
+                class="absolute hidden -bottom-10"
                 type="file"
                 accept="image/*"
                 @change="setImage"
@@ -292,18 +292,18 @@ export default {
         </label>
         <span
             v-show="!isDisabled && croppedSrc"
-            class="absolute flex place-content-center cursor-pointer bg-opacity-85 mx-3 py-1 text-xs text-red-900 inset-x-0 bottom-2 rounded-full bg-meta-1 hover:bg-opacity-100"
+            class="absolute inset-x-0 flex py-1 mx-3 text-xs text-red-900 rounded-full cursor-pointer place-content-center bg-opacity-85 bottom-2 bg-meta-1 hover:bg-opacity-100"
             @click="croppedSrc = null"
         >
             {{ $t("titles.form.imageRemove") }}
         </span>
     </div>
-    <div class="container mx-auto p-4">
+    <div class="container p-4 mx-auto">
         <!-- Gallery preview -->
         <div v-if="gallery.length > 0" class="mt-8">
-            <h3 class="text-lg font-medium text-gray-700 mb-4">Your Gallery</h3>
+            <h3 class="mb-4 text-lg font-medium text-gray-700">Your Gallery</h3>
             <div
-                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
             >
                 <div
                     v-for="(image, index) in gallery"
@@ -312,11 +312,11 @@ export default {
                 >
                     <img
                         :src="image.url"
-                        class="w-full h-32 object-cover rounded-md border border-gray-200"
+                        class="object-cover w-full h-32 border border-gray-200 rounded-md"
                     />
                     <button
                         @click="removeImage(index)"
-                        class="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        class="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity bg-red-500 rounded-full opacity-0 top-1 right-1 group-hover:opacity-100"
                     >
                         &times;
                     </button>
