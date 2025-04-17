@@ -1,5 +1,6 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
+import { usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps(["product"]);
@@ -19,12 +20,26 @@ const getImage = function (image) {
                         class="aspect-square bg-gray-100 rounded-lg overflow-hidden"
                     >
                         <img
-                            :src="getImage(props.product.data.image)"
+                            ref="previewImage"
+                            :src="$refs.mainImage?.src"
                             :alt="props.product.data.name"
                             class="w-full h-full object-cover"
                         />
                     </div>
                     <div class="grid grid-cols-4 gap-4">
+                        <div
+                            class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer"
+                        >
+                            <img
+                                ref="mainImage"
+                                :src="getImage(props.product.data.image)"
+                                :alt="props.product.data.name"
+                                class="w-full h-full object-cover"
+                                @click="
+                                    $refs.previewImage.src = $event.target.src
+                                "
+                            />
+                        </div>
                         <div
                             v-for="(image, index) in props.product.data.gallery"
                             :key="index"
@@ -34,6 +49,9 @@ const getImage = function (image) {
                                 :src="getImage(image)"
                                 :alt="props.product.data.name"
                                 class="w-full h-full object-cover"
+                                @click="
+                                    $refs.previewImage.src = $event.target.src
+                                "
                             />
                         </div>
                     </div>
