@@ -13,7 +13,7 @@ trait Logable
 
     public function getActivitylogOptions(): LogOptions
     {
-        $user = auth('admin')->check() ? auth('admin')->user() : (auth('customer')->check() ?? null);
+        $user = auth('admin')->check() ? auth('admin')->user() : (auth('customer')->user() ?? null);
         CauserResolver::setCauser($user);
 
         return LogOptions::defaults()->logAll();

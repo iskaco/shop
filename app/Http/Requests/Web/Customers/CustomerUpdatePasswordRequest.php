@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Web\Customers;
 
-class CustomerStoreCartRequest extends CustomerBaseRequest
+class CustomerUpdatePasswordRequest extends CustomerBaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,8 +12,7 @@ class CustomerStoreCartRequest extends CustomerBaseRequest
     public function rules(): array
     {
         return [
-            //
-            'cart_items' => ['array'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

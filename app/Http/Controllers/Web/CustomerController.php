@@ -54,10 +54,13 @@ class CustomerController extends Controller
     public function store(CustomerStoreRequest $request, CustomerStore $action)
     {
         try {
-            $action->execute($request->validated());
-            toast_success(__('messages.customer.store.ok'));
+            if ($action->execute($request->validated())) {
+                toast_success(__('messages.customer.store.ok'));
 
-            return redirect()->route('shop.signin');
+                return redirect()->route('shop.signin');
+            }
+            toast_error(__('messages.customer.store.error'));
+
         } catch (\Throwable $th) {
             toast_error(__('messages.customer.store.error'));
         }
@@ -66,9 +69,15 @@ class CustomerController extends Controller
     public function update(CustomerUpdateRequest $request, CustomerUpdate $action)
     {
         try {
-            $action->execute($request->validated());
-            toast_success(__('messages.customer.update.ok'));
+            if ($action->execute($request->validated(), auth('customer')?->user()?->id)) {
+                toast_success(__('messages.customer.update.ok'));
+
+                return redirect()->route('shop.customer.profile');
+            }
+            toast_error(__('messages.customer.update.error'));
+
         } catch (\Throwable $th) {
+            toast_error(__('messages.customer.update.error'));
         }
     }
 

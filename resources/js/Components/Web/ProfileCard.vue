@@ -23,11 +23,11 @@ const form = useForm({
 });
 
 const updateCustomer = function () {
-    form.post(route("customer.update"));
+    form.put(route("shop.customer.update"));
 };
 </script>
 <template>
-    <div class="px-10 w-full md:w-1/2 mx-auto gap-6">
+    <div class="w-full gap-6 px-10 mx-auto md:w-1/2">
         <div class="flex flex-col gap-6">
             <!-- Name -->
             <div>
@@ -40,9 +40,9 @@ const updateCustomer = function () {
                     type="text"
                     id="name"
                     v-model="form.name"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
-                <div v-if="form.errors.name" class="text-red-500 text-sm mt-1">
+                <div v-if="form.errors.name" class="mt-1 text-sm text-red-500">
                     {{ form.errors.name }}
                 </div>
             </div>
@@ -58,11 +58,11 @@ const updateCustomer = function () {
                     type="text"
                     id="country"
                     v-model="form.country"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
                 <div
                     v-if="form.errors.country"
-                    class="text-red-500 text-sm mt-1"
+                    class="mt-1 text-sm text-red-500"
                 >
                     {{ form.errors.country }}
                 </div>
@@ -79,9 +79,9 @@ const updateCustomer = function () {
                     type="text"
                     id="city"
                     v-model="form.city"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
-                <div v-if="form.errors.city" class="text-red-500 text-sm mt-1">
+                <div v-if="form.errors.city" class="mt-1 text-sm text-red-500">
                     {{ form.errors.city }}
                 </div>
             </div>
@@ -97,11 +97,11 @@ const updateCustomer = function () {
                     type="text"
                     id="address"
                     v-model="form.address"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
                 <div
                     v-if="form.errors.address"
-                    class="text-red-500 text-sm mt-1"
+                    class="mt-1 text-sm text-red-500"
                 >
                     {{ form.errors.address }}
                 </div>
@@ -118,11 +118,11 @@ const updateCustomer = function () {
                     type="text"
                     id="postal_code"
                     v-model="form.postal_code"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
                 <div
                     v-if="form.errors.postal_code"
-                    class="text-red-500 text-sm mt-1"
+                    class="mt-1 text-sm text-red-500"
                 >
                     {{ form.errors.postal_code }}
                 </div>
@@ -139,11 +139,11 @@ const updateCustomer = function () {
                     type="text"
                     id="mobile"
                     v-model="form.mobile"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
                 <div
                     v-if="form.errors.mobile"
-                    class="text-red-500 text-sm mt-1"
+                    class="mt-1 text-sm text-red-500"
                 >
                     {{ form.errors.mobile }}
                 </div>
@@ -160,9 +160,9 @@ const updateCustomer = function () {
                     type="email"
                     id="email"
                     v-model="form.email"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary"
                 />
-                <div v-if="form.errors.email" class="text-red-500 text-sm mt-1">
+                <div v-if="form.errors.email" class="mt-1 text-sm text-red-500">
                     {{ form.errors.email }}
                 </div>
             </div>
@@ -170,7 +170,7 @@ const updateCustomer = function () {
             <div class="flex justify-end">
                 <button
                     type="submit"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     :disabled="form.processing"
                     @click="updateCustomer()"
                 >
