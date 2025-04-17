@@ -1,13 +1,20 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
 import { usePage } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useCartStore } from "@/Composables/useCart.js";
 
 const props = defineProps(["product"]);
 
 const getImage = function (image) {
     return route("shop.media", image);
 };
+
+const { addToCart, cart } = useCartStore();
+
+const isInCart = computed(() => {
+    return cart.some((item) => item.id === props.product.id);
+});
 </script>
 <template>
     <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
@@ -21,7 +28,7 @@ const getImage = function (image) {
                     >
                         <img
                             ref="previewImage"
-                            :src="$refs.mainImage?.src"
+                            :src="getImage(props.product.data.image)"
                             :alt="props.product.data.name"
                             class="w-full h-full object-cover"
                         />
