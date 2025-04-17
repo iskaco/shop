@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $selected_category_slug = 'electronics'; // TODO
         $category = Category::where('slug', $selected_category_slug)->first() ?? Category::inRandomOrder()->first();
-        $product = $category->products()->inRandomOrder()->take(4)->get();
+        $product = $category->products()->inRandomOrder()->take(12)->get();
 
         return $product;
     }

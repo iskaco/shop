@@ -44,7 +44,7 @@ const menuItems = ref([
 </script>
 
 <template>
-    <div class="bg-gray-50 px-5 py-2 md:px-30 md:py-14">
+    <div class="bg-gray-50 px-5 py-2 md:px-30 pb-10">
         <div class="flex flex-col space-y-5">
             <div class="flex flex-row justify-between">
                 <div>
@@ -67,36 +67,109 @@ const menuItems = ref([
                         >{{ $t(menu.label) }}</Link
                     >
                 </div>
-                <div class="flex items-center gap-x-4">
+                <div class="md:flex items-center gap-x-4 hidden">
                     <LanguageSwitcher />
 
                     <CurrencySwitcher />
                 </div>
+                <div
+                    class="flex flex-row-reverse gap-4 md:hidden text-bodydark font-extralight items-center"
+                >
+                    <button class="text-white" @click="toggleSidebar">
+                        <v-icon
+                            name="la-bars-solid"
+                            :scale="1.5"
+                            class="fill-cyan-500"
+                        ></v-icon>
+                    </button>
+                    <div class="flex gap-4">
+                        <Link
+                            :href="route('shop.cart.show')"
+                            class="relative hover:text-cyan-700"
+                        >
+                            <v-icon
+                                name="la-shopping-cart-solid"
+                                :scale="1.5"
+                                class="fill-cyan-500"
+                            ></v-icon>
+                            <span
+                                v-if="cart.length"
+                                class="absolute grid place-content-center bg-meta-1 text-white rounded-full text-[9px] w-4 h-4 top-0 left-4"
+                                >{{ cart.length }}</span
+                            >
+                        </Link>
+
+                        <Link href="#" class="hover:text-cyan-700">
+                            <v-icon
+                                name="la-heart"
+                                :scale="1.5"
+                                class="fill-cyan-500"
+                            ></v-icon>
+                        </Link>
+
+                        <Link
+                            :href="
+                                usePage().props.auth.customer
+                                    ? route('shop.customer.profile')
+                                    : route('shop.signin')
+                            "
+                            class="hover:text-cyan-700"
+                        >
+                            <img
+                                v-if="usePage().props.auth.customer"
+                                class="w-6 h-6 rounded-full outline outline-meta-6"
+                                src="/images/person.jpeg"
+                            />
+                            <v-icon
+                                v-else
+                                name="la-user"
+                                :scale="1.5"
+                                class="fill-cyan-500"
+                            ></v-icon>
+                        </Link>
+                    </div>
+                </div>
             </div>
-            <div class="w-full flex flex-row justify-between">
-                <div class="flex-1 flex border-cyan-500 border-4">
+            <div
+                class="w-full flex flex-row justify-between items-center gap-5 md:px-20"
+            >
+                <div
+                    class="flex-1 flex border-cyan-500 border-4 rounded-md overflow-hidden"
+                >
                     <input
                         type="text"
                         placeholder="Search Meem Or Type"
-                        class="flex-1 border-0"
+                        class="flex-1 border-0 placeholder-bodydark placeholder:font-thin"
                     />
                     <button class="bg-cyan-500 px-10 text-white">SEARCH</button>
                 </div>
-                <div>
+                <div
+                    class="hidden md:flex flex-row-reverse gap-5 text-bodydark font-extralight"
+                >
                     <Link
                         :href="route('shop.cart.show')"
-                        class="relative text-white hover:text-gray-300"
+                        class="relative hover:text-cyan-700 space-x-1"
                     >
-                        <v-icon name="md-shoppingcart-outlined"></v-icon>
+                        <v-icon
+                            name="la-shopping-cart-solid"
+                            :scale="2"
+                            class="fill-cyan-500"
+                        ></v-icon>
+                        <span>Shopping Cart</span>
                         <span
                             v-if="cart.length"
-                            class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
+                            class="absolute grid place-content-center bg-meta-1 text-white rounded-full text-[9px] w-4 h-4 top-1 left-5"
                             >{{ cart.length }}</span
                         >
                     </Link>
 
-                    <Link href="#" class="text-white hover:text-gray-300">
-                        <v-icon name="md-favoriteborder-outlined"></v-icon>
+                    <Link href="#" class="hover:text-cyan-700 space-x-1">
+                        <v-icon
+                            name="la-heart"
+                            :scale="2"
+                            class="fill-cyan-500"
+                        ></v-icon>
+                        <span>Favorite</span>
                     </Link>
 
                     <Link
@@ -105,7 +178,7 @@ const menuItems = ref([
                                 ? route('shop.customer.profile')
                                 : route('shop.signin')
                         "
-                        class="text-white hover:text-gray-300"
+                        class="hover:text-cyan-700 space-x-1"
                     >
                         <img
                             v-if="usePage().props.auth.customer"
@@ -114,121 +187,17 @@ const menuItems = ref([
                         />
                         <v-icon
                             v-else
-                            name="md-personoutline-outlined"
+                            name="la-user"
+                            :scale="2"
+                            class="fill-cyan-500"
                         ></v-icon>
+                        <span>Personal Account</span>
                     </Link>
                 </div>
             </div>
         </div>
     </div>
-    <nav class="absolute z-30 w-full" :class="menuBg">
-        <div class="container px-4 py-4 mx-auto">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <Link :href="route('home')">
-                        <img
-                            src="/images/logo.png"
-                            alt="Logo"
-                            class="w-auto h-20"
-                        />
-                    </Link>
-                </div>
-                <div
-                    class="items-center hidden gap-x-8 ltr:font-semibold md:flex"
-                >
-                    <Link
-                        v-for="menu in menuItems"
-                        :key="menu.label"
-                        :href="menu.route"
-                        class="text-white hover:text-gray-300 ltr:tracking-widest"
-                        >{{ $t(menu.label) }}</Link
-                    >
 
-                    <div class="flex items-center gap-x-4">
-                        <LanguageSwitcher />
-
-                        <CurrencySwitcher />
-
-                        <Link
-                            :href="route('shop.cart.show')"
-                            class="relative text-white hover:text-gray-300"
-                        >
-                            <v-icon name="md-shoppingcart-outlined"></v-icon>
-                            <span
-                                v-if="cart.length"
-                                class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
-                                >{{ cart.length }}</span
-                            >
-                        </Link>
-
-                        <Link href="#" class="text-white hover:text-gray-300">
-                            <v-icon name="md-favoriteborder-outlined"></v-icon>
-                        </Link>
-
-                        <Link
-                            :href="
-                                usePage().props.auth.customer
-                                    ? route('shop.customer.profile')
-                                    : route('shop.signin')
-                            "
-                            class="text-white hover:text-gray-300"
-                        >
-                            <img
-                                v-if="usePage().props.auth.customer"
-                                class="w-6 h-6 rounded-full outline outline-meta-6"
-                                src="/images/person.jpeg"
-                            />
-                            <v-icon
-                                v-else
-                                name="md-personoutline-outlined"
-                            ></v-icon>
-                        </Link>
-                    </div>
-                </div>
-                <div class="flex flex-row-reverse gap-4 md:hidden">
-                    <button class="text-white" @click="toggleSidebar">
-                        <v-icon name="md-menu-outlined"></v-icon>
-                    </button>
-                    <div class="flex gap-4">
-                        <Link
-                            :href="route('shop.cart.show')"
-                            class="relative text-white hover:text-gray-300"
-                        >
-                            <v-icon name="md-shoppingcart-outlined"></v-icon>
-                            <span
-                                v-if="cart.length"
-                                class="absolute grid place-content-center bg-meta-1 rounded-sm text-[9px] w-4 h-4 -top-2 -right-2"
-                                >{{ cart.length }}</span
-                            >
-                        </Link>
-
-                        <Link href="#" class="text-white hover:text-gray-300">
-                            <v-icon name="md-favoriteborder-outlined"></v-icon>
-                        </Link>
-
-                        <Link
-                            :href="
-                                usePage().props.auth.customer
-                                    ? route('shop.customer.profile')
-                                    : route('shop.signin')
-                            "
-                            class="text-white hover:text-gray-300"
-                        >
-                            <img
-                                v-if="usePage().props.auth.customer"
-                                class="w-6 h-6 rounded-full outline outline-meta-6"
-                                src="/images/person.jpeg"
-                            />
-                            <v-icon
-                                v-else
-                                name="md-personoutline-outlined"
-                            ></v-icon>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
     <aside
         class="fixed ltr:left-0 rtl:right-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-auto bg-black duration-300 ease-linear dark:bg-boxdark lg:hidden sm:ltr:translate-x-0"
         :class="{

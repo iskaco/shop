@@ -4,9 +4,10 @@ import WebLayout from "@/Layouts/WebLayout.vue";
 import PriceTable from "@/Components/Web/PriceTable.vue";
 import HeroSection from "@/Components/Web/HeroSection.vue";
 import FeaturedCategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
-import BrandSection from "@/Components/Web/BrandSection.vue";
+import ScrolledSocialSection from "@/Components/Web/ScrolledSocialSection.vue";
 import FeaturesSection from "@/Components/Web/FeaturesSection.vue";
 import RandomProductsSection from "@/Components/Web/RandomProductsSection.vue";
+import Slider from "@/Components/Web/Slider.vue";
 
 const props = defineProps(["categories", "random_products"]);
 </script>
@@ -15,15 +16,10 @@ const props = defineProps(["categories", "random_products"]);
     <Head :title="$t('titles.web.description')" />
     <WebLayout>
         <div>
-            <HeroSection
-                :title="$t('titles.web.hero.title')"
-                :subtitle="$t('titles.web.hero.subtitle')"
-                banner="/images/main-hero.jpg"
-            />
+            <ScrolledSocialSection />
 
-            <FeaturesSection></FeaturesSection>
+            <slider />
 
-            <!-- Categories Section -->
             <FeaturedCategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->

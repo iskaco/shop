@@ -55,7 +55,7 @@ const AddToCart = function (product) {
 <template>
     <div
         style="direction: ltr"
-        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+        class="relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white"
     >
         <Link
             class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
@@ -77,38 +77,55 @@ const AddToCart = function (product) {
                 <span class="">{{ Math.floor(Math.random() * 5) }}</span>
             </span>
         </Link>
-        <div class="mt-4 px-5 pb-5">
+        <div class="mt-4 px-5">
             <Link :href="route('shop.product.show', [props.product.slug])">
                 <h5
                     :title="props.product.name"
                     style="max-width: 90%; display: inline-block"
-                    class="truncate text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:text-2xl ltr:font-bold"
+                    class="truncate text-xl ltr:tracking-wider text-slate-900 rtl:text-right"
                 >
                     {{ props.product.name }}
                 </h5>
             </Link>
             <div class="mt-2 mb-5">
-                <p class="flex ltr:flex-row-reverse items-end gap-2">
+                <p class="flex rtl:flex-row-reverse items-center gap-2">
                     <span
-                        class="text-2xl font-bold text-slate-900 ltr:text-right"
+                        class="text-2xl font-bold text-slate-900 ltr:text-right pt-1"
                         >{{ props.product.price }}$</span
                     >
-                    <span class="text-sm text-meta-1 line-through font-semibold"
-                        >{{ Math.floor(Math.random() * 200) }}$</span
+                    <span
+                        class="text-xs text-meta-1 font-semibold border-meta-1 border rounded p-1 pt-2"
+                        >-{{ Math.floor(Math.random() * 100) }}%</span
                     >
                 </p>
+                <span
+                    class="text-sm text-bodydark font-semibold line-through p-1 pt-2"
+                    >-{{ Math.floor(Math.random() * 100) }}%</span
+                >
             </div>
+        </div>
+        <div class="flex justify-between items-center px-5 pb-5">
+            <span
+                class="bg-meta-1 rounded-l-full rounded-br-full px-2 tesxt-xs text-white"
+            >
+                <v-icon name="la-cube-solid"></v-icon>
+                express
+            </span>
 
             <button
                 @click="addToCart(props.product)"
-                class="flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                class="flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md border shadow-md px-3 py-2 text-center text-xs font-medium text-black-2 hover:bg-cyan-500"
             >
-                <v-icon name="md-shoppingcart-outlined"></v-icon>
-                {{
-                    isInCart
-                        ? $t("titles.web.products.isInCart")
-                        : $t("titles.web.products.addtocart")
-                }}
+                <v-icon
+                    v-if="!isInCart"
+                    name="la-cart-plus-solid"
+                    :scale="1.5"
+                ></v-icon>
+                <v-icon
+                    v-else
+                    name="la-cart-arrow-down-solid"
+                    :scale="1.5"
+                ></v-icon>
             </button>
         </div>
     </div>
