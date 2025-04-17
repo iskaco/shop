@@ -14,7 +14,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'name' => ['required', 'array', Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at')->where('category_id', $this->category_id);
             })->ignore($this->id)],
-            'slug' => ['required', 'string', Rule::unique('products')->where(function ($query) {
+            'slug' => ['required', 'string', Rule::slug(), Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at');
             })->ignore($this->id)],
             'category_id' => ['required', 'numeric', Rule::exists('categories', 'id')->where(function ($query) {

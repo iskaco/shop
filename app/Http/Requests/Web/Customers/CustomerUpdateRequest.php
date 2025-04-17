@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests\Web\Customers;
 
+use Illuminate\Validation\Rule;
+
 class CustomerUpdateRequest extends CustomerBaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        if (auth('customer')?->user()?->id === $this->id) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,8 +13,20 @@ class CustomerUpdateRequest extends CustomerBaseRequest
      */
     public function rules(): array
     {
+
         return [
-            //
+            'name' => ['string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'email' => ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            'mobile' => ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')->ignore($this->id)],
+            // 'required' => ['required_without:mobile', 'required_without:email'],
+            // 'password' => ['required', 'string', 'min:8'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'city' => ['nullable', 'string', 'max:100'],
+            'country' => ['nullable', 'string', 'max:100'],
+            'postal_code' => ['nullable', 'string', 'max:20'],
+            // 'enable' => ['boolean'],
+            // 'profile_image' => ['nullable', 'mimes:jpg,png,jpeg', 'image', 'max:2024'],
         ];
+
     }
 }

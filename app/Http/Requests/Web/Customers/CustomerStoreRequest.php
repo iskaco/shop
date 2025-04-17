@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Web\Customers;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-class CustomerStoreRequest extends CustomerBaseRequest
+class CustomerStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,6 +14,19 @@ class CustomerStoreRequest extends CustomerBaseRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function rules(): array
+    {
+
+        return [
+            'name' => ['string', 'max:100', Rule::unique('customers')->whereNull('deleted_at')],
+            'email' => ['nullable', 'string', 'email', 'max:100', Rule::unique('customers')->whereNull('deleted_at')],
+            'mobile' => ['nullable', 'string', 'max:20', Rule::unique('customers')->whereNull('deleted_at')],
+            // 'required' => ['required_without:mobile', 'required_without:email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+        ];
     }
 
     protected function prepareForValidation(): void

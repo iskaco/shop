@@ -13,6 +13,7 @@ class CustomerAuthenticateRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'login_id' => ['required', 'string', 'min:3', 'max:100', 'email', 'mobile'],
             'password' => ['required', 'string', 'min:6', 'max:15'],
