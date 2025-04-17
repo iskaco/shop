@@ -31,7 +31,7 @@ const getImage = function (image) {
                             class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer"
                         >
                             <img
-                                :src="image"
+                                :src="getImage(image)"
                                 :alt="props.product.data.name"
                                 class="w-full h-full object-cover"
                             />
