@@ -23,7 +23,7 @@ Route::prefix('shop')->name('shop.')->group(function () {
     Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
 
     Route::middleware(['customerauth'])->group(function () {
-        Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+        Route::put('/customer/update', [CustomerController::class, 'update'])->name('customer.update');
         Route::post('/cart-items/store', [CustomerController::class, 'storeCartItems'])->name('cart_items.store'); // ToDo
         Route::post('/order/store', [CustomerController::class, 'storeOrder'])->name('order.store');
         Route::get('/cart-info', [CustomerController::class, 'cartInfo'])->name('cart.info');
