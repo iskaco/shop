@@ -80,7 +80,9 @@ const AddToCart = function (product) {
         <div class="mt-4 px-5 pb-5">
             <Link :href="route('shop.product.show', [props.product.slug])">
                 <h5
-                    class="text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:text-2xl ltr:font-bold"
+                    :title="props.product.name"
+                    style="max-width: 90%; display: inline-block"
+                    class="truncate text-xl ltr:tracking-wider text-slate-900 rtl:text-right ltr:text-2xl ltr:font-bold"
                 >
                     {{ props.product.name }}
                 </h5>
