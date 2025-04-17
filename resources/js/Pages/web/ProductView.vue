@@ -10,10 +10,15 @@ const getImage = function (image) {
     return route("shop.media", image);
 };
 
+const quantity = ref(1);
 const { addToCart, cart } = useCartStore();
 
 const isInCart = computed(() => {
     return cart.some((item) => item.id === props.product.id);
+});
+
+const orderItem = computed(() => {
+    return cart.find((item) => item.id === props.product.data.id);
 });
 </script>
 <template>
@@ -122,9 +127,32 @@ const isInCart = computed(() => {
                                 {{ props.product.data.price }}
                                 {{ $t("titles.web.products.currency") }}
                             </div>
+                            <div class="flex items-center gap-2">
+                                <button
+                                    @click="quantity--"
+                                    class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300"
+                                >
+                                    <v-icon
+                                        name="md-remove"
+                                        scale="0.8"
+                                    ></v-icon>
+                                </button>
+                                <input
+                                    type="number"
+                                    v-model="quantity"
+                                    min="1"
+                                    class="w-16 text-center border rounded-md py-1"
+                                />
+                                <button
+                                    @click="quantity++"
+                                    class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300"
+                                >
+                                    <v-icon name="md-add" scale="0.8"></v-icon>
+                                </button>
+                            </div>
                         </div>
                         <button
-                            @click="addToCart(props.product)"
+                            @click="addToCart(props.product.data, quantity)"
                             class="w-full flex rtl:flex-row-reverse gap-2 items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                         >
                             <v-icon name="md-shoppingcart-outlined"></v-icon>
@@ -133,6 +161,12 @@ const isInCart = computed(() => {
                                     ? $t("titles.web.products.isInCart")
                                     : $t("titles.web.products.addtocart")
                             }}
+                            {{ props.product.id }}
+                            <span
+                                v-if="orderItem"
+                                class="grid place-content-center bg-meta-1 rounded-full w-5 h-5 text-xs pt-1"
+                                >{{ orderItem.quantity }}</span
+                            >
                         </button>
                     </div>
 
