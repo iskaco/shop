@@ -62,11 +62,18 @@ class ProductResource extends BaseResource
                 MultiSelectInput::make('category_id', __('resources.product.category'))->setSource((new DataUtil)->getOptionsForModel(new Category, 'id', 'name', ['is_active' => 1]))->setIsNotMulti()->isRequired(),
                 MultiSelectInput::make('brand_id', __('resources.product.brand'))->setSource((new DataUtil)->getOptionsForModel(new Brand, 'id', 'name'))->setIsNotMulti()->isRequired(),
                 MultiSelectInput::make('vendor_id', __('resources.product.vendor'))->setSource((new DataUtil)->getOptionsForModel(new Vendor, 'id', 'name'))->setIsNotMulti(),
-                TextInput::make('price', __('resources.product.price'))->isCurrency(),
                 TextInput::make('cost', __('resources.product.cost'))->isCurrency(),
+                TextInput::make('price', __('resources.product.price'))->isCurrency(),
                 TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ]),
-            FormSection::make('images', __('resources.product.images'))->children([
+            /* FormSection::make('barcode', __('resources.product.barcode'))->children([
+                TextInput::make('barcode', __('resources.product.barcode')),
+            ]),
+            FormSection::make('features', __('resources.product.features'))->children([
+                TextInput::make('size', __('resources.product.size')),
+                TextInput::make('color', __('resources.product.color')),
+            ]),
+ */ FormSection::make('images', __('resources.product.images'))->children([
                 ImageInput::make('image', __('resources.product.image')),
                 GalleryInput::make('gallery', __('resources.product.gallery')),
 
@@ -89,8 +96,8 @@ class ProductResource extends BaseResource
             TextColumn::make('brand_name', __('resources.product.brand')),
             TextColumn::make('vendor_name', __('resources.product.vendor')),
             // TextColumn::make('description_translated', __('resources.product.description')),
-            TextColumn::make('price', __('resources.product.price')),
             TextColumn::make('cost', __('resources.product.cost')),
+            TextColumn::make('price', __('resources.product.price')),
             TextColumn::make('stock', __('resources.product.stock')),
             ImageColumn::make('image', __('resources.product.image')),
             ToggleColumn::make('is_published', __('resources.product.is_published')),
