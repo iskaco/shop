@@ -127,6 +127,20 @@ export default {
 
             this.modalShowStatus = false;
         },
+        onCropperReady() {
+            // When cropper is ready, set crop box to image dimensions
+            const cropper = this.$refs.cropper;
+            const containerData = cropper.getContainerData();
+            const imageData = cropper.getImageData();
+
+            // Set crop box to match image size
+            cropper.setCropBoxData({
+                left: 0,
+                top: 0,
+                width: imageData.naturalWidth,
+                height: imageData.naturalHeight,
+            });
+        },
     },
     computed: {
         value: {
@@ -148,9 +162,10 @@ export default {
         <div class="flex flex-col gap-5">
             <VueCropper
                 ref="cropper"
-                :aspect-ratio="ratio"
                 :src="imgSrc"
+                :viewMode="1"
                 class="h-[calc(100vh-200px)]"
+                @ready="onCropperReady"
             >
             </VueCropper>
             <div class="flex flex-row gap-3 justify-center mb-5">
