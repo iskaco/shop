@@ -9,8 +9,8 @@
                     "prefix": "$"
                 },
                 "rial": {
-                    "name": "Rial",
-                    "prefix": "ریال"
+                    "name": "Lebnen",
+                    "prefix": "L.L"
                 }
             },
             "navigation": {
@@ -18,7 +18,46 @@
                 "products": "Products",
                 "categories": "Categories",
                 "contact": "Contact Us",
-                "about": "About Us"
+                "about": "About Us",
+                "search": "SEARCH",
+                "search_placeholder": "Search Meem Or Type...",
+                "account": "Personal Account",
+                "favorite": "Favorite",
+                "cart": "Shopping Cart"
+            },
+            "slider": {
+                "slide1": {
+                    "title": "Welcome to MeemHome",
+                    "description": "Discover Amazing Products at Great Prices"
+                },
+                "slide2": {
+                    "title": "Electronics",
+                    "description": "Explore our latest collection of cutting-edge electronics, from smartphones to smart home devices"
+                },
+                "slide3": {
+                    "title": "Furniture",
+                    "description": "Transform your living spaces with our premium collection of stylish and comfortable furniture"
+                },
+                "slide4": {
+                    "title": "Shoes",
+                    "description": "Step into style with our premium collection of footwear for every occasion"
+                },
+                "slide5": {
+                    "title": "Bathroom",
+                    "description": "Upgrade your bathroom with our elegant and functional fixtures and accessories"
+                },
+                "slide6": {
+                    "title": "Honey",
+                    "description": "Experience the pure taste of nature with our premium selection of natural honey"
+                },
+                "slide7": {
+                    "title": "Tshirt",
+                    "description": "Express yourself with our comfortable and stylish collection of t-shirts"
+                },
+                "slide8": {
+                    "title": "Home Tools",
+                    "description": "Make your home projects easier with our high-quality tools and equipment"
+                }
             },
             "form": {
                 "register": "Register",
@@ -225,9 +264,9 @@
                 "submit": "Send Message"
             },
             "newsletter": {
-                "title": "Subscribe to Our Newsletter",
+                "title": "Get Your Order Now",
+                "placeholder": "Type your email here...",
                 "description": "Stay updated with our latest products and offers",
-                "placeholder": "Enter your email",
                 "button": "Subscribe"
             },
             "footer": {

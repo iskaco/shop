@@ -3,50 +3,43 @@ import { ref } from "vue";
 
 const slides = [
     {
-        title: "Welcome to MeemHome",
-        description: "Discover Amazing Products at Great Prices",
+        title: "titles.web.slider.slide1.title",
+        description: "titles.web.slider.slide1.description",
         image: "/images/main-hero.jpg",
     },
     {
-        title: "Electronics",
-        description:
-            "Explore our latest collection of cutting-edge electronics, from smartphones to smart home devices",
+        title: "titles.web.slider.slide2.title",
+        description: "titles.web.slider.slide2.description",
         image: "/images/electronics-hero.jpg",
     },
     {
-        title: "Furniture",
-        description:
-            "Transform your living spaces with our premium collection of stylish and comfortable furniture",
+        title: "titles.web.slider.slide3.title",
+        description: "titles.web.slider.slide3.description",
         image: "/images/furniture-hero.jpg",
     },
     {
-        title: "Shoes",
-        description:
-            "Step into style with our premium collection of footwear for every occasion",
+        title: "titles.web.slider.slide4.title",
+        description: "titles.web.slider.slide4.description",
         image: "/images/shoes-hero.jpg",
     },
     {
-        title: "Bathroom",
-        description:
-            "Upgrade your bathroom with our elegant and functional fixtures and accessories",
+        title: "titles.web.slider.slide5.title",
+        description: "titles.web.slider.slide5.description",
         image: "/images/bathroom-hero.jpg",
     },
     {
-        title: "Honey",
-        description:
-            "Experience the pure taste of nature with our premium selection of natural honey",
+        title: "titles.web.slider.slide6.title",
+        description: "titles.web.slider.slide6.description",
         image: "/images/honey-hero.jpg",
     },
     {
-        title: "Tshirt",
-        description:
-            "Express yourself with our comfortable and stylish collection of t-shirts",
+        title: "titles.web.slider.slide7.title",
+        description: "titles.web.slider.slide7.description",
         image: "/images/tshirt-hero.jpg",
     },
     {
-        title: "Home Tools",
-        description:
-            "Make your home projects easier with our high-quality tools and equipment",
+        title: "titles.web.slider.slide8.title",
+        description: "titles.web.slider.slide8.description",
         image: "/images/home-hero.jpg",
     },
 ];
@@ -70,7 +63,11 @@ function goToSlide(index) {
     <div class="relative w-full overflow-hidden">
         <div
             class="flex transition-transform duration-300"
-            :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+            :style="{
+                transform: `translateX(${
+                    this.$page.props.locale == 'en' ? '-' : ''
+                }${currentIndex * 100}%)`,
+            }"
         >
             <div
                 v-for="(slide, index) in slides"
@@ -82,10 +79,10 @@ function goToSlide(index) {
                 >
                     <div class="absolute text-center px-20 space-y-5 z-20">
                         <p class="text-5xl md:text-7xl font-black text-white">
-                            {{ slide.title }}
+                            {{ $t(slide.title) }}
                         </p>
                         <p class="text-xl md:text-2xl font-medium text-white">
-                            {{ slide.description }}
+                            {{ $t(slide.description) }}
                         </p>
                     </div>
                     <div

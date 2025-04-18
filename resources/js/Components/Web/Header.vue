@@ -138,10 +138,14 @@ const menuItems = ref([
                 >
                     <input
                         type="text"
-                        placeholder="Search Meem Or Type"
+                        :placeholder="
+                            $t('titles.web.navigation.search_placeholder')
+                        "
                         class="flex-1 border-0 placeholder-bodydark placeholder:font-thin"
                     />
-                    <button class="bg-cyan-500 px-10 text-white">SEARCH</button>
+                    <button class="bg-cyan-500 px-10 text-white">
+                        {{ $t("titles.web.navigation.search") }}
+                    </button>
                 </div>
                 <div
                     class="hidden md:flex flex-row-reverse gap-5 text-bodydark font-extralight"
@@ -155,10 +159,10 @@ const menuItems = ref([
                             :scale="2"
                             class="fill-cyan-500"
                         ></v-icon>
-                        <span>Shopping Cart</span>
+                        <span>{{ $t("titles.web.navigation.cart") }}</span>
                         <span
                             v-if="cart.length"
-                            class="absolute grid place-content-center bg-meta-1 text-white rounded-full text-[9px] w-4 h-4 top-1 left-5"
+                            class="absolute grid place-content-center bg-meta-1 text-white rounded-full text-[9px] w-4 h-4 top-1 ltr:left-5 rtl:right-0"
                             >{{ cart.length }}</span
                         >
                     </Link>
@@ -169,7 +173,7 @@ const menuItems = ref([
                             :scale="2"
                             class="fill-cyan-500"
                         ></v-icon>
-                        <span>Favorite</span>
+                        <span>{{ $t("titles.web.navigation.favorite") }}</span>
                     </Link>
 
                     <Link
@@ -191,7 +195,7 @@ const menuItems = ref([
                             :scale="2"
                             class="fill-cyan-500"
                         ></v-icon>
-                        <span>Personal Account</span>
+                        <span>{{ $t("titles.web.navigation.account") }}</span>
                     </Link>
                 </div>
             </div>
