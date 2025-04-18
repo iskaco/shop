@@ -76,6 +76,9 @@ return [
         'specifications' => ':label المواصفات',
         'vendor' => 'البائع',
         'gallery' => 'المعرض',
+        'size' => 'الحجم',
+        'color' => 'اللون',
+        'barcode' => 'الباركود',
     ],
     'category' => [
         'label' => 'الفئة',

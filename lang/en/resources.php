@@ -76,6 +76,9 @@ return [
         'specifications' => ':label Specifications',
         'vendor' => 'Vendor',
         'gallery' => 'Gallery',
+        'size' => 'Size',
+        'color' => 'Color',
+        'barcode' => 'Barcode',
 
     ],
     'category' => [
