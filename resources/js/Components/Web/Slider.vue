@@ -65,23 +65,23 @@ function goToSlide(index) {
             class="flex transition-transform duration-300"
             :style="{
                 transform: `translateX(${
-                    this.$page.props.locale == 'en' ? '-' : ''
+                    $page.props.locale == 'en' ? '-' : ''
                 }${currentIndex * 100}%)`,
             }"
         >
             <div
                 v-for="(slide, index) in slides"
                 :key="index"
-                class="w-full flex-shrink-0"
+                class="flex-shrink-0 w-full"
             >
                 <div
-                    class="relative h-80 md:h-150 flex items-center justify-center bg-gray-200"
+                    class="relative flex items-center justify-center bg-gray-200 h-80 md:h-150"
                 >
-                    <div class="absolute text-center px-20 space-y-5 z-20">
-                        <p class="text-5xl md:text-7xl font-black text-white">
+                    <div class="absolute z-20 px-20 space-y-5 text-center">
+                        <p class="text-5xl font-black text-white md:text-7xl">
                             {{ $t(slide.title) }}
                         </p>
-                        <p class="text-xl md:text-2xl font-medium text-white">
+                        <p class="text-xl font-medium text-white md:text-2xl">
                             {{ $t(slide.description) }}
                         </p>
                     </div>
@@ -101,18 +101,18 @@ function goToSlide(index) {
         </div>
         <button
             @click="prevSlide"
-            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2"
+            class="absolute left-0 p-2 transform -translate-y-1/2 bg-white top-1/2"
         >
             Prev
         </button>
         <button
             @click="nextSlide"
-            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2"
+            class="absolute right-0 p-2 transform -translate-y-1/2 bg-white top-1/2"
         >
             Next
         </button>
         <div
-            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2"
+            class="absolute bottom-0 flex space-x-2 transform -translate-x-1/2 left-1/2"
         >
             <span
                 v-for="(slide, index) in slides"
@@ -122,7 +122,7 @@ function goToSlide(index) {
                     'bg-cyan-500': currentIndex === index,
                     'bg-gray-300': currentIndex !== index,
                 }"
-                class="w-3 h-3 rounded-full cursor-pointer mb-10"
+                class="w-3 h-3 mb-10 rounded-full cursor-pointer"
             ></span>
         </div>
     </div>
