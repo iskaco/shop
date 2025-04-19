@@ -227,4 +227,15 @@ return [
         'image' => 'Image',
         'images' => 'Images',
     ],
+    'attribute' => [
+        'label' => 'Attribute',
+        'plural' => 'Attributes',
+        'name' => 'Name',
+        'name_en' => 'Title Name',
+        'name_ar' => 'Arabic Name',
+        'slug' => 'Slug',
+        'general_en' => 'General Information (English)',
+        'general_ar' => 'General Information (Arabic)',
+        'another_info' => 'Another Information',
+    ],
 ];
