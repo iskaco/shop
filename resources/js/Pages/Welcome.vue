@@ -4,9 +4,11 @@ import WebLayout from "@/Layouts/WebLayout.vue";
 import PriceTable from "@/Components/Web/PriceTable.vue";
 import HeroSection from "@/Components/Web/HeroSection.vue";
 import FeaturedCategoriesSection from "@/Components/Web/FeaturedCategoriesSection.vue";
-import BrandSection from "@/Components/Web/BrandSection.vue";
+import ScrolledSocialSection from "@/Components/Web/ScrolledSocialSection.vue";
 import FeaturesSection from "@/Components/Web/FeaturesSection.vue";
 import RandomProductsSection from "@/Components/Web/RandomProductsSection.vue";
+import Slider from "@/Components/Web/Slider.vue";
+import SubscribeSection from "@/Components/Web/SubscribeSection.vue";
 
 const props = defineProps(["categories", "random_products"]);
 </script>
@@ -15,15 +17,10 @@ const props = defineProps(["categories", "random_products"]);
     <Head :title="$t('titles.web.description')" />
     <WebLayout>
         <div>
-            <HeroSection
-                :title="$t('titles.web.hero.title')"
-                :subtitle="$t('titles.web.hero.subtitle')"
-                banner="/images/main-hero.jpg"
-            />
+            <ScrolledSocialSection />
 
-            <FeaturesSection></FeaturesSection>
+            <slider />
 
-            <!-- Categories Section -->
             <FeaturedCategoriesSection :categories="props.categories" />
 
             <!-- Latest Products Section -->
@@ -136,31 +133,7 @@ const props = defineProps(["categories", "random_products"]);
             <!-- Price Table Section -->
             <PriceTable />
 
-            <!-- Subscribe Newsletter Section -->
-            <section class="py-20 text-white bg-gray-900">
-                <div class="container px-4 mx-auto">
-                    <div class="max-w-2xl mx-auto text-center">
-                        <h2 class="mb-8 text-4xl font-bold">
-                            {{ $t("titles.web.newsletter.title") }}
-                        </h2>
-                        <p class="mb-8">
-                            {{ $t("titles.web.newsletter.description") }}
-                        </p>
-                        <form class="flex flex-col gap-4 md:flex-row">
-                            <input
-                                type="email"
-                                :placeholder="
-                                    $t('titles.web.newsletter.placeholder')
-                                "
-                                class="flex-1 px-4 py-3 text-black rounded-lg"
-                            />
-                            <button class="px-8 py-3 bg-blue-600 rounded-lg">
-                                {{ $t("titles.web.newsletter.button") }}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+            <SubscribeSection />
         </div>
     </WebLayout>
 </template>

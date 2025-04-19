@@ -13,7 +13,7 @@ const currencies = [
         prefix: "titles.web.currency.usd.prefix",
     },
     {
-        code: "rls",
+        code: "lb",
         name: "titles.web.currency.rial.name",
         flag: "co-lb",
         prefix: "titles.web.currency.rial.prefix",
@@ -52,7 +52,7 @@ const changeCurrency = (currency) => {
         <div
             v-if="isOpen"
             ref="target"
-            class="absolute rtl:left-0 ltr:right-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
+            class="absolute rtl:left-0 ltr:right-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark z-50"
         >
             <button
                 v-for="currency in currencies"

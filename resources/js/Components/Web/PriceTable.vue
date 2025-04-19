@@ -9,8 +9,8 @@ const plans = [
             "titles.web.plans.bronze.features.email",
             "titles.web.plans.bronze.features.analytics",
         ],
-        bgColor: "#CE8946",
-        textColor: "#82572C",
+        color: "#CE8946",
+        image: "/images/boronze-star.png",
     },
     {
         name: "titles.web.plans.silver.name",
@@ -21,8 +21,8 @@ const plans = [
             "titles.web.plans.silver.features.support",
             "titles.web.plans.silver.features.analytics",
         ],
-        bgColor: "#C4C4C4",
-        textColor: "#666666",
+        color: "#C4C4C4",
+        image: "/images/silver-star.png",
     },
     {
         name: "titles.web.plans.gold.name",
@@ -33,8 +33,8 @@ const plans = [
             "titles.web.plans.gold.features.support",
             "titles.web.plans.gold.features.analytics",
         ],
-        bgColor: "#EFBF04",
-        textColor: "#856A00",
+        color: "#EFBF04",
+        image: "/images/gold-star.png",
     },
     {
         name: "titles.web.plans.platinum.name",
@@ -45,8 +45,8 @@ const plans = [
             "titles.web.plans.platinum.features.support",
             "titles.web.plans.platinum.features.analytics",
         ],
-        bgColor: "#D9D9D9",
-        textColor: "#636363",
+        color: "#D9D9D9",
+        image: "/images/platinum-star.png",
     },
     {
         name: "titles.web.plans.diamond.name",
@@ -57,14 +57,14 @@ const plans = [
             "titles.web.plans.diamond.features.support",
             "titles.web.plans.diamond.features.analytics",
         ],
-        bgColor: "#DEA193",
-        textColor: "#694C45",
+        color: "#ADD8E6",
+        image: "/images/diamond-star.png",
     },
 ];
 </script>
 <template>
-    <section class="py-20 bg-gray-100">
-        <div class="container px-4 mx-auto">
+    <section class="py-20 bg-white">
+        <div class="container px-20 mx-auto">
             <h2
                 class="mb-16 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
             >
@@ -74,41 +74,37 @@ const plans = [
                 <div
                     v-for="plan in plans"
                     :key="plan.name"
-                    class="relative hover:scale-105 transition-all duration-300 p-8 text-center border-2 rounded-lg shadow-lg overflow-hidden"
-                    :style="`border-color: ${plan.bgColor}`"
+                    class="flex flex-col gap-3 hover:scale-105 transition-all duration-300 p-8 text-center bg-gray-100 rounded-lg overflow-hidden"
                 >
-                    <p
-                        class="absolute rotate-6 opacity-50 -top-1 -right-1 mb-2 text-7xl font-bold"
-                        :style="`color: ${plan.bgColor}`"
-                    >
-                        {{ $t(plan.price) }}
-                    </p>
-                    <h3
-                        class="mt-2 mb-10 rotate-6 -mx-10 py-7 lg:text-3xl text-2xl font-bold z-20"
-                        :style="`color: ${plan.textColor}; background-color: ${plan.bgColor}`"
-                    >
-                        {{ $t(plan.name) }}
-                    </h3>
+                    <span class="space-y-3">
+                        <img :src="plan.image" class="w-auto h-14 mx-auto" />
+                        <p
+                            class="text-4xl font-black"
+                            :style="`color: ${plan.color}`"
+                        >
+                            {{ $t(plan.name) }}
+                        </p>
+                    </span>
+                    <span class="text-xs mb-5">
+                        You Can Create Up To 3 {{ $t(plan.name) }} Chains To
+                        Invite Up To 39 Friends In Each To Win Together
+                    </span>
 
-                    <p class="mb-6 text-lg text-green-600">
-                        {{ $t(plan.revenue) }}
-                    </p>
-                    <ul class="mb-8">
-                        <li class="mb-2">
-                            ✓
-                            {{ $t(plan.features[0]) }}
-                        </li>
-                        <li class="mb-2">
-                            ✓
-                            {{ $t(plan.features[1]) }}
-                        </li>
-                        <li class="mb-2">
-                            ✓
-                            {{ $t(plan.features[2]) }}
-                        </li>
-                    </ul>
+                    <div class="text-sm text-black font-bold">
+                        Buys:
+                        <p class="text-2xl" :style="`color: ${plan.color}`">
+                            {{ $t(plan.price) }}
+                        </p>
+                    </div>
+                    <div class="text-sm text-black font-bold">
+                        Revenue:
+                        <p class="text-2xl" :style="`color: ${plan.color}`">
+                            25$
+                        </p>
+                    </div>
                     <button
-                        class="w-full py-2 text-white bg-blue-600 rounded-lg"
+                        class="p-2 text-white rounded-full"
+                        :style="`background-color: ${plan.color}`"
                     >
                         {{ $t("titles.web.plans.button") }}
                     </button>
