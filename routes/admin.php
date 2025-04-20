@@ -141,4 +141,15 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/attribute/{id}', [AttributeController::class, 'update'])->name('attribute.update');
     Route::delete('/attribute/{id}', [AttributeController::class, 'destroy'])->name('attribute.destroy');
     Route::get('/attribute/edit/{id}', [AttributeController::class, 'edit'])->name('attribute.edit');
+
+    // AttributeValue Routes
+
+    Route::get('/attribute_values', [AttributeController::class, 'index'])->name('attribute_values');
+    Route::get('/attribute_value', [AttributeController::class, 'create'])->name('attribute_value.create');
+    Route::post('/attribute_value', [AttributeController::class, 'store'])->name('attribute_value.store');
+    Route::get('/attribute_value/{id}', [AttributeController::class, 'show'])->name('attribute_value.show');
+    Route::put('/attribute_value/{id}', [AttributeController::class, 'update'])->name('attribute_value.update');
+    Route::delete('/attribute_value/{id}', [AttributeController::class, 'destroy'])->name('attribute_value.destroy');
+    Route::get('/attribute_value/edit/{id}', [AttributeController::class, 'edit'])->name('attribute_value.edit');
+
 });

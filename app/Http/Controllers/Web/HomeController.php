@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Actions\Categories\FeaturedCategoryIndex;
+use App\Actions\Categories\GetFeaturedCategoriesWithProductsAction;
+use App\Actions\Products\ProductIndexByCategory;
+use App\Actions\Products\ProductRandomIndexByCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
@@ -16,10 +19,12 @@ class HomeController extends Controller
     {
         $categories = app(FeaturedCategoryIndex::class)->execute();
         $random_products = $this->randomProduct();
+        $featured_categories = (new GetFeaturedCategoriesWithProductsAction)->execute(12, false);
 
         return Inertia::render('Welcome', [
             'categories' => CategoryResource::collection($categories),
             'random_products' => ProductResource::collection($random_products),
+            'featured_categories' => $featured_categories,
         ]);
     }
 
@@ -39,5 +44,15 @@ class HomeController extends Controller
         $product = $category->products()->inRandomOrder()->take(12)->get();
 
         return $product;
+    }
+
+    public function getProductByCategory(string $category_id)
+    {
+        return (new ProductIndexByCategory)->execute($category_id);
+    }
+
+    public function getRandomProductByCategory(string $category_id, int $number)
+    {
+        return (new ProductRandomIndexByCategory)->execute($category_id, $number);
     }
 }

@@ -238,4 +238,14 @@ return [
         'general_ar' => 'General Information (Arabic)',
         'another_info' => 'Another Information',
     ],
+    'attribute_value' => [
+        'label' => 'Attribute Value',
+        'plural' => 'Attribute Values',
+        'name' => 'Name',
+        'value' => 'Value',
+        'code' => 'Code',
+        'attribute' => 'Attribute',
+        'another_info' => 'Another Information',
+        'info' => 'Information',
+    ],
 ];
