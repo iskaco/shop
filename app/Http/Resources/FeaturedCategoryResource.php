@@ -15,12 +15,14 @@ class FeaturedCategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'is_featured' => $this->is_featured,
+            'name' => $this?->name,
+            'slug' => $this?->slug,
+            'image' => $this?->image?->uuid,
+            'banner' => $this?->banner?->uuid,
+            'description' => $this?->description,
+            // 'is_featured' => $this?->is_featured,
             'products' => ProductResource::collection($this->whenLoaded('products')),
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            // 'created_at' => $this?->created_at?->format('Y-m-d H:i:s'),
             'links' => [
                 'self' => route('shop.category.show', $this->slug),
             ],
