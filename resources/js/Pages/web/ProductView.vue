@@ -172,27 +172,15 @@ const orderItem = computed(() => {
 
                     <!-- Seller Info -->
                     <div
-                        v-if="props.product.data.seller"
-                        class="bg-gray-50 p-4 rounded-lg"
+                        v-if="props.product.data.vendor"
+                        class="flex items-center gap-2 bg-gray-50 p-4 rounded-lg"
                     >
-                        <h3 class="font-bold mb-2">
+                        <v-icon name="la-cubes-solid" :scale="2"></v-icon>
+                        <span class="text-body">
                             {{ $t("titles.web.products.seller") }}
-                        </h3>
-                        <div class="flex items-center gap-2 text-gray-600">
-                            <svg
-                                class="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                />
-                            </svg>
-                            <span>{{ props.product.data.seller }}</span>
+                        </span>
+                        <div class="text-boxdark-2 font-medium">
+                            <span>{{ props.product.data.vendor }}</span>
                         </div>
                     </div>
                 </div>
