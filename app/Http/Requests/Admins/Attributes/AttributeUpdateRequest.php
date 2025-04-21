@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests\Admins\Attributes;
 
-use App\Http\Requests\Admins\AdminsAuthRequest;
-use Illuminate\Validation\Rule;
-
-class AttributeUpdateRequest extends AdminsAuthRequest
+class AttributeUpdateRequest extends AttributeBaseRequest
 {
     public function __construct()
     {
         $this->action = 'attributes.update';
-    }
-
-    public function rules(): array
-    {
-        return [
-
-        ];
     }
 }

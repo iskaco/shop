@@ -16,6 +16,8 @@ class Attribute extends Model
         'slug',
     ];
 
+    public $translatable = ['name'];
+
     protected $appends = ['name_translated'];
 
     public function getNameTranslatedAttribute()

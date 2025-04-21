@@ -247,5 +247,10 @@ return [
         'attribute' => 'Attribute',
         'another_info' => 'Another Information',
         'info' => 'Information',
+        'general_en' => 'General Information (English)',
+        'general_ar' => 'General Information (Arabic)',
+        'another_info' => 'Another Information',
+        'value_en' => 'Value (English)',
+        'value_ar' => 'Value (Arabic)',
     ],
 ];
