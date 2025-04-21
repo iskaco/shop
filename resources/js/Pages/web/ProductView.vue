@@ -23,7 +23,7 @@ const orderItem = computed(() => {
 </script>
 <template>
     <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
-        <div class="mx-auto md:px-20 px-10 mt-40 mb-20">
+        <div class="mx-auto md:px-20 px-10 my-20">
             <!-- Product Details Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Product Images -->
@@ -118,14 +118,134 @@ const orderItem = computed(() => {
                     </div>
 
                     <!-- Price & Add to Cart -->
-                    <div class="bg-gray-50 p-4 rounded-lg border">
+                    <div
+                        class="flex flex-col gap-5 bg-gray-50 p-4 rounded-lg border"
+                    >
+                        <div class="flex gap-5 items-center">
+                            <span class="text-body w-14">Color: </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="red"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-1 outline outline-1 outline-offset-4 outline-body"
+                                    ></div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="green"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-3 outline outline-1 outline-offset-4 outline-body"
+                                    ></div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="blue"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-5 outline outline-1 outline-offset-4 outline-body"
+                                    ></div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="yellow"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-6 outline outline-1 outline-offset-4 outline-body"
+                                    ></div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="flex gap-5 items-center">
+                            <span class="text-body w-14">Size: </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="small"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                    >
+                                        S
+                                    </div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="medium"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                    >
+                                        M
+                                    </div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="large"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                    >
+                                        L
+                                    </div>
+                                </label>
+                            </span>
+                            <span>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value="xlarge"
+                                        class="hidden"
+                                    />
+                                    <div
+                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                    >
+                                        XL
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
                         <div class="flex justify-between items-center mb-4">
-                            <span class="text-gray-600"
-                                >{{ $t("titles.web.products.price") }}:</span
-                            >
-                            <div class="text-xl font-bold">
-                                {{ props.product.data.price }}
-                                {{ $t("titles.web.products.currency") }}
+                            <div class="flex gap-10">
+                                <span class="text-body"
+                                    >{{
+                                        $t("titles.web.products.price")
+                                    }}:</span
+                                >
+                                <div class="text-boxdark-2 text-xl font-bold">
+                                    {{ props.product.data.price }}
+                                    {{ $t("titles.web.products.currency") }}
+                                </div>
+                                <div class="text-body line-through">
+                                    {{ props.product.data.price }}
+                                    {{ $t("titles.web.products.currency") }}
+                                </div>
                             </div>
                             <div class="flex items-center gap-2">
                                 <button
@@ -172,27 +292,15 @@ const orderItem = computed(() => {
 
                     <!-- Seller Info -->
                     <div
-                        v-if="props.product.data.seller"
-                        class="bg-gray-50 p-4 rounded-lg"
+                        v-if="props.product.data.vendor"
+                        class="flex items-center gap-2 bg-gray-50 p-4 rounded-lg"
                     >
-                        <h3 class="font-bold mb-2">
+                        <v-icon name="la-cubes-solid" :scale="2"></v-icon>
+                        <span class="text-body">
                             {{ $t("titles.web.products.seller") }}
-                        </h3>
-                        <div class="flex items-center gap-2 text-gray-600">
-                            <svg
-                                class="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                />
-                            </svg>
-                            <span>{{ props.product.data.seller }}</span>
+                        </span>
+                        <div class="text-boxdark-2 font-medium">
+                            <span>{{ props.product.data.vendor }}</span>
                         </div>
                     </div>
                 </div>

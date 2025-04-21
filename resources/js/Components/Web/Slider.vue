@@ -101,15 +101,23 @@ function goToSlide(index) {
         </div>
         <button
             @click="prevSlide"
-            class="absolute left-0 p-2 transform -translate-y-1/2 bg-white top-1/2"
+            class="absolute left-0 p-2 transform -translate-y-1/2 bg-cyan-500 top-1/2"
         >
-            Prev
+            <v-icon
+                name="la-angle-double-left-solid"
+                :scale="2"
+                class="fill-white"
+            ></v-icon>
         </button>
         <button
             @click="nextSlide"
-            class="absolute right-0 p-2 transform -translate-y-1/2 bg-white top-1/2"
+            class="absolute right-0 p-2 transform -translate-y-1/2 bg-cyan-500 top-1/2"
         >
-            Next
+            <v-icon
+                name="la-angle-double-right-solid"
+                :scale="2"
+                class="fill-white"
+            ></v-icon>
         </button>
         <div
             class="absolute bottom-0 flex space-x-2 transform -translate-x-1/2 left-1/2"

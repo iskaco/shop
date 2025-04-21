@@ -10,7 +10,11 @@ import RandomProductsSection from "@/Components/Web/RandomProductsSection.vue";
 import Slider from "@/Components/Web/Slider.vue";
 import SubscribeSection from "@/Components/Web/SubscribeSection.vue";
 
-const props = defineProps(["categories", "random_products"]);
+const props = defineProps([
+    "categories",
+    "random_products",
+    "featured_categories",
+]);
 </script>
 
 <template>
@@ -21,15 +25,24 @@ const props = defineProps(["categories", "random_products"]);
 
             <slider />
 
-            <FeaturedCategoriesSection :categories="props.categories" />
+            <FeaturedCategoriesSection
+                :categories="props.featured_categories"
+            />
 
-            <!-- Latest Products Section -->
-            <RandomProductsSection :products="props.random_products" />
+            <RandomProductsSection
+                v-for="category in props.featured_categories.data.slice(0, 3)"
+                :key="category.slug"
+                :category="category"
+            />
 
-            <!-- Brands Section -->
             <BrandSection />
 
-            <!-- Off Section -->
+            <RandomProductsSection
+                v-for="category in props.featured_categories.data.slice(3, 6)"
+                :key="category.slug"
+                :category="category"
+            />
+
             <section
                 class="relative bg-red-600 bg-[url('/images/off-section.jpg')] bg-cover bg-center text-white py-40"
             >
