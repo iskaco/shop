@@ -1,8 +1,9 @@
+@ts-nocheck
 <script setup>
 import { ref } from "vue";
 import ProductCard from "@/Components/Web/ProductCard.vue";
 
-const props = defineProps(["products"]);
+const props = defineProps(["category"]);
 const containerRef = ref(null);
 
 const scrollNext = () => {
@@ -28,12 +29,15 @@ const getImage = function (image) {
 };
 </script>
 <template>
-    <section class="py-20 bg-gray-100">
+    <section
+        v-if="props.category.products.length"
+        class="py-14 bg-gray-100 border-stone-600"
+    >
         <div class="px-5 mx-auto">
             <h2
-                class="mb-4 lg:text-5xl md:text-5xl text-4xl font-black text-left rtl:text-right bg-clip-text bg-gradient-to-br from-cyan-500 to-indigo-500 text-transparent"
+                class="mb-4 -mx-5 px-14 bg-gradient-to-b from-transparent from-45% to-cyan-300 to-45% lg:text-5xl md:text-5xl text-4xl font-black text-left rtl:text-right text-cyan-600"
             >
-                {{ $t("titles.web.products.electronics.title") }}
+                {{ props.category.name }}
             </h2>
             <div class="relative">
                 <button
@@ -52,7 +56,7 @@ const getImage = function (image) {
                     style="scroll-snap-type: x mandatory; scrollbar-width: none"
                 >
                     <ProductCard
-                        v-for="product in props.products.data"
+                        v-for="product in props.category.products"
                         :key="product.slug"
                         :product="product"
                         class="flex-none w-full md:w-1/5"
