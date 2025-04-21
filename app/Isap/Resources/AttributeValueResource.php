@@ -27,9 +27,26 @@ class AttributeValueResource extends BaseResource
 
         return $form->components([
 
+            FormSection::make('attribute', __('resources.attribute_value.attribute'))->children(
+                [MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired()]),
+            ...parent::orderByLocale(
+                [
+                    'en' => [
+                        FormSection::make('general_en', __('resources.attribute_value.general_en'))->children(
+                            [
+                                TextInput::make('value_en', __('resources.attribute_value.value_en'))->isRequired(),
+                            ]
+                        ),
+                    ],
+                    'ar' => [
+                        FormSection::make('general_ar', __('resources.attribute_value.general_ar'))->children([
+                            TextInput::make('value_ar', __('resources.attribute_value.value_ar'))->isRequired(),
+                        ]),
+                    ],
+                ]
+            ),
             FormSection::make('info', __('resources.attribute_value.another_info'))->children([
-                MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired(),
-                TextInput::make('value', __('resources.attribute_value.value'))->isRequired(),
+                // TextInput::make('value', __('resources.attribute_value.value'))->isRequired(),
                 TextInput::make('code', __('resources.attribute_value.code')),
 
             ]),
@@ -43,7 +60,7 @@ class AttributeValueResource extends BaseResource
         return (new Table(__('resources.attribute_value.plural'), AttributeValue::class, 'attribute_values'))
             ->columns([
                 TextColumn::make('attribute_name', __('resources.attribute_value.attribute')),
-                TextColumn::make('value', __('resources.attribute_value.value')),
+                TextColumn::make('value_translated', __('resources.attribute_value.value')),
                 TextColumn::make('code', __('resources.attribute_value.code')),
 
             ])

@@ -328,7 +328,9 @@
                 "permissions": "Permissions",
                 "specifications": "Specifications",
                 "taxes": "Taxes",
-                "vendors": "Vendors"
+                "vendors": "Vendors",
+                "attributes": "Attributes",
+                "attribute_values": "Attribute Values"
             }
         },
         "search": "Search",

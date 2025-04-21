@@ -328,8 +328,11 @@
                 "permissions": "الأذونات",
                 "specifications": "المواصفات",
                 "taxes": "الضرائب",
-                "vendors": "الموردين"
+                "vendors": "الموردين",
+            "attributes": "الخصائص",
+            "attribute_values": "قيم الخصائص"
             }
+
         },
         "search": "بحث...",
         "dear": "عزيزي",

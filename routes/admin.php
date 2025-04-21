@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admins\AdminController;
 use App\Http\Controllers\Admins\AttributeController;
+use App\Http\Controllers\Admins\AttributeValueController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\CartController;
 use App\Http\Controllers\Admins\CategoryController;
@@ -144,12 +145,12 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
 
     // AttributeValue Routes
 
-    Route::get('/attribute_values', [AttributeController::class, 'index'])->name('attribute_values');
-    Route::get('/attribute_value', [AttributeController::class, 'create'])->name('attribute_value.create');
-    Route::post('/attribute_value', [AttributeController::class, 'store'])->name('attribute_value.store');
-    Route::get('/attribute_value/{id}', [AttributeController::class, 'show'])->name('attribute_value.show');
-    Route::put('/attribute_value/{id}', [AttributeController::class, 'update'])->name('attribute_value.update');
-    Route::delete('/attribute_value/{id}', [AttributeController::class, 'destroy'])->name('attribute_value.destroy');
-    Route::get('/attribute_value/edit/{id}', [AttributeController::class, 'edit'])->name('attribute_value.edit');
+    Route::get('/attribute_values', [AttributeValueController::class, 'index'])->name('attribute_values');
+    Route::get('/attribute_value', [AttributeValueController::class, 'create'])->name('attribute_value.create');
+    Route::post('/attribute_value', [AttributeValueController::class, 'store'])->name('attribute_value.store');
+    Route::get('/attribute_value/{id}', [AttributeValueController::class, 'show'])->name('attribute_value.show');
+    Route::put('/attribute_value/{id}', [AttributeValueController::class, 'update'])->name('attribute_value.update');
+    Route::delete('/attribute_value/{id}', [AttributeValueController::class, 'destroy'])->name('attribute_value.destroy');
+    Route::get('/attribute_value/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_value.edit');
 
 });

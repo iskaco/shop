@@ -141,4 +141,21 @@ return [
             'error' => 'Error updating vendor',
         ],
     ],
+    'attribute' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Attribute deleted successfully.',
+            'error' => 'Error deleting attribute',
+            'not_found' => 'Attribute not found',
+            'has_product' => 'Cannot delete attribute with existing products',
+        ],
+        'store' => [
+            'ok' => 'Attribute created successfully.',
+            'error' => 'Error creating attribute',
+        ],
+        'update' => [
+            'ok' => 'Attribute updated successfully.',
+            'error' => 'Error updating attribute',
+        ],
+    ],
 ];

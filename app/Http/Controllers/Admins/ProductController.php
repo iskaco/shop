@@ -89,7 +89,9 @@ class ProductController extends Controller
             toast_error(__('messages.product.destroy.error'));
         }
 
-        return $this->makeInertiaTableResponse(Product::class, Product::query());
+        return redirect()->route('admin.products');
+
+        //        return $this->makeInertiaTableResponse(Product::class, Product::query());
     }
 
     public function specifications($id)
