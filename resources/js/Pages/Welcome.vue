@@ -38,7 +38,7 @@ const props = defineProps([
             <BrandSection />
 
             <RandomProductsSection
-                v-for="category in props.featured_categories.data.slice(3, 6)"
+                v-for="category in props.featured_categories.data.slice(3, 7)"
                 :key="category.slug"
                 :category="category"
             />

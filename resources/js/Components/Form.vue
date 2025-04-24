@@ -220,6 +220,7 @@ export default {
                             :multiple="input.is_multi"
                             :options="input.source"
                             label="name"
+                            track-by="id"
                             :placeholder="
                                 $t('titles.form.selectPlaceholder') +
                                 ' ' +
