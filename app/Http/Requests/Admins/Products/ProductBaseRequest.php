@@ -32,6 +32,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'stock' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
             'cost' => ['required', 'numeric', 'min:0'],
+            'attributes_id' => ['nullable', 'array'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'gallery' => ['nullable', 'array', 'max:5'],
             'gallery.*' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // max file size in KB
@@ -61,6 +62,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
         ]);
 
         $validator->validate();
+
         $this->merge([
             'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
             'description' => ['en' => $this->description_en, 'ar' => $this->description_ar],
@@ -68,7 +70,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'category_id' => $this->category_id ? $this->category_id['id'] : null,
             'brand_id' => $this->brand_id ? $this->brand_id['id'] : null,
             'vendor_id' => $this->vendor_id ? $this->vendor_id['id'] : null,
-
+            'attributes_id' => collect($this->attributes_id)->pluck('id')->toArray(),
         ]);
     }
 }

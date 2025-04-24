@@ -28,7 +28,7 @@ class AttributeValueResource extends BaseResource
         return $form->components([
 
             FormSection::make('attribute', __('resources.attribute_value.attribute'))->children(
-                [MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired()]),
+                [MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired()->setIsNotMulti()]),
             ...parent::orderByLocale(
                 [
                     'en' => [

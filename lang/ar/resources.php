@@ -79,6 +79,8 @@ return [
         'size' => 'الحجم',
         'color' => 'اللون',
         'barcode' => 'الباركود',
+        'attribute' => 'الخاصية',
+        'attributes' => 'الخصائص',
     ],
     'category' => [
         'label' => 'الفئة',

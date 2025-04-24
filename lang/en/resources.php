@@ -80,6 +80,8 @@ return [
         'size' => 'Size',
         'color' => 'Color',
         'barcode' => 'Barcode',
+        'attribute' => 'Attribute',
+        'attributes' => 'Attributes',
 
     ],
     'category' => [

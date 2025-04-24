@@ -7,6 +7,7 @@ use App\Actions\Products\ProductSpecificationsUpdate;
 use App\Actions\Products\ProductStore;
 use App\Actions\Products\ProductUpdate;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admins\Products\ProductAttributesUpdateRequest;
 use App\Http\Requests\Admins\Products\ProductDestroyRequest;
 use App\Http\Requests\Admins\Products\ProductSpecificationsUpdateRequest;
 use App\Http\Requests\Admins\Products\ProductStoreRequest;
@@ -56,7 +57,9 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        return $this->makeInertiaFormResponse(Product::class, Product::findOrFail($id)->toFrontendArray(), ActionType::UPDATE);
+        // dd(Product::findOrFail($id)->load(['attributes_id'])->toFrontendArray());
+
+        return $this->makeInertiaFormResponse(Product::class, Product::findOrFail($id)->load(['attributes_id'])->toFrontendArray(), ActionType::UPDATE);
     }
 
     public function update(ProductUpdateRequest $request, ProductUpdate $action, string $id)
@@ -112,6 +115,61 @@ class ProductController extends Controller
         toast_success(__('messages.product.specification.update.ok'));
     }
 
+    public function attributes($id)
+    {
+        $product = Product::findOrFail($id);
+        $attribute = $this->createDataForAttributeForm($product);
+        $component_array = $this->createComponentArrayOfAttributes($product->attributes_id);
+
+        return $this->InertiaResponse($this->createDynamicResourceForm($component_array, ActionType::UPDATE, __('resources.product.attributes', ['label' => $product?->name]), 'product.attributes.update'), $attribute);
+    }
+
+    public function updateAttributes(ProductAttributesUpdateRequest $request, string $id) {}
+
+    private function createDataForAttributeForm(Product $product)
+    {
+
+        $attribute_list = new stdClass;
+        $attribute_list->id = $product->id;
+        foreach ($product?->variants as $vriant) {
+            foreach ($vriant->variant_values as $variant_value) {
+                $attribute_list->{$variant_value?->attribute_value?->attribute?->id} = $variant_value?->attribute_value?->id;
+            }
+        }
+
+        return $attribute_list;
+    }
+
+    private function createComponentArrayOfAttributes($attributes): array
+    {
+        $attribute_list = [];
+        foreach ($attributes as $attribute) {
+            $attribute_list[] = [
+                'name' => $attribute->id,
+                'title' => $attribute->name,
+                'input_type' => 'select',
+                'src' => $this->getAttributeValues($attribute),
+                'multiple' => true,
+            ];
+        }
+
+        return $attribute_list;
+    }
+
+    private function getAttributeValues($attribute)
+    {
+        $attribute_list = [];
+        foreach ($attribute?->attribute_values as $value) {
+            $attribute_list[] = [
+                'id' => $value->id,
+                'name' => $value->value,
+            ]; // code...
+        }
+
+        return $attribute_list;
+
+    }
+
     private function createDataForSpecifiactionForm(Product $product)
     {
         // $specification_list = [];
@@ -136,6 +194,7 @@ class ProductController extends Controller
                 'title' => $spec->name,
                 'input_type' => $spec->input_type,
                 'src' => $spec->possible_values,
+                'multiple' => false,
             ];
         }
 

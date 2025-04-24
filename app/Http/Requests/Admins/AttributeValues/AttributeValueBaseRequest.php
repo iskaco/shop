@@ -41,7 +41,7 @@ class AttributeValueBaseRequest extends AdminsAuthRequest
         $validator->validate();
         $this->merge([
             'value' => ['en' => $this->value_en, 'ar' => $this->value_ar],
-            'attribute_id' => $this->attribute_id ? $this->attribute_id[0]['id'] : null,
+            'attribute_id' => $this->attribute_id ? $this->attribute_id['id'] : null,
 
         ]);
     }

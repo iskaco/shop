@@ -25,4 +25,9 @@ class Attribute extends Model
         return $this->getTranslation('name', app()->getLocale());
 
     }
+
+    public function attribute_values()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
 }
