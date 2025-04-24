@@ -26,6 +26,7 @@ return [
         'roles' => 'Roles',
         'profile_image' => 'Profile Image',
         'enable' => 'Status (Active/Inactive)',
+        'info' => 'Main Information'
     ],
     'media' => [
         'label' => 'Media',
