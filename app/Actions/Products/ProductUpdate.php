@@ -4,6 +4,7 @@ namespace App\Actions\Products;
 
 use App\Actions\BaseAction;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\DB;
 
 class ProductUpdate extends BaseAction
@@ -23,6 +24,17 @@ class ProductUpdate extends BaseAction
                 $product->addMedia($image)->preservingOriginal()->toMediaCollection('Product.Galleries');
             }
         }
+        // ====TODO check product attribute update problems
+        if (isset($data['attributes_id'])) {
+            $product->attributes_id->sync(array_column($data['attributes_id'], 'attribute_id'));
+            /*foreach ($data['attributes_id'] as $attribute_id) {
+                ProductAttribute::create([
+                    'product_id' => $product->id,
+                    'attribute_id' => $attribute_id,
+                ]);
+            }*/
+        }
+
         DB::commit();
 
         return $product;

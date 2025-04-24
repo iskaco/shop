@@ -3,6 +3,7 @@
 namespace App\Isap\Resources;
 
 use App\Isap\Actions\ActionType;
+use App\Isap\Actions\AttributeAction;
 use App\Isap\Actions\CreateAction;
 use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
@@ -20,6 +21,7 @@ use App\Isap\Tables\Columns\TextColumn;
 use App\Isap\Tables\Columns\ToggleColumn;
 use App\Isap\Tables\Table;
 use App\Isap\Utils\DataUtil;
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -66,14 +68,10 @@ class ProductResource extends BaseResource
                 TextInput::make('price', __('resources.product.price'))->isCurrency(),
                 TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ]),
-            /* FormSection::make('barcode', __('resources.product.barcode'))->children([
-                TextInput::make('barcode', __('resources.product.barcode')),
+            FormSection::make('attribute', __('resources.product.attributes'))->children([
+                MultiSelectInput::make('attributes_id', __('resources.product.attributes'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name')),
             ]),
-            FormSection::make('features', __('resources.product.features'))->children([
-                TextInput::make('size', __('resources.product.size')),
-                TextInput::make('color', __('resources.product.color')),
-            ]),
- */ FormSection::make('images', __('resources.product.images'))->children([
+            FormSection::make('images', __('resources.product.images'))->children([
                 ImageInput::make('image', __('resources.product.image')),
                 GalleryInput::make('gallery', __('resources.product.gallery')),
 
@@ -96,13 +94,14 @@ class ProductResource extends BaseResource
             TextColumn::make('brand_name', __('resources.product.brand')),
             TextColumn::make('vendor_name', __('resources.product.vendor')),
             // TextColumn::make('description_translated', __('resources.product.description')),
-            TextColumn::make('cost', __('resources.product.cost')),
+            // TextColumn::make('cost', __('resources.product.cost')),
             TextColumn::make('price', __('resources.product.price')),
-            TextColumn::make('stock', __('resources.product.stock')),
+            // TextColumn::make('stock', __('resources.product.stock')),
             ImageColumn::make('image', __('resources.product.image')),
             ToggleColumn::make('is_published', __('resources.product.is_published')),
             ToggleColumn::make('is_featured', __('resources.product.is_featured')),
         ])->row_actions([
+            AttributeAction::make('show_attribute', __('resources.actions.product', ['label' => __('resources.attribute.label')]))->setRoute('product.attributes')->setIcon('la-shapes-solid')->setColor('meta-5'),
             SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
             ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('md-removeredeye-outlined'),
             EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
