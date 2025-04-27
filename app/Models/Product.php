@@ -127,12 +127,12 @@ class Product extends Model implements HasMedia
     public function getAttributeListAttribute()
     {
         $attribute_list = new stdClass;
-        $attribute_list->id = $this?->id;
+        //$attribute_list->id = $this?->id;
         $attribute_value_stack = [];
         foreach ($this?->variants as $vriant) {
             foreach ($vriant->variant_values as $variant_value) {
                 if (! in_array($variant_value?->attribute_value?->id, $attribute_value_stack)) {
-                    $attribute_list->{$variant_value?->attribute_value?->attribute?->name}[] = ['id' => $variant_value?->attribute_value?->id, 'name' => $variant_value?->attribute_value?->value];
+                    $attribute_list->{$variant_value?->attribute_value?->attribute?->name}[] = ['id' => $variant_value?->attribute_value?->id, 'name' => $variant_value?->attribute_value?->value, 'code' => $variant_value?->attribute_value?->code];
                     array_push($attribute_value_stack, $variant_value?->attribute_value?->id);
                 }
             }
