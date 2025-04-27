@@ -4,8 +4,8 @@ namespace App\Actions\Products;
 
 use App\Actions\BaseAction;
 use App\Models\Product;
-use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\DB;
+use Mockery\Exception\RuntimeException;
 
 class ProductUpdate extends BaseAction
 {
@@ -26,13 +26,14 @@ class ProductUpdate extends BaseAction
         }
         // ====TODO check product attribute update problems
         if (isset($data['attributes_id'])) {
-            $product->attributes_id->sync(array_column($data['attributes_id'], 'attribute_id'));
-            /*foreach ($data['attributes_id'] as $attribute_id) {
-                ProductAttribute::create([
-                    'product_id' => $product->id,
-                    'attribute_id' => $attribute_id,
-                ]);
-            }*/
+            // code...
+            $attributeIds = array_map(function ($id) {
+                return ['attribute_id' => $id];
+            }, $data['attributes_id']);
+            if (! $product->attributes_id()->sync($attributeIds)) {
+                DB::rollBack();
+                throw new RuntimeException(__('messages.product.update.exception.attributes'));
+            }
         }
 
         DB::commit();

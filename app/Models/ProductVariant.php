@@ -14,7 +14,7 @@ class ProductVariant extends Model
         'stock',
         'stock_zone',
         'barcode',
-
+        'is_active',
     ];
 
     protected $casts = [

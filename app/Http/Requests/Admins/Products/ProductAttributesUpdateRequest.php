@@ -30,6 +30,6 @@ class ProductAttributesUpdateRequest extends AdminsAuthRequest
         }
 
         $this->merge(['attributes_id' => $attributes]);
-        dd($this->attributes_id);
+        // dd($this->attributes_id);
     }
 }
