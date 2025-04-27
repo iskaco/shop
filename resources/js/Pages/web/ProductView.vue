@@ -1,6 +1,7 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
 import { usePage } from "@inertiajs/vue3";
+import { startsWith } from "lodash";
 import { computed, ref } from "vue";
 import { useCartStore } from "@/Composables/useCart.js";
 
@@ -99,134 +100,44 @@ const orderItem = computed(() => {
                         </div>
                     </div>
 
-                    <!-- Features -->
-                    <div v-if="props.product.features" class="space-y-2">
-                        <h3 class="font-bold">
-                            {{ $t("titles.web.products.features") }}:
-                        </h3>
-                        <ul
-                            class="list-disc list-inside space-y-1 text-gray-600"
-                        >
-                            <li
-                                v-for="(feature, index) in props.product
-                                    .features"
-                                :key="index"
-                            >
-                                {{ feature }}
-                            </li>
-                        </ul>
-                    </div>
-
                     <!-- Price & Add to Cart -->
                     <div
                         class="flex flex-col gap-5 bg-gray-50 p-4 rounded-lg border"
                     >
-                        <div class="flex gap-5 items-center">
-                            <span class="text-body w-14">Color: </span>
-                            <span>
+                        <div
+                            v-for="(attribute, index) in props.product.data
+                                .attributes"
+                            :key="index"
+                            class="flex gap-5 items-center"
+                        >
+                            <span class="text-body w-14">{{ index }}: </span>
+                            <span
+                                v-for="attribute_value in attribute"
+                                :key="attribute_value.id"
+                            >
                                 <label>
                                     <input
-                                        type="checkbox"
-                                        value="red"
-                                        class="hidden"
+                                        type="radio"
+                                        :value="attribute_value.id"
+                                        :name="index"
+                                        class="hidden peer"
                                     />
                                     <div
-                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-1 outline outline-1 outline-offset-4 outline-body"
+                                        v-if="
+                                            attribute_value.code &&
+                                            attribute_value.code.startsWith('#')
+                                        "
+                                        class="peer-checked:outline-meta-6 peer-checked:outline-4 peer-checked:outline-offset-0 w-7 h-7 cursor-pointer rounded-full outline outline-1 outline-offset-4 outline-body"
+                                        :style="`background-color:${attribute_value.code}`"
                                     ></div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="green"
-                                        class="hidden"
-                                    />
                                     <div
-                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-3 outline outline-1 outline-offset-4 outline-body"
-                                    ></div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="blue"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-5 outline outline-1 outline-offset-4 outline-body"
-                                    ></div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="yellow"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="w-7 h-7 cursor-pointer rounded-full bg-meta-6 outline outline-1 outline-offset-4 outline-body"
-                                    ></div>
-                                </label>
-                            </span>
-                        </div>
-                        <div class="flex gap-5 items-center">
-                            <span class="text-body w-14">Size: </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="small"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                        v-else
+                                        class="peer-checked:outline-meta-6 peer-checked:outline-4 peer-checked:outline-offset-0 flex items-center justify-center min-w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
                                     >
-                                        S
-                                    </div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="medium"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
-                                    >
-                                        M
-                                    </div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="large"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
-                                    >
-                                        L
-                                    </div>
-                                </label>
-                            </span>
-                            <span>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        value="xlarge"
-                                        class="hidden"
-                                    />
-                                    <div
-                                        class="flex items-center justify-center w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
-                                    >
-                                        XL
+                                        {{
+                                            attribute_value.code ??
+                                            attribute_value.name
+                                        }}
                                     </div>
                                 </label>
                             </span>
