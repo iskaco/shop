@@ -1,14 +1,47 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
-import { usePage } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
 import { startsWith } from "lodash";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useCartStore } from "@/Composables/useCart.js";
 
 const props = defineProps(["product"]);
 
 const getImage = function (image) {
     return route("shop.media", image);
+};
+
+const form = useForm({
+    product_id: props.product.data.id,
+    attributes: {},
+});
+
+const fetchUpdatedPrice = () => {
+    form.post(
+        route("shop.product.variant.find", { product: props.product.data.id }),
+        {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                console.log(response);
+            },
+            onError: (errors) => {
+                console.error("Error fetching price:", errors);
+            },
+        }
+    );
+};
+
+watch(
+    () => form.attributes,
+    () => {
+        fetchUpdatedPrice();
+    },
+    { deep: true }
+);
+
+const updateAttributes = (attribute_id, attribute_value_id) => {
+    const attribute_value = { value_id: attribute_value_id };
+    form.attributes[attribute_id] = attribute_value;
 };
 
 const quantity = ref(1);
@@ -121,6 +154,12 @@ const orderItem = computed(() => {
                                         :value="attribute_value.id"
                                         :name="index"
                                         class="hidden peer"
+                                        @change="
+                                            updateAttributes(
+                                                index,
+                                                attribute_value.id
+                                            )
+                                        "
                                     />
                                     <div
                                         v-if="
