@@ -16,7 +16,7 @@ class ProductFindVariant extends BaseAction
         $product_variant = ProductVariant::where('product_id', $product)
             ->whereHas('variant_values', function ($query) use ($attributeValueIds) {
                 $query->whereIn('attribute_value_id', $attributeValueIds);
-            }, '=', $count) // Must have exactly 2 matching attributes
+            }) // Must have exactly 2 matching attributes
             ->withCount('variant_values')
             ->having('variant_values_count', '=', $count)
             ->first();
