@@ -121,7 +121,7 @@ class Product extends Model implements HasMedia
 
     public function variants()
     {
-        return $this->hasMany(ProductVariant::class);
+        return $this->hasMany(ProductVariant::class)->where('is_active', true);
     }
 
     public function getAttributeListAttribute()
