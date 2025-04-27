@@ -35,19 +35,4 @@ class ProductVariantsUpdateRequest extends AdminsAuthRequest
 
         return $rules;
     }
-
-    public function prepareForValidation(): void
-    {
-        $attributes = [];
-        foreach ($this->all() as $key => $items) {
-            if (is_numeric($key) && $items !== null) {
-                foreach ($items as $item) {
-                    $attributes[] = ['attribute_id' => $key, 'value_id' => $item['id']];
-                }
-            }
-        }
-
-        $this->merge(['attributes_id' => $attributes]);
-        // dd($this->attributes_id);
-    }
 }
