@@ -159,7 +159,17 @@ class ProductController extends Controller
 
     public function updateVariants(ProductVariantsUpdateRequest $request, ProductVariantsUpdate $action, $id)
     {
-        dd($request->validated());
+        try {
+            // code...
+            if ($action->execute($request->validated(), $id)) {
+                toast_success(__('messages.product.variant.update.ok'));
+
+                return redirect()->route('admin.products');
+            }
+
+        } catch (\Throwable $th) {
+            // throw $th;
+        }
     }
 
     // ==== Private Methods

@@ -131,7 +131,7 @@ class CustomerController extends Controller
             foreach ($items['items'] as $cart_item) {
                 $orderItemStoreAction->execute([
                     'order_id' => $order?->id,
-                    'product_id' => $cart_item['product_id'],
+                    'product_variant_id' => $cart_item['product_variant_id'] ?? Product::findOrFail($cart_item['product_id'])?->variants()?->first()?->id,
                     'quantity' => $cart_item['quantity'],
                     'unit_price' => Product::findOrFail($cart_item['product_id'])?->price,
                     'unit_cost' => Product::findOrFail($cart_item['product_id'])?->price,
