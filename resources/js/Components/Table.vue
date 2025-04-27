@@ -145,7 +145,7 @@ export default {
             <table class="w-full rounded overflow-hidden">
                 <thead class="bg-gray-2 dark:bg-meta-4">
                     <tr
-                        class="divide-x divide-x-reverse divide-stroke dark:divide-strokedark"
+                        class="divide-x rtl:divide-x-reverse divide-stroke dark:divide-strokedark"
                     >
                         <th
                             v-for="col in table.columns"
@@ -200,17 +200,29 @@ export default {
                                         getImage(row.id, col.name, col.multiple)
                                     "
                                     @error="setDefaultImage($event)"
-                                    class="w-12 h-12 rounded-full"
+                                    class="w-12 h-12 rounded-full border border-body"
                                 />
                             </div>
                             <div
-                                v-if="col.column_type == 'Toggle'"
+                                v-else-if="col.column_type == 'Toggle'"
                                 class="flex justify-center"
                             >
-                                <Toggle
+                                <v-icon
+                                    v-if="row[col.name]"
+                                    name="la-check-circle"
+                                    :scale="1.5"
+                                    class="fill-meta-3"
+                                ></v-icon>
+                                <v-icon
+                                    v-else
+                                    name="la-times-circle"
+                                    :scale="1.5"
+                                    class="fill-meta-1"
+                                ></v-icon>
+                                <!-- <Toggle
                                     v-model="row[col.name]"
                                     :isDisabled="true"
-                                ></Toggle>
+                                ></Toggle> -->
                             </div>
                             <div v-else class="whitespace-nowrap">
                                 <span
@@ -226,7 +238,9 @@ export default {
                             </div>
                         </td>
                         <td v-if="table.row_actions" class="p-3">
-                            <div class="flex flex-row gap-2 justify-center">
+                            <div
+                                class="flex flex-row gap-2 justify-center bg-whiter dark:bg-boxdark-2 py-2 rounded-md"
+                            >
                                 <div
                                     v-for="action in table.row_actions"
                                     :key="action.name"

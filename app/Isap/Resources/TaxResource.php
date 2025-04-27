@@ -21,7 +21,8 @@ class TaxResource extends BaseResource
 {
     protected static ?string $model = Tax::class;
 
-    public static function form(ActionType $action_type) {
+    public static function form(ActionType $action_type)
+    {
 
         $form = new Form(__('resources.tax.plural'), Tax::class);
 
@@ -46,13 +47,13 @@ class TaxResource extends BaseResource
                 ]
             ),
             FormSection::make('tax_info', __('resources.product.another_info'))->children([
-                TextInput::make('rate', __('resources.tax.rate'))->isRequired()]),
+                TextInput::make('rate', __('resources.tax.rate'))->isRequired()
+            ]),
             FormSection::make('status', __('resources.product.status'))->children([
                 ToggleInput::make('is_active', __('resources.tax.is_active')),
             ]),
 
         ])->action(static::getAction($action_type)?->setRoute('tax.' . lcfirst($action_type->value)));
-    
     }
 
     public static function table()
@@ -64,9 +65,9 @@ class TaxResource extends BaseResource
             TextColumn::make('rate', __('resources.tax.rate')),
             ToggleColumn::make('is_active', __('resources.tax.is_active')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('tax.show')->setIcon('md-removeredeye-outlined'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('tax.edit')->setIcon('md-modeedit-outlined'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('tax.destroy')->setConfirmationMessage(__('messages.tax.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('tax.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('tax.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('tax.destroy')->setConfirmationMessage(__('messages.tax.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.tax.label')]))->setIcon('md-addbox-outlined')->setRoute('tax.create'),
         ]);

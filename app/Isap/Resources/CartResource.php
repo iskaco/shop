@@ -28,7 +28,7 @@ class CartResource extends BaseResource
                 TextColumn::make('user_name', __('resources.cart.user_name')),
             ])
             ->row_actions([
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([]);
     }

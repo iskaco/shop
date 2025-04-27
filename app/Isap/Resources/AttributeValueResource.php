@@ -28,7 +28,8 @@ class AttributeValueResource extends BaseResource
         return $form->components([
 
             FormSection::make('attribute', __('resources.attribute_value.attribute'))->children(
-                [MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired()->setIsNotMulti()]),
+                [MultiSelectInput::make('attribute_id', __('resources.attribute_value.attribute'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name'))->isRequired()->setIsNotMulti()]
+            ),
             ...parent::orderByLocale(
                 [
                     'en' => [
@@ -51,7 +52,7 @@ class AttributeValueResource extends BaseResource
 
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('attribute_value.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('attribute_value.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -65,9 +66,9 @@ class AttributeValueResource extends BaseResource
 
             ])
             ->row_actions([
-                ShowAction::make('show', __('resources.attribute_value.show'))->setRoute('attribute_value.show')->setIcon('md-removeredeye-outlined'),
-                EditAction::make('edit', __('resources.attribute_value.edit'))->setRoute('attribute_value.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.attribute_value.delete'))->hasConfirmation()->setConfirmationRoute('attribute_value.destroy')->setConfirmationMessage(__('messages.attribute_value.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                ShowAction::make('show', __('resources.attribute_value.show'))->setRoute('attribute_value.show')->setIcon('la-eye'),
+                EditAction::make('edit', __('resources.attribute_value.edit'))->setRoute('attribute_value.edit')->setIcon('la-edit'),
+                DeleteAction::make('delete', __('resources.attribute_value.delete'))->hasConfirmation()->setConfirmationRoute('attribute_value.destroy')->setConfirmationMessage(__('messages.attribute_value.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.attribute_value.label')]))->setIcon('md-addbox-outlined')->setRoute('attribute_value.create'),

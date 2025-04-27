@@ -60,9 +60,9 @@ class SpecificationResource extends BaseResource
             TextColumn::make('input_type', __('resources.specification.input_type')),
             //TextColumn::make('possible_values', __('resources.specification.possible_values')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('specification.show')->setIcon('md-removeredeye-outlined'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('specification.edit')->setIcon('md-modeedit-outlined'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('specification.destroy')->setConfirmationMessage(__('messages.specification.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('specification.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('specification.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('specification.destroy')->setConfirmationMessage(__('messages.specification.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.specification.label')]))->setRoute('specification.create')->setIcon('md-add'),
         ]);

@@ -44,8 +44,7 @@ class AttributeResource extends BaseResource
 
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('attribute.'.lcfirst($action_type->value)));
-
+        ])->action(static::getAction($action_type)?->setRoute('attribute.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -56,9 +55,9 @@ class AttributeResource extends BaseResource
                 TextColumn::make('slug', __('resources.attribute.slug')),
             ])
             ->row_actions([
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('attribute.show')->setIcon('md-removeredeye-outlined'),
-                EditAction::make('edit', __('resources.actions.edit'))->setRoute('attribute.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('attribute.destroy')->setConfirmationMessage(__('messages.attribute.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('attribute.show')->setIcon('la-eye'),
+                EditAction::make('edit', __('resources.actions.edit'))->setRoute('attribute.edit')->setIcon('la-edit'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('attribute.destroy')->setConfirmationMessage(__('messages.attribute.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.attribute.label')]))->setIcon('md-addbox-outlined')->setRoute('attribute.create'),
