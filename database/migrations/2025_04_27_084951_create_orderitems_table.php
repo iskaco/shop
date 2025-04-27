@@ -38,7 +38,7 @@ return new class extends Migration
 
             // Indexes
             $table->index('order_id');
-            $table->index('product_id', 'product_id_index');
+            $table->index('product_variant_id', 'product_variant_id_index');
         });
     }
 
