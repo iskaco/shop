@@ -37,8 +37,7 @@ class OrderItemResource extends BaseResource
                 TextInput::make('options', __('resources.order_item.options'))->isRequired(),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('order_item.'.lcfirst($action_type->value)));
-
+        ])->action(static::getAction($action_type)?->setRoute('order_item.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -52,10 +51,9 @@ class OrderItemResource extends BaseResource
 
             ])
             ->row_actions([
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('order_item.show')->setIcon('md-removeredeye-outlined'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('order_item.show')->setIcon('la-eye'),
 
             ])
-            ->table_actions([
-            ]);
+            ->table_actions([]);
     }
 }

@@ -12,6 +12,10 @@ return [
             'ok' => 'Admin created successfully.',
             'error' => 'Error creating admin',
         ],
+        'update' => [
+            'ok' => 'Information updated successfully!',
+            'error' => 'Error updating information!',
+        ],
         'login' => [
             'ok' => 'Login successful.',
             'error' => 'Error logging in',

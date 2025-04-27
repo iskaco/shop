@@ -58,9 +58,9 @@ class AdminResource extends BaseResource
 
         ])
             ->row_actions([
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('admin.show')->setIcon('md-removeredeye-outlined'),
-                EditAction::make('edit', __('resources.actions.edit'))->setRoute('admin.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('admin.show')->setIcon('la-eye'),
+                EditAction::make('edit', __('resources.actions.edit'))->setRoute('admin.edit')->setIcon('la-edit'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.admin.label')]))->setIcon('md-personaddalt-outlined')->setRoute('admin.create'),

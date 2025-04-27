@@ -30,8 +30,7 @@ class OrderResource extends BaseResource
                 TextInput::make('payment_method', __('resources.order.payment_method'))->isRequired(),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('order.'.lcfirst($action_type->value)));
-
+        ])->action(static::getAction($action_type)?->setRoute('order.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -43,11 +42,10 @@ class OrderResource extends BaseResource
                 TextColumn::make('total', __('resources.order.total')),
             ])
             ->row_actions([
-                OrderItemsAction::make('show_order_items', __('resources.actions.order_items'))->setRoute('order.order_items')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('order.show')->setIcon('md-removeredeye-outlined'),
+                OrderItemsAction::make('show_order_items', __('resources.actions.order_items'))->setRoute('order.order_items')->setIcon('la-poll-h-solid')->setColor('meta-3'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('order.show')->setIcon('la-eye'),
 
             ])
-            ->table_actions([
-            ]);
+            ->table_actions([]);
     }
 }

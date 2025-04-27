@@ -61,9 +61,9 @@ class MediaResource extends BaseResource
             ToggleColumn::make('is_published', __('resources.product.is_published')),
             ToggleColumn::make('is_featured', __('resources.product.is_featured')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('md-removeredeye-outlined'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.product.label')]))->setIcon('md-addbox-outlined')->setRoute('product.create'),
         ]);

@@ -46,7 +46,7 @@ class CustomerResource extends BaseResource
                 ToggleInput::make('enable', __('resources.customer.status')),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('customer.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('customer.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -60,11 +60,11 @@ class CustomerResource extends BaseResource
             ImageColumn::make('profile_image', __('resources.customer.profile_image')),
             ToggleColumn::make('enable', __('resources.customer.enable')),
         ])->row_actions([
-            // SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
-            ShowAction::make('showProduct', __('resources.actions.show_orders'))->setRoute('customer.orders')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('customer.show')->setIcon('md-removeredeye-outlined'),
-            // EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('md-modeedit-outlined'),
-            // DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            // SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('la-poll-h-solid')->setColor('meta-3'),
+            ShowAction::make('showProduct', __('resources.actions.show_orders'))->setRoute('customer.orders')->setIcon('la-poll-h-solid')->setColor('meta-3'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('customer.show')->setIcon('la-eye'),
+            // EditAction::make('edit', __('resources.actions.edit'))->setRoute('product.edit')->setIcon('la-edit'),
+            // DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('product.destroy')->setConfirmationMessage(__('messages.product.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             // CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.product.label')]))->setIcon('md-addbox-outlined')->setRoute('product.create'),
         ]);
