@@ -19,7 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->foreignId('product_id')
+            $table->foreignId('product_variant_id')
                 ->constrained();
 
             // Core Data (Immutable Snapshot)
