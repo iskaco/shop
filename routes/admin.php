@@ -61,6 +61,8 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/product/specifications/{id}', [ProductController::class, 'updateSpecifications'])->name('product.specifications.update');
     Route::get('/product/attributes/{id}', [ProductController::class, 'attributes'])->name('product.attributes');
     Route::put('/product/attributes/{id}', [ProductController::class, 'updateAttributes'])->name('product.attributes.update');
+    Route::get('/product/variants/{id}', [ProductController::class, 'variants'])->name('product.variants');
+    Route::put('/product/variants/{id}', [ProductController::class, 'updateVariants'])->name('product.variants.update');
 
     // Category Routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');

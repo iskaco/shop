@@ -56,8 +56,17 @@ return [
             'error' => 'Error creating product',
         ],
         'update' => [
+            'exception' => [
+                'attributes' => 'Error in attribute syncing!',
+            ],
             'ok' => 'Product updated successfully.',
             'error' => 'Error updating product',
+        ],
+        'attribute' => [
+            'update' => [
+                'ok' => 'Product attributes updated successfully.',
+                'error' => 'Error updating product attributes',
+            ],
         ],
         'specification' => [
             'update' => [

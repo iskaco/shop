@@ -9,6 +9,7 @@ use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
 use App\Isap\Actions\SpecificationAction;
+use App\Isap\Actions\VariantAction;
 use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\GalleryInput;
 use App\Isap\Forms\Components\ImageInput;
@@ -68,6 +69,10 @@ class ProductResource extends BaseResource
                 TextInput::make('price', __('resources.product.price'))->isCurrency(),
                 TextInput::make('stock', __('resources.product.stock'))->isNumber(),
             ]),
+            /* FormSection::make('stock', __('resources.product.stock'))->children([
+                TextInput::make('stock_zone', __('resources.product.stock_zone')),
+                TextInput::make('')
+            ]),*/
             FormSection::make('attribute', __('resources.product.attributes'))->children([
                 MultiSelectInput::make('attributes_id', __('resources.product.attributes'))->setSource((new DataUtil)->getOptionsForModel(new Attribute, 'id', 'name')),
             ]),
@@ -101,6 +106,7 @@ class ProductResource extends BaseResource
             ToggleColumn::make('is_published', __('resources.product.is_published')),
             ToggleColumn::make('is_featured', __('resources.product.is_featured')),
         ])->row_actions([
+            VariantAction::make('show_variant', __('resources.actions.show_variants', ['label' => __('resources.product_variant.label')]))->setRoute('product.variants')->setIcon('la-shapes-solid')->setColor('meta-6'),
             AttributeAction::make('show_attribute', __('resources.actions.product', ['label' => __('resources.attribute.label')]))->setRoute('product.attributes')->setIcon('la-shapes-solid')->setColor('meta-5'),
             SpecificationAction::make('show_specification', __('resources.actions.product', ['label' => __('resources.specification.label')]))->setRoute('product.specifications')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
             ShowAction::make('show', __('resources.actions.show'))->setRoute('product.show')->setIcon('md-removeredeye-outlined'),

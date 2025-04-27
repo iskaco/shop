@@ -23,8 +23,11 @@ class MakeIsapResource extends Command
     protected $description = 'This command create some file like Model, Controller, Actions, Requests and ... related to a iskaco  smart admin panel(ISAP) entity.';
 
     protected $actions = [['action' => 'store', 'actionName' => 'Store'], ['action' => 'update', 'actionName' => 'Update'], ['action' => 'index', 'actionName' => 'Index'], ['action' => 'show', 'actionName' => 'Show'], ['action' => 'destroy', 'actionName' => 'Destroy']];
+
     protected $request_actions = [['action' => 'store', 'actionName' => 'Store'], ['action' => 'update', 'actionName' => 'Update'], ['action' => 'destroy', 'actionName' => 'Destroy']];
+
     private $pluralModelName = '';
+
     private $lowerPluralModelName = '';
 
     private $modelName = '';
@@ -50,7 +53,8 @@ class MakeIsapResource extends Command
 
         $this->createActivities();
 
-        $this->info("Panel model,controller,actions,requests,migration and resource created successfully.");
+        $this->info('Panel model,controller,actions,requests,migration and resource created successfully.');
+
         return Command::SUCCESS;
     }
 
@@ -58,17 +62,18 @@ class MakeIsapResource extends Command
     {
         $controllerPath = app_path("Http/Controllers/Admins/{$this->modelName}Controller.php");
         // Create Controller (Example)
-        if (!file_exists($controllerPath)) {
+        if (! file_exists($controllerPath)) {
             $this->createFileWithParams(
                 $controllerPath,
                 $this->getStub('controller'),
                 [
                     ['src' => '{{pluralModelName}}', 'val' => $this->pluralModelName],
-                    ['src' => '{{modelName}}', 'val' => $this->modelName]
+                    ['src' => '{{modelName}}', 'val' => $this->modelName],
                 ]
             );
         } else {
             $this->error("Controller {$this->modelName}Controller already exists.");
+
             return Command::FAILURE;
         }
     }
@@ -78,17 +83,18 @@ class MakeIsapResource extends Command
 
         $modelPath = app_path("Models/{$this->modelName}.php");
         // Create Model
-        if (!file_exists($modelPath)) {
+        if (! file_exists($modelPath)) {
             $this->createFileWithParams(
                 $modelPath,
                 $this->getStub('model'),
                 [
                     ['src' => '{{pluralModelName}}', 'val' => $this->pluralModelName],
-                    ['src' => '{{modelName}}', 'val' => $this->modelName]
+                    ['src' => '{{modelName}}', 'val' => $this->modelName],
                 ]
             );
         } else {
             $this->error("Model {$this->modelName} already exists.");
+
             return Command::FAILURE;
         }
     }
@@ -104,7 +110,7 @@ class MakeIsapResource extends Command
                 [
                     ['src' => '{{pluralModelName}}', 'val' => $this->pluralModelName],
                     ['src' => '{{modelName}}', 'val' => $this->modelName],
-                    ['src' => '{{actionName}}', 'val' => $actionName]
+                    ['src' => '{{actionName}}', 'val' => $actionName],
                 ]
             );
         }
@@ -122,7 +128,7 @@ class MakeIsapResource extends Command
                     ['src' => '{{pluralModelName}}', 'val' => $this->pluralModelName],
                     ['src' => '{{modelName}}', 'val' => $this->modelName],
                     ['src' => '{{actionName}}', 'val' => $actionName],
-                    ['src' => '{{thisAction}}', 'val' => Str::lower($this->pluralModelName) . '.' . $request['action']],
+                    ['src' => '{{thisAction}}', 'val' => Str::lower($this->pluralModelName).'.'.$request['action']],
                 ]
             );
         }
@@ -132,17 +138,18 @@ class MakeIsapResource extends Command
     {
         $modelResourcePath = app_path("Isap/Resources/{$this->modelName}Resource.php");
         // Create Model
-        if (!file_exists($modelResourcePath)) {
+        if (! file_exists($modelResourcePath)) {
             $this->createFileWithParams(
                 $modelResourcePath,
                 $this->getStub('model_resource'),
                 [
                     ['src' => '{{lowerPluralModelName}}', 'val' => $this->lowerPluralModelName],
-                    ['src' => '{{modelName}}', 'val' => $this->modelName]
+                    ['src' => '{{modelName}}', 'val' => $this->modelName],
                 ]
             );
         } else {
             $this->error("Model Resource {$this->modelName}Resource already exists.");
+
             return Command::FAILURE;
         }
     }
@@ -150,7 +157,7 @@ class MakeIsapResource extends Command
     protected function createMigration()
     {
         $now = Carbon::now()->format('Y_m_d_his');
-        $tableName = Str::lower($this->pluralModelName);
+        $tableName = Str::lower(Str::snake($this->pluralModelName));
         $migrationPath = database_path("migrations/{$now}_create_{$tableName}_table.php");
         $this->createFileWithParams(
             $migrationPath,
@@ -180,10 +187,10 @@ class MakeIsapResource extends Command
         // Extract directory path
         $directory = dirname($path);
         // Create directory if it doesn't exist (recursive creation)
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
 
-            if (!mkdir($directory, 0755, true)) { // 0755 is the permission; adjust as needed. 'true' enables recursive creation.
-                die("Error creating directory: " . $directory);
+            if (! mkdir($directory, 0755, true)) { // 0755 is the permission; adjust as needed. 'true' enables recursive creation.
+                exit('Error creating directory: '.$directory);
             }
         }
     }
@@ -194,7 +201,7 @@ class MakeIsapResource extends Command
             'make:isap-model-activity',
             [
                 'name' => $this->modelName,
-                '--all' => true
+                '--all' => true,
             ]
         );
     }
@@ -204,10 +211,12 @@ class MakeIsapResource extends Command
         // Path to your stub files (create these in resources/stubs)
         $stubPath = resource_path("stubs/{$type}.stub");
 
-        if (!file_exists($stubPath)) {
+        if (! file_exists($stubPath)) {
             $this->error("Stub file not found: {$stubPath}");
+
             return '';
         }
+
         return file_get_contents($stubPath);
     }
 }
