@@ -32,6 +32,9 @@ class ProductController extends Controller
     {
         $product_variant = $action->execute($request->validated(), $product);
 
-        return new ProductVariantResource($product_variant);
+        return Inertia::render('web/ProductView', [
+            'product' => new ProductResource($product),
+            'product_variant' => new ProductVariantResource($product_variant),
+        ]);
     }
 }
