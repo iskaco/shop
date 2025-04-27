@@ -78,6 +78,12 @@ return [
                 'error' => 'Error updating product specifications',
             ],
         ],
+        'variant' => [
+            'update' => [
+                'ok' => 'Product Variants updated successfully.',
+                'error' => 'Error updating product Variants',
+            ],
+        ],
     ],
     'category' => [
         'destroy' => [

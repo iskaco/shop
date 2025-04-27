@@ -16,6 +16,21 @@ class ProductVariantsUpdateRequest extends AdminsAuthRequest
         $rules = [];
 
         // Get all variant IDs from the input keys
+
+        // Add rules for each variant
+        $rules['variantIds'] = ['required', 'array'];
+        foreach ($this->variantIds as $id) {
+            $rules["price_factor_$id"] = ['required', 'numeric', 'min:0'];
+            $rules["stock_$id"] = ['required', 'integer', 'min:0'];
+            $rules["stock_zone_$id"] = ['nullable', 'string', 'max:255'];
+            $rules["barcode_$id"] = ['nullable', 'string', 'max:255'];
+        }
+
+        return $rules;
+    }
+
+    public function prepareForValidation()
+    {
         $variantIds = [];
         foreach ($this->all() as $key => $value) {
             if (preg_match('/_(\d+)$/', $key, $matches)) {
@@ -24,15 +39,6 @@ class ProductVariantsUpdateRequest extends AdminsAuthRequest
         }
 
         $variantIds = array_unique($variantIds);
-
-        // Add rules for each variant
-        foreach ($variantIds as $id) {
-            $rules["price_factor_$id"] = ['required', 'numeric', 'min:0'];
-            $rules["stock_$id"] = ['required', 'integer', 'min:0'];
-            $rules["stock_zone_$id"] = ['nullable', 'string', 'max:255'];
-            $rules["barcode_$id"] = ['nullable', 'string', 'max:255'];
-        }
-
-        return $rules;
+        $this->merge(['variantIds' => $variantIds]);
     }
 }
