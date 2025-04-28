@@ -24,8 +24,8 @@ class ProductFindVariantRequest extends FormRequest
 
         return [
             //
-            'attributes' => 'required|array',
-            'attributes.*.value_id' => 'required|integer|exists:attribute_values,id',
+            'attributes' => ['required', 'array'],
+            // 'attributes.*.value_id' => 'required|integer|exists:attribute_values,id',
         ];
     }
 }

@@ -31,6 +31,10 @@ class ProductController extends Controller
     public function findVariant(ProductFindVariantRequest $request, ProductFindVariant $action, string $product)
     {
         $product_variant = $action->execute($request->validated(), $product);
+        if (! $product_variant) {
+            return redirect()->back();
+        }
+        $product = Product::findOrFail($product);
 
         return Inertia::render('web/ProductView', [
             'product' => new ProductResource($product),
