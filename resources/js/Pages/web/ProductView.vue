@@ -13,10 +13,14 @@ const getImage = function (image) {
 
 const form = useForm({
     product_id: props.product.data.id,
-    attributes: {},
+    attributes: [],
 });
 
+const variant = ref({});
+
 const fetchUpdatedPrice = () => {
+    form.attributes = Object.values(variant.value);
+
     form.post(
         route("shop.product.variant.find", { product: props.product.data.id }),
         {
@@ -32,7 +36,7 @@ const fetchUpdatedPrice = () => {
 };
 
 watch(
-    () => form.attributes,
+    () => variant.value,
     () => {
         fetchUpdatedPrice();
     },
@@ -40,8 +44,10 @@ watch(
 );
 
 const updateAttributes = (attribute_id, attribute_value_id) => {
-    const attribute_value = { value_id: attribute_value_id };
-    form.attributes[attribute_id] = attribute_value;
+    variant.value = {
+        ...variant.value,
+        [attribute_id]: attribute_value_id,
+    };
 };
 
 const quantity = ref(1);
