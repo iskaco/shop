@@ -1,13 +1,53 @@
 <script setup>
 import WebLayout from "@/Layouts/WebLayout.vue";
-import { usePage } from "@inertiajs/vue3";
-import { computed, ref } from "vue";
+import { useForm, usePage } from "@inertiajs/vue3";
+import { startsWith } from "lodash";
+import { computed, ref, watch } from "vue";
 import { useCartStore } from "@/Composables/useCart.js";
 
 const props = defineProps(["product"]);
 
 const getImage = function (image) {
     return route("shop.media", image);
+};
+
+const form = useForm({
+    product_id: props.product.data.id,
+    attributes: [],
+});
+
+const variant = ref({});
+
+const fetchUpdatedPrice = () => {
+    form.attributes = Object.values(variant.value);
+
+    form.post(
+        route("shop.product.variant.find", { product: props.product.data.id }),
+        {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                console.log(response);
+            },
+            onError: (errors) => {
+                console.error("Error fetching price:", errors);
+            },
+        }
+    );
+};
+
+watch(
+    () => variant.value,
+    () => {
+        fetchUpdatedPrice();
+    },
+    { deep: true }
+);
+
+const updateAttributes = (attribute_id, attribute_value_id) => {
+    variant.value = {
+        ...variant.value,
+        [attribute_id]: attribute_value_id,
+    };
 };
 
 const quantity = ref(1);
@@ -23,7 +63,7 @@ const orderItem = computed(() => {
 </script>
 <template>
     <WebLayout menuBg="bg-[url(/images/menubg.jpg)] bg-center">
-        <div class="mx-auto md:px-20 px-10 mt-40 mb-20">
+        <div class="mx-auto md:px-20 px-10 my-20">
             <!-- Product Details Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Product Images -->
@@ -99,33 +139,69 @@ const orderItem = computed(() => {
                         </div>
                     </div>
 
-                    <!-- Features -->
-                    <div v-if="props.product.features" class="space-y-2">
-                        <h3 class="font-bold">
-                            {{ $t("titles.web.products.features") }}:
-                        </h3>
-                        <ul
-                            class="list-disc list-inside space-y-1 text-gray-600"
-                        >
-                            <li
-                                v-for="(feature, index) in props.product
-                                    .features"
-                                :key="index"
-                            >
-                                {{ feature }}
-                            </li>
-                        </ul>
-                    </div>
-
                     <!-- Price & Add to Cart -->
-                    <div class="bg-gray-50 p-4 rounded-lg border">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-gray-600"
-                                >{{ $t("titles.web.products.price") }}:</span
+                    <div
+                        class="flex flex-col gap-5 bg-gray-50 p-4 rounded-lg border"
+                    >
+                        <div
+                            v-for="(attribute, index) in props.product.data
+                                .attributes"
+                            :key="index"
+                            class="flex gap-5 items-center"
+                        >
+                            <span class="text-body w-14">{{ index }}: </span>
+                            <span
+                                v-for="attribute_value in attribute"
+                                :key="attribute_value.id"
                             >
-                            <div class="text-xl font-bold">
-                                {{ props.product.data.price }}
-                                {{ $t("titles.web.products.currency") }}
+                                <label>
+                                    <input
+                                        type="radio"
+                                        :value="attribute_value.id"
+                                        :name="index"
+                                        class="hidden peer"
+                                        @change="
+                                            updateAttributes(
+                                                index,
+                                                attribute_value.id
+                                            )
+                                        "
+                                    />
+                                    <div
+                                        v-if="
+                                            attribute_value.code &&
+                                            attribute_value.code.startsWith('#')
+                                        "
+                                        class="peer-checked:outline-meta-6 peer-checked:outline-4 peer-checked:outline-offset-0 w-7 h-7 cursor-pointer rounded-full outline outline-1 outline-offset-4 outline-body"
+                                        :style="`background-color:${attribute_value.code}`"
+                                    ></div>
+                                    <div
+                                        v-else
+                                        class="peer-checked:outline-meta-6 peer-checked:outline-4 peer-checked:outline-offset-0 flex items-center justify-center min-w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                    >
+                                        {{
+                                            attribute_value.code ??
+                                            attribute_value.name
+                                        }}
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex gap-10">
+                                <span class="text-body"
+                                    >{{
+                                        $t("titles.web.products.price")
+                                    }}:</span
+                                >
+                                <div class="text-boxdark-2 text-xl font-bold">
+                                    {{ props.product.data.price }}
+                                    {{ $t("titles.web.products.currency") }}
+                                </div>
+                                <div class="text-body line-through">
+                                    {{ props.product.data.price }}
+                                    {{ $t("titles.web.products.currency") }}
+                                </div>
                             </div>
                             <div class="flex items-center gap-2">
                                 <button
@@ -172,27 +248,15 @@ const orderItem = computed(() => {
 
                     <!-- Seller Info -->
                     <div
-                        v-if="props.product.data.seller"
-                        class="bg-gray-50 p-4 rounded-lg"
+                        v-if="props.product.data.vendor"
+                        class="flex items-center gap-2 bg-gray-50 p-4 rounded-lg"
                     >
-                        <h3 class="font-bold mb-2">
+                        <v-icon name="la-cubes-solid" :scale="2"></v-icon>
+                        <span class="text-body">
                             {{ $t("titles.web.products.seller") }}
-                        </h3>
-                        <div class="flex items-center gap-2 text-gray-600">
-                            <svg
-                                class="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                />
-                            </svg>
-                            <span>{{ props.product.data.seller }}</span>
+                        </span>
+                        <div class="text-boxdark-2 font-medium">
+                            <span>{{ props.product.data.vendor }}</span>
                         </div>
                     </div>
                 </div>

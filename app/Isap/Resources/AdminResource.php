@@ -7,6 +7,7 @@ use App\Isap\Actions\CreateAction;
 use App\Isap\Actions\DeleteAction;
 use App\Isap\Actions\EditAction;
 use App\Isap\Actions\ShowAction;
+use App\Isap\Forms\Components\FormSection;
 use App\Isap\Forms\Components\ImageInput;
 use App\Isap\Forms\Components\MultiSelectInput;
 use App\Isap\Forms\Components\TextInput;
@@ -29,16 +30,18 @@ class AdminResource extends BaseResource
         $form = new Form(__('titles.admins'), Admin::class);
 
         return $form->components([
-            TextInput::make('username', __('resources.admin.username'))->isRequired()->disabledOnEdit(),
-            TextInput::make('email', __('resources.admin.email'))->isEmail(),
-            TextInput::make('first_name', __('resources.admin.first_name')),
-            TextInput::make('last_name', __('resources.admin.last_name')),
-            TextInput::make('password', __('resources.admin.password'))->isRequired()->isPassword(),
-            TextInput::make('password_confirmation', __('resources.admin.password_confirmation'))->isPassword()->isRequired()->hideOnShow(),
-            MultiSelectInput::make('roles', __('resources.admin.roles'))->setSource((new DataUtil)->getOptionsForModel(new Role, 'id', 'name'))->isRequired(),
-            ImageInput::make('profile_image', __('resources.admin.profile_image')),
-            ToggleInput::make('enable', __('resources.admin.enable')),
-        ])->action(static::getAction($action_type)?->setRoute('admin.'.lcfirst($action_type->value)));
+            FormSection::make('another_info', __('resources.admin.info'))->children([
+                TextInput::make('username', __('resources.admin.username'))->isRequired()->disabledOnEdit(),
+                TextInput::make('email', __('resources.admin.email'))->isEmail(),
+                TextInput::make('first_name', __('resources.admin.first_name')),
+                TextInput::make('last_name', __('resources.admin.last_name')),
+                TextInput::make('password', __('resources.admin.password'))->isRequired()->isPassword(),
+                TextInput::make('password_confirmation', __('resources.admin.password_confirmation'))->isPassword()->isRequired()->hideOnShow(),
+                MultiSelectInput::make('roles', __('resources.admin.roles'))->setSource((new DataUtil)->getOptionsForModel(new Role, 'id', 'name'))->isRequired(),
+                ImageInput::make('profile_image', __('resources.admin.profile_image')),
+                ToggleInput::make('enable', __('resources.admin.enable')),
+            ])
+        ])->action(static::getAction($action_type)?->setRoute('admin.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -55,9 +58,9 @@ class AdminResource extends BaseResource
 
         ])
             ->row_actions([
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('admin.show')->setIcon('md-removeredeye-outlined'),
-                EditAction::make('edit', __('resources.actions.edit'))->setRoute('admin.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('admin.show')->setIcon('la-eye'),
+                EditAction::make('edit', __('resources.actions.edit'))->setRoute('admin.edit')->setIcon('la-edit'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('admin.destroy')->setConfirmationMessage(__('messages.admin.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.admin.label')]))->setIcon('md-personaddalt-outlined')->setRoute('admin.create'),

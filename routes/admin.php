@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminController;
+use App\Http\Controllers\Admins\AttributeController;
+use App\Http\Controllers\Admins\AttributeValueController;
 use App\Http\Controllers\Admins\BrandController;
 use App\Http\Controllers\Admins\CartController;
 use App\Http\Controllers\Admins\CategoryController;
@@ -18,21 +20,21 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Route::get('/test-admin', [AdminController::class, 'index']);
-Route::get('/admin-login', fn() => Inertia::render('Auth/AdminLogin'))->name('admin.login');
+Route::get('/admin-login', fn () => Inertia::render('Auth/AdminLogin'))->name('admin.login');
 Route::post('/admin-authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
-Route::get('/signin', fn() => Inertia::render('Auth/Login'))->name('admin.signin');
+Route::get('/signin', fn () => Inertia::render('Auth/Login'))->name('admin.signin');
 Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function () {
-    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
-    Route::get('/calendar', fn() => Inertia::render('CalendarView'))->name('calendar');
-    Route::get('/profile', fn() => Inertia::render('ProfileView'))->name('profile');
-    Route::get('/tables', fn() => Inertia::render('TablesView'))->name('tables');
-    Route::get('/settings', fn() => Inertia::render('SettingsView'))->name('settings');
-    Route::get('/alerts', fn() => Inertia::render('AlertsView'))->name('alerts');
-    Route::get('/buttons', fn() => Inertia::render('buttonsView'))->name('buttons');
-    Route::get('/form-elements', fn() => Inertia::render('Forms/FormElementsView'))->name('form.elements');
-    Route::get('/form-layouts', fn() => Inertia::render('Forms/FormLayoutView'))->name('form.layouts');
-    Route::get('/basic-chart', fn() => Inertia::render('Charts/BasicChartView'))->name('chart.basics');
-    Route::get('/signup', fn() => Inertia::render('Authentication/SignupView'))->name('signup');
+    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/calendar', fn () => Inertia::render('CalendarView'))->name('calendar');
+    Route::get('/profile', fn () => Inertia::render('ProfileView'))->name('profile');
+    Route::get('/tables', fn () => Inertia::render('TablesView'))->name('tables');
+    Route::get('/settings', fn () => Inertia::render('SettingsView'))->name('settings');
+    Route::get('/alerts', fn () => Inertia::render('AlertsView'))->name('alerts');
+    Route::get('/buttons', fn () => Inertia::render('buttonsView'))->name('buttons');
+    Route::get('/form-elements', fn () => Inertia::render('Forms/FormElementsView'))->name('form.elements');
+    Route::get('/form-layouts', fn () => Inertia::render('Forms/FormLayoutView'))->name('form.layouts');
+    Route::get('/basic-chart', fn () => Inertia::render('Charts/BasicChartView'))->name('chart.basics');
+    Route::get('/signup', fn () => Inertia::render('Authentication/SignupView'))->name('signup');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/table/media/{model}/{id}/{attribute}/{multiple}', [TableController::class, 'getMedia'])->name('table.getMedia');
     Route::get('/form/media/{model}/{id}/{attribute}/{multiple}', [FormController::class, 'getMedia'])->name('form.getMedia');
@@ -57,6 +59,10 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('/product/specifications/{id}', [ProductController::class, 'specifications'])->name('product.specifications');
     Route::put('/product/specifications/{id}', [ProductController::class, 'updateSpecifications'])->name('product.specifications.update');
+    Route::get('/product/attributes/{id}', [ProductController::class, 'attributes'])->name('product.attributes');
+    Route::put('/product/attributes/{id}', [ProductController::class, 'updateAttributes'])->name('product.attributes.update');
+    Route::get('/product/variants/{id}', [ProductController::class, 'variants'])->name('product.variants');
+    Route::put('/product/variants/{id}', [ProductController::class, 'updateVariants'])->name('product.variants.update');
 
     // Category Routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
@@ -131,4 +137,24 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
     Route::get('/customer/orders/{id}', [CustomerController::class, 'orders'])->name('customer.orders');
+
+    // Attribute Routes
+    Route::get('/attributes', [AttributeController::class, 'index'])->name('attributes');
+    Route::get('/attribute', [AttributeController::class, 'create'])->name('attribute.create');
+    Route::post('/attribute', [AttributeController::class, 'store'])->name('attribute.store');
+    Route::get('/attribute/{id}', [AttributeController::class, 'show'])->name('attribute.show');
+    Route::put('/attribute/{id}', [AttributeController::class, 'update'])->name('attribute.update');
+    Route::delete('/attribute/{id}', [AttributeController::class, 'destroy'])->name('attribute.destroy');
+    Route::get('/attribute/edit/{id}', [AttributeController::class, 'edit'])->name('attribute.edit');
+
+    // AttributeValue Routes
+
+    Route::get('/attribute_values', [AttributeValueController::class, 'index'])->name('attribute_values');
+    Route::get('/attribute_value', [AttributeValueController::class, 'create'])->name('attribute_value.create');
+    Route::post('/attribute_value', [AttributeValueController::class, 'store'])->name('attribute_value.store');
+    Route::get('/attribute_value/{id}', [AttributeValueController::class, 'show'])->name('attribute_value.show');
+    Route::put('/attribute_value/{id}', [AttributeValueController::class, 'update'])->name('attribute_value.update');
+    Route::delete('/attribute_value/{id}', [AttributeValueController::class, 'destroy'])->name('attribute_value.destroy');
+    Route::get('/attribute_value/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_value.edit');
+
 });

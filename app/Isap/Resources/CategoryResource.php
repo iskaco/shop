@@ -65,7 +65,7 @@ class CategoryResource extends BaseResource
                 ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('category.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('category.' . lcfirst($action_type->value)));
         // dd($form);
     }
 
@@ -80,10 +80,10 @@ class CategoryResource extends BaseResource
                 ToggleColumn::make('is_active', __('resources.category.is_active')),
             ])
             ->row_actions([
-                ShowProducts::make('show_products', __('resources.actions.show_category_products'))->setRoute('category.products')->setIcon('md-featuredplaylist-outlined')->setColor('meta-3'),
-                ShowAction::make('show', __('resources.actions.show'))->setRoute('category.show')->setIcon('md-removeredeye-outlined'),
-                EditAction::make('edit', __('resources.actions.edit'))->setRoute('category.edit')->setIcon('md-modeedit-outlined'),
-                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+                ShowProducts::make('show_products', __('resources.actions.show_category_products'))->setRoute('category.products')->setIcon('la-poll-h-solid')->setColor('meta-3'),
+                ShowAction::make('show', __('resources.actions.show'))->setRoute('category.show')->setIcon('la-eye'),
+                EditAction::make('edit', __('resources.actions.edit'))->setRoute('category.edit')->setIcon('la-edit'),
+                DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('category.destroy')->setConfirmationMessage(__('messages.category.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
             ])
             ->table_actions([
                 CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.category.label')]))->setIcon('md-addbox-outlined')->setRoute('category.create'),

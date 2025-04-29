@@ -34,6 +34,11 @@ class Category extends Model implements HasMedia
         static::addGlobalScope(new ActiveScope);
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);

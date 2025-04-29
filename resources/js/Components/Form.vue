@@ -122,6 +122,13 @@ export default {
         makeSlug(title) {
             return title.toLowerCase().trim().replace(/\s+/g, "-");
         },
+        getInitValue(type) {
+            switch (type) {
+                case "Toggle":
+                    return false;
+            }
+            return null;
+        },
     },
     mounted() {
         let initialData = {};
@@ -129,10 +136,13 @@ export default {
             if (input.component_type == "FormSection") {
                 input.children.forEach((childInput) => {
                     initialData[childInput.name] =
-                        this.data[childInput.name] ?? null;
+                        this.data[childInput.name] ??
+                        this.getInitValue(childInput.component_type);
                 });
             } else {
-                initialData[input.name] = this.data[input.name] ?? null;
+                initialData[input.name] =
+                    this.data[input.name] ??
+                    this.getInitValue(input.component_type);
             }
         });
         if (this.form.action?.action_method == "PUT")
@@ -220,6 +230,7 @@ export default {
                             :multiple="input.is_multi"
                             :options="input.source"
                             label="name"
+                            track-by="id"
                             :placeholder="
                                 $t('titles.form.selectPlaceholder') +
                                 ' ' +

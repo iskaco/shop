@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admins\Products;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
+use App\Rules\SlugRule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'name' => ['required', 'array', Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at')->where('category_id', $this->category_id);
             })->ignore($this->id)],
-            'slug' => ['required', 'string', Rule::slug(), Rule::unique('products')->where(function ($query) {
+            'slug' => ['required', 'string', new SlugRule, Rule::unique('products')->where(function ($query) {
                 $query->whereNull('deleted_at');
             })->ignore($this->id)],
             'category_id' => ['required', 'numeric', Rule::exists('categories', 'id')->where(function ($query) {
@@ -31,6 +32,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'stock' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
             'cost' => ['required', 'numeric', 'min:0'],
+            'attributes_id' => ['nullable', 'array'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'gallery' => ['nullable', 'array', 'max:5'],
             'gallery.*' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // max file size in KB
@@ -60,6 +62,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
         ]);
 
         $validator->validate();
+
         $this->merge([
             'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
             'description' => ['en' => $this->description_en, 'ar' => $this->description_ar],
@@ -67,7 +70,7 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'category_id' => $this->category_id ? $this->category_id['id'] : null,
             'brand_id' => $this->brand_id ? $this->brand_id['id'] : null,
             'vendor_id' => $this->vendor_id ? $this->vendor_id['id'] : null,
-
+            'attributes_id' => collect($this->attributes_id)->pluck('id')->toArray(),
         ]);
     }
 }

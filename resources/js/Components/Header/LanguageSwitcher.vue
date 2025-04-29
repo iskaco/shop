@@ -68,7 +68,7 @@ onMounted(() => {
         <div
             v-if="isOpen"
             ref="target"
-            class="absolute right-0 ltr:left-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark"
+            class="absolute right-0 ltr:left-0 mt-2 w-40 rounded-lg bg-white py-2 shadow-lg dark:bg-boxdark z-50"
         >
             <button
                 v-for="lang in languages"

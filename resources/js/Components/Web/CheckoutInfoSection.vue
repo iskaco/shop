@@ -27,27 +27,28 @@ onMounted(() => {
 });
 </script>
 <template>
-    <section class="px-10 md:px-20 py-16">
-        <div class="flex flex-col gap-10 w-full">
+    <section class="px-10 py-16 md:px-20">
+        <div class="flex flex-col w-full gap-10">
             <h2
-                class="mb-6 lg:text-6xl md:text-5xl text-4xl font-bold text-center"
+                class="mb-6 text-4xl font-bold text-center lg:text-6xl md:text-5xl"
             >
                 {{ $t("titles.web.cart.orderInfoTitle") }}
             </h2>
             <label v-if="props.address" class="cursor-pointer">
                 <div
-                    class="flex divide-x rtl:divide-x-reverse border rounded-xl bg-gray-50"
+                    class="flex border divide-x rtl:divide-x-reverse rounded-xl bg-gray-50"
                 >
-                    <div class="w-14 h-28 grid place-content-center">
+                    <div class="grid w-14 h-28 place-content-center">
                         <input
                             type="radio"
                             name="address"
                             :value="props.address"
+                            :checked="props.address"
                             v-model="form.address"
                         />
                     </div>
                     <div
-                        class="flex flex-col md:flex-row gap-x-5 justify-center md:items-center px-5"
+                        class="flex flex-col justify-center px-5 md:flex-row gap-x-5 md:items-center"
                     >
                         <span class="text-sm">{{
                             $t("titles.web.cart.profileAddress")
@@ -60,19 +61,20 @@ onMounted(() => {
             </label>
             <label class="flex-1 cursor-pointer">
                 <div
-                    class="flex divide-x rtl:divide-x-reverse border rounded-xl bg-gray-50"
+                    class="flex border divide-x rtl:divide-x-reverse rounded-xl bg-gray-50"
                 >
-                    <div class="w-14 h-28 grid place-content-center">
+                    <div class="grid w-14 h-28 place-content-center">
                         <input
                             type="radio"
                             v-model="form.address"
                             :value="newAddress"
+                            :checked="!props.address"
                         />
                     </div>
                     <div
-                        class="flex-1 flex flex-col md:flex-row gap-x-5 justify-center md:items-center px-5"
+                        class="flex flex-col justify-center flex-1 px-5 md:flex-row gap-x-5 md:items-center"
                     >
-                        <span class="text-sm pt-2 md:pt-0">{{
+                        <span class="pt-2 text-sm md:pt-0">{{
                             $t("titles.web.cart.newAddress")
                         }}</span>
                         <span class="flex-1 font-medium text-boxdark-2 md:pt-5">
@@ -84,7 +86,7 @@ onMounted(() => {
                                 @input="form.address = newAddress"
                             />
                             <p
-                                class="text-meta-1 text-xs font-normal mt-1 mx-2"
+                                class="mx-2 mt-1 text-xs font-normal text-meta-1"
                             >
                                 {{
                                     $t("titles.web.cart.newAddressPlaceHolder")
@@ -97,7 +99,7 @@ onMounted(() => {
             <div class="flex justify-end gap-3">
                 <button
                     @click="CheckoutCart()"
-                    class="px-10 py-2 bg-blue-600 text-white rounded"
+                    class="px-10 py-2 text-white bg-blue-600 rounded"
                 >
                     {{ $t("titles.web.cart.checkout") }}
                 </button>

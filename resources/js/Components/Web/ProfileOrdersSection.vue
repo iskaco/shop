@@ -89,11 +89,11 @@ onMounted(() => {
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <div class="flex gap-2 w-full justify-center">
                                 <v-icon
-                                    name="md-removeredeye-outlined"
+                                    name="la-eye"
                                     class="fill-meta-5 cursor-pointer"
                                 ></v-icon>
                                 <v-icon
-                                    name="md-deleteforever-outlined"
+                                    name="la-trash-alt"
                                     class="fill-meta-1 cursor-pointer"
                                 ></v-icon>
                             </div>

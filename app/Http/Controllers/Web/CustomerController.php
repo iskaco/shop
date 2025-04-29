@@ -103,7 +103,12 @@ class CustomerController extends Controller
 
     public function cartInfo()
     {
-        return Inertia::render('web/CheckoutInfoView', ['address' => auth('customer')?->user()?->address ?? null]);
+        $customer = auth('customer')?->user();
+        $country = $customer?->country ? $customer?->country.', ' : '';
+        $city = $customer?->city ? $customer?->city.', ' : '';
+        $address = $country.$city.$customer?->address;
+
+        return Inertia::render('web/CheckoutInfoView', ['address' => $address ?? null]);
     }
 
     public function storeOrder(OrderStoreRequest $request, OrderStore $orderStoreAction, OrderItemStore $orderItemStoreAction)
@@ -126,7 +131,7 @@ class CustomerController extends Controller
             foreach ($items['items'] as $cart_item) {
                 $orderItemStoreAction->execute([
                     'order_id' => $order?->id,
-                    'product_id' => $cart_item['product_id'],
+                    'product_variant_id' => $cart_item['product_variant_id'] ?? Product::findOrFail($cart_item['product_id'])?->variants()?->first()?->id,
                     'quantity' => $cart_item['quantity'],
                     'unit_price' => Product::findOrFail($cart_item['product_id'])?->price,
                     'unit_cost' => Product::findOrFail($cart_item['product_id'])?->price,

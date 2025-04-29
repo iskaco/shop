@@ -12,6 +12,10 @@ return [
             'ok' => 'Admin created successfully.',
             'error' => 'Error creating admin',
         ],
+        'update' => [
+            'ok' => 'Information updated successfully!',
+            'error' => 'Error updating information!',
+        ],
         'login' => [
             'ok' => 'Login successful.',
             'error' => 'Error logging in',
@@ -56,13 +60,28 @@ return [
             'error' => 'Error creating product',
         ],
         'update' => [
+            'exception' => [
+                'attributes' => 'Error in attribute syncing!',
+            ],
             'ok' => 'Product updated successfully.',
             'error' => 'Error updating product',
+        ],
+        'attribute' => [
+            'update' => [
+                'ok' => 'Product attributes updated successfully.',
+                'error' => 'Error updating product attributes',
+            ],
         ],
         'specification' => [
             'update' => [
                 'ok' => 'Product specifications updated successfully.',
                 'error' => 'Error updating product specifications',
+            ],
+        ],
+        'variant' => [
+            'update' => [
+                'ok' => 'Product Variants updated successfully.',
+                'error' => 'Error updating product Variants',
             ],
         ],
     ],
@@ -139,6 +158,23 @@ return [
         'update' => [
             'ok' => 'Vendor updated successfully.',
             'error' => 'Error updating vendor',
+        ],
+    ],
+    'attribute' => [
+        'destroy' => [
+            'title' => 'Are you sure you want to delete this record?',
+            'ok' => 'Attribute deleted successfully.',
+            'error' => 'Error deleting attribute',
+            'not_found' => 'Attribute not found',
+            'has_product' => 'Cannot delete attribute with existing products',
+        ],
+        'store' => [
+            'ok' => 'Attribute created successfully.',
+            'error' => 'Error creating attribute',
+        ],
+        'update' => [
+            'ok' => 'Attribute updated successfully.',
+            'error' => 'Error updating attribute',
         ],
     ],
 ];

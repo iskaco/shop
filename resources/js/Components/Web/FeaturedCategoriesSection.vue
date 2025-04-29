@@ -7,37 +7,37 @@ const cats = [
     {
         name: "electronics",
         color: "meta-1",
-        icon: "md-laptop-outlined",
+        icon: "la-laptop-solid",
     },
     {
         name: "furniture",
         color: "meta-2",
-        icon: "md-bed-outlined",
+        icon: "la-bed-solid",
     },
     {
         name: "shoe",
         color: "meta-3",
-        icon: "md-favoriteborder-outlined",
+        icon: "la-shoe-prints-solid",
     },
     {
         name: "honey",
         color: "meta-11",
-        icon: "md-foodbank-outlined",
+        icon: "la-heartbeat-solid",
     },
     {
         name: "bathroom",
         color: "meta-5",
-        icon: "md-bathroom-outlined",
+        icon: "la-bath-solid",
     },
     {
         name: "t-shirt",
         color: "meta-6",
-        icon: "md-grade-outlined",
+        icon: "la-tshirt-solid",
     },
     {
         name: "home-tools",
         color: "meta-7",
-        icon: "md-home-outlined",
+        icon: "la-home-solid",
     },
 ];
 

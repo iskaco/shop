@@ -63,7 +63,7 @@ class BrandResource extends BaseResource
                     ToggleInput::make('is_featured', __('resources.brand.is_featured')),
                 ]),
             ]
-        )->action(static::getAction($action_type)?->setRoute('brand.'.lcfirst($action_type->value)));
+        )->action(static::getAction($action_type)?->setRoute('brand.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -77,9 +77,9 @@ class BrandResource extends BaseResource
             ToggleColumn::make('is_active', __('resources.brand.is_active')),
             ToggleColumn::make('is_featured', __('resources.brand.is_featured')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('brand.show')->setIcon('md-removeredeye-outlined'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('brand.edit')->setIcon('md-modeedit-outlined'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('brand.destroy')->setConfirmationMessage(__('messages.brand.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('brand.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('brand.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('brand.destroy')->setConfirmationMessage(__('messages.brand.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.brand.label')]))->setIcon('md-addbox-outlined')->setRoute('brand.create'),
         ]);

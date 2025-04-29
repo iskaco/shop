@@ -26,44 +26,44 @@ class VendorResource extends BaseResource
     {
         $form = new Form(__('resources.vendor.plural'), Vendor::class);
 
-        return $form->components([
-            ...parent::orderByLocale(
-                [
-                    'en' => [
-                        FormSection::make('general_en', __('resources.vendor.general_en'))->children(
-                            [
-                                TextInput::make('name_en', __('resources.vendor.name_en'))->isRequired(),
-                                TextInput::make('description_en', __('resources.vendor.description_en')),
-                                TextInput::make('short_description_en', __('resources.vendor.short_description_en')),
-                            ]
-                        ),
-                    ],
-                    'ar' => [
-                        FormSection::make('general_ar', __('resources.vendor.general_ar'))->children(
-                            [
-                                TextInput::make('name_ar', __('resources.vendor.name_ar'))->isRequired(),
-                                TextInput::make('description_ar', __('resources.vendor.description_ar')),
-                                TextInput::make('short_description_ar', __('resources.brand.short_description_ar')),
-                            ]
-                        ),
-                    ],
-                ]
-            ),
-            FormSection::make('another_info', __('resources.vendor.another_info'))->children([
-                TextInput::make('slug', __('resources.vendor.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
-            ]),
-            FormSection::make('images', __('resources.vendor.images'))->children([
-                ImageInput::make('image', __('resources.vendor.image')),
-                ImageInput::make('thumbnail', __('resources.vendor.thumbnail')),
-                ImageInput::make('banner', __('resources.vendor.banner'))->ratio(16 / 9),
-            ]),
-            FormSection::make('status', __('resources.vendor.status'))->children([
-                ToggleInput::make('is_active', __('resources.vendor.is_active')),
-                ToggleInput::make('is_featured', __('resources.vendor.is_featured')),
-            ]),
-        ]
-        )->action(static::getAction($action_type)?->setRoute('vendor.'.lcfirst($action_type->value)));
-
+        return $form->components(
+            [
+                ...parent::orderByLocale(
+                    [
+                        'en' => [
+                            FormSection::make('general_en', __('resources.vendor.general_en'))->children(
+                                [
+                                    TextInput::make('name_en', __('resources.vendor.name_en'))->isRequired(),
+                                    TextInput::make('description_en', __('resources.vendor.description_en')),
+                                    TextInput::make('short_description_en', __('resources.vendor.short_description_en')),
+                                ]
+                            ),
+                        ],
+                        'ar' => [
+                            FormSection::make('general_ar', __('resources.vendor.general_ar'))->children(
+                                [
+                                    TextInput::make('name_ar', __('resources.vendor.name_ar'))->isRequired(),
+                                    TextInput::make('description_ar', __('resources.vendor.description_ar')),
+                                    TextInput::make('short_description_ar', __('resources.brand.short_description_ar')),
+                                ]
+                            ),
+                        ],
+                    ]
+                ),
+                FormSection::make('another_info', __('resources.vendor.another_info'))->children([
+                    TextInput::make('slug', __('resources.vendor.slug'))->isSlug()->setRelatedSlugField('name_en')->isRequired(),
+                ]),
+                FormSection::make('images', __('resources.vendor.images'))->children([
+                    ImageInput::make('image', __('resources.vendor.image')),
+                    ImageInput::make('thumbnail', __('resources.vendor.thumbnail')),
+                    ImageInput::make('banner', __('resources.vendor.banner'))->ratio(16 / 9),
+                ]),
+                FormSection::make('status', __('resources.vendor.status'))->children([
+                    ToggleInput::make('is_active', __('resources.vendor.is_active')),
+                    ToggleInput::make('is_featured', __('resources.vendor.is_featured')),
+                ]),
+            ]
+        )->action(static::getAction($action_type)?->setRoute('vendor.' . lcfirst($action_type->value)));
     }
 
     public static function table()
@@ -77,9 +77,9 @@ class VendorResource extends BaseResource
             ToggleColumn::make('is_active', __('resources.vendor.is_active')),
             ToggleColumn::make('is_featured', __('resources.vendor.is_featured')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('vendor.show')->setIcon('md-removeredeye-outlined'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('vendor.edit')->setIcon('md-modeedit-outlined'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('vendor.destroy')->setConfirmationMessage(__('messages.vendor.destroy.title'))->setIcon('md-deleteforever-outlined')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('vendor.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('vendor.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('vendor.destroy')->setConfirmationMessage(__('messages.vendor.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
             CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.vendor.label')]))->setIcon('md-addbox-outlined')->setRoute('vendor.create'),
         ]);
