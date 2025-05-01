@@ -1,4 +1,4 @@
-# MeemHome
+# Iskaco Shop Platform
 
 ## About MeemHome
 
