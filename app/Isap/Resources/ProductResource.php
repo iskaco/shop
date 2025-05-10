@@ -39,7 +39,9 @@ class ProductResource extends BaseResource
         return $form->components([
             ...parent::orderByLocale(
                 [
-                    'en' => [
+                    ...DynamicResource::createTranslatableSections('general', 'product', ['name', 'description', 'short_description']),
+
+                    /*'en' => [
                         FormSection::make('general_en', __('resources.category.general_en'))->children(
                             [
                                 TextInput::make('name_en', __('resources.product.name_en'))->isRequired(),
@@ -57,7 +59,7 @@ class ProductResource extends BaseResource
                             ]
                         ),
 
-                    ],
+                    ],*/
                 ]
             ),
             FormSection::make('another_info', __('resources.product.another_info'))->children([
@@ -86,7 +88,7 @@ class ProductResource extends BaseResource
                 ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('product.' . lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('product.'.lcfirst($action_type->value)));
     }
 
     public static function table()

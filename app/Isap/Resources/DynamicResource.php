@@ -42,4 +42,24 @@ class DynamicResource extends BaseResource
 
         return FormSection::make('', '')->children([$input_component]);
     }
+
+    public static function createTranslatableSections(string $section, string $resource, array $fields)
+    {
+        $locales = config('app.available_locales');
+        $localizedFields = [];
+        foreach ($locales as $locale) {
+            $children = [];
+
+            foreach ($fields as $field) {
+                $children[] = TextInput::make("{$field}_{$locale}", __("resources.{$resource}.{$field}_{$locale}"))->isRequired(); // Make 'name' required as an example
+            }
+            $localizedFields[$locale] = [FormSection::make(
+                $section."_{$locale}",
+                __("resources.{$resource}.{$section}_{$locale}")
+            )->children($children)];
+
+        }
+
+        return $localizedFields;
+    }
 }

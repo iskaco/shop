@@ -30,7 +30,8 @@ class BrandResource extends BaseResource
             [
                 ...parent::orderByLocale(
                     [
-                        'en' => [
+                        ...DynamicResource::createTranslatableSections('general', 'brand', ['name', 'description', 'short_description']),
+                        /*'en' => [
                             FormSection::make('general_en', __('resources.brand.general_en'))->children(
                                 [
                                     TextInput::make('name_en', __('resources.brand.name_en'))->isRequired(),
@@ -47,7 +48,7 @@ class BrandResource extends BaseResource
                                     TextInput::make('short_description_ar', __('resources.brand.short_description_ar')),
                                 ]
                             ),
-                        ],
+                        ],*/
                     ]
                 ),
                 FormSection::make('another_info', __('resources.brand.another_info'))->children([
@@ -63,7 +64,7 @@ class BrandResource extends BaseResource
                     ToggleInput::make('is_featured', __('resources.brand.is_featured')),
                 ]),
             ]
-        )->action(static::getAction($action_type)?->setRoute('brand.' . lcfirst($action_type->value)));
+        )->action(static::getAction($action_type)?->setRoute('brand.'.lcfirst($action_type->value)));
     }
 
     public static function table()

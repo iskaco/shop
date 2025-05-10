@@ -40,8 +40,8 @@ class HomeController extends Controller
     public function randomProduct()
     {
         $selected_category_slug = 'electronics'; // TODO
-        $category = Category::where('slug', $selected_category_slug)->first() ?? Category::inRandomOrder()->first();
-        $product = $category->products()->inRandomOrder()->take(12)->get();
+        $category = Category::where('slug', $selected_category_slug)?->first() ?? Category::inRandomOrder()->first();
+        $product = $category?->products()?->inRandomOrder()->take(12)->get();
 
         return $product;
     }

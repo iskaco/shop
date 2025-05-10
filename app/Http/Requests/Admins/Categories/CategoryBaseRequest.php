@@ -3,11 +3,14 @@
 namespace App\Http\Requests\Admins\Categories;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
-use Illuminate\Validation\Rule;
+use App\Traits\HandlesTranslatableValidation;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 abstract class CategoryBaseRequest extends AdminsAuthRequest
 {
+    use HandlesTranslatableValidation;
+
     public function rules(): array
     {
 
@@ -32,7 +35,34 @@ abstract class CategoryBaseRequest extends AdminsAuthRequest
         ];
     }
 
+    protected function translatableFieldsConfig(): array
+    {
+        return [
+            'name' => [
+                'rules' => ['string', 'max:255'],
+                'required' => true,
+            ],
+            'description' => [
+                'rules' => ['string'],
+                'required' => false,
+            ],
+        ];
+    }
+
+    protected function fieldsToMerge(): array
+    {
+        return [
+            'parent_id' => $this->parent_id ? $this->parent_id['id'] : null,
+        ];
+    }
+
     public function prepareForValidation()
+    {
+        $this->prepareTranslatableValidation();
+        $this->merge(['parent_id' => $this->parent_id ? $this->parent_id['id'] : null]);
+    }
+
+    /*public function prepareForValidation()
     {
         $data = [
             'name_en' => $this->name_en,
@@ -71,5 +101,5 @@ abstract class CategoryBaseRequest extends AdminsAuthRequest
             ],
             'parent_id' => $this->parent_id ? $this->parent_id['id'] : null,
         ]);
-    }
+    }*/
 }

@@ -7,8 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Spatie\Image\Image as SpatieImage;
-
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -37,7 +36,8 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraphs(3, true),
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'stock' => $this->faker->numberBetween(0, 500),
-            'is_published' => $this->faker->boolean(80),
+            'cost' => $this->faker->numberBetween(0, 500),
+            'is_published' => $this->faker->boolean(90),
             'is_featured' => $this->faker->boolean(20),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-6 months', 'now'),
@@ -48,23 +48,14 @@ class ProductFactory extends Factory
     {
         return $this->afterCreating(function (Product $product) {
             try {
-                $product->addMediaFromBase64(
-                    base64_encode(
-                        (string) SpatieImage::load('public/images/products/default.jpg')
-                            ->width(800)
-                            ->height(600)
-                    )
-                )
-                    ->usingFileName(Str::random(20) . '.jpg')
-                    ->toMediaCollection('Product.Images');
+                $media = Media::inRandomOrder()->first();
+                $product->addMedia($media->getPath())->toMediaCollection('Product.Images');
             } catch (\Exception $e) {
                 // Handle the exception (e.g., log the error)
                 report($e); // Or any other error handling
             }
         });
     }
-
-
 
     // حالت‌های خاص (State)
     public function published()
