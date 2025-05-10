@@ -3,13 +3,13 @@
 namespace App\Http\Requests\Admins\Brands;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
-use Illuminate\Validation\Rule;
+use App\Traits\HandlesTranslatableValidation;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Validation\Rule;
 
 class BrandBaseRequest extends AdminsAuthRequest
 {
-
+    use HandlesTranslatableValidation;
 
     public function rules(): array
     {
@@ -30,7 +30,30 @@ class BrandBaseRequest extends AdminsAuthRequest
         ];
     }
 
+    protected function translatableFieldsConfig(): array
+    {
+        return [
+            'name' => [
+                'rules' => ['string', 'max:255'],
+                'required' => true,
+            ],
+            'description' => [
+                'rules' => ['string'],
+                'required' => false,
+            ],
+            'short_description' => [
+                'rules' => ['string'],
+                'required' => false,
+            ],
+        ];
+    }
+
     public function prepareForValidation()
+    {
+        $this->prepareTranslatableValidation();
+    }
+
+    /*public function prepareForValidation()
     {
         $data = [
             'name_en' => $this->name_en,
@@ -41,7 +64,7 @@ class BrandBaseRequest extends AdminsAuthRequest
             'short_description_ar' => $this->short_description_ar,
         ];
 
-        $validator = Validator::make($data,  [
+        $validator = Validator::make($data, [
             'name_en' => ['required', 'string', 'max:255'],
             'name_ar' => ['required', 'string', 'max:255'],
             'description_en' => ['nullable', 'string'],
@@ -58,5 +81,5 @@ class BrandBaseRequest extends AdminsAuthRequest
             'description' => ['en' => $this->description_en, 'ar' => $this->description_ar],
             'short_description' => ['en' => $this->short_description_en, 'ar' => $this->short_description_ar],
         ]);
-    }
+    }*/
 }

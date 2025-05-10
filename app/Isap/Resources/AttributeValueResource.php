@@ -32,7 +32,8 @@ class AttributeValueResource extends BaseResource
             ),
             ...parent::orderByLocale(
                 [
-                    'en' => [
+                    ...DynamicResource::createTranslatableSections('general', 'attribute', ['value']),
+                    /*'en' => [
                         FormSection::make('general_en', __('resources.attribute_value.general_en'))->children(
                             [
                                 TextInput::make('value_en', __('resources.attribute_value.value_en'))->isRequired(),
@@ -43,7 +44,7 @@ class AttributeValueResource extends BaseResource
                         FormSection::make('general_ar', __('resources.attribute_value.general_ar'))->children([
                             TextInput::make('value_ar', __('resources.attribute_value.value_ar'))->isRequired(),
                         ]),
-                    ],
+                    ],*/
                 ]
             ),
             FormSection::make('info', __('resources.attribute_value.another_info'))->children([
@@ -52,7 +53,7 @@ class AttributeValueResource extends BaseResource
 
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('attribute_value.' . lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('attribute_value.'.lcfirst($action_type->value)));
     }
 
     public static function table()

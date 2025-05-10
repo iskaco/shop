@@ -34,8 +34,6 @@ abstract class BaseResource
     {
         $locale = app()->getLocale();
         $default_locale = config('app.fallback_locale');
-
-        // Sort the array based on the locale priority
         uksort($array, function ($a, $b) use ($locale, $default_locale) {
             if ($a === $locale) {
                 return -1;
@@ -46,14 +44,16 @@ abstract class BaseResource
             } elseif ($b === $default_locale) {
                 return 1;
             }
+
             return 0;
         });
-
+        // dd($array);
         // Extract and return only the FormSection items
         $ordered_items = [];
         foreach ($array as $item) {
             $ordered_items = array_merge($ordered_items, $item);
         }
+
         return $ordered_items;
     }
 }

@@ -33,7 +33,8 @@ class CategoryResource extends BaseResource
         return $form->components([
             ...parent::orderByLocale(
                 [
-                    'en' => [
+                    ...DynamicResource::createTranslatableSections('general', 'category', ['name', 'description']),
+                    /*'en' => [
                         FormSection::make('general_en', __('resources.category.general_en'))->children(
                             [
                                 TextInput::make('name_en', __('resources.category.name_en'))->isRequired(),
@@ -46,7 +47,7 @@ class CategoryResource extends BaseResource
                             TextInput::make('name_ar', __('resources.category.name_ar'))->isRequired(),
                             TextInput::make('description_ar', __('resources.category.description_ar')),
                         ]),
-                    ],
+                    ],*/
                 ]
             ),
             FormSection::make('another_info', __('resources.category.another_info'))->children([
@@ -65,8 +66,7 @@ class CategoryResource extends BaseResource
                 ToggleInput::make('is_featured', __('resources.product.is_featured')),
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('category.' . lcfirst($action_type->value)));
-        // dd($form);
+        ])->action(static::getAction($action_type)?->setRoute('category.'.lcfirst($action_type->value)));
     }
 
     public static function table()
