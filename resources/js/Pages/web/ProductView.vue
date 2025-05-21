@@ -149,7 +149,7 @@ const orderItem = computed(() => {
                             :key="index"
                             class="flex gap-5 items-center"
                         >
-                            <span class="text-body w-14">{{ index }}: </span>
+                            <span class="text-body w-fit">{{ index }}: </span>
                             <span
                                 v-for="attribute_value in attribute"
                                 :key="attribute_value.id"
@@ -177,7 +177,7 @@ const orderItem = computed(() => {
                                     ></div>
                                     <div
                                         v-else
-                                        class="peer-checked:outline-meta-6 peer-checked:outline-4 peer-checked:outline-offset-0 flex items-center justify-center min-w-7 h-7 cursor-pointer rounded-md outline outline-1 outline-offset-4 outline-body"
+                                        class="text-sm peer-checked:bg-yellow-300 peer-checked:text-black flex items-center justify-center px-2 pt-1 cursor-pointer rounded-md bg-gray-100"
                                     >
                                         {{
                                             attribute_value.code ??
