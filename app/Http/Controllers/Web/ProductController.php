@@ -28,18 +28,21 @@ class ProductController extends Controller
         }
     }
 
-    public function findVariant(ProductFindVariantRequest $request, ProductFindVariant $action, string $product)
+    public function findVariant(ProductFindVariantRequest $request, ProductFindVariant $action, string $slug)
     {
-        $product_variant = $action->execute($request->validated(), $product);
+        $product = Product::where('slug', $slug)->firstOrFail();
+        $product_variant = $action->execute($request->validated(), $product?->id);
         if (! $product_variant) {
             return redirect()->back();
         }
-        $product = Product::findOrFail($product);
 
-        return back()->with([
-            // 'product' => new ProductResource($product),
+        /*return back()->([
+            'product' => new ProductResource($product),
+            'product_variant' => new ProductVariantResource($product_variant),
+        ]);*/
+        return Inertia::render('web/ProductView', [
+            'product' => new ProductResource($product),
             'product_variant' => new ProductVariantResource($product_variant),
         ]);
-
     }
 }

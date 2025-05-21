@@ -33,7 +33,7 @@ Route::prefix('shop')->name('shop.')->group(function () {
     });
     // ======================== Products
     Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
-    Route::post('/product/{product}/find-variant', [ProductController::class, 'findVariant'])->name('product.variant.find');
+    Route::post('/product/{slug}', [ProductController::class, 'findVariant'])->name('product.variant.find');
 
     // ======================== Media
     Route::get('/media/{uuid}', [HomeController::class, 'media'])->name('media');
