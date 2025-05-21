@@ -1,8 +1,8 @@
 {
     "titles": {
         "web": {
-            "label": "MeemHome",
-            "description": "MeemHome - Your One-Stop Shop",
+            "label": "Faradid Data",
+            "description": "Your Digital Solutions Partner",
             "currency": {
                 "usd": {
                     "name": "USD",
@@ -27,7 +27,7 @@
             },
             "slider": {
                 "slide1": {
-                    "title": "Welcome to MeemHome",
+                    "title": "Welcome to Faradid Data",
                     "description": "Discover Amazing Products at Great Prices"
                 },
                 "slide2": {
@@ -91,7 +91,7 @@
                 "orderInfoTitle": "Order Additional Info"
             },
             "hero": {
-                "title": "Welcome to MeemHome",
+                "title": "Welcome to Faradid Data",
                 "subtitle": "Discover Amazing Products at Great Prices",
                 "search": {
                     "placeholder": "Search categories or products..."
@@ -254,7 +254,7 @@
             },
             "contactUs": {
                 "title": "Contact Methods",
-                "email": "Email: info@meemhome.com",
+                "email": "Email: info@faradiddata.com",
                 "phone": "Phone: (123) 456-7890",
                 "address": "Address: 123 Street, City",
                 "follow": "Follow Us",
@@ -297,8 +297,8 @@
             }
         },
         "admin": {
-            "label": "MeemHome",
-            "description": "MeemHome Management Panel",
+            "label": "Faradid Data",
+            "description": "ISAP Management Panel",
             "login": "Login",
             "username": "Username",
             "password": "Password",
