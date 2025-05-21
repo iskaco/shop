@@ -15,7 +15,7 @@ class Locale implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         //
-        if (! in_array($value, ['en', 'ar'])) {
+        if (! in_array($value, config('app.available_locales'))) {
             $fail(__('validation.locale'));
         }
     }
