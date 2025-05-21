@@ -75,8 +75,6 @@ class Role extends Model implements RoleContract
         return static::query()->create($attributes);
     }
 
-
-
     /**
      * A role may be given various permissions.
      */
@@ -173,7 +171,7 @@ class Role extends Model implements RoleContract
             $teamsKey = app(PermissionRegistrar::class)->teamsKey;
 
             $query->where(
-                fn($q) => $q->whereNull($teamsKey)
+                fn ($q) => $q->whereNull($teamsKey)
                     ->orWhere($teamsKey, $params[$teamsKey] ?? getPermissionsTeamId())
             );
             unset($params[$teamsKey]);
