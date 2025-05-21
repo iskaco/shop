@@ -36,13 +36,10 @@ class ProductController extends Controller
         }
         $product = Product::findOrFail($product);
 
-        return response()->json([
-            'product' => new ProductResource($product),
+        return back()->with([
+            // 'product' => new ProductResource($product),
             'product_variant' => new ProductVariantResource($product_variant),
         ]);
-        /*return Inertia::render('web/ProductView', [
-            'product' => new ProductResource($product),
-            'product_variant' => new ProductVariantResource($product_variant),
-        ]);*/
+
     }
 }
