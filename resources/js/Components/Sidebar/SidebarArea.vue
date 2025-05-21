@@ -135,7 +135,11 @@ const menuGroups = ref([
             class="flexitems-center justify-between gap-2 px-6 py-5.5 lg:py-5.5"
         >
             <Link :href="route('admin.dashboard')" class="flex flex-row gap-2">
-                <img src="/images/logo.png" alt="Logo" class="h-10 w-14" />
+                <img
+                    src="/images/logo.png"
+                    alt="Logo"
+                    class="h-10 w-14 bg-bodydark1 rounded"
+                />
                 <div class="flex flex-col">
                     <span class="font-black text-sky-700">
                         {{ $t("titles.admin.label") }}

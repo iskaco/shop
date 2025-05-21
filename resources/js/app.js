@@ -9,14 +9,14 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import { createPinia } from "pinia";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as MdiIcons from "oh-vue-icons/icons/md";
-import { CoLb, CoUs } from "oh-vue-icons/icons/co";
+import { CoIq, CoUs, CoIr } from "oh-vue-icons/icons/co";
 import * as LaIcons from "oh-vue-icons/icons/la";
 import Vue3Toastify, { toast } from "vue3-toastify";
 import i18n from "./i18n";
 
 const mdi = Object.values({ ...MdiIcons });
 const lai = Object.values({ ...LaIcons });
-addIcons(...mdi, ...lai, CoLb, CoUs);
+addIcons(...mdi, ...lai, CoIq, CoUs, CoIr);
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
