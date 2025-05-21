@@ -16,7 +16,13 @@ const languages = [
         flag: "co-us",
         dir: "ltr",
     },
-    { code: "ar", name: "العربية", flag: "co-lb", dir: "rtl" },
+    { code: "ar", name: "العربية", flag: "co-iq", dir: "rtl" },
+    {
+        code: "fa",
+        name: "فارسی",
+        flag: "co-ir",
+        dir: "rtl",
+    },
 ];
 
 const GetCurLang = function () {
