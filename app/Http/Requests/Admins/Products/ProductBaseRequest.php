@@ -31,11 +31,11 @@ abstract class ProductBaseRequest extends AdminsAuthRequest
             'short_description' => ['array'],
             'stock' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
-            'cost' => ['required', 'numeric', 'min:0'],
+            'cost' => ['numeric', 'min:0'],
             'attributes_id' => ['nullable', 'array'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'gallery' => ['nullable', 'array', 'max:5'],
-            'gallery.*' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // max file size in KB
+            'gallery.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // max file size in KB
             'is_published' => ['boolean'],
             'is_featured' => ['boolean'],
         ];
