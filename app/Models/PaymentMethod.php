@@ -9,13 +9,11 @@ class PaymentMethod extends Model
 {
     use HasTranslations;
 
-    protected $table = 'PaymentMethods';
-
     protected $fillable = ['title_en', 'title_fa', 'description_en', 'description_fa', 'is_active'];
 
     protected $casts = [
-            'is_active' => 'boolean'
-        ];
+        'is_active' => 'boolean',
+    ];
 
     public $translatable = ['title', 'description'];
 

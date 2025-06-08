@@ -9,7 +9,6 @@ class {{modelName}} extends Model
 {
     use HasTranslations;
 
-    protected $table = '{{pluralModelName}}';
 
     protected $fillable = {{fillable}};
 

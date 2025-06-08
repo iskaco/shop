@@ -380,6 +380,7 @@ class MakeIsapResource extends Command
                 ['src' => '{{modelName}}', 'val' => $this->modelName],
                 ['src' => '{{formSections}}', 'val' => $formSectionsStr],
                 ['src' => '{{tableColumns}}', 'val' => $tableColumnsStr],
+                ['src' => '{{resourceName}}', 'val' => Str::lower(Str::snake($this->modelName))],
             ]
         );
     }

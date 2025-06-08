@@ -21,32 +21,32 @@ class PaymentMethodResource extends BaseResource
 
     public static function form(ActionType $action_type)
     {
-        $form = new Form(__('resources.{{resourceName}}.plural'), PaymentMethod::class);
+        $form = new Form(__('resources.payment_method.plural'), PaymentMethod::class);
 
         return $form->components([
             ...parent::orderByLocale([
                 ...DynamicResource::createTranslatableSections('general', 'PaymentMethods', ['title', 'description']),
             ]),
-            FormSection::make('general', __('resources.PaymentMethods.general'))->children([
-                ToggleInput::make('is_active', __('resources.PaymentMethods.is_active')),
+            FormSection::make('general', __('resources.payment_method.general'))->children([
+                ToggleInput::make('is_active', __('resources.payment_method.is_active')),
             ]),
-        ])->action(static::getAction($action_type)?->setRoute('{{resourceName}}.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('payment_method.'.lcfirst($action_type->value)));
     }
 
     public static function table()
     {
-        $table = new Table(__('resources.{{resourceName}}.plural'), PaymentMethod::class, '{{resourceName}}s');
+        $table = new Table(__('resources.payment_method.plural'), PaymentMethod::class, 'payment_methods');
 
         return $table->columns([
-            TextColumn::make('title_translated', __('resources.PaymentMethods.title')),
-            TextColumn::make('description_translated', __('resources.PaymentMethods.description')),
-            ToggleColumn::make('is_active', __('resources.PaymentMethods.is_active')),
+            TextColumn::make('title_translated', __('resources.payment_method.title')),
+            TextColumn::make('description_translated', __('resources.payment_method.description')),
+            ToggleColumn::make('is_active', __('resources.payment_method.is_active')),
         ])->row_actions([
-            ShowAction::make('show', __('resources.actions.show'))->setRoute('{{resourceName}}.show')->setIcon('la-eye'),
-            EditAction::make('edit', __('resources.actions.edit'))->setRoute('{{resourceName}}.edit')->setIcon('la-edit'),
-            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('{{resourceName}}.destroy')->setConfirmationMessage(__('messages.{{resourceName}}.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
+            ShowAction::make('show', __('resources.actions.show'))->setRoute('payment_method.show')->setIcon('la-eye'),
+            EditAction::make('edit', __('resources.actions.edit'))->setRoute('payment_method.edit')->setIcon('la-edit'),
+            DeleteAction::make('delete', __('resources.actions.delete'))->hasConfirmation()->setConfirmationRoute('payment_method.destroy')->setConfirmationMessage(__('messages.payment_method.destroy.title'))->setIcon('la-trash-alt')->setColor('meta-1'),
         ])->table_actions([
-            CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.{{resourceName}}.label')]))->setIcon('md-addbox-outlined')->setRoute('{{resourceName}}.create'),
+            CreateAction::make('create', __('resources.actions.create', ['label' => __('resources.payment_method.label')]))->setIcon('md-addbox-outlined')->setRoute('payment_method.create'),
         ]);
     }
 }
