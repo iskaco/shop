@@ -1,0 +1,22 @@
+{
+    "name": "PaymentMethod",
+    "fields": [
+        {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "translatable": true
+        },
+        {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "translatable": true
+        },
+        {
+            "name": "is_active",
+            "type": "boolean",
+            "default": true
+        }
+    ]
+}

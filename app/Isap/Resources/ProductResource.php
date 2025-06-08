@@ -41,25 +41,6 @@ class ProductResource extends BaseResource
                 [
                     ...DynamicResource::createTranslatableSections('general', 'product', ['name', 'description', 'short_description']),
 
-                    /*'en' => [
-                        FormSection::make('general_en', __('resources.category.general_en'))->children(
-                            [
-                                TextInput::make('name_en', __('resources.product.name_en'))->isRequired(),
-                                TextInput::make('description_en', __('resources.product.description_en')),
-                                TextInput::make('short_description_en', __('resources.product.short_description_en')),
-                            ]
-                        ),
-                    ],
-                    'ar' => [
-                        FormSection::make('general_ar', __('resources.category.general_ar'))->children(
-                            [
-                                TextInput::make('name_ar', __('resources.product.name_ar'))->isRequired(),
-                                TextInput::make('description_ar', __('resources.product.description_ar')),
-                                TextInput::make('short_description_ar', __('resources.product.short_description_ar')),
-                            ]
-                        ),
-
-                    ],*/
                 ]
             ),
             FormSection::make('another_info', __('resources.product.another_info'))->children([

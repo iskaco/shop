@@ -327,4 +327,11 @@ return [
         'value_ar' => 'Value (Arabic)',
         'value_fa' => 'Value (Persian)',
     ],
+    'payment_method' => [
+        'label' => 'Payment Method',
+        'plural' => 'Payment Methods',
+        'title' => 'Title',
+        'description' => 'Description',
+        'is_active' => 'Is Active',
+    ],
 ];

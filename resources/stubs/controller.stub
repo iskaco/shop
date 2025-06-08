@@ -12,22 +12,33 @@ use App\Http\Requests\Admins\{{pluralModelName}}\{{modelName}}DestroyRequest;
 use App\Http\Requests\Admins\{{pluralModelName}}\{{modelName}}StoreRequest;
 use App\Http\Requests\Admins\{{pluralModelName}}\{{modelName}}UpdateRequest;
 use App\Models\{{modelName}};
+use App\Isap\Actions\ActionType;
+
 
 class {{modelName}}Controller extends Controller
 {
     public function index(){
-        
+        return $this->makeInertiaTableResponse({{modelName}}::class, {{modelName}}::query());
+
     }
     public function show($id){
-        
+        $object = {{modelName}}::findOrFail($id);
+
+        return $this->makeInertiaFormResponse({{modelName}}::class, $object->toFrontendArray(), ActionType::SHOW);
+
     }
+
+    public function create(){
+        return $this->makeInertiaFormResponse({{modelName}}::class, [], ActionType::STORE);
+    }
+
     public function store(){
-        
+
     }
     public function update($id){
-        
+
     }
     public function destroy($id){
-        
+
     }
 }

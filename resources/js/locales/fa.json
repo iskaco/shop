@@ -330,7 +330,8 @@
                 "taxes": "مالیات‌ها",
                 "vendors": "فروشندگان",
                 "attributes": "ویژگی‌ها",
-                "attribute_values": "مقادیر ویژگی‌ها"
+                "attribute_values": "مقادیر ویژگی‌ها",
+                "payment_methods": "روش‌های پرداخت"
             }
         },
         "search": "جستجو",

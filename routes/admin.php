@@ -10,6 +10,7 @@ use App\Http\Controllers\Admins\CustomerController;
 use App\Http\Controllers\Admins\FormController;
 use App\Http\Controllers\Admins\OrderController;
 use App\Http\Controllers\Admins\OrderItemController;
+use App\Http\Controllers\Admins\PaymentMethodController;
 use App\Http\Controllers\Admins\ProductController;
 use App\Http\Controllers\Admins\SpecificationController;
 use App\Http\Controllers\Admins\TableController;
@@ -156,5 +157,14 @@ Route::prefix('admin')->name('admin.')->middleware('adminauth')->group(function 
     Route::put('/attribute_value/{id}', [AttributeValueController::class, 'update'])->name('attribute_value.update');
     Route::delete('/attribute_value/{id}', [AttributeValueController::class, 'destroy'])->name('attribute_value.destroy');
     Route::get('/attribute_value/edit/{id}', [AttributeValueController::class, 'edit'])->name('attribute_value.edit');
+
+    // PaymentMethod Routes
+    Route::get('/payment_methods', [PaymentMethodController::class, 'index'])->name('payment_methods');
+    Route::get('/payment_method', [PaymentMethodController::class, 'create'])->name('payment_method.create');
+    Route::post('/payment_method', [PaymentMethodController::class, 'store'])->name('payment_method.store');
+    Route::get('/payment_method/{id}', [PaymentMethodController::class, 'show'])->name('payment_method.show');
+    Route::put('/payment_method/{id}', [PaymentMethodController::class, 'update'])->name('payment_method.update');
+    Route::delete('/payment_method/{id}', [PaymentMethodController::class, 'destroy'])->name('payment_method.destroy');
+    Route::get('/payment_method/edit/{id}', [PaymentMethodController::class, 'edit'])->name('payment_method.edit');
 
 });

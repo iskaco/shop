@@ -330,7 +330,8 @@
                 "taxes": "Taxes",
                 "vendors": "Vendors",
                 "attributes": "Attributes",
-                "attribute_values": "Attribute Values"
+                "attribute_values": "Attribute Values",
+                "payment_methods": "Payment Methods"
             }
         },
         "search": "Search",
