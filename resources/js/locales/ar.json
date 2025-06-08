@@ -330,7 +330,8 @@
                 "taxes": "الضرائب",
                 "vendors": "الموردين",
                 "attributes": "الخصائص",
-                "attribute_values": "قيم الخصائص"
+                "attribute_values": "قيم الخصائص",
+                "payment_methods": "طرق الدفع"
             }
         },
         "search": "بحث...",

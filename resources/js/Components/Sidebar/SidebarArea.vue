@@ -86,6 +86,10 @@ const menuGroups = ref([
                     { label: "titles.admin.menus.offers", route: "dashboard" },
                     { label: "titles.admin.menus.coupons", route: "dashboard" },
                     { label: "titles.admin.menus.plans", route: "dashboard" },
+                    {
+                        label: "titles.admin.menus.payment_methods",
+                        route: "payment_methods",
+                    },
                 ],
             },
         ],
@@ -138,7 +142,7 @@ const menuGroups = ref([
                 <img
                     src="/images/logo.png"
                     alt="Logo"
-                    class="h-10 w-14 bg-bodydark1 rounded"
+                    class="h-10 rounded w-14 bg-bodydark1"
                 />
                 <div class="flex flex-col">
                     <span class="font-black text-sky-700">
