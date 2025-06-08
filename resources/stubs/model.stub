@@ -3,8 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class {{modelName}} extends Model
 {
+    use HasTranslations;
+
+    protected $table = '{{pluralModelName}}';
+
+    protected $fillable = {{fillable}};
+
+    protected $casts = {{casts}};
+
+    public $translatable = {{translatable}};
+
+    protected $appends = {{appends}};
+
+    // Translation accessors
+    {{translationAccessors}}
+
     // Your model attributes and methods here
 }
