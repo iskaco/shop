@@ -43,22 +43,22 @@ class Product extends Model implements HasMedia
 
     public function getPriceAttribute($value)
     {
-        return $value / 100;
+        return $value / 10;
     }
 
     public function setPriceAttribute($value)
     {
-        $this->attributes['price'] = $value * 100;
+        $this->attributes['price'] = $value * 10; //Rial Calculation
     }
 
     public function getCostAttribute($value)
     {
-        return $value / 100;
+        return $value / 10;
     }
 
     public function setCostAttribute($value)
     {
-        $this->attributes['cost'] = $value * 100;
+        $this->attributes['cost'] = $value * 10;
     }
 
     public function category()
