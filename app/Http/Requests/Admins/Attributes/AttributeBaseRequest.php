@@ -3,11 +3,14 @@
 namespace App\Http\Requests\Admins\Attributes;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
+use App\Traits\HandlesTranslatableValidation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class AttributeBaseRequest extends AdminsAuthRequest
 {
+    use HandlesTranslatableValidation;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,21 +25,17 @@ class AttributeBaseRequest extends AdminsAuthRequest
         ];
     }
 
+    protected function translatableFieldsConfig(): array
+    {
+        return [
+            'name' => [
+                'rules' => ['string', 'max:255'],
+                'required' => true,
+            ],
+        ];
+    }
     public function prepareForValidation()
     {
-        $data = [
-            'name_en' => $this->name_en,
-            'name_ar' => $this->name_ar,
-        ];
-
-        $validator = Validator::make($data, [
-            'name_en' => ['required', 'string', 'max:255'],
-            'name_ar' => ['required', 'string', 'max:255'],
-        ]);
-
-        $validator->validate();
-        $this->merge([
-            'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
-        ]);
+        $this->prepareTranslatableValidation();
     }
 }
