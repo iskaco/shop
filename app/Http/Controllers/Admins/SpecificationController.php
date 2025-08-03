@@ -40,6 +40,23 @@ class SpecificationController extends Controller
     }
 
     public function show($id) {}
-    public function update($id) {}
+
+    public function edit(string $id)
+    {
+        return $this->makeInertiaFormResponse(Specification::class, Specification::findOrFail($id)?->toFrontendArray(), ActionType::UPDATE);
+    }
+    public function update(SpecificationUpdateRequest $request, SpecificationUpdate $action, $id) {
+        try {
+            if ($action->execute( $id,$request->validated())) {
+                toast_success(__('messages.specification.update.ok'));
+
+                return redirect()->route('admin.specifications');
+            }
+            toast_error(__('messages.specification.update.error'));
+
+        } catch (\Throwable $th) {
+            toast_error(__('messages.specification.update.error'));
+        }
+    }
     public function destroy($id) {}
 }

@@ -3,11 +3,14 @@
 namespace App\Http\Requests\Admins\Specifications;
 
 use App\Http\Requests\Admins\AdminsAuthRequest;
+use App\Traits\HandlesTranslatableValidation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class SpecificationBaseRequest extends AdminsAuthRequest
 {
+
+    use HandlesTranslatableValidation;
 
     public function rules(): array
     {
@@ -34,21 +37,22 @@ class SpecificationBaseRequest extends AdminsAuthRequest
         ];
     }
 
+    protected function translatableFieldsConfig(): array
+    {
+        return [
+            'name' => [
+                'rules' => ['string', 'max:255'],
+                'required' => true,
+            ],
+        ];
+    }
     public function prepareForValidation()
     {
-        $data = [
-            'name_en' => $this->name_en,
-            'name_ar' => $this->name_ar,
-        ];
-
-        $validator = Validator::make($data, [
-            'name_en' => ['required', 'string', 'max:100'],
-            'name_ar' => ['required', 'string', 'max:100'],
-        ]);
-        $validator->validate();
+        $this->prepareTranslatableValidation();
         $this->merge([
-            'name' => ['en' => $this->name_en, 'ar' => $this->name_ar],
             'category_id' => $this->category_id ? $this->category_id['id'] : null,
         ]);
     }
+
+
 }
