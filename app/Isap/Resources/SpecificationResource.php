@@ -27,20 +27,8 @@ class SpecificationResource extends BaseResource
         return $form->components([
             ...parent::orderByLocale(
                 [
-                    'en' => [
-                        FormSection::make('general_en', __('resources.specification.general_en'))->children(
-                            [
-                                TextInput::make('name_en', __('resources.specification.name_en'))->isRequired(),
-                            ]
-                        ),
-                    ],
-                    'ar' => [
-                        FormSection::make('general_ar', __('resources.specification.general_ar'))->children(
-                            [
-                                TextInput::make('name_ar', __('resources.specification.name_ar'))->isRequired(),
-                            ]
-                        ),
-                    ]
+                    ...DynamicResource::createTranslatableSections('general', 'attribute', ['name']),
+
                 ]
             ),
             FormSection::make('another_info', __('resources.specification.another_info'))->children([
