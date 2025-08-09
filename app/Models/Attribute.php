@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Attribute extends Model
 {
-    use HasTranslations,Logable,TranslatableTrait;
+    use HasTranslations, Logable, TranslatableTrait;
 
     protected $fillable = [
         'name',
@@ -23,7 +23,6 @@ class Attribute extends Model
     public function getNameTranslatedAttribute()
     {
         return $this->getTranslation('name', app()->getLocale());
-
     }
 
     public function attribute_values()
