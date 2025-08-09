@@ -17,7 +17,6 @@ class AttributeController extends Controller
     public function index()
     {
         return $this->makeInertiaTableResponse(Attribute::class, Attribute::query());
-
     }
 
     public function show($id)
@@ -25,7 +24,6 @@ class AttributeController extends Controller
         $attribute = Attribute::findOrFail($id);
 
         return $this->makeInertiaFormResponse(Attribute::class, $attribute->toFrontendArray(), ActionType::SHOW);
-
     }
 
     public function create()
@@ -49,10 +47,8 @@ class AttributeController extends Controller
                 return redirect()->route('admin.attributes');
             }
             toast_error(__('messages.attribute.store.error'));
-
         } catch (\Throwable $th) {
             toast_error(__('messages.attribute.store.error'));
-
         }
     }
 
@@ -65,7 +61,6 @@ class AttributeController extends Controller
                 return redirect()->route('admin.attributes');
             }
             toast_error(__('messages.attribute.update.error'));
-
         } catch (\Throwable $th) {
             toast_error(__('messages.attribute.update.error'));
         }

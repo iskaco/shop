@@ -32,7 +32,7 @@ class AttributeValueResource extends BaseResource
             ),
             ...parent::orderByLocale(
                 [
-                    ...DynamicResource::createTranslatableSections('general', 'attribute', ['value']),
+                    ...DynamicResource::createTranslatableSections('general', 'attribute_value', ['value']),
                     /*'en' => [
                         FormSection::make('general_en', __('resources.attribute_value.general_en'))->children(
                             [
@@ -53,7 +53,7 @@ class AttributeValueResource extends BaseResource
 
             ]),
 
-        ])->action(static::getAction($action_type)?->setRoute('attribute_value.'.lcfirst($action_type->value)));
+        ])->action(static::getAction($action_type)?->setRoute('attribute_value.' . lcfirst($action_type->value)));
     }
 
     public static function table()
