@@ -5,8 +5,8 @@
             "description": "شریک راه حل های دیجیتال شما",
             "currency": {
                 "usd": {
-                    "name": "دلار",
-                    "prefix": "$"
+                    "name": "تومان",
+                    "prefix": "تومان"
                 },
                 "rial": {
                     "name": "ریال",
@@ -212,7 +212,7 @@
                 "category": "دسته‌بندی",
                 "brand": "برند",
                 "price": "قیمت",
-                "currency": "دلار",
+                "currency": "تومان",
                 "description": "توضیحات",
                 "seller": "فروشگاه ",
                 "features": "ویژگی‌ها",
